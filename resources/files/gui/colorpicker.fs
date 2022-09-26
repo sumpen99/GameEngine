@@ -1,0 +1,1568 @@
+# Implementation of Layout
+# Use # For comments Window Width 800 Window Height 500
+HORIZONTAL
+;
+BoxLayout
+    id:layout0
+    left:0
+    top:0
+    width:800
+    height:500
+    valign:false
+    color:LightGreen
+    draw:fill
+    opacity:0
+    shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:80
+        height:40
+        color:WHITE
+        textcolor:black
+        text:Exit
+        func:shutdown
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:BLACK
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:GREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:BLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:YELLOW
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:RED
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTGREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTORANGE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTRED
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:MAROON
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKRED
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:BROWN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:FIREBRICK
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:CRIMSON
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:TOMATO
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:CORAL
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:INDIANRED
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTCORAL
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKSALMON
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:SALMON
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTSALMON
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:ORANGERED
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKORANGE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:ORANGE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:GOLD
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKGOLDENROD
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:GOLDENROD
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:PALEGOLDENROD
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKKHAKI
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:KHAKI
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:OLIVE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:YELLOWGREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKOLIVEGREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:OLIVEDRAB
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LAWNGREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:CHARTREUSE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:GREENYELLOW
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKGREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:FORESTGREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIME
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIMEGREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:PALEGREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKSEAGREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:MEDIUMSPRINGGREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:SPRINGGREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:SEAGREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:MEDIUMAQUAMARINE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:MEDIUMSEAGREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTSEAGREEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKSLATEGRAY
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:TEAL
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKCYAN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:AQUA
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:CYAN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTCYAN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKTURQUOISE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:TURQUOISE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:MEDIUMTURQUOISE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:PALETURQUOISE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:AQUAMARINE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:POWDERBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:CADETBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:STEELBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:CORNFLOWERBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DEEPSKYBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DODGERBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:SKYBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTSKYBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:MIDNIGHTBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:NAVY
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:MEDIUMBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:ROYALBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:BLUEVIOLET
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:INDIGO
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKSLATEBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:SLATEBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:MEDIUMSLATEBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:MEDIUMPURPLE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKMAGENTA
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKVIOLET
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKORCHID
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:MEDIUMORCHID
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:PURPLE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:THISTLE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:PLUM
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:VIOLET
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:FUCHSIA
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:ORCHID
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:MEDIUMVIOLETRED
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:PALEVIOLETRED
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DEEPPINK
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTPINK
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:PINK
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:ANTIQUEWHITE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:BEIGE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:BISQUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:BLANCHEDALMOND
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:WHEAT
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:CORNSILK
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LEMONCHIFFON
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTGOLDENRODYELLOW
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTYELLOW
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:SADDLEBROWN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:SIENNA
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:CHOCOLATE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:PERU
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:SANDYBROWN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:BURLYWOOD
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:TAN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:ROSYBROWN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:MOCCASIN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:NAVAJOWHITE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:PEACHPUFF
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:MISTYROSE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LAVENDERBLUSH
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LINEN
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:OLDLACE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:PAPAYAWHIP
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:SEASHELL
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:MINTCREAM
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:SLATEGRAY
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTSLATEGRAY
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTSTEELBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:PLUM
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LAVENDER
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:FLORALWHITE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:ALICEBLUE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:GHOSTWHITE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:HONEYDEW
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:IVORY
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:AZURE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:SNOW
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DIMGRAY
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:GRAY
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:DARKGRAY
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:SILVER
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:LIGHTGRAY
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:GAINSBORO
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;
+FlatButton
+        left:0
+        top:0
+        width:40
+        height:40
+        color:WHITESMOKE
+        textcolor:black
+        func:getcolorinfo
+        draw:fill
+        shape:rectangle
+;

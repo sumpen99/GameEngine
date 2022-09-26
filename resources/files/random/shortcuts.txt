@@ -1,0 +1,4 @@
+alt+shift+up/down
+ctrl+alt+b = jump to function
+alt+enter = import
+git rm -r --cached .

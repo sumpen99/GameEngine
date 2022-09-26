@@ -1,0 +1,199 @@
+# Implementation of Layout
+# Use # For comments Window Width 800 Window Height 500
+# SET OPACITY TO 0 INSIDE LAYOUT TO NOT DRAW
+# id:string
+# bind:(idToWidgetToBindTo)
+# args:(idToWidgetToBindTo),(idToWidgetToBindTo),...
+VERTICAL
+;
+BoxLayout
+    id:layout0
+    left:0
+    top:0
+    width:800
+    height:60
+    valign:false
+    color:LightGreen
+    draw:fill
+    opacity:0
+    shape:rectangle
+;
+    RoundedButton
+        left:80
+        top:30
+        radiex:60
+        radiey:25
+        color:PLUM
+        textcolor:black
+        func:shutdown
+        draw:fill
+        text:Exit
+        shape:rectangle
+;
+    RoundedButton
+        id:stopwatch
+        left:100
+        top:30
+        radiex:60
+        radiey:25
+        color:lavenderblush
+        textcolor:black
+        args:gametextbox,spinner
+        func:timer
+        draw:fill
+        text:START
+        shape:rectangle
+;
+    RoundedImage
+        id:spinner
+        left:380
+        top:30
+        width:50
+        height:50
+        color:Plum
+        opacity:1
+        path:zonfri.png
+        draw:fill
+;
+    RoundedLabel
+        id:scorecounter
+        left:50
+        top:30
+        radiex:30
+        radiey:25
+        color:seashell
+        textcolor:Red
+        draw:fill
+        shape:rectangle
+;
+BoxLayout
+    left:20
+    top:10
+    width:760
+    height:20
+    valign:false
+    color:Gray
+    draw:outline
+    opacity:0
+    shape:rectangle
+;
+    FlatLabel
+        left:0
+        top:0
+        width:760
+        height:20
+        color:LightOrange
+        textcolor:Red
+        draw:fill
+        opacity:0
+        text:Type As Many Correct Spelled Words As Possible!
+        shape:rectangle
+;
+BoxLayout
+    left:20
+    top:10
+    width:760
+    height:200
+    valign:false
+    color:Blue
+    draw:fill
+    shape:rectangle
+    opacity:0
+;
+    SpellMeTextbox
+        id:gametextbox
+        left:0
+        top:0
+        width:760
+        height:200
+        bind:scorecounter
+        color:LightRed
+        textcolor:Red
+        draw:fill
+        shape:rectangle
+        hintText:Press Start To Start Game. Type English Words Followed By Space. If Correct You Gain (1*(len of word)) Otherwise We Show You How It Was Supposed To Be Spelled
+        opacity:1
+        enableAutoCorrect:true
+;
+BoxLayout
+    left:20
+    top:0
+    width:760
+    height:50
+    valign:false
+    color:Gray
+    draw:outline
+    opacity:0
+    shape:rectangle
+;
+
+    FlatTextbox
+        id:username
+        left:0
+        top:15
+        width:200
+        height:20
+        color:GAINSBORO
+        textcolor:Black
+        draw:fill
+        shape:rectangle
+        hintText:Your Name
+        opacity:1
+        enableAutoCorrect:false
+;
+    FlatButton
+        id:uploadHighScore
+        left:20
+        top:5
+        width:140
+        height:40
+        color:LightOrange
+        textcolor:Red
+        func:uploadhighscore
+        args:username,scorecounter
+        draw:fill
+        text:Submit
+        shape:rectangle
+;
+FlatButton
+        id:reloadHighScore
+        left:20
+        top:5
+        width:340
+        height:40
+        color:chartreuse
+        textcolor:Red
+        func:gethighscore
+        args:highscorelist
+        draw:fill
+        text:Reload HighscoreTable
+        shape:rectangle
+;
+BoxLayout
+    left:20
+    top:10
+    width:760
+    height:110
+    valign:false
+    color:Gray
+    draw:outline
+    opacity:0
+    shape:rectangle
+;
+    LabelBox
+        id:highscorelist
+        left:0
+        top:0
+        width:760
+        height:110
+        col:1
+        row:5
+        color:mediumturquoise
+        textcolor:Red
+        draw:fill
+        opacity:1
+        text:*HighScore*
+        shape:rectangle
+;
+
+
