@@ -1,14 +1,8 @@
 import engine.GameEngine;
-import helper.search.BinarySearch;
-import helper.struct.Point;
-import helper.struct.SearchInfo;
 import program.ColorPicker;
 import program.QuadTreeBalls;
 import program.SpellMe;
 import helper.io.IOHandler;
-
-import static helper.methods.CommonMethods.buildPolygonShape;
-import static helper.methods.CommonMethods.intArrToPointArr;
 
 
 public class StartUp {
