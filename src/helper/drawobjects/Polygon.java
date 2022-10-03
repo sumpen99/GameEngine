@@ -18,12 +18,13 @@ public class Polygon extends DrawObject{
     Point[] vertices;
     float[] constant,multiple;
     boolean isect;
-    int vertCount,iSectCount;
+    int vertCount,iSectCount,checkerSize;
     IntersectPoint[] iSectPoints;
     BaseLine[] lines;
-    public Polygon(int[] verts,int color, int opacity, DrawMode draw){
+    public Polygon(int[] verts,int checkersize,int color, int opacity, DrawMode draw){
         super(WidgetShape.SM_POLYGON,draw,color,opacity);
         assert verts.length%2 == 0 : "Polygon Vertices Not Acurate";
+        checkerSize = checkersize;
         initVertices(verts);
         pos = new Vec2d(0,0);
         size = new Vec2d(0,0);
@@ -35,7 +36,7 @@ public class Polygon extends DrawObject{
 
     void initVertices(int[] verts){
         Point[] points = intArrToPointArr(verts);
-        vertices = buildPolygonShape(points);
+        vertices = buildPolygonShape(points,checkerSize);
         vertCount = vertices.length;
         iSectPoints = new IntersectPoint[vertCount];
     }
@@ -222,8 +223,6 @@ public class Polygon extends DrawObject{
         int polycorners = vertCount;
         int nodes,pixelX,pixelY,i,j;
         int[] nodeX = new int[polycorners];
-        //IOHandler.printString("%d %d %d".formatted(IMAGE_TOP,IMAGE_BOT,polycorners));
-        //IOHandler.printPoints(vertices);
         for(pixelY = IMAGE_TOP;pixelY<IMAGE_BOT;pixelY++){
             nodes = 0;
             j = polycorners-1;
@@ -236,7 +235,6 @@ public class Polygon extends DrawObject{
                 j = i;
             }
 
-            //IOHandler.printIntArray(nodeX);
             BubbleSort.minBubbleSort(nodeX,nodes);
             for(i = 0;i<nodes;i+=2){
                 if(nodeX[i]>=IMAGE_RIGHT)break;
@@ -244,8 +242,7 @@ public class Polygon extends DrawObject{
                     if(nodeX[i] < IMAGE_LEFT)nodeX[i] = IMAGE_LEFT;
                     if(nodeX[i+1] > IMAGE_RIGHT)nodeX[i+1] = IMAGE_RIGHT;
                     for(pixelX = nodeX[i];pixelX<nodeX[i+1];pixelX++){
-                        //IOHandler.printString("%d %d".formatted(pixelX,pixelY));
-                        CanvasHandler.setPixel(pixelX,pixelY,Color.BLACK.getValue());
+                        CanvasHandler.setPixel(pixelX,pixelY,color);
                     }
                 }
             }

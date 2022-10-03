@@ -128,10 +128,10 @@ public class CommonMethods{
         return points;
     }
 
-    public static Point[] buildPolygonShape(Point[] points){
+    public static Point[] buildPolygonShape(Point[] points,int offset){
         int size = points.length,cnt,i;
         Point[] l1 = new Point[size],l2 = new Point[size];
-        offsetLine(points,l1,l2,10);
+        offsetLine(points,l1,l2,offset);
         points = Arrays.copyOf(l1,size*2+1);
         cnt = size-1;
         for(i = size;i<size*2;i++){
