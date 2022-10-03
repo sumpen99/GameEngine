@@ -1,5 +1,4 @@
 package helper.drawobjects;
-
 import helper.canvas.CanvasHandler;
 import helper.enums.Color;
 import helper.enums.DrawMode;
@@ -10,7 +9,6 @@ import helper.struct.BaseLine;
 import helper.struct.IntersectPoint;
 import helper.struct.Point;
 import helper.struct.Vec2d;
-
 import static helper.methods.CommonMethods.*;
 import static helper.methods.CommonMethods.buildPolygonShape;
 
@@ -117,6 +115,9 @@ public class Polygon extends DrawObject{
                 IOHandler.logToFile("IntersectionIndex %s %s".formatted(idx[0],idx[1]));
                 IOHandler.logToFile("IntersectionPoint %s %s".formatted(points[0],points[1]));
             }
+        }
+        else{
+            iSectPoints = null;
         }
     }
 
