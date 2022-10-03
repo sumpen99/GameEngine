@@ -4,7 +4,8 @@ import program.QuadTreeBalls;
 import program.SpellMe;
 import helper.io.IOHandler;
 
-//https://personal.ntu.edu.sg/ehchua/programming/java/javanativeinterface.html 
+//https://personal.ntu.edu.sg/ehchua/programming/java/javanativeinterface.html
+//http://midi.teragonaudio.com/tech/lowaud.htm
 
 public class StartUp {
 
