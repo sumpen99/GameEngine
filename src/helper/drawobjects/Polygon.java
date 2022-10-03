@@ -141,8 +141,8 @@ public class Polygon extends DrawObject{
     public Object getValues(){
         Object[] obj = new Object[3];
         obj[0] = vertices;
-        obj[1] = constant;
-        obj[2] = multiple;
+        obj[1] = multiple;
+        obj[2] = constant;
         return obj;
     }
 
