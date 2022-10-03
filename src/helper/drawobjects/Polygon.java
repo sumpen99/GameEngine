@@ -18,7 +18,7 @@ public class Polygon extends DrawObject{
     Point[] vertices;
     float[] constant,multiple;
     boolean isect;
-    int vertCount,iSectCount,vertSize;
+    int vertCount,iSectCount;
     IntersectPoint[] iSectPoints;
     BaseLine[] lines;
     public Polygon(int[] verts,int color, int opacity, DrawMode draw){
@@ -28,21 +28,22 @@ public class Polygon extends DrawObject{
         pos = new Vec2d(0,0);
         size = new Vec2d(0,0);
         center = new Vec2d(0,0);
-        constant = new float[vertSize];
-        multiple = new float[vertSize];
-        lines = new BaseLine[vertSize/2];
+        constant = new float[vertCount];
+        multiple = new float[vertCount];
+        lines = new BaseLine[vertCount-1];
     }
 
     void initVertices(int[] verts){
         Point[] points = intArrToPointArr(verts);
         vertices = buildPolygonShape(points);
-        vertSize = vertices.length;
+        vertCount = vertices.length;
+        iSectPoints = new IntersectPoint[vertCount];
     }
 
     void adjustVertices(Vec2d offset){
         int x = (int)vertices[0].x + offset.x,y = (int)vertices[0].y + offset.y;
         int min_x = x,min_y = y,max_x = x,max_y = y;
-        for(int i = 0;i<=vertSize-2;i+=2){
+        for(int i = 0;i<vertCount;i++){
             vertices[i].x += offset.x;
             vertices[i].y += offset.y;
             min_x = (int)Math.min(min_x,vertices[i].x);
@@ -78,7 +79,7 @@ public class Polygon extends DrawObject{
         for(int i = 1;i < vertCount;i++){
             lines[i-1] = new BaseLine(vertices[i-1],vertices[i]);
         }
-    }
+ }
 
     void selfIntersect(){
         Vec2d ptr = new Vec2d(0,0);
@@ -125,8 +126,6 @@ public class Polygon extends DrawObject{
         buildLines();
         selfIntersect();
         collectIntersectPoints();
-        this.pos.x += offset.x;
-        this.pos.y += offset.y;
     }
 
     @Override
@@ -223,6 +222,8 @@ public class Polygon extends DrawObject{
         int polycorners = vertCount;
         int nodes,pixelX,pixelY,i,j;
         int[] nodeX = new int[polycorners];
+        //IOHandler.printString("%d %d %d".formatted(IMAGE_TOP,IMAGE_BOT,polycorners));
+        //IOHandler.printPoints(vertices);
         for(pixelY = IMAGE_TOP;pixelY<IMAGE_BOT;pixelY++){
             nodes = 0;
             j = polycorners-1;
@@ -235,6 +236,7 @@ public class Polygon extends DrawObject{
                 j = i;
             }
 
+            //IOHandler.printIntArray(nodeX);
             BubbleSort.minBubbleSort(nodeX,nodes);
             for(i = 0;i<nodes;i+=2){
                 if(nodeX[i]>=IMAGE_RIGHT)break;
@@ -242,7 +244,8 @@ public class Polygon extends DrawObject{
                     if(nodeX[i] < IMAGE_LEFT)nodeX[i] = IMAGE_LEFT;
                     if(nodeX[i+1] > IMAGE_RIGHT)nodeX[i+1] = IMAGE_RIGHT;
                     for(pixelX = nodeX[i];pixelX<nodeX[i+1];pixelX++){
-                        CanvasHandler.setPixel(pixelX,pixelY,color);
+                        //IOHandler.printString("%d %d".formatted(pixelX,pixelY));
+                        CanvasHandler.setPixel(pixelX,pixelY,Color.BLACK.getValue());
                     }
                 }
             }

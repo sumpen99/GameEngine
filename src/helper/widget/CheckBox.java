@@ -17,12 +17,18 @@ public class CheckBox extends Widget{
     public CheckBox(Object obj, DrawValues dww){
         super(obj,dww.functionMethod, WidgetType.SM_CHECK_BOX,
                 new Rectangle(dww.left,dww.top,dww.width,dww.height,dww.color,dww.opacity,dww.draw));
+        initPolygonSymbol(dww);
+  }
 
-        //checkerSymbol = new Polygon(dww.points, Color.PALEGOLDENROD.getValue(),1, DrawMode.FILL);
-        //Point[] points = intArrToPointArr(dww.points);
-        //points = buildPolygonShape(points);
-        //int[] verts,int color, int opacity, DrawMode draw
-        //int[] points = buildPolygonShape(new int[]{0,0,50,50,100,90});
+    void initPolygonSymbol(DrawValues dww){
+        int cx,cy,lx,ly,rx,ry;
+        lx = dww.left+dww.width/3;
+        ly = dww.top+dww.height/3;
+        cx = dww.left+dww.width/2;
+        cy = dww.top+dww.height/2;
+        rx = dww.left+dww.width;
+        ry = dww.top;
+        checkerSymbol = new Polygon(new int[]{lx,ly,cx,cy,rx,ry}, Color.PALEGOLDENROD.getValue(),1, DrawMode.FILL);
     }
 
     @Override
@@ -38,11 +44,12 @@ public class CheckBox extends Widget{
     @Override
     public void reposition(Vec2d offset){
         this.wObj.rePosition(offset);
+        checkerSymbol.rePosition(offset);
     }
 
     @Override
     public void draw(){
         if(this.wObj.opacity != 0){this.wObj.draw();}
-        // draw Checker
+        checkerSymbol.draw();
     }
 }

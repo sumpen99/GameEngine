@@ -77,8 +77,26 @@ public class IOHandler {
         System.out.println("[%s] -> needs [%d] swaps to become -> [%s]".formatted(strIn,edit.n,strOut));
     }
 
+    public static void printPoints(Point[] points){
+        int i = 0,size = points.length;
+        while(i<size)printPoint(points[i++]);
+    }
+
+    public static void printBaseLines(BaseLine[] lines){
+        for(int i = 0;i<lines.length;i++){printBaseLine(lines[i]);}
+    }
+
+    public static void printBaseLine(BaseLine l){
+        printString("X1: %f Y1: %f X2: %f Y2: %f".formatted(l.p1.x,l.p1.y,l.p2.x,l.p2.y));
+    }
+
     public static void printPoint(Point p){
         printString("X: %f Y: %f Length: %f".formatted(p.x,p.y,p.length));
+    }
+
+    public static void printIntArray(int[] arr){
+        printString("Int Array length: %d".formatted(arr.length));
+        for(int i = 0;i<arr.length;i++)printInt(arr[i]);
     }
 
     public static void printCharBuf(CharBuf buf,int col){

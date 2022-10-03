@@ -115,6 +115,9 @@ public class CommonMethods{
         return "%s 0x%08X".formatted(name,color);
     }
 
+    /**
+     * Build point-list from int[]{x,y,x,y,x,y,x,y...}
+     * */
     public static Point[] intArrToPointArr(int[] p){
         assert p.length%2 == 0;
         int size = p.length,i = 0,cnt = 0;
@@ -134,7 +137,7 @@ public class CommonMethods{
         for(i = size;i<size*2;i++){
             points[i] = l2[cnt--];
         }
-        points[i+1] = new Point(points[0].x,points[0].y);
+        points[i] = new Point(points[0].x,points[0].y);
         return points;
     }
 
