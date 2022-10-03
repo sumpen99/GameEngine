@@ -1569,8 +1569,8 @@ FlatButton
 CheckBox
         left:0
         top:0
-        width:100
-        height:100
+        width:40
+        height:40
         color:WHITESMOKE
         draw:fill
         shape:rectangle

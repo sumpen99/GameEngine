@@ -1,4 +1,5 @@
 package engine;
+import helper.audio.AudioHandler;
 import helper.enums.*;
 import helper.canvas.CanvasHandler;
 import helper.drawobjects.*;
@@ -172,6 +173,7 @@ public abstract class GameEngine extends JFrame implements IGameEngine{
         SMDateTime.initSMDateTime();
         MouseHandler.initMouseHandler();
         KeyboardHandler.initKeyboardHandler();
+        AudioHandler.initAudioHandler();
         CanvasHandler.initCanvasHandler(screenWidth,screenHeight);
         TextWriter.initTextWriter();
         addMouseListener(MouseHandler.getSelf());
