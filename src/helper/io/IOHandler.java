@@ -19,6 +19,9 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManagerFactory;
+import javax.sound.sampled.AudioFileFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.security.KeyManagementException;
@@ -319,6 +322,24 @@ public class IOHandler {
         catch(Exception e){
             IOHandler.logToFile(e.getMessage());
         }
+    }
+
+    public static void writeWaveDataToFile(String name,AudioFileFormat.Type fileType,AudioInputStream audioInputStream){
+        try{
+            // check for existing file first
+            String dir = "./resources/files/sound/%s.%s".formatted(name,fileType.getExtension());
+            File f = new File("%s".formatted(dir));
+            audioInputStream.reset();
+            AudioSystem.write(audioInputStream,fileType,f);
+        }
+        catch(Exception e){
+            IOHandler.logToFile(e.getMessage());
+        }
+    }
+
+    public static void printThreadInfo(Thread t){
+        if(t!= null)printString("Thread-Name %s\nThread-Priority %s\nThread-Group %s\nThread-ID %s\nThread-State %s\nThread-IsAlive %b\n".formatted(t.getName(),t.getPriority(),t.getThreadGroup(),t.getId(),t.getState(),t.isAlive()));
+        else printString("Thread is Null");
     }
 
     public static String getEnv(String key){

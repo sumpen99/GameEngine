@@ -1,6 +1,9 @@
 package helper.function;
 import engine.GameEngine;
 import helper.api.ApiHandler;
+import helper.audio.AudioHandler;
+import helper.audio.AudioRecorder;
+import helper.io.IOHandler;
 import helper.struct.StopWatch;
 import helper.threading.ThreadHandler;
 import helper.widget.*;
@@ -17,6 +20,25 @@ public class FunctionMethods {
             GameEngine.setInfoText(intColorToHex(wSelf.getWidgetColorInfo()));
         }
     }
+
+
+    public void recordAudio(Integer arg,String[] args,Object self){
+        Widget wSelf = (Widget)self;
+        if(wSelf != null){
+            AudioHandler.setRecording(true);
+            AudioHandler.setAudioRecorder(wSelf,true);
+            ThreadHandler.executeNewThread(AudioHandler.getAudioRecorder());
+            try{
+                Thread.sleep(2000);
+            }
+            catch(Exception err){
+                IOHandler.logToFile(err.getMessage());
+            }
+            AudioHandler.setRecording(false);
+            //AudioHandler.closeAudioRecorder();
+        }
+    }
+
 
     public void getHighScore(Integer arg,String[] args,Object self){
         Widget wSelf = (Widget)self;

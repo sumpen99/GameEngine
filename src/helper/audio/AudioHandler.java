@@ -1,30 +1,33 @@
 package helper.audio;
+import helper.io.IOHandler;
+import helper.widget.Widget;
 
-import helper.struct.PassedCheck;
-
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.TargetDataLine;
-
+import javax.sound.sampled.*;
 import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
-
+/*public final AudioFormat.Encoding ENCODING = AudioFormat.Encoding.PCM_SIGNED;
+public final float RATE = 44100.0f;
+public final int CHANNELS = 1;
+public final int SAMPLE_SIZE = 16;
+public final boolean BIG_ENDIAN = true;*/
 //https://www.baeldung.com/java-sound-api-capture-mic
 public class AudioHandler {
     /*
-      PCM_SIGNED = new Encoding("PCM_SIGNED");
-      PCM_UNSIGNED = new AudioFormat.Encoding("PCM_UNSIGNED");
-      PCM_FLOAT = new AudioFormat.Encoding("PCM_FLOAT");
-      ULAW = new AudioFormat.Encoding("ULAW");
+      PCM_SIGNED
+      PCM_UNSIGNED
+      PCM_FLOAT
+      ULAW
       ALAW
      */
-    private static AudioHandler self = null;
     AudioFormat audioFormat;
-    private static boolean isSet = false;
+    AudioRecorder audioRecorder;
+    static AudioHandler self = null;
+    static boolean isSet = false;
+    boolean recording;
     final AudioFormat.Encoding ENCODING = PCM_SIGNED;
     final float SAMPLE_RATE = 44100.0F,FRAME_RATE = 44100.0F;
-    final int CHANNELS = 2,SAMPLE_SIZE = 16,FRAME_SIZE = 4;
+    final int CHANNELS = 1,SAMPLE_SIZE = 16,FRAME_SIZE = 2;
     final boolean BIG_ENDIAN = true;
+    //FRAME_SIZE = (SAMPLE_SIZE / 8) * channels
 
     public AudioHandler(){
         assert !AudioHandler.isSet :"AudioHandler is already set!";
@@ -38,29 +41,44 @@ public class AudioHandler {
     public static void initAudioHandler(){
         if(self == null){
             self = new AudioHandler();
+            self.setAudioFormat();
+            self.recording = false;
+        }
+    }
+
+    public static void setAudioRecorder(Widget wSelf,boolean writeToFile){
+        self.audioRecorder = new AudioRecorder(wSelf,getAudioFormat(),writeToFile);
+    }
+
+    public static void closeAudioRecorder(){
+        self.audioRecorder = null;
+    }
+
+    public static AudioRecorder getAudioRecorder(){
+        return self.audioRecorder;
+    }
+
+    public static void writeSampleToFile(){
+        if(self.audioRecorder != null){
+            IOHandler.writeWaveDataToFile("soundClipa",AudioFileFormat.Type.WAVE,self.audioRecorder.getInputStream());
+            closeAudioRecorder();
         }
     }
 
     void setAudioFormat(){
-        new AudioFormat(PCM_SIGNED, 44100.0F, 16, 2, 4, 44100.0F, true);
         audioFormat = new AudioFormat(ENCODING,SAMPLE_RATE,SAMPLE_SIZE,CHANNELS,FRAME_SIZE,FRAME_RATE,BIG_ENDIAN);
     }
 
-    TargetDataLine getTargetDataLine(PassedCheck result){
-        TargetDataLine line = null;
-        DataLine.Info info = new DataLine.Info(TargetDataLine.class,audioFormat);
-        if(!AudioSystem.isLineSupported(info))return null;
-        try{
-            line = (TargetDataLine)AudioSystem.getLine(info);
-            line.open(audioFormat,line.getBufferSize());
-            result.passed = true;
-
-        }
-        catch(Exception err){
-            result.passed = false;
-            result.message = err.getMessage();
-        }
-        return line;
-
+    public static AudioFormat getAudioFormat(){
+        return self.audioFormat;
     }
-}
+
+    public static void setRecording(boolean value){
+        self.recording = value;
+    }
+
+    public static boolean isRecording(){
+        return self.recording;
+    }
+
+  }

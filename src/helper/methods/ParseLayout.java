@@ -229,6 +229,10 @@ public class ParseLayout {
             dww.wType = SM_FLAT_BUTTON;
             return true;
         }
+        if(element.equals(SM_RECORDER.getValue())){
+            dww.wType = SM_RECORDER;
+            return true;
+        }
         if(element.equals(SM_ROUNDED_BUTTON.getValue())){
             dww.wType = SM_ROUNDED_BUTTON;
             return true;
@@ -303,6 +307,9 @@ public class ParseLayout {
             }
             case SM_ROUNDED_BUTTON:{
                 return new RoundedButton(objCallerClass,dww);
+            }
+            case SM_RECORDER:{
+                return new Recorder(objCallerClass,dww);
             }
             case SM_ROUNDED_LABEL:{
                 return new RoundedLabel(objCallerClass,dww);

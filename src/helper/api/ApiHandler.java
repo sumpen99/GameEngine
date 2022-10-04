@@ -4,6 +4,7 @@ import helper.interfaces.IThreading;
 import helper.io.IOHandler;
 import helper.struct.JsonObject;
 import helper.threading.BaseThreading;
+import helper.threading.ThreadHandler;
 import helper.widget.Widget;
 
 import javax.net.ssl.HttpsURLConnection;
