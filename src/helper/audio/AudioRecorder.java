@@ -10,6 +10,8 @@ import java.io.ByteArrayOutputStream;
 
 //https://stackoverflow.com/questions/6235016/convert-wav-audio-format-byte-array-to-floating-point
 
+//http://truelogic.org/wordpress/2015/09/04/parsing-a-wav-file-in-c/
+
 public class AudioRecorder extends BaseThreading {
     double duration;
     AudioFormat audioFormat;
