@@ -35,7 +35,7 @@ BoxLayout
     left:350
     top:0
     width:100
-    height:100
+    height:150
     valign:false
     color:LightGreen
     draw:fill
@@ -50,22 +50,48 @@ BoxLayout
         height:100
         color:Plum
         opacity:1
+        args:wavebox,recorderinfo
         path:rec.png
         func:recordaudio
         draw:fill
+;
+    FlatLabel
+        id:recorderinfo
+        left:0
+        top:0
+        width:100
+        height:50
+        color:seashell
+        textcolor:Black
+        draw:fill
+        opacity:0
+        text:Press To Record
+        shape:rectangle
 ;
 BoxLayout
     id:layout2
     left:0
     top:40
     width:800
-    height:300
+    height:250
     valign:false
     color:LightGreen
     draw:fill
     opacity:1
     shape:rectangle
 ;
+    FlatLabel
+        id:wavebox
+        left:0
+        top:0
+        width:800
+        height:250
+        color:Black
+        textcolor:Black
+        draw:fill
+        opacity:0
+        text:HERE WE ARE GOING TO OUTPUT SOUNDWAVES DURING RECORDING
+        shape:rectangle
 
 
 

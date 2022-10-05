@@ -14,6 +14,7 @@ import helper.widget.Widget;
 import static helper.enums.KeyboardState.*;
 import static helper.enums.MouseState.*;
 import static helper.methods.StringToEnum.getIntToColor;
+import static helper.methods.CommonMethods.verifyFileName;
 import javax.imageio.ImageIO;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -24,6 +25,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -122,6 +124,10 @@ public class IOHandler {
 
     public static void printStringMessage(String arg1,String arg2){
         System.out.println(arg1 + " " + arg2);
+    }
+
+    public static void printDouble(double d){
+        printString("%f".formatted(d));
     }
 
     public static void printChar(char c){
@@ -326,9 +332,7 @@ public class IOHandler {
 
     public static void writeWaveDataToFile(String name,AudioFileFormat.Type fileType,AudioInputStream audioInputStream){
         try{
-            // check for existing file first
-            String dir = "./resources/files/sound/%s.%s".formatted(name,fileType.getExtension());
-            File f = new File("%s".formatted(dir));
+            File f = verifyFileName("./resources/files/sound",name,fileType.getExtension());
             audioInputStream.reset();
             AudioSystem.write(audioInputStream,fileType,f);
         }

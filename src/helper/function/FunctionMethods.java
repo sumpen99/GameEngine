@@ -25,17 +25,8 @@ public class FunctionMethods {
     public void recordAudio(Integer arg,String[] args,Object self){
         Widget wSelf = (Widget)self;
         if(wSelf != null){
-            AudioHandler.setRecording(true);
-            AudioHandler.setAudioRecorder(wSelf,true);
+            AudioHandler.setAudioRecorder(wSelf);
             ThreadHandler.executeNewThread(AudioHandler.getAudioRecorder());
-            try{
-                Thread.sleep(2000);
-            }
-            catch(Exception err){
-                IOHandler.logToFile(err.getMessage());
-            }
-            AudioHandler.setRecording(false);
-            //AudioHandler.closeAudioRecorder();
         }
     }
 

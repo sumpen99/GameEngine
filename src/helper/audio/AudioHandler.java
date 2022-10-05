@@ -22,7 +22,7 @@ public class AudioHandler {
     AudioRecorder audioRecorder;
     static AudioHandler self = null;
     static boolean isSet = false;
-    boolean recording;
+    boolean recording,writeToFile;
     final AudioFormat.Encoding ENCODING = PCM_SIGNED;
     final float SAMPLE_RATE = 44100.0F,FRAME_RATE = 44100.0F;
     final int CHANNELS = 1,SAMPLE_SIZE = 16,FRAME_SIZE = 2;
@@ -42,12 +42,12 @@ public class AudioHandler {
         if(self == null){
             self = new AudioHandler();
             self.setAudioFormat();
-            self.recording = false;
+            self.writeToFile = true;
         }
     }
 
-    public static void setAudioRecorder(Widget wSelf,boolean writeToFile){
-        self.audioRecorder = new AudioRecorder(wSelf,getAudioFormat(),writeToFile);
+    public static void setAudioRecorder(Widget wSelf){
+        self.audioRecorder = new AudioRecorder(wSelf,self.getAudioFormat());
     }
 
     public static void closeAudioRecorder(){
@@ -59,17 +59,20 @@ public class AudioHandler {
     }
 
     public static void writeSampleToFile(){
-        if(self.audioRecorder != null){
-            IOHandler.writeWaveDataToFile("soundClipa",AudioFileFormat.Type.WAVE,self.audioRecorder.getInputStream());
-            closeAudioRecorder();
+        if(self.audioRecorder != null && self.writeToFile){
+            IOHandler.writeWaveDataToFile("soundClip",AudioFileFormat.Type.WAVE,self.audioRecorder.getInputStream());
         }
+    }
+
+    public static String getAudioRecorderInfo(){
+        return "%f".formatted(self.audioRecorder.getDuration());
     }
 
     void setAudioFormat(){
         audioFormat = new AudioFormat(ENCODING,SAMPLE_RATE,SAMPLE_SIZE,CHANNELS,FRAME_SIZE,FRAME_RATE,BIG_ENDIAN);
     }
 
-    public static AudioFormat getAudioFormat(){
+    AudioFormat getAudioFormat(){
         return self.audioFormat;
     }
 

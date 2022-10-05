@@ -13,6 +13,7 @@ public interface IWidget {
     void setOrientated(boolean value);
     void pointInside(int x,int y);
     void showWidgetBindToSelf();
+    void reachOutsideWorld();
     void resetWidgetState();
     boolean onMouseLeftDown(int x,int y);
     boolean onMouseLeftMove(int x,int y);
@@ -36,6 +37,7 @@ public interface IWidget {
     Vec2d getSize();
     Vec2d getCenter();
     Object getBindingValue();
+    Object getParameterValue(int param);
     String getWidgetInfo();
     int getWidgetColorInfo();
     String getID();

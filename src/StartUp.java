@@ -18,12 +18,13 @@ public class StartUp {
         //IOHandler.refreshBitWiseOperations();
         //IOHandler.printBitWiseAnd(40,0x7f);
         IOHandler.removeFilesFromFolder("./resources/files/log/gc");
+        IOHandler.removeFilesFromFolder("./resources/files/sound");
         IOHandler.removeFile("./resources/files/log/error/error.log");
 
-        program = new SpellMe(800,500);
-        //program = new ColorPicker(800,500);
-        //program = new QuadTreeBalls(800,500);
-        //program = new RecordSound(800,500);
+        program = new SpellMe(800,500); // ./resources/files/gui/spellme.fs
+        //program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs
+        //program = new QuadTreeBalls(800,500); // ./resources/files/gui/quadtree.fs
+        //program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
         if(program.setUpProgram()){
             program.runEngineLoop();
         }

@@ -9,6 +9,7 @@ import helper.enums.Token;
 import helper.io.IOHandler;
 import helper.struct.*;
 
+import java.io.File;
 import java.util.Arrays;
 
 import static helper.methods.StringToEnum.getIntToColor;
@@ -115,9 +116,21 @@ public class CommonMethods{
         return "%s 0x%08X".formatted(name,color);
     }
 
-    /**
-     * Build point-list from int[]{x,y,x,y,x,y,x,y...}
-     * */
+    public static File verifyFileName(String path,String name,String ext){
+        // path = ./resources/files/sound
+        // name = soundClip
+        // ext = wav
+        //String dir = "path/name.ext"
+        int cnt = 0;
+        String dir = "%s/%s.%s".formatted(path,name,ext);
+        File f = new File("%s".formatted(dir));
+        while(f.exists()){
+            dir = "%s/%s-%d.%s".formatted(path,name,cnt++,ext);
+            f = new File("%s".formatted(dir));
+        }
+        return f;
+    }
+
     public static Point[] intArrToPointArr(int[] p){
         assert p.length%2 == 0;
         int size = p.length,i = 0,cnt = 0;

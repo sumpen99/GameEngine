@@ -11,6 +11,7 @@ import helper.struct.Vec2d;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import static helper.enums.WidgetState.*;
+import static helper.methods.CommonMethods.pointInRange;
 
 public abstract class Widget implements IWidget{
     protected WidgetType wType;
@@ -98,13 +99,22 @@ public abstract class Widget implements IWidget{
         return y >= getPos().y && y <= getPos().y+getSize().y;
     }
     public void setBindingValue(Object value){}
+    public Object getParameterValue(int param){
+        int size = (int)parameters[0];
+        if(size != 0){
+            --size;
+            String[] args = (String[])parameters[1];
+            if(pointInRange(0,size,param))return GameEngine.getWidgetById(args[param]);
+        }
+        return null;
+    }
     public Object getBindingValue(){return null;}
     public String getID(){return wID;}
     public String getChildID(){return childID;}
     public void setChildID(String childid){childID = childid;}
     public void setID(String wid){wID = wid;}
     public void resetWidgetState(){}
-
+    public void reachOutsideWorld(){};
     public void showWidgetBindToSelf(){
         int size = (int)parameters[0];
         if(size != 0){
@@ -116,11 +126,9 @@ public abstract class Widget implements IWidget{
             }
         }
     }
-
     public void setCallbackInProgress(boolean value){
         callbackInProgress = value;
     }
-
     public void execFuncMethod(){
         if(this.runCallback && !callbackInProgress){
             try{
