@@ -8,6 +8,8 @@ import java.io.ByteArrayOutputStream;
 
 //https://www.baeldung.com/java-sound-api-capture-mic
 
+//https://stackoverflow.com/questions/6235016/convert-wav-audio-format-byte-array-to-floating-point
+
 public class AudioRecorder extends BaseThreading {
     double duration;
     AudioFormat audioFormat;
