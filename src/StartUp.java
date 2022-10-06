@@ -1,5 +1,6 @@
 import engine.GameEngine;
 import helper.struct.UInt;
+import helper.struct.WaveFile;
 import program.ColorPicker;
 import program.QuadTreeBalls;
 import program.RecordSound;
@@ -18,8 +19,11 @@ public class StartUp {
         //IOHandler.refreshBitWiseOperations();
         //IOHandler.printBitWiseAnd(40,0x7f);
         IOHandler.removeFilesFromFolder("./resources/files/log/gc");
-        IOHandler.removeFilesFromFolder("./resources/files/sound");
+        //IOHandler.removeFilesFromFolder("./resources/files/sound");
         IOHandler.removeFile("./resources/files/log/error/error.log");
+
+        //WaveFile f = new WaveFile();
+        //f.readFile("./resources/files/sound/soundClip.wav");
 
         program = new SpellMe(800,500); // ./resources/files/gui/spellme.fs
         //program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs

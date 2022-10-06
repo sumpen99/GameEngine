@@ -4,6 +4,7 @@ import java.io.*;
 import engine.GameEngine;
 import helper.enums.EntrieType;
 import helper.enums.Token;
+import helper.enums.WAVEBITS;
 import helper.enums.WidgetVariable;
 import helper.input.KeyboardHandler;
 import helper.input.MouseHandler;
@@ -13,8 +14,9 @@ import helper.struct.*;
 import helper.widget.Widget;
 import static helper.enums.KeyboardState.*;
 import static helper.enums.MouseState.*;
+import static helper.methods.CommonMethods.*;
 import static helper.methods.StringToEnum.getIntToColor;
-import static helper.methods.CommonMethods.verifyFileName;
+
 import javax.imageio.ImageIO;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -126,6 +128,10 @@ public class IOHandler {
         System.out.println(arg1 + " " + arg2);
     }
 
+    public static void printByte(byte b){
+        printString("%d".formatted(b));
+    }
+
     public static void printDouble(double d){
         printString("%f".formatted(d));
     }
@@ -148,6 +154,10 @@ public class IOHandler {
 
     public static void printInt(int i){
         printString("%d".formatted(i));
+    }
+
+    public static void printIntToHex(int value){
+        printString("Hex Value of %d 0x%08X".formatted(value,value));
     }
 
     public static void printPosAndIntFourArray(int x,int y,int[] v){
@@ -271,6 +281,94 @@ public class IOHandler {
         return true;
     }
 
+    public static void parseWaveFile(String path,WaveFile header){
+        /*
+        1 – 4	“RIFF”	Marks the file as a riff file. Characters are each 1 byte long.
+        5 – 8	File size (integer)	Size of the overall file – 8 bytes, in bytes (32-bit integer). Typically, you’d fill this in after creation.
+        9 -12	“WAVE”	File Type Header. For our purposes, it always equals “WAVE”.
+        13-16	“fmt “	Format chunk marker. Includes trailing null
+        17-20	16	Length of format data as listed above
+        21-22	1	Type of format (1 is PCM) – 2 byte integer
+        23-24	2	Number of Channels – 2 byte integer
+        25-28	44100	Sample Rate – 32 byte integer. Common values are 44100 (CD), 48000 (DAT). Sample Rate = Number of Samples per second, or Hertz.
+        29-32	176400	(Sample Rate * BitsPerSample * Channels) / 8.
+        33-34	4	(BitsPerSample * Channels) / 8.1 – 8 bit mono2 – 8 bit stereo/16 bit mono4 – 16 bit stereo
+        35-36	16	Bits per sample
+        37-40	“data”	“data” chunk header. Marks the beginning of the data section.
+        41-44	File size (data)	Size of the data section.
+        */
+        BufferedReader reader = null;
+        FileInputStream fRead = null;
+        int read;
+        try{
+            fRead = new FileInputStream(path);
+            reader = new BufferedReader(new InputStreamReader(fRead));
+        }
+        catch(java.io.FileNotFoundException err){
+            logToFile(err.getMessage());
+        }
+        try{
+            char[] bufferFour = new char[4];
+            char[] bufferTwo = new char[2];
+            assert reader != null;
+            read = reader.read(header.riff,0,header.riff.length);
+            read = reader.read(bufferFour,0,4);
+            header.littleEndianToBigEndian(WAVEBITS.OVERALL_SIZE,bufferFour);
+            read = reader.read(header.wave,0,header.wave.length);
+            read = reader.read(header.fmtChunkMarker,0,header.fmtChunkMarker.length);
+            read = reader.read(bufferFour,0,4);
+            header.littleEndianToBigEndian(WAVEBITS.LENGTH_OF_FMT,bufferFour);
+            read = reader.read(bufferTwo,0,2);
+            header.littleEndianToBigEndian(WAVEBITS.FORMAT_TYPE,bufferTwo);
+            header.formatTypeToName();
+            read = reader.read(bufferTwo,0,2);
+            header.littleEndianToBigEndian(WAVEBITS.CHANNELS,bufferTwo);
+            read = reader.read(bufferFour,0,4);
+            header.littleEndianToBigEndian(WAVEBITS.SAMPLE_RATE,bufferFour);
+            read = reader.read(bufferFour,0,4);
+            header.littleEndianToBigEndian(WAVEBITS.BYTE_RATE,bufferFour);
+            read = reader.read(bufferTwo,0,2);
+            header.littleEndianToBigEndian(WAVEBITS.BLOCK_ALIGN,bufferTwo);
+            read = reader.read(bufferTwo,0,2);
+            header.littleEndianToBigEndian(WAVEBITS.BITS_PER_SAMPLE,bufferTwo);
+            read = reader.read(header.dataChunkHeader,0,header.dataChunkHeader.length);
+            header.littleEndianToBigEndian(WAVEBITS.BITS_PER_SAMPLE,bufferTwo);
+            read = reader.read(bufferFour,0,4);
+            header.littleEndianToBigEndian(WAVEBITS.DATA_SIZE,bufferFour);
+            printWaveFileInfo(header);
+            fRead.close();
+            reader.close();
+        }
+        catch(java.io.IOException err){
+            logToFile(err.getMessage());
+        }
+    }
+
+    public static void printWaveFileInfo(WaveFile header){
+        printString("(1-4): %s".formatted(String.valueOf(header.riff)));
+        printString("(5-8) Overall size: bytes:%d, Kb:%d".formatted(header.overallSize, header.overallSize/1024));
+        printString("(9-12) Wave marker: %s".formatted(String.valueOf(header.wave)));
+        printString("(13-16) Fmt marker: %s".formatted(String.valueOf(header.fmtChunkMarker)));
+        printString("(17-20) Length of Fmt header: %d".formatted(header.lengthOfFmt));
+        printString("(21-22) Format type: %d %s".formatted(header.formatType,header.formatName));
+        printString("(23-24) Channels: %d".formatted(header.channels));
+        printString("(25-28) Sample rate: %d".formatted(header.sampleRate));
+        printString("(29-32) Byte Rate: %d , Bit Rate:%d".formatted(header.byteRate,header.byteRate*8));
+        printString("(33-34) Block Alignment: %d".formatted(header.blockAlign));
+        printString("(35-36) Bits per sample: %d".formatted(header.bitsPerSample));
+        printString("(37-40) Data Marker: %s".formatted(String.valueOf(header.dataChunkHeader)));
+        printString("(41-44) Size of data chunk: %d".formatted(header.dataSize));
+
+        long num_samples = ((long)8 * header.dataSize) / ((long)header.channels * header.bitsPerSample);
+        printString("Number of samples:%d".formatted(num_samples));
+        long size_of_each_sample = ((long)header.channels * header.bitsPerSample) / 8;
+        printString("Size of each sample:%d bytes".formatted(size_of_each_sample));
+        // calculate duration of file
+        float duration_in_seconds = (float) header.overallSize / header.byteRate;
+        printString("Approx.Duration in seconds=%f".formatted(duration_in_seconds));
+        printString("Approx.Duration in h:m:s=%s".formatted(secondsToTime(duration_in_seconds)));
+    }
+
     public static byte[] readBytesFromImage(String path,ImageInfo imgInfo){
         BufferedImage img;
         byte[] buf;
@@ -293,6 +391,12 @@ public class IOHandler {
             logToFile(err.getMessage());
         }
         return null;
+    }
+
+    public static void printCharBuf(char[] buf){
+        int size = buf.length,i = 0;
+        while(i<size)printChar(buf[i++]);
+        printString("\n");
     }
 
     public static void printImageInfo(ImageInfo img){
@@ -444,6 +548,7 @@ public class IOHandler {
             case OPACITY:{printStringMessage("NOT A CORRECT OPACITY VALUE. ELEMENT AT Line ->:: ",lnum);break;}
             case FUNCTION:{printStringMessage("NOT A CORRECT FUNC VALUE. ELEMENT AT Line ->:: ",lnum);break;}
             case COLOR:{printStringMessage("NOT A CORRECT COLOR VALUE. ELEMENT AT Line ->:: ",lnum);break;}
+            case BLEND:{printStringMessage("COLORS ADDED TO BLEND NOT ACCURATE. ELEMENT AT Line ->:: ",lnum);break;}
             case TEXT_COLOR:{printStringMessage("NOT A CORRECT TEXT_COLOR VALUE. ELEMENT AT Line ->:: ",lnum);break;}
             case ENABLE_AUTO_CORRECT:{printStringMessage("NOT A CORRECT ENABLE_AUTO_CORRECT. ELEMENT AT Line ->:: ",lnum);break;}
             case VALIGN:{printStringMessage("NOT A CORRECT VALIGN VALUE. ELEMENT AT Line ->:: ",lnum);break;}

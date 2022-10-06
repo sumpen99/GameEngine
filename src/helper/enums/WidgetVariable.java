@@ -31,6 +31,7 @@ public enum WidgetVariable {
     DEGREES("degrees"),
     UPDATE("update"),
     WSHAPE("shape"),
+    BLEND("blend"),
     WTYPE("type"),
     SM_VARIABLE_NOT_IMPLEMENTED("not a valid variable"),
     SM_VARIABLE_DUMMY("Dummy");

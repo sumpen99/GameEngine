@@ -1,7 +1,6 @@
 package helper.enums;
 
-public enum Mask
-{
+public enum Mask {
     DEG_45(0x01),
     DEG_90(0x03),
     DEG_135(0x07),

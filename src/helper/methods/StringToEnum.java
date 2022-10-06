@@ -245,6 +245,7 @@ public class StringToEnum {
         if(var.equals("radiey"))return WidgetVariable.RADIEY;
         if(var.equals("update"))return WidgetVariable.UPDATE;
         if(var.equals("degrees"))return WidgetVariable.DEGREES;
+        if(var.equals("blend"))return WidgetVariable.BLEND;
         if(var.equals("type"))return WidgetVariable.WTYPE;
         return WidgetVariable.SM_VARIABLE_NOT_IMPLEMENTED;
     }

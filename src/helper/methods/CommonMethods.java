@@ -1,5 +1,10 @@
 package helper.methods;
+import helper.enums.Color;
+import helper.enums.ColorMask;
+import helper.enums.WAVEBITS;
 import helper.struct.Point;
+
+import static helper.methods.StringToEnum.getStrToColor;
 import static helper.struct.Point.addPoint;
 import static helper.struct.Point.subPoint;
 import static helper.struct.Point.multPoint;
@@ -84,6 +89,26 @@ public class CommonMethods{
         arr[i2] = temp;
     }
 
+    public static String secondsToTime(float rawSeconds) {
+        int hours, hours_residue, minutes, seconds, milliseconds;
+        hours = (int) rawSeconds/3600;
+        hours_residue = (int) rawSeconds % 3600;
+        minutes = hours_residue/60;
+        seconds = hours_residue % 60;
+        milliseconds = getDecimalPart(rawSeconds);
+        return "%d:%d:%d.%d".formatted(hours, minutes, seconds, milliseconds);
+    }
+
+    public static int getDecimalPart(float rawSeconds){
+        PassedCheck p;
+        IOHandler.printFloat(rawSeconds);
+        String[] raw = ("%f".formatted(rawSeconds)).split(",");
+        if(raw.length == 2){
+            if((p = stringIsInt(raw[1])).passed)return p.iNum;
+        }
+        return 0;
+    }
+
     public static void getRandomInt(FVec2d pos,int bound_x, int bound_y){
         pos.x = (float)((Math.random()*10000) % bound_x);
         pos.y = (float)((Math.random()*10000) % bound_y);
@@ -139,6 +164,38 @@ public class CommonMethods{
             points[cnt++] = new Point(p[i],p[i+1]);
         }
         return points;
+    }
+
+    public static boolean splitColorsAndMix(String val,DrawValues dww){
+        try{
+            String[] c = val.split(" ");
+            Color c1,c2;
+            if((c1 = getStrToColor(c[0]))!= Color.SM_COLOR_NOT_IMPLEMENTED && (c2 = getStrToColor(c[1]))!= Color.SM_COLOR_NOT_IMPLEMENTED){
+                dww.color = mixColors(c1.getValue(),c2.getValue(),.5f);
+                return true;
+            }
+        }
+        catch(Exception err){IOHandler.logToFile(err.getMessage());}
+        return false;
+    }
+
+    public static int mixColors(int c1,int c2,float t){
+        int r1 = (c1 & ColorMask.RED_MASK.getValue()) >>> 24;
+        int g1 = (c1 & ColorMask.GREEN_MASK.getValue()) >>> 16;
+        int b1 = (c1 & ColorMask.BLUE_MASK.getValue()) >>> 8;
+        int a1 = (c1 & ColorMask.ALPHA_MASK.getValue());
+
+        int r2 = (c2 & ColorMask.RED_MASK.getValue()) >>> 24;
+        int g2 = (c2 & ColorMask.GREEN_MASK.getValue()) >>> 16;
+        int b2 = (c2 & ColorMask.BLUE_MASK.getValue()) >>> 8;
+        int a2 = (c2 & ColorMask.ALPHA_MASK.getValue());
+
+        int red = (int)((r1+r2)*t);
+        int green = (int)((g1+g2)*t);
+        int blue = (int)((b1+b2)*t);
+        int alpha = (int)((a1+a2)*t);
+
+        return (red<<24) + (green<<16) + (blue<<8) + alpha;
     }
 
     public static Point[] buildPolygonShape(Point[] points,int offset){

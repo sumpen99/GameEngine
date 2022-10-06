@@ -9,8 +9,7 @@ import helper.widget.*;
 import static helper.enums.GuiVariable.*;
 import static helper.enums.WidgetType.*;
 import static helper.enums.WidgetVariable.*;
-import static helper.methods.CommonMethods.stringIsInt;
-import static helper.methods.CommonMethods.parsePoints;
+import static helper.methods.CommonMethods.*;
 import static helper.methods.StringToEnum.*;
 
 
@@ -91,6 +90,10 @@ public class ParseLayout {
                     dww.color = c.getValue();
                 }
                 else{err = COLOR;}
+                break;
+            }
+            case BLEND:{
+                if(!splitColorsAndMix(val.toLowerCase(),dww)){err=BLEND;}
                 break;
             }
             case TEXT_COLOR:{
