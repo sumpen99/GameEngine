@@ -155,6 +155,11 @@ public class CommonMethods{
         return f;
     }
 
+    public static boolean fileExists(String path){
+        File f = new File("%s".formatted(path));
+        return f.exists();
+    }
+
     public static Point[] intArrToPointArr(int[] p){
         assert p.length%2 == 0;
         int size = p.length,i = 0,cnt = 0;

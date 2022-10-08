@@ -185,6 +185,13 @@ public class IOHandler {
         }
     }
 
+    public static String getFileFromFolder(String folder,int index){
+        File dir = new File(folder);
+        File[] files = dir.listFiles();
+        if(files != null && files.length >= 1)return files[index].getAbsolutePath();
+        return null;
+    }
+
     public static void removeFile(String fileName){
         File file = new File(fileName);
         if(!file.delete()){printString("Unable To Remove File %s".formatted(file.toString()));}

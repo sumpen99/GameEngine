@@ -47,8 +47,9 @@ public class AudioHandler {
         }
     }
 
-    public static void setAudioReader(Widget wSelf,String fileName){
-        self.audioReader = new AudioReader(wSelf,fileName);
+    public static boolean setAudioReader(Widget wSelf,String fileName){
+        self.audioReader = new AudioReader(wSelf);
+        return self.audioReader.setWaveFile(fileName);
     }
 
     public static void setAudioRecorder(Widget wSelf){

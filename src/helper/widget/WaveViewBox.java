@@ -1,6 +1,5 @@
 package helper.widget;
 import helper.drawobjects.TextWriter;
-import helper.enums.Color;
 import helper.struct.DrawValues;
 
 public class WaveViewBox extends LabelBox{
@@ -35,6 +34,9 @@ public class WaveViewBox extends LabelBox{
                     TextWriter.drawText("%s".formatted(rowValues[i]),fontWidth*2,centerPos.y+fontHeight, lineColor);
                 }
             }
+        }
+        else{
+            // draw sample data
         }
     }
 }

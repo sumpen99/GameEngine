@@ -92,7 +92,7 @@ public class WaveFile {
     void setFileInfo(){
         fileInfo = new String[18];
         float duration_in_seconds = (float) overallSize / byteRate;
-        fileInfo[0] = ("(1-4):  %s".formatted(byteBufToString(riff)));
+        fileInfo[0] = ("(1-4)   %s".formatted(byteBufToString(riff)));
         fileInfo[1] = ("(5-8)   Overall size: bytes:%d, Kb:%d".formatted(overallSize,overallSize/1024));
         fileInfo[2] = ("(9-12)  Wave marker: %s".formatted(byteBufToString(wave)));
         fileInfo[3] = ("(13-16) Fmt marker: %s".formatted(byteBufToString(fmtChunkMarker)));

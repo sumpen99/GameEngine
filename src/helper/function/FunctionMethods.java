@@ -2,7 +2,6 @@ package helper.function;
 import engine.GameEngine;
 import helper.api.ApiHandler;
 import helper.audio.AudioHandler;
-import helper.audio.AudioRecorder;
 import helper.io.IOHandler;
 import helper.struct.StopWatch;
 import helper.threading.ThreadHandler;
@@ -34,10 +33,11 @@ public class FunctionMethods {
         Widget wSelf = (Widget)self;
         Widget wWaveView = (WaveViewBox)GameEngine.getWidgetById(args[0]);
         Widget wTxtBox = (FlatTextBox)GameEngine.getWidgetById(args[1]);
-        if(wSelf != null){
+        if(wSelf != null && wWaveView != null){
             String fileName = (String)wTxtBox.getBindingValue();
-            AudioHandler.setAudioReader(wWaveView,fileName);
-            ThreadHandler.executeNewThread(AudioHandler.getAudioReader());
+            if(AudioHandler.setAudioReader(wWaveView,fileName)){
+                ThreadHandler.executeNewThread(AudioHandler.getAudioReader());
+            }
         }
     }
 
