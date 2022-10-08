@@ -188,7 +188,7 @@ public class IOHandler {
     public static String getFileFromFolder(String folder,int index){
         File dir = new File(folder);
         File[] files = dir.listFiles();
-        if(files != null && files.length >= 1)return files[index].getAbsolutePath();
+        if(files != null && pointInRange(0,files.length-1,index))return files[index].getAbsolutePath();
         return null;
     }
 

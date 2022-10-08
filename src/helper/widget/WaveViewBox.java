@@ -36,7 +36,8 @@ public class WaveViewBox extends LabelBox{
             }
         }
         else{
-            // draw sample data
+            getCenterPos(9);
+            TextWriter.drawText("--------Here We Are Going To Draw Sample Data-------",fontWidth*2,centerPos.y+fontHeight, lineColor);
         }
     }
 }
