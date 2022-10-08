@@ -6,11 +6,13 @@ import helper.io.IOHandler;
 import java.io.DataInputStream;
 
 import static helper.io.IOHandler.*;
+import static helper.methods.CommonMethods.byteBufToString;
 import static helper.methods.CommonMethods.littleEndianToBigEndian;
 import static helper.enums.WaveBits.RIFF;
 import static helper.enums.WaveBits.FMT_CHUNK_MARKER;
 import static helper.enums.WaveBits.DATA_CHUNK_HEADER;
 import static helper.enums.WaveBits.WAVE;
+import static helper.struct.SMDateTime.secondsToTime;
 
 //unsigned char data_chunk_header [4] DATA string or FLLR string
 //unsigned char fmt_chunk_marker[4]  fmt string with trailing null char
@@ -43,11 +45,12 @@ import static helper.enums.WaveBits.WAVE;
 //http://truelogic.org/wordpress/2015/09/04/parsing-a-wav-file-in-c/
 public class WaveFile {
     public byte[] riff,wave,fmtChunkMarker,dataChunkHeader;
-    public long numSamples,sizeOfEachSample;
+    public long numSamples,sizeOfEachSample,lowLimit,highLimit;
     public int overallSize,lengthOfFmt,formatType,channels,sampleRate,byteRate,blockAlign,bitsPerSample,dataSize;
     public final int BUF_OFFSET = 44;
     public WaveFormatType format;
     public String path;
+    public String[] fileInfo;
     PassedCheck operation;
     public WaveFile(String dir){
         path = dir;
@@ -56,23 +59,57 @@ public class WaveFile {
         fmtChunkMarker = new byte[FMT_CHUNK_MARKER.getValue()];
         dataChunkHeader = new byte[DATA_CHUNK_HEADER.getValue()];
         wave = new byte[WAVE.getValue()];
-        readFile();
     }
 
-    void readFile(){
+    public boolean readFile(){
         parseWaveFile(this,operation);
-        if(!operation.passed)IOHandler.logToFile(operation.message);
-        else readSampleData();
+        if(!operation.passed){
+            IOHandler.logToFile(operation.message);
+            return false;
+        }
+        setFileInfo();
+        return readSampleData();
     }
 
-    public void readSampleData(){
+    boolean readSampleData(){
         readWaveSampleData(this,false,operation);
-        if(!operation.passed)IOHandler.logToFile(operation.message);
-        else printFileInfo();
+        if(!operation.passed){
+            IOHandler.logToFile(operation.message);
+            return false;
+        }
+        return true;
+        //else printFileInfo();
     }
 
     public void printFileInfo(){
-        printWaveFileInfo(this);
+        printWaveFileInfo(getFileInfo());
+    }
+
+    public String[] getFileInfo(){
+        return fileInfo;
+    }
+
+    void setFileInfo(){
+        fileInfo = new String[18];
+        float duration_in_seconds = (float) overallSize / byteRate;
+        fileInfo[0] = ("(1-4):  %s".formatted(byteBufToString(riff)));
+        fileInfo[1] = ("(5-8)   Overall size: bytes:%d, Kb:%d".formatted(overallSize,overallSize/1024));
+        fileInfo[2] = ("(9-12)  Wave marker: %s".formatted(byteBufToString(wave)));
+        fileInfo[3] = ("(13-16) Fmt marker: %s".formatted(byteBufToString(fmtChunkMarker)));
+        fileInfo[4] = ("(17-20) Length of Fmt header: %d".formatted(lengthOfFmt));
+        fileInfo[5] = ("(21-22) Format type: %d %s".formatted(formatType,format.getName()));
+        fileInfo[6] = ("(23-24) Channels: %d".formatted(channels));
+        fileInfo[7] = ("(25-28) Sample rate: %d".formatted(sampleRate));
+        fileInfo[8] = ("(29-32) Byte Rate: %d , Bit Rate:%d".formatted(byteRate,byteRate*8));
+        fileInfo[9] = ("(33-34) Block Alignment: %d".formatted(blockAlign));
+        fileInfo[10] = ("(35-36) Bits per sample: %d".formatted(bitsPerSample));
+        fileInfo[11] = ("(37-40) Data Marker: %s".formatted(byteBufToString(dataChunkHeader)));
+        fileInfo[12] = ("(41-44) Size of data chunk: %d".formatted(dataSize));
+        fileInfo[13] = ("Number of samples:%d".formatted(numSamples));
+        fileInfo[14] = ("Size of each sample:%d bytes".formatted(sizeOfEachSample));
+        fileInfo[15] = ("Approx.Duration in seconds=%f".formatted(duration_in_seconds));
+        fileInfo[16] = ("Approx.Duration in h:m:s=%s".formatted(secondsToTime(duration_in_seconds)));
+        fileInfo[17] = ("Valid range for data values : %d to %d".formatted(lowLimit,highLimit));
     }
 
     public void convertToSize(WaveBits dst, byte[] buf){
@@ -113,6 +150,23 @@ public class WaveFile {
                 bitsPerSample = littleEndianToBigEndian(buf,0,2);
                 break;
             }
+        }
+    }
+
+    public void setLimits(){
+        switch (bitsPerSample) {
+            case 8:
+                lowLimit = -128;
+                highLimit = 127;
+                break;
+            case 16:
+                lowLimit = -32768;
+                highLimit = 32767;
+                break;
+            case 32:
+                lowLimit = -2147483648;
+                highLimit = 2147483647;
+                break;
         }
     }
 

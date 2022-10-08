@@ -14,6 +14,7 @@ public enum WidgetType{
     SM_ROUNDED_IMAGE("roundedimage"),
     SM_FLAT_IMAGE("flatimage"),
     SM_LABEL_BOX("labelbox"),
+    SM_WAVE_VIEW_BOX("waveviewbox"),
     SM_CHECK_BOX("checkbox"),
     SM_SUGGESTION_BOX("suggestionbox"),
     SM_QUADTREE("quadtree"),

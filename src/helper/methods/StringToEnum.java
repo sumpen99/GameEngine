@@ -211,6 +211,7 @@ public class StringToEnum {
         if(callback.equals("uploadhighscore"))return Callback.UPLOAD_HIGH_SCORE;
         if(callback.equals("getcolorinfo"))return Callback.GET_COLOR_INFO;
         if(callback.equals("recordaudio"))return Callback.RECORD_AUDIO;
+        if(callback.equals("readwavefile"))return Callback.READ_WAVE_FILE;
         return Callback.SM_CALLBACK_NOT_IMPLEMENTED;
     }
 

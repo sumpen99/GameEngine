@@ -20,7 +20,13 @@ public class CheckBox extends Widget{
                 new Rectangle(dww.left,dww.top,dww.width,dww.height,dww.color,dww.opacity,dww.draw));
         initPolygonSymbol(dww);
         selected = true;
-  }
+    }
+
+    void updateBindingWidget(){
+        if(childWidget != null){
+            childWidget.setBindingValue(selected);
+        }
+    }
 
     void initPolygonSymbol(DrawValues dww){
         int cx,cy,lx,ly,rx,ry;
@@ -35,7 +41,7 @@ public class CheckBox extends Widget{
 
     @Override
     public Object getBindingValue(){
-        return null;
+        return selected;
     }
 
     @Override
@@ -59,6 +65,7 @@ public class CheckBox extends Widget{
             //shiftBitsRight();
             clearWidgetBits();
             selected ^= true;
+            updateBindingWidget();
             return true;
         }
         return false;

@@ -29,7 +29,7 @@ public class Recorder extends FlatImage{
             }
             else{
                 setRecLabelText("Press To Stop");
-                setLabelBoxText("Recording...");
+                //setLabelBoxText("Recording...");
                 AudioHandler.setRecording(true);
                 execFuncMethod();
             }

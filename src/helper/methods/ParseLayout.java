@@ -264,6 +264,10 @@ public class ParseLayout {
             dww.wType = SM_LABEL_BOX;
             return true;
         }
+        if(element.equals(SM_WAVE_VIEW_BOX.getValue())) {
+            dww.wType = SM_WAVE_VIEW_BOX;
+            return true;
+        }
         if(element.equals(SM_CHECK_BOX.getValue())) {
             dww.wType = SM_CHECK_BOX;
             return true;
@@ -337,6 +341,9 @@ public class ParseLayout {
             }
             case SM_LABEL_BOX:{
                 return new LabelBox(dww);
+            }
+            case SM_WAVE_VIEW_BOX:{
+                return new WaveViewBox(dww);
             }
             case SM_CHECK_BOX:{
                 return new CheckBox(objCallerClass,dww);

@@ -30,6 +30,17 @@ public class FunctionMethods {
         }
     }
 
+    public void readWaveFile(Integer arg,String[] args,Object self){
+        Widget wSelf = (Widget)self;
+        Widget wWaveView = (WaveViewBox)GameEngine.getWidgetById(args[0]);
+        Widget wTxtBox = (FlatTextBox)GameEngine.getWidgetById(args[1]);
+        if(wSelf != null){
+            String fileName = (String)wTxtBox.getBindingValue();
+            AudioHandler.setAudioReader(wWaveView,fileName);
+            ThreadHandler.executeNewThread(AudioHandler.getAudioReader());
+        }
+    }
+
 
     public void getHighScore(Integer arg,String[] args,Object self){
         Widget wSelf = (Widget)self;

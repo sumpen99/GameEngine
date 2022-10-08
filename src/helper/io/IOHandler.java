@@ -287,6 +287,7 @@ public class IOHandler {
         catch(FileNotFoundException err){
             result.passed = false;
             result.message = err.getMessage();
+            return;
         }
         try{
             byte[] bufferFour = new byte[4];
@@ -314,6 +315,7 @@ public class IOHandler {
             header.convertToSize(WaveBits.BITS_PER_SAMPLE,bufferTwo);
             reader.read(header.dataChunkHeader,0,header.dataChunkHeader.length);
             header.convertToSize(WaveBits.BITS_PER_SAMPLE,bufferTwo);
+            header.setLimits();
             reader.read(bufferFour,0,4);
             header.convertToSize(WaveBits.DATA_SIZE,bufferFour);
             header.getSampleSize();
@@ -349,29 +351,11 @@ public class IOHandler {
             byte[] dataBuffer = new byte[(int)header.sizeOfEachSample];
             long bytesInEachChannel = (header.sizeOfEachSample / header.channels);
             if ((bytesInEachChannel  * header.channels) == header.sizeOfEachSample) {
-                long low_limit = 0L;
-                long high_limit = 0L;
-                switch (header.bitsPerSample) {
-                    case 8:
-                        low_limit = -128;
-                        high_limit = 127;
-                        break;
-                    case 16:
-                        low_limit = -32768;
-                        high_limit = 32767;
-                        break;
-                    case 32:
-                        low_limit = -2147483648;
-                        high_limit = 2147483647;
-                        break;
-                }
-                if(printInfo)printString("Valid range for data values : %d to %d".formatted(low_limit, high_limit));
-                for (long i = 1; i <= header.numSamples; i++) {
+                outside : for (long i = 1; i <= header.numSamples; i++) {
                     if(printInfo)printString("==========Sample %d / %d=============".formatted(i, header.numSamples));
                     try {
                         read = reader.read(dataBuffer, 0, dataBuffer.length);
                         if (read == header.sizeOfEachSample) {
-                            // dump the data read
                             int offset = 0; // move the offset for every iteration in the loop below
                             int dataInChannel = 0;
                             for (int xchannels = 0; xchannels < header.channels; xchannels++) {
@@ -390,9 +374,11 @@ public class IOHandler {
                                 offset += bytesInEachChannel;
                                 if(printInfo)printString("%d ".formatted(dataInChannel));
                                 // check if value was in range
-                                if (dataInChannel < low_limit || dataInChannel > high_limit){
+                                if (dataInChannel < header.lowLimit || dataInChannel > header.highLimit){
                                     passed = false;
                                     result.message = "value out of range %d".formatted(dataInChannel);
+                                    //assert false : "Encountered Value Ouside Limits";
+                                    break outside;
                                 }
 
                             }
@@ -423,25 +409,9 @@ public class IOHandler {
         }
     }
 
-    public static void printWaveFileInfo(WaveFile header){
-        float duration_in_seconds = (float) header.overallSize / header.byteRate;
-        printString("(1-4): %s".formatted(byteBufToString(header.riff)));
-        printString("(5-8) Overall size: bytes:%d, Kb:%d".formatted(header.overallSize, header.overallSize/1024));
-        printString("(9-12) Wave marker: %s".formatted(byteBufToString(header.wave)));
-        printString("(13-16) Fmt marker: %s".formatted(byteBufToString(header.fmtChunkMarker)));
-        printString("(17-20) Length of Fmt header: %d".formatted(header.lengthOfFmt));
-        printString("(21-22) Format type: %d %s".formatted(header.formatType,header.format.getName()));
-        printString("(23-24) Channels: %d".formatted(header.channels));
-        printString("(25-28) Sample rate: %d".formatted(header.sampleRate));
-        printString("(29-32) Byte Rate: %d , Bit Rate:%d".formatted(header.byteRate,header.byteRate*8));
-        printString("(33-34) Block Alignment: %d".formatted(header.blockAlign));
-        printString("(35-36) Bits per sample: %d".formatted(header.bitsPerSample));
-        printString("(37-40) Data Marker: %s".formatted(byteBufToString(header.dataChunkHeader)));
-        printString("(41-44) Size of data chunk: %d".formatted(header.dataSize));
-        printString("Number of samples:%d".formatted(header.numSamples));
-        printString("Size of each sample:%d bytes".formatted(header.sizeOfEachSample));
-        printString("Approx.Duration in seconds=%f".formatted(duration_in_seconds));
-        printString("Approx.Duration in h:m:s=%s".formatted(secondsToTime(duration_in_seconds)));
+    public static void printWaveFileInfo(String[] info){
+        int size = info.length,i=0;
+        while(i<size)printString(info[i++]);
     }
 
     public static byte[] readBytesFromImage(String path,ImageInfo imgInfo){

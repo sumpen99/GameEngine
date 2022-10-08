@@ -20,6 +20,7 @@ public class AudioHandler {
      */
     AudioFormat audioFormat;
     AudioRecorder audioRecorder;
+    AudioReader audioReader;
     static AudioHandler self = null;
     static boolean isSet = false;
     boolean recording,writeToFile;
@@ -46,6 +47,10 @@ public class AudioHandler {
         }
     }
 
+    public static void setAudioReader(Widget wSelf,String fileName){
+        self.audioReader = new AudioReader(wSelf,fileName);
+    }
+
     public static void setAudioRecorder(Widget wSelf){
         self.audioRecorder = new AudioRecorder(wSelf,self.getAudioFormat());
     }
@@ -54,8 +59,16 @@ public class AudioHandler {
         self.audioRecorder = null;
     }
 
+    public static void closeAudioReader(){
+        self.audioReader = null;
+    }
+
     public static AudioRecorder getAudioRecorder(){
         return self.audioRecorder;
+    }
+
+    public static AudioReader getAudioReader(){
+        return self.audioReader;
     }
 
     public static void writeSampleToFile(){

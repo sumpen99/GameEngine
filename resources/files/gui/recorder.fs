@@ -7,7 +7,6 @@
 VERTICAL
 ;
 BoxLayout
-    id:layout0
     left:0
     top:0
     width:800
@@ -31,7 +30,6 @@ BoxLayout
         shape:rectangle
 ;
 BoxLayout
-    id:layout1
     left:350
     top:0
     width:100
@@ -69,29 +67,89 @@ BoxLayout
         shape:rectangle
 ;
 BoxLayout
-    id:layout2
     left:0
-    top:40
+    top:0
+    width:800
+    height:40
+    valign:false
+    color:LightBlue
+    draw:fill
+    opacity:0
+    shape:rectangle
+;
+    FlatTextbox
+        id:boxpath
+        left:10
+        top:5
+        width:400
+        height:30
+        color:WHITESMOKE
+        textcolor:Black
+        draw:fill
+        shape:rectangle
+        hintText:filename (ex soundClip-2.wav)
+        opacity:1
+        enableAutoCorrect:false
+;
+    RoundedButton
+        id:readfile
+        left:70
+        top:20
+        radiex:50
+        radiey:18
+        color:PALEGOLDENROD
+        textcolor:Black
+        args:wavebox,boxpath
+        func:readwavefile
+        draw:fill
+        text:Read
+        shape:rectangle
+;
+    FlatLabel
+        left:20
+        top:0
+        width:150
+        height:40
+        color:seashell
+        textcolor:Black
+        draw:fill
+        opacity:0
+        text:Draw Info?
+        shape:rectangle
+;
+    CheckBox
+        left:10
+        top:0
+        width:40
+        height:40
+        bind:wavebox
+        color:WHITESMOKE
+        draw:fill
+        shape:rectangle
+;
+BoxLayout
+    left:0
+    top:0
     width:800
     height:250
     valign:false
     color:LightGreen
     draw:fill
-    opacity:1
+    opacity:0
     shape:rectangle
 ;
-    FlatLabel
+    WaveViewBox
         id:wavebox
         left:0
         top:0
         width:800
         height:250
-        color:Black
+        col:1
+        row:18
+        color:LightGreen
         textcolor:Black
         draw:fill
-        opacity:0
+        opacity:1
         text:HERE WE ARE GOING TO OUTPUT SOUNDWAVES DURING RECORDING
         shape:rectangle
-
-
-
+;

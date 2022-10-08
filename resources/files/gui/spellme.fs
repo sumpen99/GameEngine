@@ -188,7 +188,7 @@ BoxLayout
         height:110
         col:1
         row:5
-        color:mediumturquoise
+        color:WHITESMOKE
         textcolor:Red
         draw:fill
         opacity:1

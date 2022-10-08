@@ -15,7 +15,7 @@ public abstract class GridBox extends Widget{
     int fontHeight,fontWidth,pad;
 
     public GridBox(WidgetType wType,int x,int y,int width,int height,int colcount,int rowcount,int color){
-        super(null,null,wType,new Rectangle(x,y,width,height, Color.WHITESMOKE.getValue(), 1,FILL));
+        super(null,null,wType,new Rectangle(x,y,width,height, color, 1,FILL));
         centerPos = new Vec2d(0,0);
         offsetPos = new Vec2d(x,y);
         basePos = new Vec2d(x,y);
@@ -23,7 +23,7 @@ public abstract class GridBox extends Widget{
         rowCount = Math.max(1,rowcount);
         colSize = width/colCount;
         rowSize = height/rowCount;
-        lineColor = color;
+        lineColor = Color.BLACK.getValue();
         fontHeight = TextWriter.getCharHeight();
         fontWidth = TextWriter.getCharWidth();
         pad = (rowSize/fontHeight);
