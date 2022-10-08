@@ -47,10 +47,11 @@ public class WaveFile {
     public byte[] riff,wave,fmtChunkMarker,dataChunkHeader;
     public long numSamples,sizeOfEachSample,lowLimit,highLimit;
     public int overallSize,lengthOfFmt,formatType,channels,sampleRate,byteRate,blockAlign,bitsPerSample,dataSize;
-    public final int BUF_OFFSET = 44;
+    public final int BUF_OFFSET = 44,SAMPLE_CHUNK = 256;
     public WaveFormatType format;
     public String path;
     public String[] fileInfo;
+    public SamplePair[] sampleDataPairs;
     PassedCheck operation;
     public WaveFile(String dir){
         path = dir;
@@ -77,8 +78,15 @@ public class WaveFile {
             IOHandler.logToFile(operation.message);
             return false;
         }
+
         return true;
         //else printFileInfo();
+    }
+
+    void getSampleChunks(){
+        //sampleDataPairs = new SamplePair[(int)numSamples/SAMPLE_CHUNK];
+        // for each chunk compute min max value
+        // draw lines between
     }
 
     public void printFileInfo(){

@@ -22,7 +22,7 @@ BoxLayout
         top:30
         radiex:60
         radiey:25
-        color:PLUM
+        color:PALEGOLDENROD
         textcolor:black
         func:shutdown
         draw:fill
