@@ -23,8 +23,7 @@ public class StartUp {
         IOHandler.removeFile("./resources/files/log/error/error.log");
 
 
-        WaveFile f = new WaveFile();
-        f.readFile("./resources/files/sound/soundClip-2.wav");
+        WaveFile f = new WaveFile("./resources/files/sound/soundClip-2.wav");
 
         //program = new SpellMe(800,500); // ./resources/files/gui/spellme.fs
         //program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs

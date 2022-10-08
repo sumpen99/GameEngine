@@ -14,6 +14,7 @@ import static helper.enums.MouseState.*;
 import static helper.methods.CommonMethods.*;
 import static helper.methods.StringToEnum.getIntToColor;
 import static helper.methods.CommonMethods.littleEndianToBigEndian;
+import static helper.struct.SMDateTime.secondsToTime;
 import javax.imageio.ImageIO;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -24,7 +25,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -278,14 +278,15 @@ public class IOHandler {
         return true;
     }
 
-    public static void parseWaveFile(String path,WaveFile header){
+    public static void parseWaveFile(WaveFile header,PassedCheck result){
         //http://truelogic.org/wordpress/2015/09/04/parsing-a-wav-file-in-c/
         DataInputStream reader = null;
         try{
-            reader = new DataInputStream(new BufferedInputStream(new FileInputStream(path)));
+            reader = new DataInputStream(new BufferedInputStream(new FileInputStream(header.path)));
         }
         catch(FileNotFoundException err){
-            logToFile(err.getMessage());
+            result.passed = false;
+            result.message = err.getMessage();
         }
         try{
             byte[] bufferFour = new byte[4];
@@ -316,16 +317,33 @@ public class IOHandler {
             reader.read(bufferFour,0,4);
             header.convertToSize(WaveBits.DATA_SIZE,bufferFour);
             header.getSampleSize();
-            printWaveFileInfo(header);
-            readWaveSampleData(reader,header);
-            reader.close();
         }
         catch(java.io.IOException err){
-            logToFile(err.getMessage());
+            result.passed = false;
+            result.message = err.getMessage();
         }
+        closeDataInputStream(reader);
+        result.passed = true;
     }
 
-    public static void readWaveSampleData(DataInputStream reader,WaveFile header){
+    public static void readWaveSampleData(WaveFile header,boolean printInfo,PassedCheck result){
+        DataInputStream reader;
+        boolean passed = true;
+        try{
+            reader = new DataInputStream(new BufferedInputStream(new FileInputStream(header.path)));
+            long skip = reader.skip(header.BUF_OFFSET);
+            if(skip != header.BUF_OFFSET){
+                result.message = "Skipped More Bytes Then Allowed";
+                result.passed = false;
+                closeDataInputStream(reader);
+                return;
+            }
+        }
+        catch(IOException err){
+            result.passed = false;
+            result.message = err.getMessage();
+            return;
+        }
         int read;
         if(header.format == WaveFormatType.PCM){
             byte[] dataBuffer = new byte[(int)header.sizeOfEachSample];
@@ -347,9 +365,9 @@ public class IOHandler {
                         high_limit = 2147483647;
                         break;
                 }
-                printString("Valid range for data values : %d to %d".formatted(low_limit, high_limit));
+                if(printInfo)printString("Valid range for data values : %d to %d".formatted(low_limit, high_limit));
                 for (long i = 1; i <= header.numSamples; i++) {
-                    printString("==========Sample %d / %d=============".formatted(i, header.numSamples));
+                    if(printInfo)printString("==========Sample %d / %d=============".formatted(i, header.numSamples));
                     try {
                         read = reader.read(dataBuffer, 0, dataBuffer.length);
                         if (read == header.sizeOfEachSample) {
@@ -357,7 +375,7 @@ public class IOHandler {
                             int offset = 0; // move the offset for every iteration in the loop below
                             int dataInChannel = 0;
                             for (int xchannels = 0; xchannels < header.channels; xchannels++) {
-                                printString("Channel#%d : ".formatted(xchannels + 1));
+                                if(printInfo)printString("Channel#%d : ".formatted(xchannels + 1));
                                 // convert data from little endian to big endian based on bytes in each channel sample
                                 if (bytesInEachChannel == 4) {
                                     dataInChannel = littleEndianToBigEndian(dataBuffer,offset,4);
@@ -370,22 +388,38 @@ public class IOHandler {
                                     dataInChannel -= 128; //in wave, 8-bit are unsigned, so shifting to signed
                                 }
                                 offset += bytesInEachChannel;
-                                printString("%d ".formatted(dataInChannel));
+                                if(printInfo)printString("%d ".formatted(dataInChannel));
                                 // check if value was in range
-                                if (dataInChannel < low_limit || dataInChannel > high_limit)
-                                    printString("value out of range %d".formatted(dataInChannel));
+                                if (dataInChannel < low_limit || dataInChannel > high_limit){
+                                    passed = false;
+                                    result.message = "value out of range %d".formatted(dataInChannel);
+                                }
+
                             }
                         }
                         else {
-                            printString("Error reading file. %d bytes".formatted(read));
+                            passed = false;
+                            result.message = "Error reading file. %d bytes".formatted(read);
                             break;
                         }
                     }
                     catch(java.io.IOException err){
-                        logToFile(err.getMessage());
+                        passed = false;
+                        result.message = err.getMessage();
                     }
                 }
             }
+        }
+        result.passed = passed;
+        closeDataInputStream(reader);
+    }
+
+    public static void closeDataInputStream(DataInputStream reader){
+        try{
+            reader.close();
+        }
+        catch(Exception err){
+            logToFile(err.getMessage());
         }
     }
 

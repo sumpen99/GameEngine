@@ -2,6 +2,10 @@ package helper.struct;
 import helper.enums.WaveBits;
 import helper.enums.WaveFormatType;
 import helper.io.IOHandler;
+
+import java.io.DataInputStream;
+
+import static helper.io.IOHandler.*;
 import static helper.methods.CommonMethods.littleEndianToBigEndian;
 import static helper.enums.WaveBits.RIFF;
 import static helper.enums.WaveBits.FMT_CHUNK_MARKER;
@@ -41,16 +45,34 @@ public class WaveFile {
     public byte[] riff,wave,fmtChunkMarker,dataChunkHeader;
     public long numSamples,sizeOfEachSample;
     public int overallSize,lengthOfFmt,formatType,channels,sampleRate,byteRate,blockAlign,bitsPerSample,dataSize;
+    public final int BUF_OFFSET = 44;
     public WaveFormatType format;
-    public WaveFile(){
+    public String path;
+    PassedCheck operation;
+    public WaveFile(String dir){
+        path = dir;
+        operation = new PassedCheck();
         riff = new byte[RIFF.getValue()];
         fmtChunkMarker = new byte[FMT_CHUNK_MARKER.getValue()];
         dataChunkHeader = new byte[DATA_CHUNK_HEADER.getValue()];
         wave = new byte[WAVE.getValue()];
+        readFile();
     }
 
-    public void readFile(String path){
-        IOHandler.parseWaveFile(path,this);
+    void readFile(){
+        parseWaveFile(this,operation);
+        if(!operation.passed)IOHandler.logToFile(operation.message);
+        else readSampleData();
+    }
+
+    public void readSampleData(){
+        readWaveSampleData(this,false,operation);
+        if(!operation.passed)IOHandler.logToFile(operation.message);
+        else printFileInfo();
+    }
+
+    public void printFileInfo(){
+        printWaveFileInfo(this);
     }
 
     public void convertToSize(WaveBits dst, byte[] buf){

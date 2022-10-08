@@ -108,25 +108,6 @@ public class CommonMethods{
         return buf[offset] & 0x00ff;
     }
 
-    public static String secondsToTime(float rawSeconds) {
-        int hours, hours_residue, minutes, seconds, milliseconds;
-        hours = (int) rawSeconds/3600;
-        hours_residue = (int) rawSeconds % 3600;
-        minutes = hours_residue/60;
-        seconds = hours_residue % 60;
-        milliseconds = getDecimalPart(rawSeconds);
-        return "%d:%d:%d.%d".formatted(hours, minutes, seconds, milliseconds);
-    }
-
-    public static int getDecimalPart(float rawSeconds){
-        PassedCheck p;
-        String[] raw = ("%f".formatted(rawSeconds)).split(",");
-        if(raw.length == 2){
-            if((p = stringIsInt(raw[1])).passed)return p.iNum;
-        }
-        return 0;
-    }
-
     public static void getRandomInt(FVec2d pos,int bound_x, int bound_y){
         pos.x = (float)((Math.random()*10000) % bound_x);
         pos.y = (float)((Math.random()*10000) % bound_y);
