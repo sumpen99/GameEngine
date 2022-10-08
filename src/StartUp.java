@@ -24,12 +24,12 @@ public class StartUp {
 
 
         WaveFile f = new WaveFile();
-        f.readFile("./resources/files/sound/soundClip.wav");
+        f.readFile("./resources/files/sound/soundClip-2.wav");
 
-        program = new SpellMe(800,500); // ./resources/files/gui/spellme.fs
+        //program = new SpellMe(800,500); // ./resources/files/gui/spellme.fs
         //program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs
         //program = new QuadTreeBalls(800,500); // ./resources/files/gui/quadtree.fs
-        //program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
+        program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
         if(program.setUpProgram()){
             program.runEngineLoop();
         }

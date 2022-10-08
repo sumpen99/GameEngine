@@ -317,7 +317,7 @@ public class IOHandler {
             header.convertToSize(WaveBits.DATA_SIZE,bufferFour);
             header.getSampleSize();
             printWaveFileInfo(header);
-            //readWaveSampleData(reader,header);
+            readWaveSampleData(reader,header);
             reader.close();
         }
         catch(java.io.IOException err){
