@@ -1,11 +1,9 @@
 package helper.methods;
 import helper.enums.Color;
 import helper.enums.ColorMask;
-import helper.enums.WAVEBITS;
 import helper.struct.Point;
 
 import static helper.methods.StringToEnum.getStrToColor;
-import static helper.struct.Point.addPoint;
 import static helper.struct.Point.subPoint;
 import static helper.struct.Point.multPoint;
 import static helper.struct.Point.divPoint;
@@ -89,6 +87,27 @@ public class CommonMethods{
         arr[i2] = temp;
     }
 
+    public static String byteBufToString(byte[] buf){
+        int size = buf.length,i = 0;
+        String str = "";
+        while(i<size){str+=(char)buf[i++];}
+        return str;
+    }
+
+    public static int littleEndianToBigEndian(byte[] buf,int offset,int bits){
+        assert bits == 4 || bits == 2 ||bits == 1 : "Number Of Bits Not Supported";
+        if(bits == 4){
+            return (buf[offset] & 0x00ff) |
+                    ((buf[offset + 1] & 0x00ff) << 8) |
+                    ((buf[offset + 2] & 0x00ff) << 16) |
+                    (buf[offset + 3] << 24);
+        }
+        else if(bits == 2){
+            return (buf[offset] & 0x00ff) | (buf[offset + 1] << 8);
+        }
+        return buf[offset] & 0x00ff;
+    }
+
     public static String secondsToTime(float rawSeconds) {
         int hours, hours_residue, minutes, seconds, milliseconds;
         hours = (int) rawSeconds/3600;
@@ -101,7 +120,6 @@ public class CommonMethods{
 
     public static int getDecimalPart(float rawSeconds){
         PassedCheck p;
-        IOHandler.printFloat(rawSeconds);
         String[] raw = ("%f".formatted(rawSeconds)).split(",");
         if(raw.length == 2){
             if((p = stringIsInt(raw[1])).passed)return p.iNum;

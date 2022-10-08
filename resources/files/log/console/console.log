@@ -1,19 +1,19 @@
 Unable To Remove File .\resources\files\log\gc\gc.log
+Unable To Remove File .\resources\files\log\error\error.log
 (1-4): RIFF
-(5-8) Overall size: bytes:16777213, Kb:16383
+(5-8) Overall size: bytes:440996, Kb:430
 (9-12) Wave marker: WAVE
 (13-16) Fmt marker: fmt 
 (17-20) Length of Fmt header: 16
 (21-22) Format type: 1 PCM
 (23-24) Channels: 1
-(25-28) Sample rate: 16776516
-(29-32) Byte Rate: 131069 , Bit Rate:1048552
+(25-28) Sample rate: 44100
+(29-32) Byte Rate: 88200 , Bit Rate:705600
 (33-34) Block Alignment: 2
 (35-36) Bits per sample: 16
 (37-40) Data Marker: data
-(41-44) Size of data chunk: 16777213
-Number of samples:8388606
+(41-44) Size of data chunk: 440960
+Number of samples:220480
 Size of each sample:2 bytes
-Approx.Duration in seconds=128,002914
-128,002914
-Approx.Duration in h:m:s=0:2:8.2914
+Approx.Duration in seconds=4,999955
+Approx.Duration in h:m:s=0:0:4.999955

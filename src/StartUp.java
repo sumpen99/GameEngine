@@ -6,7 +6,7 @@ import program.QuadTreeBalls;
 import program.RecordSound;
 import program.SpellMe;
 import helper.io.IOHandler;
-
+import static helper.methods.CommonMethods.littleEndianToBigEndian;
 //https://personal.ntu.edu.sg/ehchua/programming/java/javanativeinterface.html
 //http://midi.teragonaudio.com/tech/lowaud.htm
 
@@ -22,8 +22,9 @@ public class StartUp {
         //IOHandler.removeFilesFromFolder("./resources/files/sound");
         IOHandler.removeFile("./resources/files/log/error/error.log");
 
-        //WaveFile f = new WaveFile();
-        //f.readFile("./resources/files/sound/soundClip.wav");
+
+        WaveFile f = new WaveFile();
+        f.readFile("./resources/files/sound/soundClip.wav");
 
         program = new SpellMe(800,500); // ./resources/files/gui/spellme.fs
         //program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs

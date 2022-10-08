@@ -2,10 +2,7 @@ package helper.io;
 import java.awt.image.*;
 import java.io.*;
 import engine.GameEngine;
-import helper.enums.EntrieType;
-import helper.enums.Token;
-import helper.enums.WAVEBITS;
-import helper.enums.WidgetVariable;
+import helper.enums.*;
 import helper.input.KeyboardHandler;
 import helper.input.MouseHandler;
 import helper.layout.Layout;
@@ -16,7 +13,7 @@ import static helper.enums.KeyboardState.*;
 import static helper.enums.MouseState.*;
 import static helper.methods.CommonMethods.*;
 import static helper.methods.StringToEnum.getIntToColor;
-
+import static helper.methods.CommonMethods.littleEndianToBigEndian;
 import javax.imageio.ImageIO;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -27,7 +24,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
-import java.nio.file.Files;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -297,46 +294,45 @@ public class IOHandler {
         37-40	“data”	“data” chunk header. Marks the beginning of the data section.
         41-44	File size (data)	Size of the data section.
         */
-        BufferedReader reader = null;
-        FileInputStream fRead = null;
+        DataInputStream reader = null;
         int read;
         try{
-            fRead = new FileInputStream(path);
-            reader = new BufferedReader(new InputStreamReader(fRead));
+            reader = new DataInputStream(new BufferedInputStream(new FileInputStream(path)));
         }
-        catch(java.io.FileNotFoundException err){
+        catch(FileNotFoundException err){
             logToFile(err.getMessage());
         }
         try{
-            char[] bufferFour = new char[4];
-            char[] bufferTwo = new char[2];
+            byte[] bufferFour = new byte[4];
+            byte[] bufferTwo = new byte[2];
             assert reader != null;
             read = reader.read(header.riff,0,header.riff.length);
             read = reader.read(bufferFour,0,4);
-            header.littleEndianToBigEndian(WAVEBITS.OVERALL_SIZE,bufferFour);
+            header.convertToSize(WaveBits.OVERALL_SIZE,bufferFour);
             read = reader.read(header.wave,0,header.wave.length);
             read = reader.read(header.fmtChunkMarker,0,header.fmtChunkMarker.length);
             read = reader.read(bufferFour,0,4);
-            header.littleEndianToBigEndian(WAVEBITS.LENGTH_OF_FMT,bufferFour);
+            header.convertToSize(WaveBits.LENGTH_OF_FMT,bufferFour);
             read = reader.read(bufferTwo,0,2);
-            header.littleEndianToBigEndian(WAVEBITS.FORMAT_TYPE,bufferTwo);
+            header.convertToSize(WaveBits.FORMAT_TYPE,bufferTwo);
             header.formatTypeToName();
             read = reader.read(bufferTwo,0,2);
-            header.littleEndianToBigEndian(WAVEBITS.CHANNELS,bufferTwo);
+            header.convertToSize(WaveBits.CHANNELS,bufferTwo);
             read = reader.read(bufferFour,0,4);
-            header.littleEndianToBigEndian(WAVEBITS.SAMPLE_RATE,bufferFour);
+            header.convertToSize(WaveBits.SAMPLE_RATE,bufferFour);
             read = reader.read(bufferFour,0,4);
-            header.littleEndianToBigEndian(WAVEBITS.BYTE_RATE,bufferFour);
+            header.convertToSize(WaveBits.BYTE_RATE,bufferFour);
             read = reader.read(bufferTwo,0,2);
-            header.littleEndianToBigEndian(WAVEBITS.BLOCK_ALIGN,bufferTwo);
+            header.convertToSize(WaveBits.BLOCK_ALIGN,bufferTwo);
             read = reader.read(bufferTwo,0,2);
-            header.littleEndianToBigEndian(WAVEBITS.BITS_PER_SAMPLE,bufferTwo);
+            header.convertToSize(WaveBits.BITS_PER_SAMPLE,bufferTwo);
             read = reader.read(header.dataChunkHeader,0,header.dataChunkHeader.length);
-            header.littleEndianToBigEndian(WAVEBITS.BITS_PER_SAMPLE,bufferTwo);
+            header.convertToSize(WaveBits.BITS_PER_SAMPLE,bufferTwo);
             read = reader.read(bufferFour,0,4);
-            header.littleEndianToBigEndian(WAVEBITS.DATA_SIZE,bufferFour);
+            header.convertToSize(WaveBits.DATA_SIZE,bufferFour);
+            header.getSampleSize();
             printWaveFileInfo(header);
-            fRead.close();
+            //readWaveSampleData(reader,header);
             reader.close();
         }
         catch(java.io.IOException err){
@@ -344,27 +340,87 @@ public class IOHandler {
         }
     }
 
+    public static void readWaveSampleData(DataInputStream reader,WaveFile header){
+        int read;
+        if(header.format == WaveFormatType.PCM){
+            byte[] dataBuffer = new byte[(int)header.sizeOfEachSample];
+            long bytesInEachChannel = (header.sizeOfEachSample / header.channels);
+            if ((bytesInEachChannel  * header.channels) == header.sizeOfEachSample) {
+                long low_limit = 0L;
+                long high_limit = 0L;
+                switch (header.bitsPerSample) {
+                    case 8:
+                        low_limit = -128;
+                        high_limit = 127;
+                        break;
+                    case 16:
+                        low_limit = -32768;
+                        high_limit = 32767;
+                        break;
+                    case 32:
+                        low_limit = -2147483648;
+                        high_limit = 2147483647;
+                        break;
+                }
+                printString("Valid range for data values : %d to %d".formatted(low_limit, high_limit));
+                for (long i = 1; i <= header.numSamples; i++) {
+                    printString("==========Sample %d / %d=============".formatted(i, header.numSamples));
+                    try {
+                        read = reader.read(dataBuffer, 0, dataBuffer.length);
+                        if (read == header.sizeOfEachSample) {
+                            // dump the data read
+                            int offset = 0; // move the offset for every iteration in the loop below
+                            int dataInChannel = 0;
+                            for (int xchannels = 0; xchannels < header.channels; xchannels++) {
+                                printString("Channel#%d : ".formatted(xchannels + 1));
+                                // convert data from little endian to big endian based on bytes in each channel sample
+                                if (bytesInEachChannel == 4) {
+                                    dataInChannel = littleEndianToBigEndian(dataBuffer,offset,4);
+                                }
+                                else if (bytesInEachChannel == 2) {
+                                    dataInChannel = littleEndianToBigEndian(dataBuffer,offset,2);
+                                }
+                                else if (bytesInEachChannel == 1) {
+                                    dataInChannel = littleEndianToBigEndian(dataBuffer,offset,1);
+                                    dataInChannel -= 128; //in wave, 8-bit are unsigned, so shifting to signed
+                                }
+                                offset += bytesInEachChannel;
+                                printString("%d ".formatted(dataInChannel));
+                                // check if value was in range
+                                if (dataInChannel < low_limit || dataInChannel > high_limit)
+                                    printString("value out of range %d".formatted(dataInChannel));
+                            }
+                        }
+                        else {
+                            printString("Error reading file. %d bytes".formatted(read));
+                            break;
+                        }
+                    }
+                    catch(java.io.IOException err){
+                        logToFile(err.getMessage());
+                    }
+                }
+            }
+        }
+    }
+
     public static void printWaveFileInfo(WaveFile header){
-        printString("(1-4): %s".formatted(String.valueOf(header.riff)));
+        float duration_in_seconds = (float) header.overallSize / header.byteRate;
+        printString("(1-4): %s".formatted(byteBufToString(header.riff)));
         printString("(5-8) Overall size: bytes:%d, Kb:%d".formatted(header.overallSize, header.overallSize/1024));
-        printString("(9-12) Wave marker: %s".formatted(String.valueOf(header.wave)));
-        printString("(13-16) Fmt marker: %s".formatted(String.valueOf(header.fmtChunkMarker)));
+        printString("(9-12) Wave marker: %s".formatted(byteBufToString(header.wave)));
+        printString("(13-16) Fmt marker: %s".formatted(byteBufToString(header.fmtChunkMarker)));
         printString("(17-20) Length of Fmt header: %d".formatted(header.lengthOfFmt));
-        printString("(21-22) Format type: %d %s".formatted(header.formatType,header.formatName));
+        printString("(21-22) Format type: %d %s".formatted(header.formatType,header.format.getName()));
         printString("(23-24) Channels: %d".formatted(header.channels));
         printString("(25-28) Sample rate: %d".formatted(header.sampleRate));
         printString("(29-32) Byte Rate: %d , Bit Rate:%d".formatted(header.byteRate,header.byteRate*8));
         printString("(33-34) Block Alignment: %d".formatted(header.blockAlign));
         printString("(35-36) Bits per sample: %d".formatted(header.bitsPerSample));
-        printString("(37-40) Data Marker: %s".formatted(String.valueOf(header.dataChunkHeader)));
+        printString("(37-40) Data Marker: %s".formatted(byteBufToString(header.dataChunkHeader)));
         printString("(41-44) Size of data chunk: %d".formatted(header.dataSize));
-
-        long num_samples = ((long)8 * header.dataSize) / ((long)header.channels * header.bitsPerSample);
-        printString("Number of samples:%d".formatted(num_samples));
-        long size_of_each_sample = ((long)header.channels * header.bitsPerSample) / 8;
-        printString("Size of each sample:%d bytes".formatted(size_of_each_sample));
-        // calculate duration of file
-        float duration_in_seconds = (float) header.overallSize / header.byteRate;
+        printString("Number of samples:%d".formatted(header.numSamples));
+        printString("Size of each sample:%d bytes".formatted(header.sizeOfEachSample));
         printString("Approx.Duration in seconds=%f".formatted(duration_in_seconds));
         printString("Approx.Duration in h:m:s=%s".formatted(secondsToTime(duration_in_seconds)));
     }
@@ -393,10 +449,10 @@ public class IOHandler {
         return null;
     }
 
-    public static void printCharBuf(char[] buf){
+    public static void printCharBuf(char[] buf,boolean asInt){
         int size = buf.length,i = 0;
-        while(i<size)printChar(buf[i++]);
-        printString("\n");
+        if(asInt)while(i<size)printInt(buf[i++]);
+        else while(i<size)printChar(buf[i++]);
     }
 
     public static void printImageInfo(ImageInfo img){

@@ -1,6 +1,6 @@
 package helper.enums;
 
-public enum WAVEBITS {
+public enum WaveBits {
     DATA_CHUNK_HEADER(4),
     FMT_CHUNK_MARKER(4),
     RIFF(4),
@@ -16,7 +16,7 @@ public enum WAVEBITS {
     DATA_SIZE(0);
 
     private final int value;
-    WAVEBITS(int value){this.value = value;}
+    WaveBits(int value){this.value = value;}
     public int getValue(){return this.value;}
 
 }
