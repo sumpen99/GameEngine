@@ -279,23 +279,8 @@ public class IOHandler {
     }
 
     public static void parseWaveFile(String path,WaveFile header){
-        /*
-        1 – 4	“RIFF”	Marks the file as a riff file. Characters are each 1 byte long.
-        5 – 8	File size (integer)	Size of the overall file – 8 bytes, in bytes (32-bit integer). Typically, you’d fill this in after creation.
-        9 -12	“WAVE”	File Type Header. For our purposes, it always equals “WAVE”.
-        13-16	“fmt “	Format chunk marker. Includes trailing null
-        17-20	16	Length of format data as listed above
-        21-22	1	Type of format (1 is PCM) – 2 byte integer
-        23-24	2	Number of Channels – 2 byte integer
-        25-28	44100	Sample Rate – 32 byte integer. Common values are 44100 (CD), 48000 (DAT). Sample Rate = Number of Samples per second, or Hertz.
-        29-32	176400	(Sample Rate * BitsPerSample * Channels) / 8.
-        33-34	4	(BitsPerSample * Channels) / 8.1 – 8 bit mono2 – 8 bit stereo/16 bit mono4 – 16 bit stereo
-        35-36	16	Bits per sample
-        37-40	“data”	“data” chunk header. Marks the beginning of the data section.
-        41-44	File size (data)	Size of the data section.
-        */
+        //http://truelogic.org/wordpress/2015/09/04/parsing-a-wav-file-in-c/
         DataInputStream reader = null;
-        int read;
         try{
             reader = new DataInputStream(new BufferedInputStream(new FileInputStream(path)));
         }
@@ -306,29 +291,29 @@ public class IOHandler {
             byte[] bufferFour = new byte[4];
             byte[] bufferTwo = new byte[2];
             assert reader != null;
-            read = reader.read(header.riff,0,header.riff.length);
-            read = reader.read(bufferFour,0,4);
+            reader.read(header.riff,0,header.riff.length);
+            reader.read(bufferFour,0,4);
             header.convertToSize(WaveBits.OVERALL_SIZE,bufferFour);
-            read = reader.read(header.wave,0,header.wave.length);
-            read = reader.read(header.fmtChunkMarker,0,header.fmtChunkMarker.length);
-            read = reader.read(bufferFour,0,4);
+            reader.read(header.wave,0,header.wave.length);
+            reader.read(header.fmtChunkMarker,0,header.fmtChunkMarker.length);
+            reader.read(bufferFour,0,4);
             header.convertToSize(WaveBits.LENGTH_OF_FMT,bufferFour);
-            read = reader.read(bufferTwo,0,2);
+            reader.read(bufferTwo,0,2);
             header.convertToSize(WaveBits.FORMAT_TYPE,bufferTwo);
             header.formatTypeToName();
-            read = reader.read(bufferTwo,0,2);
+            reader.read(bufferTwo,0,2);
             header.convertToSize(WaveBits.CHANNELS,bufferTwo);
-            read = reader.read(bufferFour,0,4);
+            reader.read(bufferFour,0,4);
             header.convertToSize(WaveBits.SAMPLE_RATE,bufferFour);
-            read = reader.read(bufferFour,0,4);
+            reader.read(bufferFour,0,4);
             header.convertToSize(WaveBits.BYTE_RATE,bufferFour);
-            read = reader.read(bufferTwo,0,2);
+            reader.read(bufferTwo,0,2);
             header.convertToSize(WaveBits.BLOCK_ALIGN,bufferTwo);
-            read = reader.read(bufferTwo,0,2);
+            reader.read(bufferTwo,0,2);
             header.convertToSize(WaveBits.BITS_PER_SAMPLE,bufferTwo);
-            read = reader.read(header.dataChunkHeader,0,header.dataChunkHeader.length);
+            reader.read(header.dataChunkHeader,0,header.dataChunkHeader.length);
             header.convertToSize(WaveBits.BITS_PER_SAMPLE,bufferTwo);
-            read = reader.read(bufferFour,0,4);
+            reader.read(bufferFour,0,4);
             header.convertToSize(WaveBits.DATA_SIZE,bufferFour);
             header.getSampleSize();
             printWaveFileInfo(header);
