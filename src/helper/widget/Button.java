@@ -11,6 +11,13 @@ public abstract class Button extends Label{
     }
 
     @Override
+    public void releaseWidget(){
+        if(getWidgetBitSet(SM_TOUCH_PROCESSED.getIndex())){
+            shiftBitsRight();
+        }
+    }
+
+    @Override
     public boolean onMouseLeftDown(int x,int y){
         if(touchEventNotProcessed()){
             setWidgetBit(SM_TOUCH_PROCESSED.getValue());

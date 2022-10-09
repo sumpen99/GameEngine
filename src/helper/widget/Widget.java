@@ -73,7 +73,10 @@ public abstract class Widget implements IWidget{
     }
     public void pointInside(int x,int y){
         if(PointInsideFunc.insideSelf(x,y,this.wObj)){setWidgetBit(SM_MOUSE_HOOVER.getValue());}
-        else{clearWidgetBits();}
+        else{
+            releaseWidget();
+            clearWidgetBits();
+        }
     }
     public boolean onFrameUpdate(int x,int y){return false;}
     public boolean onMouseLeftDown(int x,int y){return false;}
@@ -113,6 +116,7 @@ public abstract class Widget implements IWidget{
     public String getChildID(){return childID;}
     public void setChildID(String childid){childID = childid;}
     public void setID(String wid){wID = wid;}
+    public void releaseWidget(){};
     public void resetWidgetState(){}
     public void reachOutsideWorld(){};
     public void showWidgetBindToSelf(){

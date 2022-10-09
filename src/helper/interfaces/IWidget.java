@@ -13,6 +13,7 @@ public interface IWidget {
     void setOrientated(boolean value);
     void pointInside(int x,int y);
     void showWidgetBindToSelf();
+    void releaseWidget();
     void reachOutsideWorld();
     void resetWidgetState();
     void shiftBitsLeft();
