@@ -44,7 +44,7 @@ public class WaveFile {
     public byte[] riff,wave,fmtChunkMarker,dataChunkHeader;
     public long numSamples,sizeOfEachSample,lowLimit,highLimit;
     public int overallSize,lengthOfFmt,formatType,channels,sampleRate,byteRate,blockAlign,bitsPerSample,dataSize;
-    public final int BUF_OFFSET = 44,SAMPLE_CHUNK = 256;
+    public final int BUF_OFFSET = 44,SAMPLE_CHUNK_SIZE = 256;
     public WaveFormatType format;
     public String path;
     public String[] fileInfo;
@@ -70,12 +70,11 @@ public class WaveFile {
     }
 
     boolean readSampleData(){
-        readWaveSampleData(this,false,operation);
+        readWaveSampleData(this,operation);
         if(!operation.passed){
             IOHandler.logToFile(operation.message);
             return false;
         }
-
         return true;
         //else printFileInfo();
     }
@@ -92,6 +91,14 @@ public class WaveFile {
 
     public String[] getFileInfo(){
         return fileInfo;
+    }
+
+    public SamplePair[] getSamplePairs(){
+        return sampleDataPairs;
+    }
+
+    public SamplePair getLimitsLowHigh(){
+        return new SamplePair((int)lowLimit,(int)highLimit);
     }
 
     void setFileInfo(){

@@ -1,9 +1,17 @@
 package helper.widget;
+import helper.drawobjects.Line;
 import helper.drawobjects.TextWriter;
+import helper.enums.Color;
+import helper.io.IOHandler;
 import helper.struct.DrawValues;
+import helper.struct.SamplePair;
+
+import static helper.methods.CommonMethods.intReMapValue;
 
 public class WaveViewBox extends LabelBox{
     boolean drawInfo;
+    SamplePair[] samplePairs;
+    SamplePair limitsLowHigh;
     public WaveViewBox(DrawValues dww){
         super(dww);
         lineColor = dww.textColor;
@@ -16,10 +24,17 @@ public class WaveViewBox extends LabelBox{
 
     @Override
     public void setBindingValue(Object value){
-        if(rowValues.getClass() == value.getClass()){
+        Class c = value.getClass();
+        if(rowValues.getClass() == c){
             rowValues = (String[])value;
         }
-        else if(Boolean.class == value.getClass()){
+        else if(c == SamplePair[].class){
+            samplePairs = (SamplePair[])value;
+        }
+        else if(c == SamplePair.class){
+            limitsLowHigh = (SamplePair)value;
+        }
+        else if(Boolean.class == c){
             drawInfo = (boolean)value;
         }
     }
@@ -36,8 +51,24 @@ public class WaveViewBox extends LabelBox{
             }
         }
         else{
-            getCenterPos(9);
-            TextWriter.drawText("--------Here We Are Going To Draw Sample Data-------",fontWidth*2,centerPos.y+fontHeight, lineColor);
+            if(samplePairs != null){
+                drawSampleDataPairs();
+            }
+        }
+    }
+
+    void drawSampleDataPairs(){
+        int samplePairSize = samplePairs.length,i=0,x;
+        int clr = Color.BLUE.getValue();
+        float offSet = (float)wObj.getSize().x/samplePairSize;
+        int left = wObj.getPos().x,top = wObj.getPos().y,right = wObj.getPos().x+wObj.getSize().x,bottom = wObj.getPos().y+wObj.getSize().y;
+        while(i<samplePairSize){
+            int yMin = samplePairs[i].minValue,yMax = samplePairs[i].maxValue;
+            x = left+(int)(offSet*i);
+            yMin = intReMapValue(yMin,limitsLowHigh.minValue,limitsLowHigh.maxValue,top,bottom);
+            yMax = intReMapValue(yMax,limitsLowHigh.minValue,limitsLowHigh.maxValue,top,bottom);
+            Line.drawLine(x,yMin,x,yMax,clr);
+            i++;
         }
     }
 }

@@ -126,7 +126,7 @@ BoxLayout
         textcolor:Black
         draw:fill
         opacity:0
-        text:Draw Info?
+        text:Info/Sample
         shape:rectangle
 ;
     CheckBox

@@ -30,6 +30,10 @@ public class AudioReader extends BaseThreading {
 
     @Override
     public void heavyDuty(){
-        if(f.readFile())wSelf.setBindingValue(f.getFileInfo());
+        if(f.readFile()){
+            wSelf.setBindingValue(f.getFileInfo());
+            wSelf.setBindingValue(f.getLimitsLowHigh());
+            wSelf.setBindingValue(f.getSamplePairs());
+        }
     }
 }

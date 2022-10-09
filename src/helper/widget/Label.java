@@ -36,6 +36,18 @@ public abstract class Label extends Widget implements ILabel {
         alignCenterTextPos();
     }
 
+    /*@Override
+    public void shiftBitsLeft(){
+        shiftedBits = (txtColor >> 24) & 0xff;
+        txtColor <<=8;
+    }
+
+    @Override
+    public void shiftBitsRight(){
+        txtColor>>>=8;
+        txtColor |= (shiftedBits)<<24;
+    }*/
+
     @Override
     public String getBindingValue(){
         return this.text;

@@ -1,7 +1,6 @@
 package helper.widget;
 import helper.audio.AudioHandler;
 import helper.struct.DrawValues;
-
 import static helper.enums.WidgetState.SM_TOUCH_PROCESSED;
 
 public class Recorder extends FlatImage{

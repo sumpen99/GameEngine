@@ -334,7 +334,7 @@ public class IOHandler {
         result.passed = true;
     }
 
-    public static void readWaveSampleData(WaveFile header,boolean printInfo,PassedCheck result){
+    public static void readWaveSampleData(WaveFile header,PassedCheck result){
         DataInputStream reader;
         boolean passed = true;
         try{
@@ -357,16 +357,19 @@ public class IOHandler {
             byte[] dataBuffer = new byte[(int)header.sizeOfEachSample];
             long bytesInEachChannel = (header.sizeOfEachSample / header.channels);
             if ((bytesInEachChannel  * header.channels) == header.sizeOfEachSample) {
+                header.sampleDataPairs = new SamplePair[(int)header.numSamples/header.SAMPLE_CHUNK_SIZE];
+                // numSamples = 214968
+                // perSec = 44100
+                // chunkSize 256
+                // sampleDataPairs = 840
+                int minValue = 0,maxValue = 0;
                 outside : for (long i = 1; i <= header.numSamples; i++) {
-                    if(printInfo)printString("==========Sample %d / %d=============".formatted(i, header.numSamples));
                     try {
                         read = reader.read(dataBuffer, 0, dataBuffer.length);
                         if (read == header.sizeOfEachSample) {
                             int offset = 0; // move the offset for every iteration in the loop below
                             int dataInChannel = 0;
                             for (int xchannels = 0; xchannels < header.channels; xchannels++) {
-                                if(printInfo)printString("Channel#%d : ".formatted(xchannels + 1));
-                                // convert data from little endian to big endian based on bytes in each channel sample
                                 if (bytesInEachChannel == 4) {
                                     dataInChannel = littleEndianToBigEndian(dataBuffer,offset,4);
                                 }
@@ -378,21 +381,27 @@ public class IOHandler {
                                     dataInChannel -= 128; //in wave, 8-bit are unsigned, so shifting to signed
                                 }
                                 offset += bytesInEachChannel;
-                                if(printInfo)printString("%d ".formatted(dataInChannel));
-                                // check if value was in range
                                 if (dataInChannel < header.lowLimit || dataInChannel > header.highLimit){
                                     passed = false;
                                     result.message = "value out of range %d".formatted(dataInChannel);
                                     //assert false : "Encountered Value Ouside Limits";
                                     break outside;
                                 }
-
+                                else{
+                                    minValue = Math.min(minValue,dataInChannel);
+                                    maxValue = Math.max(maxValue,dataInChannel);
+                                }
                             }
                         }
                         else {
                             passed = false;
                             result.message = "Error reading file. %d bytes".formatted(read);
                             break;
+                        }
+
+                        if(i % header.SAMPLE_CHUNK_SIZE == 0){
+                            header.sampleDataPairs[(int)i/header.SAMPLE_CHUNK_SIZE-1] = new SamplePair(minValue,maxValue);
+                            minValue=0;maxValue=0;
                         }
                     }
                     catch(java.io.IOException err){
@@ -778,6 +787,15 @@ public class IOHandler {
 
     public static void printEntrie(Entrie e){
         System.out.println("Key: %s Value(Object): %s Bucket: %d isSet: %b".formatted(e.key,e.value.toString(),e.bucket,e.set));
+    }
+
+    public static void printSampleDataPairs(SamplePair[] samplePairs){
+        int size = samplePairs.length,i = 0;
+        while(i<size)printSamplePair(samplePairs[i++]);
+    }
+
+    public static void printSamplePair(SamplePair sp){
+        printString("MinValue: %d MaxValue: %d".formatted(sp.minValue,sp.maxValue));
     }
 
     public static void printCharValues(){
