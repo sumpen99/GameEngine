@@ -86,8 +86,12 @@ public class ParseLayout {
             }
             case COLOR:{
                 Color c;
+                int clr;
                 if((c = getStrToColor(val.toLowerCase()))!= Color.SM_COLOR_NOT_IMPLEMENTED){
                     dww.color = c.getValue();
+                }
+                else if((clr=getRGBA(val.toLowerCase())) != 0){
+                    dww.color = clr;
                 }
                 else{err = COLOR;}
                 break;

@@ -4,6 +4,7 @@
 # id:string
 # bind:(idToWidgetToBindTo)
 # args:(idToWidgetToBindTo),(idToWidgetToBindTo),...
+# color: BLACK.RED,PALEGOLDENROD..... or .2,.3,.6,1 or 173,235,66,255 or 173,235,66,1
 VERTICAL
 ;
 BoxLayout
@@ -22,7 +23,7 @@ BoxLayout
         top:30
         radiex:60
         radiey:25
-        color:PALEGOLDENROD
+        color:173,235,66,1
         textcolor:black
         func:shutdown
         draw:fill

@@ -32,6 +32,7 @@ public class CommonMethods{
         }
     }
 
+
     public static int getMiddlePoint(int a,int b){
         return a + ((b-a)/2);
     }
@@ -67,6 +68,77 @@ public class CommonMethods{
 
     public static float floatReMapValue(float value,float min1,float max1,float min2,float max2){
         return (max2-min2) * (value-min1)/(max1-min1) + min2;
+    }
+
+    public static int getRGBA(String raw){
+        try{
+            PassedCheck op;
+            String[] rgba = raw.split(",");
+            if(rgba.length == 4){
+                String r1 = rgba[0].contains(".") ? rgba[0].split("\\.")[1] : rgba[0];
+                String g1 = rgba[1].contains(".") ? rgba[1].split("\\.")[1] : rgba[1];
+                String b1 = rgba[2].contains(".") ? rgba[2].split("\\.")[1] : rgba[2];
+                String a1 = rgba[3].contains(".") ? rgba[3].split("\\.")[1] : rgba[3];
+                byte r=0,g=0,b=0,a=0;
+                int div;
+                if((op=stringIsInt(r1)).passed){
+                    if(rgba[0].contains(".")){
+                        div = 10*r1.length();
+                        r = (byte)((float)op.iNum/div*255);
+                    }
+                    else{
+                        r = op.iNum == 1 ? (byte)255 : (byte)Math.min(255,(byte)op.iNum);
+                    }
+                }
+                if(op.passed && (op=stringIsInt(g1)).passed){
+                    if(rgba[1].contains(".")){
+                        div = 10*g1.length();
+                        g = (byte)((float)op.iNum/div*255);
+                    }
+                    else{
+                        g = op.iNum == 1 ? (byte)255 : (byte)Math.min(255,(byte)op.iNum);
+                    }
+                }
+                if(op.passed && (op=stringIsInt(b1)).passed){
+                    if(rgba[2].contains(".")){
+                        div = 10*b1.length();
+                        b = (byte)((float)op.iNum/div*255);
+                    }
+                    else{
+                        b = op.iNum == 1 ? (byte)255 : (byte)Math.min(255,(byte)op.iNum);
+                    }
+                }
+                if(op.passed && (op=stringIsInt(a1)).passed){
+                    if(rgba[3].contains(".")){
+                        div = 10*a1.length();
+                        a = (byte)((float)op.iNum/div*255);
+                    }
+                    else{
+                        a = op.iNum == 1 ? (byte)255 : (byte)Math.min(255,(byte)op.iNum);
+                    }
+                    return addRGBABytes(r,g,b,a);
+                }
+                return 0;
+            }
+        }
+        catch(Exception err){
+            IOHandler.logToFile(err.getMessage());
+        }
+        return 0;
+    }
+
+    public static int addRGBABytes(byte r,byte g,byte b,byte a){
+        IOHandler.printString("%d %d %d %d".formatted(r,g,b,a));
+        int color = 0x0;
+        color <<=8;
+        color|= r & 0xff; // red
+        color <<=8;
+        color|= g & 0xff; // green
+        color <<=8;
+        color|= b & 0xff; // blue
+        color <<=8;
+        color|= a & 0xff;// alpha
+        return color;
     }
 
     public static char offsetString(String str,int offset,char EMPTY_CHAR){
