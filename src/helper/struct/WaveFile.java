@@ -76,17 +76,6 @@ public class WaveFile {
             return false;
         }
         return true;
-        //else printFileInfo();
-    }
-
-    void getSampleChunks(){
-        //sampleDataPairs = new SamplePair[(int)numSamples/SAMPLE_CHUNK];
-        // for each chunk compute min max value
-        // draw lines between
-    }
-
-    public void printFileInfo(){
-        printWaveFileInfo(getFileInfo());
     }
 
     public String[] getFileInfo(){
@@ -99,6 +88,10 @@ public class WaveFile {
 
     public SamplePair getLimitsLowHigh(){
         return new SamplePair((int)lowLimit,(int)highLimit);
+    }
+
+    public int getSampleChunkSize(){
+        return SAMPLE_CHUNK_SIZE;
     }
 
     void setFileInfo(){

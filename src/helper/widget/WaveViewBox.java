@@ -12,6 +12,7 @@ public class WaveViewBox extends LabelBox{
     boolean drawInfo;
     SamplePair[] samplePairs;
     SamplePair limitsLowHigh;
+    int sampleChunkSize;
     public WaveViewBox(DrawValues dww){
         super(dww);
         lineColor = dww.textColor;
@@ -34,6 +35,9 @@ public class WaveViewBox extends LabelBox{
         else if(c == SamplePair.class){
             limitsLowHigh = (SamplePair)value;
         }
+        else if(c == Integer.class){
+            sampleChunkSize = (int)value;
+        }
         else if(Boolean.class == c){
             drawInfo = (boolean)value;
         }
@@ -52,6 +56,8 @@ public class WaveViewBox extends LabelBox{
         }
         else{
             if(samplePairs != null){
+                getCenterPos(0);
+                TextWriter.drawText("Sample ChunkSize: %s".formatted(sampleChunkSize),fontWidth*2,centerPos.y+fontHeight, lineColor);
                 drawSampleDataPairs();
             }
         }
@@ -61,7 +67,7 @@ public class WaveViewBox extends LabelBox{
         int samplePairSize = samplePairs.length,i=0,x;
         int clr = Color.BLUE.getValue();
         float offSet = (float)wObj.getSize().x/samplePairSize;
-        int left = wObj.getPos().x,top = wObj.getPos().y,right = wObj.getPos().x+wObj.getSize().x,bottom = wObj.getPos().y+wObj.getSize().y;
+        int left = wObj.getPos().x,top = wObj.getPos().y,bottom = wObj.getPos().y+wObj.getSize().y;
         while(i<samplePairSize){
             int yMin = samplePairs[i].minValue,yMax = samplePairs[i].maxValue;
             x = left+(int)(offSet*i);

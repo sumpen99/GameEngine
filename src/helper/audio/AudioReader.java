@@ -32,6 +32,7 @@ public class AudioReader extends BaseThreading {
     public void heavyDuty(){
         if(f.readFile()){
             wSelf.setBindingValue(f.getFileInfo());
+            wSelf.setBindingValue(f.getSampleChunkSize());
             wSelf.setBindingValue(f.getLimitsLowHigh());
             wSelf.setBindingValue(f.getSamplePairs());
         }
