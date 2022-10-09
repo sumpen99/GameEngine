@@ -15,6 +15,8 @@ public interface IWidget {
     void showWidgetBindToSelf();
     void reachOutsideWorld();
     void resetWidgetState();
+    void shiftBitsLeft();
+    void shiftBitsRight();
     boolean onMouseLeftDown(int x,int y);
     boolean onMouseLeftMove(int x,int y);
     boolean onMouseLeftDoubleClick(int x,int y);

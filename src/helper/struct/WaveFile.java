@@ -2,9 +2,6 @@ package helper.struct;
 import helper.enums.WaveBits;
 import helper.enums.WaveFormatType;
 import helper.io.IOHandler;
-
-import java.io.DataInputStream;
-
 import static helper.io.IOHandler.*;
 import static helper.methods.CommonMethods.byteBufToString;
 import static helper.methods.CommonMethods.littleEndianToBigEndian;

@@ -232,6 +232,10 @@ public class ParseLayout {
             dww.wType = SM_FLAT_BUTTON;
             return true;
         }
+        if(element.equals(SM_MOVEABLE_BUTTON.getValue())){
+            dww.wType = SM_MOVEABLE_BUTTON;
+            return true;
+        }
         if(element.equals(SM_RECORDER.getValue())){
             dww.wType = SM_RECORDER;
             return true;
@@ -311,6 +315,9 @@ public class ParseLayout {
         switch(dww.wType){
             case SM_FLAT_BUTTON:{
                 return new FlatButton(objCallerClass,dww);
+            }
+            case SM_MOVEABLE_BUTTON:{
+                return new MoveableButton(objCallerClass,dww);
             }
             case SM_ROUNDED_BUTTON:{
                 return new RoundedButton(objCallerClass,dww);

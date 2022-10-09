@@ -174,12 +174,12 @@ public abstract class Widget implements IWidget{
         return this.wObj.color;
     }
 
-    protected void shiftBitsLeft(){
+    public void shiftBitsLeft(){
         shiftedBits = (wObj.color >> 24) & 0xff;
         wObj.color <<=8;
     }
 
-    protected void shiftBitsRight(){
+    public void shiftBitsRight(){
         wObj.color>>>=8;
         // wObj.color>>=8;
         // wObj.color &= ColorMask.OPACITY_MASK.getValue();

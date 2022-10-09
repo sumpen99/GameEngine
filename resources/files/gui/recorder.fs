@@ -29,6 +29,18 @@ BoxLayout
         text:Exit
         shape:rectangle
 ;
+    MoveableButton
+        left:130
+        top:5
+        width:260
+        height:50
+        color:PALEGOLDENROD
+        textcolor:black
+        draw:fill
+        text:|||
+        opacity:0
+        shape:rectangle
+;
 BoxLayout
     left:350
     top:0

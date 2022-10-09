@@ -14,7 +14,6 @@ import static helper.enums.MouseState.*;
 import static helper.methods.CommonMethods.*;
 import static helper.methods.StringToEnum.getIntToColor;
 import static helper.methods.CommonMethods.littleEndianToBigEndian;
-import static helper.struct.SMDateTime.secondsToTime;
 import javax.imageio.ImageIO;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;

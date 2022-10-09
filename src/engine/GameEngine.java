@@ -44,18 +44,17 @@ class ObjectPanel extends JPanel{
 }
 
 public abstract class GameEngine extends JFrame implements IGameEngine{
-    protected static int screenWidth,screenHeight;
     protected JPanel mainPanel;
     protected ObjectPanel objPanel;
-    protected static boolean quitProgram;
-    protected static float FPS;
-    public static PassedCheck funcToCheck;
-    protected static int FRAMES;
     protected Layout layoutRoot;
     protected Object objCallerClass;
+    protected static int screenWidth,screenHeight,FRAMES;
+    protected static float FPS;
+    public static PassedCheck funcToCheck;
     protected static SMHashMap programID;
-    protected static boolean bufferDrawn,drawInfotext;
+    protected static boolean bufferDrawn,drawInfotext,moveWindow,quitProgram;
     protected static String infoText;
+    protected static Vec2d windowPos;
 
     public GameEngine(int screenwidth,int screenheight){
         screenWidth = Math.min(screenwidth, this.getCurrentScreenWidth());
@@ -181,6 +180,7 @@ public abstract class GameEngine extends JFrame implements IGameEngine{
         addMouseWheelListener(MouseHandler.getSelf());
         addKeyListener(KeyboardHandler.getSelf());
         GameEngine.setRenderStatus(false);
+        GameEngine.windowPos = new Vec2d();
         GameEngine.quitProgram = false;
         GameEngine.FRAMES = 60;
         GameEngine.funcToCheck = new PassedCheck();
@@ -194,10 +194,16 @@ public abstract class GameEngine extends JFrame implements IGameEngine{
         this.objPanel = new ObjectPanel();
         this.mainPanel.removeAll();
         this.mainPanel.add(objPanel,BorderLayout.CENTER);
-        this.setMinimumSize(new Dimension(this.screenWidth,this.screenHeight));
+        this.setMinimumSize(new Dimension(screenWidth,screenHeight));
         pack();
         this.setLocationRelativeTo(null);
+        setCurrentWindowLocation();
 
+    }
+
+    void setCurrentWindowLocation(){
+        GameEngine.windowPos.x = this.getX();
+        GameEngine.windowPos.y = this.getY();
     }
 
     public static float getCurrentFPS(){
@@ -240,6 +246,19 @@ public abstract class GameEngine extends JFrame implements IGameEngine{
         System.exit(0);
     }
 
+    public static void setMoveWindow(boolean value){
+        GameEngine.moveWindow = value;
+    }
+
+    public static void setNewWindowPos(int dx,int dy){
+        GameEngine.windowPos.x+=dx;
+        GameEngine.windowPos.y+=dy;
+    }
+
+    protected void getNewLocation(){
+        this.setLocation(GameEngine.windowPos.x,GameEngine.windowPos.y);
+    }
+
     public static void exitEngineLoop(){
         GameEngine.quitProgram = true;
     }
@@ -248,7 +267,7 @@ public abstract class GameEngine extends JFrame implements IGameEngine{
         long frameStart,frameEnd,deltaTime;
         deltaTime = 1;
         int pausLoop;
-        while(!GameEngine.quitProgram)  {
+        while(!GameEngine.quitProgram){
             frameStart = System.currentTimeMillis();
             checkPollEvent();
             onUserUpdate((float)deltaTime/1000.0f);
@@ -261,6 +280,7 @@ public abstract class GameEngine extends JFrame implements IGameEngine{
             deltaTime = Math.max(1,frameEnd-frameStart);
             FPS = 1000.0f/deltaTime;
             if(FPS > GameEngine.FRAMES && deltaTime < GameEngine.FRAMES){
+                if(GameEngine.moveWindow)getNewLocation();
                 pausLoop = (int)(1000.0/(GameEngine.FRAMES-deltaTime));
                 try{
                     Thread.sleep(pausLoop);

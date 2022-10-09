@@ -20,7 +20,7 @@ public class StartUp {
         //IOHandler.printBitWiseAnd(40,0x7f);
         IOHandler.removeFilesFromFolder("./resources/files/log/gc");
         //IOHandler.removeFilesFromFolder("./resources/files/sound");
-        IOHandler.removeFile("./resources/files/log/error/error.log");
+        //IOHandler.removeFile("./resources/files/log/error/error.log");
 
 
         //WaveFile f = new WaveFile("./resources/files/sound/soundClip-2.wav");

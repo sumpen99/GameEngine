@@ -3,6 +3,7 @@ package helper.enums;
 public enum WidgetType{
     SM_BOXLAYOUT("boxlayout"),
     SM_FLAT_BUTTON("flatbutton"),
+    SM_MOVEABLE_BUTTON("moveablebutton"),
     SM_ROUNDED_BUTTON("roundedbutton"),
     SM_RECORDER("recorder"),
     SM_FLAT_TEXTBOX("flattextbox"),
