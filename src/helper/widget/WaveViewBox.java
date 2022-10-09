@@ -12,10 +12,11 @@ public class WaveViewBox extends LabelBox{
     boolean drawInfo;
     SamplePair[] samplePairs;
     SamplePair limitsLowHigh;
-    int sampleChunkSize;
+    int sampleChunkSize,sampleLineColor;
     public WaveViewBox(DrawValues dww){
         super(dww);
         lineColor = dww.textColor;
+        sampleLineColor = Color.WHITESMOKE.getValue();
         setDrawInfoMode(true);
     }
 
@@ -65,7 +66,6 @@ public class WaveViewBox extends LabelBox{
 
     void drawSampleDataPairs(){
         int samplePairSize = samplePairs.length,i=0,x;
-        int clr = Color.BLUE.getValue();
         float offSet = (float)wObj.getSize().x/samplePairSize;
         int left = wObj.getPos().x,top = wObj.getPos().y,bottom = wObj.getPos().y+wObj.getSize().y;
         while(i<samplePairSize){
@@ -73,7 +73,7 @@ public class WaveViewBox extends LabelBox{
             x = left+(int)(offSet*i);
             yMin = intReMapValue(yMin,limitsLowHigh.minValue,limitsLowHigh.maxValue,top,bottom);
             yMax = intReMapValue(yMax,limitsLowHigh.minValue,limitsLowHigh.maxValue,top,bottom);
-            Line.drawLine(x,yMin,x,yMax,clr);
+            Line.drawLine(x,yMin,x,yMax,sampleLineColor);
             i++;
         }
     }

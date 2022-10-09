@@ -93,13 +93,13 @@ BoxLayout
         id:boxpath
         left:10
         top:5
-        width:400
+        width:300
         height:30
-        color:WHITESMOKE
+        color:PALEGOLDENROD
         textcolor:Black
         draw:fill
         shape:rectangle
-        hintText:filename (ex soundClip-2.wav)
+        hintText:(ex soundClip-2.wav)
         opacity:1
         enableAutoCorrect:false
 ;
@@ -115,6 +115,20 @@ BoxLayout
         func:readwavefile
         draw:fill
         text:Read
+        shape:rectangle
+;
+RoundedButton
+        id:playfile
+        left:70
+        top:20
+        radiex:50
+        radiey:18
+        color:PALEGOLDENROD
+        textcolor:Black
+        args:wavebox,boxpath
+        #func:playwavefile
+        draw:fill
+        text:Play
         shape:rectangle
 ;
     FlatLabel
