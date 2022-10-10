@@ -9,6 +9,8 @@ import helper.layout.Layout;
 import helper.list.SMHashMap;
 import helper.struct.*;
 import helper.widget.Widget;
+
+import static helper.enums.EntrieType.ENTRIE_TTF_TAG;
 import static helper.enums.KeyboardState.*;
 import static helper.enums.MouseState.*;
 import static helper.methods.CommonMethods.*;
@@ -284,6 +286,52 @@ public class IOHandler {
         return true;
     }
 
+    public static void parseTTFFile(TTFFile header, PassedCheck result){
+        DataInputStream reader = null;
+        int read;
+        try{
+            reader = new DataInputStream(new BufferedInputStream(new FileInputStream(header.path)));
+        }
+        catch(FileNotFoundException err){
+            result.passed = false;
+            result.message = err.getMessage();
+            return;
+        }
+        try{
+            int i = 0,checkSum=0,offset=0,length=0;
+            byte[] bufferFour = new byte[4];
+            byte[] bufferTwo = new byte[2];
+            read = reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(TTFBits.SCALAR_TYPE,bufferFour);
+            read = reader.read(bufferTwo,0,bufferTwo.length);
+            header.convertToSize(TTFBits.NUM_TABLES,bufferTwo);
+            read = reader.read(bufferTwo,0,bufferTwo.length);
+            header.convertToSize(TTFBits.SEARCH_RANGE,bufferTwo);
+            read = reader.read(bufferTwo,0,bufferTwo.length);
+            header.convertToSize(TTFBits.ENTRY_SELECTOR,bufferTwo);
+            read = reader.read(bufferTwo,0,bufferTwo.length);
+            header.convertToSize(TTFBits.RANGE_SHIFT,bufferTwo);
+            while(i++< header.numTables){
+                read = reader.read(bufferFour,0,bufferFour.length);
+                String tag = byteBufToString(bufferFour);
+                for(int j = 0;j<3;j++){
+                    read = reader.read(bufferFour,0,bufferFour.length);
+                    if(j == 0)checkSum = bytesToInt(bufferFour,0,4,false);
+                    else if(j==1)offset = bytesToInt(bufferFour,0,4,false);
+                    else length = bytesToInt(bufferFour,0,4,false);
+                }
+                header.table.addNewItem(tag,new TTFTag(tag,checkSum,offset,length),ENTRIE_TTF_TAG);
+            }
+
+        }
+        catch(java.io.IOException err){
+            result.passed = false;
+            result.message = err.getMessage();
+        }
+        closeDataInputStream(reader);
+        result.passed = true;
+    }
+
     public static void parseWaveFile(WaveFile header,PassedCheck result){
         //http://truelogic.org/wordpress/2015/09/04/parsing-a-wav-file-in-c/
         DataInputStream reader = null;
@@ -298,7 +346,6 @@ public class IOHandler {
         try{
             byte[] bufferFour = new byte[4];
             byte[] bufferTwo = new byte[2];
-            assert reader != null;
             reader.read(header.riff,0,header.riff.length);
             reader.read(bufferFour,0,4);
             header.convertToSize(WaveBits.OVERALL_SIZE,bufferFour);
@@ -425,6 +472,11 @@ public class IOHandler {
     }
 
     public static void printWaveFileInfo(String[] info){
+        int size = info.length,i=0;
+        while(i<size)printString(info[i++]);
+    }
+
+    public static void printTTFFileInfo(String[] info){
         int size = info.length,i=0;
         while(i<size)printString(info[i++]);
     }
@@ -786,7 +838,14 @@ public class IOHandler {
     }
 
     public static void printEntrie(Entrie e){
-        System.out.println("Key: %s Value(Object): %s Bucket: %d isSet: %b".formatted(e.key,e.value.toString(),e.bucket,e.set));
+        if(e.eType == ENTRIE_TTF_TAG){
+            printEntrieTTFTag((TTFTag)e.value);
+        }
+        else System.out.println("Key: %s Value(Object): %s Bucket: %d isSet: %b".formatted(e.key,e.value.toString(),e.bucket,e.set));
+    }
+
+    public static void printEntrieTTFTag(TTFTag t){
+        printString("Tag: %s CheckSum: %d offset: %d length: %d".formatted(t.tag,t.checkSum,t.offset,t.length));
     }
 
     public static void printSampleDataPairs(SamplePair[] samplePairs){

@@ -1,4 +1,6 @@
 import engine.GameEngine;
+import helper.struct.PassedCheck;
+import helper.struct.TTFFile;
 import helper.struct.UInt;
 import helper.struct.WaveFile;
 import program.ColorPicker;
@@ -6,9 +8,12 @@ import program.QuadTreeBalls;
 import program.RecordSound;
 import program.SpellMe;
 import helper.io.IOHandler;
+
+import static helper.methods.CommonMethods.bytesToInt;
 import static helper.methods.CommonMethods.littleEndianToBigEndian;
 //https://personal.ntu.edu.sg/ehchua/programming/java/javanativeinterface.html
 //http://midi.teragonaudio.com/tech/lowaud.htm
+//https://tchayen.github.io/posts/ttf-file-parsing
 
 
 
@@ -22,6 +27,13 @@ public class StartUp {
         //IOHandler.removeFilesFromFolder("./resources/files/sound");
         //IOHandler.removeFile("./resources/files/log/error/error.log");
 
+
+        PassedCheck psc = new PassedCheck();
+        TTFFile ttf = new TTFFile("./resources/files/fonts/Quicksand-Bold.ttf");
+        IOHandler.parseTTFFile(ttf,psc);
+        ttf.setFileInfo();
+        ttf.printFileInfo();
+        ttf.printTableInfo();
 
         //WaveFile f = new WaveFile("./resources/files/sound/soundClip-2.wav");
 

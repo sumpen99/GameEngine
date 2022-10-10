@@ -128,7 +128,6 @@ public class CommonMethods{
     }
 
     public static int addRGBABytes(byte r,byte g,byte b,byte a){
-        IOHandler.printString("%d %d %d %d".formatted(r,g,b,a));
         int color = 0x0;
         color <<=8;
         color|= r & 0xff; // red
@@ -178,6 +177,20 @@ public class CommonMethods{
             return (buf[offset] & 0x00ff) | (buf[offset + 1] << 8);
         }
         return buf[offset] & 0x00ff;
+    }
+
+    public static int bytesToInt(byte[] buf,int offset,int bits,boolean littleEndian){
+        assert bits == 4 || bits == 2 || bits == 1 : "Number Of Bits Not Supported";
+        if(bits == 4){
+            if(littleEndian) return (buf[offset]&255)+((buf[offset+1]&255)<<8)+((buf[offset+2]&255)<<16)+((buf[offset+3]&255)<<24);
+            else return (buf[offset+3]&255)+((buf[offset+2]&255)<<8)+((buf[offset+1]&255)<<16)+((buf[offset]&255)<<24);
+        }
+        else if(bits == 2){
+            if(littleEndian) return (buf[offset]&255)+((buf[offset+1]&255)<<8);
+            else return (buf[offset+1]&255)+((buf[offset]&255)<<8);
+
+        }
+        return buf[offset] & 255;
     }
 
     public static void getRandomInt(FVec2d pos,int bound_x, int bound_y){

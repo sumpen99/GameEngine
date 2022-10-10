@@ -1,2 +1,20 @@
 Unable To Remove File .\resources\files\log\gc\gc.log
--83 -21 66 -1
+ScalarType   : 65536
+NumTables    : 15
+SearchRange  : 128
+EntrySelector: 3
+RangeShift   : 112
+Tag: loca CheckSum: 884688770 offset: 1980 length: 396
+Tag: glyf CheckSum: -1390321047 offset: 2376 length: 19724
+Tag: DSIG CheckSum: 1 offset: 23340 length: 8
+Tag: post CheckSum: 688007320 offset: 22904 length: 428
+Tag: cmap CheckSum: -1571823404 offset: 1252 length: 724
+Tag: hmtx CheckSum: -1091553889 offset: 464 length: 788
+Tag: cvt  CheckSum: 2163321 offset: 1976 length: 4
+Tag: gasp CheckSum: -65520 offset: 23332 length: 8
+Tag: FFTM CheckSum: 1593728467 offset: 23380 length: 28
+Tag: head CheckSum: -121228132 offset: 252 length: 54
+Tag: hhea CheckSum: 138675504 offset: 308 length: 36
+Tag: GDEF CheckSum: 983070 offset: 23348 length: 30
+Tag: maxp CheckSum: 17956997 offset: 344 length: 32
+Tag: OS/2 CheckSum: 1469514715 offset: 376 length: 86
