@@ -1,6 +1,7 @@
 package helper.methods;
 import helper.enums.*;
 import helper.enums.Token;
+import helper.io.IOHandler;
 
 public class StringToEnum {
 
@@ -15,6 +16,25 @@ public class StringToEnum {
         if((int)token >= 48 && (int)token <= 57)return Token.JSON_NUMBER_VALUE;
         if(((int)token >= 65 && (int)token <= 90) || ((int)token >= 97 && (int)token <= 122))return Token.JSON_STRING_VALUE;
         return Token.JSON_TOKEN_UNKNOWN;
+    }
+
+    public static TTFTableTag getTTFTableTag(String name){
+        if(name.contains("loca")) return TTFTableTag.LOCA;
+        if(name.contains("glyf")) return TTFTableTag.GLYF;
+        if(name.contains("DSIG")) return TTFTableTag.DSIG;
+        if(name.contains("name")) return TTFTableTag.NAME;
+        if(name.contains("post")) return TTFTableTag.POST;
+        if(name.contains("cmap")) return TTFTableTag.CMAP;
+        if(name.contains("hmtx")) return TTFTableTag.HMTX;
+        if(name.contains("cvt")) return TTFTableTag.CVT;
+        if(name.contains("gasp")) return TTFTableTag.GASP;
+        if(name.contains("FFTM")) return TTFTableTag.FFTM;
+        if(name.contains("head")) return TTFTableTag.HEAD;
+        if(name.contains("hhea")) return TTFTableTag.HHEA;
+        if(name.contains("maxp")) return TTFTableTag.MAXP;
+        if(name.contains("GDEF")) return TTFTableTag.GDEF;
+        if(name.contains("OS/2")) return TTFTableTag.OS_2;
+        return TTFTableTag.TTF_TABLE_TAG_UNKNOWN;
     }
 
     public static Color getStrToColor(String type){

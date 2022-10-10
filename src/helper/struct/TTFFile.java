@@ -1,5 +1,6 @@
 package helper.struct;
 import helper.enums.TTFBits;
+import helper.enums.TTFTableTag;
 import helper.io.IOHandler;
 import helper.list.SMHashMap;
 
@@ -43,6 +44,10 @@ public class TTFFile {
                 break;
             }
         }
+    }
+
+    public TTFTag getTag(TTFTableTag tag){
+        return (TTFTag)table.getObject(tag.getValue()).value;
     }
 
     public void setTable(){

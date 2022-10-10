@@ -16,6 +16,8 @@ import static helper.enums.MouseState.*;
 import static helper.methods.CommonMethods.*;
 import static helper.methods.StringToEnum.getIntToColor;
 import static helper.methods.CommonMethods.littleEndianToBigEndian;
+import static helper.methods.StringToEnum.getTTFTableTag;
+
 import javax.imageio.ImageIO;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -313,14 +315,15 @@ public class IOHandler {
             header.convertToSize(TTFBits.RANGE_SHIFT,bufferTwo);
             while(i++< header.numTables){
                 read = reader.read(bufferFour,0,bufferFour.length);
-                String tag = byteBufToString(bufferFour);
+                TTFTableTag tag = getTTFTableTag(byteBufToString(bufferFour));
                 for(int j = 0;j<3;j++){
                     read = reader.read(bufferFour,0,bufferFour.length);
                     if(j == 0)checkSum = bytesToInt(bufferFour,0,4,false);
                     else if(j==1)offset = bytesToInt(bufferFour,0,4,false);
                     else length = bytesToInt(bufferFour,0,4,false);
                 }
-                header.table.addNewItem(tag,new TTFTag(tag,checkSum,offset,length),ENTRIE_TTF_TAG);
+                assert tag != TTFTableTag.TTF_TABLE_TAG_UNKNOWN : "Unknown table Tag!";
+                header.table.addNewItem(tag.getValue(),new TTFTag(tag,checkSum,offset,length),ENTRIE_TTF_TAG);
             }
 
         }
@@ -833,7 +836,12 @@ public class IOHandler {
     public static void printHashMap(SMHashMap hashMap){
         Entrie e;
         for(int i = 0;i < hashMap.capacity;i++){
-            if((e = hashMap.entries[i]).set)printEntrie(e);
+            if((e = hashMap.entries[i]).set){
+                while(e != null){
+                    printEntrie(e);
+                    e = e.next;
+                }
+            }
         }
     }
 
