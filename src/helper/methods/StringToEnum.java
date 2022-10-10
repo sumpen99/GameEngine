@@ -1,7 +1,6 @@
 package helper.methods;
 import helper.enums.*;
 import helper.enums.Token;
-import helper.io.IOHandler;
 
 public class StringToEnum {
 
@@ -18,23 +17,23 @@ public class StringToEnum {
         return Token.JSON_TOKEN_UNKNOWN;
     }
 
-    public static TTFTableTag getTTFTableTag(String name){
-        if(name.contains("loca")) return TTFTableTag.LOCA;
-        if(name.contains("glyf")) return TTFTableTag.GLYF;
-        if(name.contains("DSIG")) return TTFTableTag.DSIG;
-        if(name.contains("name")) return TTFTableTag.NAME;
-        if(name.contains("post")) return TTFTableTag.POST;
-        if(name.contains("cmap")) return TTFTableTag.CMAP;
-        if(name.contains("hmtx")) return TTFTableTag.HMTX;
-        if(name.contains("cvt")) return TTFTableTag.CVT;
-        if(name.contains("gasp")) return TTFTableTag.GASP;
-        if(name.contains("FFTM")) return TTFTableTag.FFTM;
-        if(name.contains("head")) return TTFTableTag.HEAD;
-        if(name.contains("hhea")) return TTFTableTag.HHEA;
-        if(name.contains("maxp")) return TTFTableTag.MAXP;
-        if(name.contains("GDEF")) return TTFTableTag.GDEF;
-        if(name.contains("OS/2")) return TTFTableTag.OS_2;
-        return TTFTableTag.TTF_TABLE_TAG_UNKNOWN;
+    public static TTFTable getTTFTableTag(String name){
+        if(name.contains("loca")) return TTFTable.LOCA;
+        if(name.contains("glyf")) return TTFTable.GLYF;
+        if(name.contains("DSIG")) return TTFTable.DSIG;
+        if(name.contains("name")) return TTFTable.NAME;
+        if(name.contains("post")) return TTFTable.POST;
+        if(name.contains("cmap")) return TTFTable.CMAP;
+        if(name.contains("hmtx")) return TTFTable.HMTX;
+        if(name.contains("cvt")) return TTFTable.CVT;
+        if(name.contains("gasp")) return TTFTable.GASP;
+        if(name.contains("FFTM")) return TTFTable.FFTM;
+        if(name.contains("head")) return TTFTable.HEAD;
+        if(name.contains("hhea")) return TTFTable.HHEA;
+        if(name.contains("maxp")) return TTFTable.MAXP;
+        if(name.contains("GDEF")) return TTFTable.GDEF;
+        if(name.contains("OS/2")) return TTFTable.OS_2;
+        return TTFTable.TTF_TABLE_TAG_UNKNOWN;
     }
 
     public static Color getStrToColor(String type){

@@ -179,6 +179,28 @@ public class CommonMethods{
         return buf[offset] & 0x00ff;
     }
 
+    public static int bytesToLong(byte[] buf,int offset,int bits,boolean littleEndian) {
+        assert bits == 8: "Number Of Bits Not Supported";
+        if (littleEndian) return (
+                buf[offset] & 255) +
+                ((buf[offset + 1] & 255) << 8) +
+                ((buf[offset + 2] & 255) << 16) +
+                ((buf[offset + 3] & 255) << 24) +
+                ((buf[offset + 4] & 255) << 32) +
+                ((buf[offset + 5] & 255) << 40) +
+                ((buf[offset + 6] & 255) << 48) +
+                ((buf[offset + 7] & 255) << 56);
+        else return (
+                buf[offset + 7] & 255) +
+                ((buf[offset + 6] & 255) << 8) +
+                ((buf[offset + 5] & 255) << 16) +
+                ((buf[offset + 4] & 255) << 24) +
+                ((buf[offset + 3] & 255) << 32) +
+                ((buf[offset + 2] & 255) << 40) +
+                ((buf[offset + 1] & 255) << 48) +
+                ((buf[offset] & 255) << 56);
+    }
+
     public static int bytesToInt(byte[] buf,int offset,int bits,boolean littleEndian){
         assert bits == 4 || bits == 2 || bits == 1 : "Number Of Bits Not Supported";
         if(bits == 4){

@@ -1,12 +1,10 @@
 package helper.struct;
 import helper.enums.TTFBits;
-import helper.enums.TTFTableTag;
+import helper.enums.TTFTable;
 import helper.io.IOHandler;
 import helper.list.SMHashMap;
 
-import static helper.methods.CommonMethods.byteBufToString;
 import static helper.methods.CommonMethods.bytesToInt;
-import static helper.struct.SMDateTime.secondsToTime;
 
 
 public class TTFFile {
@@ -46,12 +44,17 @@ public class TTFFile {
         }
     }
 
-    public TTFTag getTag(TTFTableTag tag){
+    public TTFTag getTag(TTFTable tag){
         return (TTFTag)table.getObject(tag.getValue()).value;
     }
 
     public void setTable(){
         table = new SMHashMap(100,.75f);
+    }
+
+    public void setHeadData(){
+
+
     }
 
     public void setFileInfo(){

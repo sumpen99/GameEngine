@@ -1,4 +1,22 @@
 Unable To Remove File .\resources\files\log\gc\gc.log
+majorVersion 1
+minorVersion 0
+fontRevision 65601
+checkSumAdjustment 1061745504
+magicNumber 1594834165
+flags 11
+unitsPerEM 1000
+created -893749186
+modified -893749186
+xMin -24
+yMin -188
+xMax 1097
+yMax 950
+macStyle 1
+lowRecPPEM 8
+fontDirectionHint 2
+indexToLocalFormat 0
+glyphDataFormat 0
 ScalarType   : 65536
 NumTables    : 15
 SearchRange  : 128

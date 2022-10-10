@@ -303,6 +303,8 @@ public class IOHandler {
             int i = 0,checkSum=0,offset=0,length=0;
             byte[] bufferFour = new byte[4];
             byte[] bufferTwo = new byte[2];
+
+            // READ FILEINFO ... NUMTABLES
             read = reader.read(bufferFour,0,bufferFour.length);
             header.convertToSize(TTFBits.SCALAR_TYPE,bufferFour);
             read = reader.read(bufferTwo,0,bufferTwo.length);
@@ -313,18 +315,28 @@ public class IOHandler {
             header.convertToSize(TTFBits.ENTRY_SELECTOR,bufferTwo);
             read = reader.read(bufferTwo,0,bufferTwo.length);
             header.convertToSize(TTFBits.RANGE_SHIFT,bufferTwo);
+
+            // READ TABLES
             while(i++< header.numTables){
                 read = reader.read(bufferFour,0,bufferFour.length);
-                TTFTableTag tag = getTTFTableTag(byteBufToString(bufferFour));
+                TTFTable tag = getTTFTableTag(byteBufToString(bufferFour));
                 for(int j = 0;j<3;j++){
                     read = reader.read(bufferFour,0,bufferFour.length);
                     if(j == 0)checkSum = bytesToInt(bufferFour,0,4,false);
                     else if(j==1)offset = bytesToInt(bufferFour,0,4,false);
                     else length = bytesToInt(bufferFour,0,4,false);
                 }
-                assert tag != TTFTableTag.TTF_TABLE_TAG_UNKNOWN : "Unknown table Tag!";
+                assert tag != TTFTable.TTF_TABLE_TAG_UNKNOWN : "Unknown table Tag!";
                 header.table.addNewItem(tag.getValue(),new TTFTag(tag,checkSum,offset,length),ENTRIE_TTF_TAG);
             }
+
+            // READ HEAD read = 252
+            TTFHead head = new TTFHead();
+            byte[] bufferHead = new byte[54];
+            read = reader.read(bufferHead,0,bufferHead.length);
+            head.convertToSize(bufferHead);
+            printTTFTableHead(head);
+            ((TTFTag)header.table.getObject("head").value).setTableValues(head);
 
         }
         catch(java.io.IOException err){
@@ -854,6 +866,27 @@ public class IOHandler {
 
     public static void printEntrieTTFTag(TTFTag t){
         printString("Tag: %s CheckSum: %d offset: %d length: %d".formatted(t.tag,t.checkSum,t.offset,t.length));
+    }
+
+    public static void printTTFTableHead(TTFHead h){
+        printString("majorVersion %d".formatted(h.majorVersion));
+        printString("minorVersion %d".formatted(h.minorVersion));
+        printString("fontRevision %d".formatted(h.fontRevision));
+        printString("checkSumAdjustment %d".formatted(h.checkSumAdjustment));
+        printString("magicNumber %d".formatted(h.magicNumber));
+        printString("flags %d".formatted(h.flags));
+        printString("unitsPerEM %d".formatted(h.unitsPerEM));
+        printString("created %d".formatted(h.created));
+        printString("modified %d".formatted(h.modified));
+        printString("xMin %d".formatted(h.xMin));
+        printString("yMin %d".formatted(h.yMin));
+        printString("xMax %d".formatted(h.xMax));
+        printString("yMax %d".formatted(h.yMax));
+        printString("macStyle %d".formatted(h.macStyle));
+        printString("lowRecPPEM %d".formatted(h.lowRecPPEM));
+        printString("fontDirectionHint %d".formatted(h.fontDirectionHint));
+        printString("indexToLocalFormat %d".formatted(h.indexToLocalFormat));
+        printString("glyphDataFormat %d".formatted(h.glyphDataFormat));
     }
 
     public static void printSampleDataPairs(SamplePair[] samplePairs){

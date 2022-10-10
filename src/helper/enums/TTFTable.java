@@ -1,6 +1,6 @@
 package helper.enums;
 
-public enum TTFTableTag {
+public enum TTFTable {
     LOCA("loca"),
     GLYF("glyf"),
     DSIG("DSIG"),
@@ -18,6 +18,6 @@ public enum TTFTableTag {
     OS_2("OS/2"),
     TTF_TABLE_TAG_UNKNOWN("Unknown Table Tag");
     private final String value;
-    TTFTableTag(String str){this.value = str;}
+    TTFTable(String str){this.value = str;}
     public String getValue(){return value;}
 }
