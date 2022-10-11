@@ -1,5 +1,4 @@
 package helper.font.ttf;
-
 import helper.enums.TTFTable;
 import helper.interfaces.ITTFTableInfo;
 

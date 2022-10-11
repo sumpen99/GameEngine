@@ -302,7 +302,7 @@ public class IOHandler {
             return;
         }
         try{
-            int i = 0,checkSum=0,offset=0,length=0;
+            int i = 0,checkSum=0,offset=0,length=0,diff = 0;
             byte[] bufferFour = new byte[4];
             byte[] bufferTwo = new byte[2];
 
@@ -336,18 +336,38 @@ public class IOHandler {
             i = 0;
             TTFTable[] tags = TTFTable.values();
             TTFTableBase head;
+            TTFTable tag;
             // READ TABLE INFO
+            //Tag: HEAD CheckSum: -121228132 offset: 252 length: 54
+            //Tag: HHEA CheckSum: 138675504 offset: 308 length: 36
+            //Tag: MAXP CheckSum: 17956997 offset: 344 length: 32
+            //Tag: OS_2 CheckSum: 1469514715 offset: 376 length: 86
+            //Tag: HMTX CheckSum: -1091553889 offset: 464 length: 788
+            //Tag: CMAP CheckSum: -1571823404 offset: 1252 length: 724
+            //Tag: CVT CheckSum: 2163321 offset: 1976 length: 4
+            //Tag: LOCA CheckSum: 884688770 offset: 1980 length: 396
+            //Tag: GLYF CheckSum: -1390321047 offset: 2376 length: 19724
+            //Tag: NAME CheckSum: 1070178860 offset: 22100 length: 801
+            //Tag: POST CheckSum: 688007320 offset: 22904 length: 428
+            //Tag: GASP CheckSum: -65520 offset: 23332 length: 8
+            //Tag: DSIG CheckSum: 1 offset: 23340 length: 8
+            //Tag: GDEF CheckSum: 983070 offset: 23348 length: 30
+            //Tag: FFTM CheckSum: 1593728467 offset: 23380 length: 28
             while(i<tags.length){
-                head = getTTFTable(tags[i++]);
+                tag = tags[i++];
+                head = getTTFTable(tag);
                 if(head != null){
-                    offset = header.getTableOffset(TTFTable.HEAD);
-                    length = header.getTableLength(TTFTable.HEAD);
+                    offset = header.getTableOffset(tag);
+                    length = header.getTableLength(tag);
                     bufferTables = new byte[length];
-                    offsetBufferedReader(reader,offset-read);
+                    diff = offset-read;
+                    read+=diff;
+                    offsetBufferedReader(reader,diff);
                     read += reader.read(bufferTables,0,bufferTables.length);
                     head.convertToSize(bufferTables);
-                    header.setTableValue(TTFTable.HEAD,head.self);
+                    header.setTableValue(tag,head.self);
                     printTTFTableInfo(head.self);
+                    //IOHandler.printInt(read);
                     //((TTFTag)header.table.getObject("head").value).setTableValues(head);
                 }
             }

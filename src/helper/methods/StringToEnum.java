@@ -3,6 +3,7 @@ import helper.enums.*;
 import helper.enums.Token;
 import helper.font.ttf.TTFTableBase;
 import helper.font.ttf.TTFTableHead;
+import helper.font.ttf.TTFTableMaxP;
 import helper.io.IOHandler;
 
 public class StringToEnum {
@@ -52,7 +53,7 @@ public class StringToEnum {
         if(tag == TTFTable.FFTM){}
         if(tag == TTFTable.HEAD){return new TTFTableHead();}
         if(tag == TTFTable.HHEA){}
-        if(tag == TTFTable.MAXP){}
+        if(tag == TTFTable.MAXP){return new TTFTableMaxP();}
         if(tag == TTFTable.GDEF){}
         if(tag == TTFTable.OS_2){}
         if(tag == TTFTable.LOCA){}

@@ -4,9 +4,7 @@ import helper.enums.TTFTable;
 import helper.interfaces.ITTFTableInfo;
 import helper.io.IOHandler;
 import helper.list.SMHashMap;
-
 import static helper.methods.CommonMethods.bytesToInt;
-
 
 public class TTFFile {
     public String path;
