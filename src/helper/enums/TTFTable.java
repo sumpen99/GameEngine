@@ -1,21 +1,21 @@
 package helper.enums;
 
 public enum TTFTable {
-    LOCA("loca"),
-    GLYF("glyf"),
-    DSIG("DSIG"),
-    POST("post"),
-    NAME("name"),
-    CMAP("cmap"),
-    HMTX("hmtx"),
-    CVT("cvt"),
-    GASP("gasp"),
-    FFTM("FFTM"),
     HEAD("head"),
     HHEA("hhea"),
-    GDEF("GDEF"),
     MAXP("maxp"),
     OS_2("OS/2"),
+    HMTX("hmtx"),
+    CMAP("cmap"),
+    CVT("cvt"),
+    LOCA("loca"),
+    GLYF("glyf"),
+    NAME("name"),
+    POST("post"),
+    GASP("gasp"),
+    DSIG("DSIG"),
+    GDEF("GDEF"),
+    FFTM("FFTM"),
     TTF_TABLE_TAG_UNKNOWN("Unknown Table Tag");
     private final String value;
     TTFTable(String str){this.value = str;}

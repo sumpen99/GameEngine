@@ -3,8 +3,11 @@ import java.awt.image.*;
 import java.io.*;
 import engine.GameEngine;
 import helper.enums.*;
+import helper.font.ttf.*;
 import helper.input.KeyboardHandler;
 import helper.input.MouseHandler;
+import helper.interfaces.ITTFTable;
+import helper.interfaces.ITTFTableInfo;
 import helper.layout.Layout;
 import helper.list.SMHashMap;
 import helper.struct.*;
@@ -14,9 +17,8 @@ import static helper.enums.EntrieType.ENTRIE_TTF_TAG;
 import static helper.enums.KeyboardState.*;
 import static helper.enums.MouseState.*;
 import static helper.methods.CommonMethods.*;
-import static helper.methods.StringToEnum.getIntToColor;
 import static helper.methods.CommonMethods.littleEndianToBigEndian;
-import static helper.methods.StringToEnum.getTTFTableTag;
+import static helper.methods.StringToEnum.*;
 
 import javax.imageio.ImageIO;
 import javax.net.ssl.HttpsURLConnection;
@@ -307,44 +309,66 @@ public class IOHandler {
             // READ FILEINFO ... NUMTABLES
             read = reader.read(bufferFour,0,bufferFour.length);
             header.convertToSize(TTFBits.SCALAR_TYPE,bufferFour);
-            read = reader.read(bufferTwo,0,bufferTwo.length);
+            read += reader.read(bufferTwo,0,bufferTwo.length);
             header.convertToSize(TTFBits.NUM_TABLES,bufferTwo);
-            read = reader.read(bufferTwo,0,bufferTwo.length);
+            read += reader.read(bufferTwo,0,bufferTwo.length);
             header.convertToSize(TTFBits.SEARCH_RANGE,bufferTwo);
-            read = reader.read(bufferTwo,0,bufferTwo.length);
+            read += reader.read(bufferTwo,0,bufferTwo.length);
             header.convertToSize(TTFBits.ENTRY_SELECTOR,bufferTwo);
-            read = reader.read(bufferTwo,0,bufferTwo.length);
+            read += reader.read(bufferTwo,0,bufferTwo.length);
             header.convertToSize(TTFBits.RANGE_SHIFT,bufferTwo);
 
             // READ TABLES
             while(i++< header.numTables){
-                read = reader.read(bufferFour,0,bufferFour.length);
+                read += reader.read(bufferFour,0,bufferFour.length);
                 TTFTable tag = getTTFTableTag(byteBufToString(bufferFour));
                 for(int j = 0;j<3;j++){
-                    read = reader.read(bufferFour,0,bufferFour.length);
+                    read += reader.read(bufferFour,0,bufferFour.length);
                     if(j == 0)checkSum = bytesToInt(bufferFour,0,4,false);
                     else if(j==1)offset = bytesToInt(bufferFour,0,4,false);
                     else length = bytesToInt(bufferFour,0,4,false);
                 }
                 assert tag != TTFTable.TTF_TABLE_TAG_UNKNOWN : "Unknown table Tag!";
-                header.table.addNewItem(tag.getValue(),new TTFTag(tag,checkSum,offset,length),ENTRIE_TTF_TAG);
+                header.table.addNewItem(tag.getValue(),new TTFTableTag(tag,checkSum,offset,length),ENTRIE_TTF_TAG);
             }
 
-            // READ HEAD read = 252
-            TTFHead head = new TTFHead();
-            byte[] bufferHead = new byte[54];
-            read = reader.read(bufferHead,0,bufferHead.length);
-            head.convertToSize(bufferHead);
-            printTTFTableHead(head);
-            ((TTFTag)header.table.getObject("head").value).setTableValues(head);
-
+            byte[] bufferTables;
+            i = 0;
+            TTFTable[] tags = TTFTable.values();
+            TTFTableBase head;
+            // READ TABLE INFO
+            while(i<tags.length){
+                head = getTTFTable(tags[i++]);
+                if(head != null){
+                    offset = header.getTableOffset(TTFTable.HEAD);
+                    length = header.getTableLength(TTFTable.HEAD);
+                    bufferTables = new byte[length];
+                    offsetBufferedReader(reader,offset-read);
+                    read += reader.read(bufferTables,0,bufferTables.length);
+                    head.convertToSize(bufferTables);
+                    header.setTableValue(TTFTable.HEAD,head.self);
+                    printTTFTableInfo(head.self);
+                    //((TTFTag)header.table.getObject("head").value).setTableValues(head);
+                }
+            }
         }
         catch(java.io.IOException err){
+            IOHandler.logToFile(err.getMessage());
             result.passed = false;
             result.message = err.getMessage();
         }
         closeDataInputStream(reader);
         result.passed = true;
+    }
+
+    public static void offsetBufferedReader(DataInputStream reader,int skipBytes){
+        try{
+            if(skipBytes > 0)reader.skip(skipBytes);
+        }
+        catch(Exception err){
+            IOHandler.logToFile(err.getMessage());
+        }
+
     }
 
     public static void parseWaveFile(WaveFile header,PassedCheck result){
@@ -859,34 +883,17 @@ public class IOHandler {
 
     public static void printEntrie(Entrie e){
         if(e.eType == ENTRIE_TTF_TAG){
-            printEntrieTTFTag((TTFTag)e.value);
+            printEntrieTTFTag((TTFTableTag)e.value);
         }
         else System.out.println("Key: %s Value(Object): %s Bucket: %d isSet: %b".formatted(e.key,e.value.toString(),e.bucket,e.set));
     }
 
-    public static void printEntrieTTFTag(TTFTag t){
+    public static void printEntrieTTFTag(TTFTableTag t){
         printString("Tag: %s CheckSum: %d offset: %d length: %d".formatted(t.tag,t.checkSum,t.offset,t.length));
     }
 
-    public static void printTTFTableHead(TTFHead h){
-        printString("majorVersion %d".formatted(h.majorVersion));
-        printString("minorVersion %d".formatted(h.minorVersion));
-        printString("fontRevision %d".formatted(h.fontRevision));
-        printString("checkSumAdjustment %d".formatted(h.checkSumAdjustment));
-        printString("magicNumber %d".formatted(h.magicNumber));
-        printString("flags %d".formatted(h.flags));
-        printString("unitsPerEM %d".formatted(h.unitsPerEM));
-        printString("created %d".formatted(h.created));
-        printString("modified %d".formatted(h.modified));
-        printString("xMin %d".formatted(h.xMin));
-        printString("yMin %d".formatted(h.yMin));
-        printString("xMax %d".formatted(h.xMax));
-        printString("yMax %d".formatted(h.yMax));
-        printString("macStyle %d".formatted(h.macStyle));
-        printString("lowRecPPEM %d".formatted(h.lowRecPPEM));
-        printString("fontDirectionHint %d".formatted(h.fontDirectionHint));
-        printString("indexToLocalFormat %d".formatted(h.indexToLocalFormat));
-        printString("glyphDataFormat %d".formatted(h.glyphDataFormat));
+    public static void printTTFTableInfo(ITTFTableInfo tableInfo){
+        tableInfo.dumpValues();
     }
 
     public static void printSampleDataPairs(SamplePair[] samplePairs){

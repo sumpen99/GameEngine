@@ -1,6 +1,7 @@
-package helper.struct;
+package helper.font.ttf;
 import helper.enums.TTFBits;
 import helper.enums.TTFTable;
+import helper.interfaces.ITTFTableInfo;
 import helper.io.IOHandler;
 import helper.list.SMHashMap;
 
@@ -44,17 +45,28 @@ public class TTFFile {
         }
     }
 
-    public TTFTag getTag(TTFTable tag){
-        return (TTFTag)table.getObject(tag.getValue()).value;
+    public TTFTableTag getTableTag(TTFTable tag){
+        return (TTFTableTag)table.getObject(tag.getValue()).value;
+    }
+
+    public int getTableOffset(TTFTable tag){
+        TTFTableTag tagTable = getTableTag(tag);
+        assert tagTable!=null:"Not A Valid Table";
+        return tagTable.offset;
+    }
+
+    public int getTableLength(TTFTable tag){
+        TTFTableTag tagTable = getTableTag(tag);
+        assert tagTable!=null:"Not A Valid Table";
+        return tagTable.length;
+    }
+
+    public void setTableValue(TTFTable tag, ITTFTableInfo obj){
+        ((TTFTableTag)table.getObject(tag.getValue()).value).setTableValues(obj);
     }
 
     public void setTable(){
         table = new SMHashMap(100,.75f);
-    }
-
-    public void setHeadData(){
-
-
     }
 
     public void setFileInfo(){

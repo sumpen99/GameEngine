@@ -1,6 +1,9 @@
 package helper.methods;
 import helper.enums.*;
 import helper.enums.Token;
+import helper.font.ttf.TTFTableBase;
+import helper.font.ttf.TTFTableHead;
+import helper.io.IOHandler;
 
 public class StringToEnum {
 
@@ -34,6 +37,27 @@ public class StringToEnum {
         if(name.contains("GDEF")) return TTFTable.GDEF;
         if(name.contains("OS/2")) return TTFTable.OS_2;
         return TTFTable.TTF_TABLE_TAG_UNKNOWN;
+    }
+
+    public static TTFTableBase getTTFTable(TTFTable tag){
+        if(tag == TTFTable.LOCA){}
+        if(tag == TTFTable.GLYF){}
+        if(tag == TTFTable.DSIG){}
+        if(tag == TTFTable.NAME){}
+        if(tag == TTFTable.POST){}
+        if(tag == TTFTable.CMAP){}
+        if(tag == TTFTable.HMTX){}
+        if(tag == TTFTable.CVT){}
+        if(tag == TTFTable.GASP){}
+        if(tag == TTFTable.FFTM){}
+        if(tag == TTFTable.HEAD){return new TTFTableHead();}
+        if(tag == TTFTable.HHEA){}
+        if(tag == TTFTable.MAXP){}
+        if(tag == TTFTable.GDEF){}
+        if(tag == TTFTable.OS_2){}
+        if(tag == TTFTable.LOCA){}
+        if(tag == TTFTable.LOCA){}
+        return null;
     }
 
     public static Color getStrToColor(String type){

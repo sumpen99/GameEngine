@@ -1,9 +1,12 @@
 package helper.struct;
 import helper.io.IOHandler;
 
+import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 import static helper.methods.CommonMethods.stringIsInt;
 
@@ -57,5 +60,50 @@ public class SMDateTime {
             if((p = stringIsInt(raw[1])).passed)return p.iNum;
         }
         return 0;
+    }
+
+    public static long getMilliSecondsPast(int year,int month,int day){
+        assert year >= 1970 : "Probably Wrong Year";
+        long timeElapsed;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = "%d-%d-%d".formatted(year,month,day);
+        try{
+            Date date = sdf.parse(dateString);
+            //date.getTime();
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            timeElapsed = calendar.getTimeInMillis();
+        }
+        catch(Exception err){
+            IOHandler.logToFile(err.getMessage());
+            timeElapsed = 0;
+        }
+        return timeElapsed;
+    }
+
+    public static long getMilliSeconds(){
+        long timeElapsed;
+        try{
+            Calendar calendar = Calendar.getInstance();
+            timeElapsed = calendar.getTimeInMillis();
+        }
+        catch(Exception err){
+            IOHandler.logToFile(err.getMessage());
+            timeElapsed = 0;
+        }
+        return timeElapsed;
+    }
+
+    public static String getDateFromMilliseconds(long milliSeconds){
+        String d = "1900-00-00";
+        try{
+            Date date = new Date(milliSeconds);
+            d = date.toString();
+        }
+        catch(Exception err){
+            IOHandler.logToFile(err.getMessage());
+        }
+        return d;
     }
 }

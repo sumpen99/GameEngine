@@ -1,6 +1,7 @@
 import engine.GameEngine;
 import helper.struct.PassedCheck;
-import helper.struct.TTFFile;
+import helper.font.ttf.TTFFile;
+import helper.struct.SMDateTime;
 import program.RecordSound;
 import helper.io.IOHandler;
 //https://personal.ntu.edu.sg/ehchua/programming/java/javanativeinterface.html
@@ -19,12 +20,11 @@ public class StartUp {
         //IOHandler.removeFilesFromFolder("./resources/files/sound");
         //IOHandler.removeFile("./resources/files/log/error/error.log");
 
-
         PassedCheck psc = new PassedCheck();
         TTFFile ttf = new TTFFile("./resources/files/fonts/Quicksand-Bold.ttf");
         IOHandler.parseTTFFile(ttf,psc);
         ttf.setFileInfo();
-        ttf.printFileInfo();
+        //ttf.printFileInfo();
         ttf.printTableInfo();
 
         //WaveFile f = new WaveFile("./resources/files/sound/soundClip-2.wav");
@@ -40,5 +40,4 @@ public class StartUp {
             IOHandler.logToFile(program.getErrorMessage());
         }
     }
-
 }
