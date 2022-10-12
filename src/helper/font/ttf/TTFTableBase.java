@@ -13,25 +13,27 @@ public class TTFTableBase{
             short indexToLocalFormat = (short)header.getTableValue(TTFTable.HEAD).getValues();
             short numGlyphs = (short)header.getTableValue(TTFTable.MAXP).getValues();
             info = new TTFlocaInfo(indexToLocalFormat,numGlyphs);
+            return;
         }
-        if(tableTag == TTFTable.GLYF){}
-        if(tableTag == TTFTable.DSIG){}
-        if(tableTag == TTFTable.NAME){}
-        if(tableTag == TTFTable.POST){}
-        if(tableTag == TTFTable.CMAP){}
+        if(tableTag == TTFTable.GLYF){return;}
+        if(tableTag == TTFTable.DSIG){return;}
+        if(tableTag == TTFTable.NAME){return;}
+        if(tableTag == TTFTable.POST){return;}
+        if(tableTag == TTFTable.CMAP){return;}
         if(tableTag == TTFTable.HMTX){
             short numOfLongHorMetrics = (short)header.getTableValue(TTFTable.HHEA).getValues();
             short numGlyphs = (short)header.getTableValue(TTFTable.MAXP).getValues();
             info = new TTFhmtxInfo(numOfLongHorMetrics,numGlyphs);
+            return;
         }
-        if(tableTag == TTFTable.CVT){}
-        if(tableTag == TTFTable.GASP){}
-        if(tableTag == TTFTable.FFTM){}
-        if(tableTag == TTFTable.HEAD){info = new TTFheadInfo();}
-        if(tableTag == TTFTable.HHEA){info = new TTFhheaInfo();}
-        if(tableTag == TTFTable.MAXP){info = new TTFmaxpInfo();}
-        if(tableTag == TTFTable.GDEF){}
-        if(tableTag == TTFTable.OS_2){}
+        if(tableTag == TTFTable.CVT){return;}
+        if(tableTag == TTFTable.GASP){return;}
+        if(tableTag == TTFTable.FFTM){return;}
+        if(tableTag == TTFTable.HEAD){info = new TTFheadInfo();return;}
+        if(tableTag == TTFTable.HHEA){info = new TTFhheaInfo();return;}
+        if(tableTag == TTFTable.MAXP){info = new TTFmaxpInfo();return;}
+        if(tableTag == TTFTable.GDEF){return;}
+        if(tableTag == TTFTable.OS_2){return;}
     }
 
     public int getOffset(TTFFile header){

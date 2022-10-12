@@ -7,8 +7,8 @@ checkSumAdjustment 1061745504
 magicNumber 1594834165
 flags 11
 unitsPerEM 1000
-created Fri Jun 17 14:17:01 CEST 1994
-modified Fri Jun 17 14:17:01 CEST 1994
+created Fri Jun 17 14:23:33 CEST 1994
+modified Fri Jun 17 14:23:33 CEST 1994
 xMin -24
 yMin -188
 xMax 1097
@@ -19,7 +19,6 @@ fontDirectionHint 2
 indexToLocalFormat 0
 glyphDataFormat 0
 ---------END----------
-306
 ---------HHEAINFO----------
 version 1
 ascent 950
@@ -35,7 +34,6 @@ caretOffset 0
 metricDataFormat 0
 numOfLongHorMetrics 197
 ---------END----------
-344
 ---------MAXPINFO----------
 version 1
 numGlyphs 197
@@ -53,7 +51,6 @@ maxSizeOfInstructions 0
 maxComponentElements 2
 maxComponentDepth 1
 ---------END----------
-376
 ---------TTFHMTXInfo----------
 advanceWidth: 364 leftSideBearing: 33
 advanceWidth: 0 leftSideBearing: 0
@@ -253,7 +250,6 @@ advanceWidth: 311 leftSideBearing: 55
 advanceWidth: 716 leftSideBearing: 62
 advanceWidth: 1443 leftSideBearing: 73
 ---------END----------
-1252
 ---------TTFHMTXInfo----------
 ShortValue: 0
 ShortValue: 20
@@ -453,7 +449,6 @@ ShortValue: 9690
 ShortValue: 9722
 ShortValue: 9784
 ---------END----------
-2376
 Tag: LOCA CheckSum: 884688770 offset: 1980 length: 396
 Tag: GLYF CheckSum: -1390321047 offset: 2376 length: 19724
 Tag: DSIG CheckSum: 1 offset: 23340 length: 8
