@@ -7,11 +7,11 @@ import helper.struct.SMDateTime;
 import static helper.methods.CommonMethods.bytesToInt;
 
 public class TTFheadInfo implements ITTFTableInfo {
-    public short majorVersion,minorVersion,flags,unitsPerEM,
+    short majorVersion,minorVersion,flags,unitsPerEM,
             macStyle,lowRecPPEM,indexToLocalFormat,glyphDataFormat,
             fontDirectionHint,xMin,yMin,xMax,yMax;
-    public String created,modified;
-    public int fontRevision,checkSumAdjustment,magicNumber;
+    String created,modified;
+    int fontRevision,checkSumAdjustment,magicNumber;
 
     @Override
     public void setValues(byte[] buf){
@@ -43,7 +43,9 @@ public class TTFheadInfo implements ITTFTableInfo {
     }
 
     @Override
-    public Object getValues(){return null;}
+    public Object getValues(){
+        return indexToLocalFormat;
+    }
 
    @Override
     public void dumpValues(){

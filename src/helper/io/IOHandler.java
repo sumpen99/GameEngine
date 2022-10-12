@@ -367,9 +367,9 @@ public class IOHandler {
                     read += reader.read(bufferTables,0,bufferTables.length);
                     table.convertToSize(bufferTables);
                     table.setValue(header);
-                    //printTTFTableInfo(table.info);
+                    printTTFTableInfo(table.info);
                     //table.info.checkForValuesBelowZero();
-                    IOHandler.printInt(read);
+                    //IOHandler.printInt(read);
                     //((TTFTag)header.table.getObject("head").value).setTableValues(head);
                 }
             }

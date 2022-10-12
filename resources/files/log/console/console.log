@@ -1,9 +1,459 @@
 Unable To Remove File .\resources\files\log\gc\gc.log
+---------HEADINFO----------
+majorVersion 1
+minorVersion 0
+fontRevision 1
+checkSumAdjustment 1061745504
+magicNumber 1594834165
+flags 11
+unitsPerEM 1000
+created Fri Jun 17 14:17:01 CEST 1994
+modified Fri Jun 17 14:17:01 CEST 1994
+xMin -24
+yMin -188
+xMax 1097
+yMax 950
+macStyle 1
+lowRecPPEM 8
+fontDirectionHint 2
+indexToLocalFormat 0
+glyphDataFormat 0
+---------END----------
 306
+---------HHEAINFO----------
+version 1
+ascent 950
+descent -188
+lineGap 90
+advanceWidthMax 1443
+minLeftSideBearing -24
+minRightSideBearing -125
+xMaxExtent 1097
+caretSlopeRise 1
+caretSlopeRun 0
+caretOffset 0
+metricDataFormat 0
+numOfLongHorMetrics 197
+---------END----------
 344
+---------MAXPINFO----------
+version 1
+numGlyphs 197
+maxPoints 77
+maxContours 5
+maxCompositePoints 52
+maxCompositeContours 4
+maxZones 2
+maxTwilightPoints 0
+maxStorage 1
+maxFunctionDefs 1
+maxInstructionDefs 0
+maxStackElements 64
+maxSizeOfInstructions 0
+maxComponentElements 2
+maxComponentDepth 1
+---------END----------
 376
-numOfLongHorMetrics 197 numGlyphs 197
+---------TTFHMTXInfo----------
+advanceWidth: 364 leftSideBearing: 33
+advanceWidth: 0 leftSideBearing: 0
+advanceWidth: 333 leftSideBearing: 0
+advanceWidth: 300 leftSideBearing: 0
+advanceWidth: 252 leftSideBearing: 93
+advanceWidth: 410 leftSideBearing: 69
+advanceWidth: 700 leftSideBearing: 45
+advanceWidth: 632 leftSideBearing: 61
+advanceWidth: 696 leftSideBearing: 49
+advanceWidth: 230 leftSideBearing: 69
+advanceWidth: 430 leftSideBearing: 71
+advanceWidth: 430 leftSideBearing: 60
+advanceWidth: 430 leftSideBearing: 76
+advanceWidth: 620 leftSideBearing: 64
+advanceWidth: 230 leftSideBearing: 54
+advanceWidth: 408 leftSideBearing: 66
+advanceWidth: 230 leftSideBearing: 82
+advanceWidth: 422 leftSideBearing: 85
+advanceWidth: 710 leftSideBearing: 65
+advanceWidth: 335 leftSideBearing: 39
+advanceWidth: 590 leftSideBearing: 50
+advanceWidth: 610 leftSideBearing: 76
+advanceWidth: 664 leftSideBearing: 54
+advanceWidth: 605 leftSideBearing: 66
+advanceWidth: 642 leftSideBearing: 64
+advanceWidth: 587 leftSideBearing: 64
+advanceWidth: 630 leftSideBearing: 55
+advanceWidth: 642 leftSideBearing: 66
+advanceWidth: 240 leftSideBearing: 87
+advanceWidth: 240 leftSideBearing: 59
+advanceWidth: 620 leftSideBearing: 60
+advanceWidth: 620 leftSideBearing: 79
+advanceWidth: 620 leftSideBearing: 95
+advanceWidth: 534 leftSideBearing: 46
+advanceWidth: 980 leftSideBearing: 53
+advanceWidth: 646 leftSideBearing: 65
+advanceWidth: 594 leftSideBearing: 104
+advanceWidth: 771 leftSideBearing: 73
+advanceWidth: 719 leftSideBearing: 104
+advanceWidth: 593 leftSideBearing: 104
+advanceWidth: 605 leftSideBearing: 104
+advanceWidth: 814 leftSideBearing: 73
+advanceWidth: 709 leftSideBearing: 104
+advanceWidth: 305 leftSideBearing: 111
+advanceWidth: 594 leftSideBearing: 52
+advanceWidth: 715 leftSideBearing: 104
+advanceWidth: 563 leftSideBearing: 104
+advanceWidth: 844 leftSideBearing: 104
+advanceWidth: 771 leftSideBearing: 105
+advanceWidth: 850 leftSideBearing: 73
+advanceWidth: 583 leftSideBearing: 104
+advanceWidth: 844 leftSideBearing: 66
+advanceWidth: 625 leftSideBearing: 90
+advanceWidth: 667 leftSideBearing: 71
+advanceWidth: 648 leftSideBearing: 50
+advanceWidth: 814 leftSideBearing: 105
+advanceWidth: 750 leftSideBearing: 67
+advanceWidth: 1102 leftSideBearing: 71
+advanceWidth: 722 leftSideBearing: 80
+advanceWidth: 604 leftSideBearing: 62
+advanceWidth: 667 leftSideBearing: 71
+advanceWidth: 430 leftSideBearing: 98
+advanceWidth: 448 leftSideBearing: 72
+advanceWidth: 430 leftSideBearing: 55
+advanceWidth: 500 leftSideBearing: 80
+advanceWidth: 600 leftSideBearing: -24
+advanceWidth: 500 leftSideBearing: 163
+advanceWidth: 619 leftSideBearing: 40
+advanceWidth: 660 leftSideBearing: 93
+advanceWidth: 571 leftSideBearing: 58
+advanceWidth: 660 leftSideBearing: 60
+advanceWidth: 609 leftSideBearing: 58
+advanceWidth: 362 leftSideBearing: 65
+advanceWidth: 660 leftSideBearing: 60
+advanceWidth: 613 leftSideBearing: 93
+advanceWidth: 281 leftSideBearing: 94
+advanceWidth: 249 leftSideBearing: -5
+advanceWidth: 560 leftSideBearing: 93
+advanceWidth: 249 leftSideBearing: 100
+advanceWidth: 951 leftSideBearing: 93
+advanceWidth: 613 leftSideBearing: 93
+advanceWidth: 625 leftSideBearing: 70
+advanceWidth: 660 leftSideBearing: 93
+advanceWidth: 660 leftSideBearing: 60
+advanceWidth: 439 leftSideBearing: 93
+advanceWidth: 492 leftSideBearing: 57
+advanceWidth: 400 leftSideBearing: 42
+advanceWidth: 613 leftSideBearing: 83
+advanceWidth: 582 leftSideBearing: 64
+advanceWidth: 861 leftSideBearing: 69
+advanceWidth: 570 leftSideBearing: 74
+advanceWidth: 588 leftSideBearing: 52
+advanceWidth: 554 leftSideBearing: 61
+advanceWidth: 480 leftSideBearing: 55
+advanceWidth: 286 leftSideBearing: 121
+advanceWidth: 480 leftSideBearing: 53
+advanceWidth: 460 leftSideBearing: 85
+advanceWidth: 252 leftSideBearing: 93
+advanceWidth: 581 leftSideBearing: 62
+advanceWidth: 644 leftSideBearing: 66
+advanceWidth: 686 leftSideBearing: 53
+advanceWidth: 632 leftSideBearing: 0
+advanceWidth: 500 leftSideBearing: 133
+advanceWidth: 830 leftSideBearing: 53
+advanceWidth: 390 leftSideBearing: 58
+advanceWidth: 515 leftSideBearing: 55
+advanceWidth: 416 leftSideBearing: 34
+advanceWidth: 450 leftSideBearing: 74
+advanceWidth: 500 leftSideBearing: 201
+advanceWidth: 500 leftSideBearing: 170
+advanceWidth: 515 leftSideBearing: 67
+advanceWidth: 534 leftSideBearing: 61
+advanceWidth: 649 leftSideBearing: 65
+advanceWidth: 646 leftSideBearing: 65
+advanceWidth: 664 leftSideBearing: 66
+advanceWidth: 664 leftSideBearing: 66
+advanceWidth: 663 leftSideBearing: 66
+advanceWidth: 646 leftSideBearing: 53
+advanceWidth: 1045 leftSideBearing: 35
+advanceWidth: 771 leftSideBearing: 73
+advanceWidth: 593 leftSideBearing: 104
+advanceWidth: 593 leftSideBearing: 104
+advanceWidth: 593 leftSideBearing: 104
+advanceWidth: 670 leftSideBearing: 104
+advanceWidth: 348 leftSideBearing: 148
+advanceWidth: 274 leftSideBearing: 83
+advanceWidth: 274 leftSideBearing: 1
+advanceWidth: 274 leftSideBearing: -8
+advanceWidth: 812 leftSideBearing: 55
+advanceWidth: 790 leftSideBearing: 105
+advanceWidth: 850 leftSideBearing: 73
+advanceWidth: 850 leftSideBearing: 73
+advanceWidth: 850 leftSideBearing: 73
+advanceWidth: 850 leftSideBearing: 73
+advanceWidth: 850 leftSideBearing: 73
+advanceWidth: 620 leftSideBearing: 100
+advanceWidth: 850 leftSideBearing: 73
+advanceWidth: 760 leftSideBearing: 93
+advanceWidth: 760 leftSideBearing: 93
+advanceWidth: 760 leftSideBearing: 93
+advanceWidth: 760 leftSideBearing: 93
+advanceWidth: 716 leftSideBearing: 62
+advanceWidth: 620 leftSideBearing: 93
+advanceWidth: 574 leftSideBearing: 63
+advanceWidth: 574 leftSideBearing: 63
+advanceWidth: 574 leftSideBearing: 63
+advanceWidth: 574 leftSideBearing: 63
+advanceWidth: 574 leftSideBearing: 63
+advanceWidth: 574 leftSideBearing: 51
+advanceWidth: 954 leftSideBearing: 51
+advanceWidth: 571 leftSideBearing: 58
+advanceWidth: 609 leftSideBearing: 58
+advanceWidth: 609 leftSideBearing: 58
+advanceWidth: 609 leftSideBearing: 58
+advanceWidth: 584 leftSideBearing: 61
+advanceWidth: 281 leftSideBearing: 50
+advanceWidth: 281 leftSideBearing: 50
+advanceWidth: 281 leftSideBearing: 9
+advanceWidth: 281 leftSideBearing: -6
+advanceWidth: 628 leftSideBearing: 58
+advanceWidth: 613 leftSideBearing: 94
+advanceWidth: 640 leftSideBearing: 58
+advanceWidth: 640 leftSideBearing: 58
+advanceWidth: 640 leftSideBearing: 58
+advanceWidth: 640 leftSideBearing: 58
+advanceWidth: 640 leftSideBearing: 58
+advanceWidth: 620 leftSideBearing: 64
+advanceWidth: 640 leftSideBearing: 64
+advanceWidth: 613 leftSideBearing: 83
+advanceWidth: 613 leftSideBearing: 83
+advanceWidth: 613 leftSideBearing: 83
+advanceWidth: 613 leftSideBearing: 83
+advanceWidth: 588 leftSideBearing: 52
+advanceWidth: 660 leftSideBearing: 0
+advanceWidth: 588 leftSideBearing: 52
+advanceWidth: 230 leftSideBearing: 59
+advanceWidth: 230 leftSideBearing: 77
+advanceWidth: 410 leftSideBearing: 59
+advanceWidth: 410 leftSideBearing: 77
+advanceWidth: 824 leftSideBearing: 55
+advanceWidth: 690 leftSideBearing: 22
+advanceWidth: 680 leftSideBearing: 82
+advanceWidth: 410 leftSideBearing: 54
+advanceWidth: 1055 leftSideBearing: 58
+advanceWidth: 470 leftSideBearing: 111
+advanceWidth: 528 leftSideBearing: 66
+advanceWidth: 500 leftSideBearing: 105
+advanceWidth: 497 leftSideBearing: 57
+advanceWidth: 898 leftSideBearing: 66
+advanceWidth: 311 leftSideBearing: 67
+advanceWidth: 230 leftSideBearing: 54
+advanceWidth: 506 leftSideBearing: 56
+advanceWidth: 500 leftSideBearing: 141
+advanceWidth: 640 leftSideBearing: 71
+advanceWidth: 311 leftSideBearing: 55
+advanceWidth: 716 leftSideBearing: 62
+advanceWidth: 1443 leftSideBearing: 73
+---------END----------
 1252
+---------TTFHMTXInfo----------
+ShortValue: 0
+ShortValue: 20
+ShortValue: 20
+ShortValue: 20
+ShortValue: 20
+ShortValue: 58
+ShortValue: 106
+ShortValue: 196
+ShortValue: 282
+ShortValue: 390
+ShortValue: 418
+ShortValue: 462
+ShortValue: 504
+ShortValue: 570
+ShortValue: 610
+ShortValue: 642
+ShortValue: 664
+ShortValue: 682
+ShortValue: 706
+ShortValue: 758
+ShortValue: 808
+ShortValue: 862
+ShortValue: 920
+ShortValue: 998
+ShortValue: 1066
+ShortValue: 1116
+ShortValue: 1158
+ShortValue: 1214
+ShortValue: 1266
+ShortValue: 1296
+ShortValue: 1346
+ShortValue: 1406
+ShortValue: 1444
+ShortValue: 1496
+ShortValue: 1564
+ShortValue: 1648
+ShortValue: 1688
+ShortValue: 1746
+ShortValue: 1796
+ShortValue: 1834
+ShortValue: 1880
+ShortValue: 1918
+ShortValue: 1976
+ShortValue: 2018
+ShortValue: 2042
+ShortValue: 2080
+ShortValue: 2124
+ShortValue: 2152
+ShortValue: 2206
+ShortValue: 2250
+ShortValue: 2286
+ShortValue: 2328
+ShortValue: 2404
+ShortValue: 2466
+ShortValue: 2540
+ShortValue: 2574
+ShortValue: 2612
+ShortValue: 2680
+ShortValue: 2798
+ShortValue: 2846
+ShortValue: 2886
+ShortValue: 2972
+ShortValue: 3006
+ShortValue: 3036
+ShortValue: 3072
+ShortValue: 3108
+ShortValue: 3130
+ShortValue: 3154
+ShortValue: 3198
+ShortValue: 3244
+ShortValue: 3288
+ShortValue: 3334
+ShortValue: 3388
+ShortValue: 3438
+ShortValue: 3496
+ShortValue: 3542
+ShortValue: 3580
+ShortValue: 3622
+ShortValue: 3664
+ShortValue: 3688
+ShortValue: 3756
+ShortValue: 3798
+ShortValue: 3836
+ShortValue: 3884
+ShortValue: 3934
+ShortValue: 3970
+ShortValue: 4054
+ShortValue: 4100
+ShortValue: 4138
+ShortValue: 4202
+ShortValue: 4312
+ShortValue: 4364
+ShortValue: 4420
+ShortValue: 4516
+ShortValue: 4580
+ShortValue: 4604
+ShortValue: 4668
+ShortValue: 4706
+ShortValue: 4744
+ShortValue: 4816
+ShortValue: 4878
+ShortValue: 4950
+ShortValue: 4950
+ShortValue: 4980
+ShortValue: 5056
+ShortValue: 5118
+ShortValue: 5174
+ShortValue: 5256
+ShortValue: 5294
+ShortValue: 5318
+ShortValue: 5338
+ShortValue: 5394
+ShortValue: 5462
+ShortValue: 5520
+ShortValue: 5532
+ShortValue: 5600
+ShortValue: 5674
+ShortValue: 5738
+ShortValue: 5800
+ShortValue: 5864
+ShortValue: 5876
+ShortValue: 5888
+ShortValue: 5952
+ShortValue: 5964
+ShortValue: 6034
+ShortValue: 6074
+ShortValue: 6114
+ShortValue: 6162
+ShortValue: 6206
+ShortValue: 6260
+ShortValue: 6338
+ShortValue: 6350
+ShortValue: 6402
+ShortValue: 6414
+ShortValue: 6482
+ShortValue: 6494
+ShortValue: 6540
+ShortValue: 6614
+ShortValue: 6670
+ShortValue: 6726
+ShortValue: 6792
+ShortValue: 6854
+ShortValue: 6910
+ShortValue: 6970
+ShortValue: 7032
+ShortValue: 7094
+ShortValue: 7166
+ShortValue: 7244
+ShortValue: 7312
+ShortValue: 7388
+ShortValue: 7480
+ShortValue: 7536
+ShortValue: 7548
+ShortValue: 7618
+ShortValue: 7630
+ShortValue: 7706
+ShortValue: 7746
+ShortValue: 7786
+ShortValue: 7836
+ShortValue: 7882
+ShortValue: 7950
+ShortValue: 8026
+ShortValue: 8080
+ShortValue: 8134
+ShortValue: 8198
+ShortValue: 8268
+ShortValue: 8328
+ShortValue: 8384
+ShortValue: 8450
+ShortValue: 8462
+ShortValue: 8516
+ShortValue: 8528
+ShortValue: 8588
+ShortValue: 8600
+ShortValue: 8600
+ShortValue: 8680
+ShortValue: 8712
+ShortValue: 8746
+ShortValue: 8804
+ShortValue: 8862
+ShortValue: 8954
+ShortValue: 9026
+ShortValue: 9066
+ShortValue: 9124
+ShortValue: 9212
+ShortValue: 9236
+ShortValue: 9258
+ShortValue: 9298
+ShortValue: 9408
+ShortValue: 9430
+ShortValue: 9462
+ShortValue: 9494
+ShortValue: 9556
+ShortValue: 9590
+ShortValue: 9690
+ShortValue: 9722
+ShortValue: 9784
+---------END----------
+2376
 Tag: LOCA CheckSum: 884688770 offset: 1980 length: 396
 Tag: GLYF CheckSum: -1390321047 offset: 2376 length: 19724
 Tag: DSIG CheckSum: 1 offset: 23340 length: 8

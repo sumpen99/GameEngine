@@ -6,10 +6,10 @@ import helper.io.IOHandler;
 import static helper.methods.CommonMethods.bytesToInt;
 
 public class TTFhheaInfo implements ITTFTableInfo {
-    public short ascent,descent,lineGap,advanceWidthMax,
+    short ascent,descent,lineGap,advanceWidthMax,
             minLeftSideBearing,minRightSideBearing,xMaxExtent,caretSlopeRise,
             caretSlopeRun,caretOffset,metricDataFormat ,numOfLongHorMetrics ;
-    public int version;
+    int version;
 
     @Override
     public void setValues(byte[] buf){

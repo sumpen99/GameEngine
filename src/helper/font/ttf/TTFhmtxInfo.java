@@ -7,8 +7,8 @@ import helper.struct.HMetrics;
 import static helper.methods.CommonMethods.bytesToInt;
 
 public class TTFhmtxInfo implements ITTFTableInfo {
-    public HMetrics[] hMetrics;
-    public short[] leftSideBearing;
+    HMetrics[] hMetrics;
+    short[] leftSideBearing;
 
     public TTFhmtxInfo(short numOfLongHorMetrics,short numGlyphs ){
         hMetrics = new HMetrics[numOfLongHorMetrics];

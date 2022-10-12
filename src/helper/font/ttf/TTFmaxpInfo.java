@@ -4,10 +4,10 @@ import helper.io.IOHandler;
 import static helper.methods.CommonMethods.bytesToInt;
 
 public class TTFmaxpInfo implements ITTFTableInfo {
-    public short numGlyphs,maxPoints,maxContours,maxCompositePoints,
+    short numGlyphs,maxPoints,maxContours,maxCompositePoints,
             maxCompositeContours,maxZones,maxTwilightPoints,maxStorage,
             maxFunctionDefs,maxInstructionDefs,maxStackElements,maxSizeOfInstructions,maxComponentElements,maxComponentDepth;
-    public int version;
+    int version;
 
     @Override
     public void setValues(byte[] buf){

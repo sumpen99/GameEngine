@@ -1,8 +1,6 @@
 package helper.font.ttf;
 import helper.enums.TTFTable;
 import helper.interfaces.ITTFTableInfo;
-import helper.font.ttf.TTFhheaInfo;
-import helper.io.IOHandler;
 
 public class TTFTableBase{
     public ITTFTableInfo info;
@@ -11,7 +9,11 @@ public class TTFTableBase{
         tableTag = tag;
     }
     public void setSelf(TTFFile header){
-        if(tableTag == TTFTable.LOCA){}
+        if(tableTag == TTFTable.LOCA){
+            short indexToLocalFormat = (short)header.getTableValue(TTFTable.HEAD).getValues();
+            short numGlyphs = (short)header.getTableValue(TTFTable.MAXP).getValues();
+            info = new TTFlocaInfo(indexToLocalFormat,numGlyphs);
+        }
         if(tableTag == TTFTable.GLYF){}
         if(tableTag == TTFTable.DSIG){}
         if(tableTag == TTFTable.NAME){}
