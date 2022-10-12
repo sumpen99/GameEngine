@@ -6,7 +6,6 @@ import helper.enums.*;
 import helper.font.ttf.*;
 import helper.input.KeyboardHandler;
 import helper.input.MouseHandler;
-import helper.interfaces.ITTFTable;
 import helper.interfaces.ITTFTableInfo;
 import helper.layout.Layout;
 import helper.list.SMHashMap;
@@ -335,7 +334,7 @@ public class IOHandler {
             byte[] bufferTables;
             i = 0;
             TTFTable[] tags = TTFTable.values();
-            TTFTableBase head;
+            TTFTableBase table;
             TTFTable tag;
             // READ TABLE INFO
             //Tag: HEAD CheckSum: -121228132 offset: 252 length: 54
@@ -355,18 +354,18 @@ public class IOHandler {
             //Tag: FFTM CheckSum: 1593728467 offset: 23380 length: 28
             while(i<tags.length){
                 tag = tags[i++];
-                head = getTTFTable(tag);
-                if(head != null){
-                    offset = header.getTableOffset(tag);
-                    length = header.getTableLength(tag);
+                table = new TTFTableBase(tag);
+                if(table.info != null){
+                    offset = table.getOffset(header);
+                    length = table.getLength(header);
                     bufferTables = new byte[length];
                     diff = offset-read;
                     read+=diff;
                     offsetBufferedReader(reader,diff);
                     read += reader.read(bufferTables,0,bufferTables.length);
-                    head.convertToSize(bufferTables);
-                    header.setTableValue(tag,head.self);
-                    printTTFTableInfo(head.self);
+                    table.convertToSize(bufferTables);
+                    table.setValue(header);
+                    printTTFTableInfo(table.info);
                     //IOHandler.printInt(read);
                     //((TTFTag)header.table.getObject("head").value).setTableValues(head);
                 }

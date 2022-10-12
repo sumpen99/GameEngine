@@ -47,18 +47,6 @@ public class TTFFile {
         return (TTFTableTag)table.getObject(tag.getValue()).value;
     }
 
-    public int getTableOffset(TTFTable tag){
-        TTFTableTag tagTable = getTableTag(tag);
-        assert tagTable!=null:"Not A Valid Table";
-        return tagTable.offset;
-    }
-
-    public int getTableLength(TTFTable tag){
-        TTFTableTag tagTable = getTableTag(tag);
-        assert tagTable!=null:"Not A Valid Table";
-        return tagTable.length;
-    }
-
     public void setTableValue(TTFTable tag, ITTFTableInfo obj){
         ((TTFTableTag)table.getObject(tag.getValue()).value).setTableValues(obj);
     }
