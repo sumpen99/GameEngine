@@ -32,8 +32,6 @@ public class TTFTableBase{
         if(tableTag == TTFTable.MAXP){info = new TTFmaxpInfo();}
         if(tableTag == TTFTable.GDEF){}
         if(tableTag == TTFTable.OS_2){}
-        if(tableTag == TTFTable.LOCA){}
-        if(tableTag == TTFTable.LOCA){}
     }
 
     public int getOffset(TTFFile header){
