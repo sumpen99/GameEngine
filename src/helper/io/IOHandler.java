@@ -291,6 +291,7 @@ public class IOHandler {
 
     public static void parseTTFFile(TTFFile header, PassedCheck result){
         DataInputStream reader = null;
+        boolean passed = true;
         int read;
         try{
             reader = new DataInputStream(new BufferedInputStream(new FileInputStream(header.path)));
@@ -327,7 +328,7 @@ public class IOHandler {
                     else if(j==1)offset = bytesToInt(bufferFour,0,4,false);
                     else length = bytesToInt(bufferFour,0,4,false);
                 }
-                assert tag != TTFTable.TTF_TABLE_TAG_UNKNOWN : "Unknown table Tag!";
+                assert tag != TTFTable.TTF_TABLE_TAG_UNKNOWN : "Unknown Table Tag!";
                 header.table.addNewItem(tag.getValue(),new TTFTableTag(tag,checkSum,offset,length),ENTRIE_TTF_TAG);
             }
 
@@ -355,6 +356,7 @@ public class IOHandler {
             while(i<tags.length){
                 tag = tags[i++];
                 table = new TTFTableBase(tag);
+                table.setSelf(header);
                 if(table.info != null){
                     offset = table.getOffset(header);
                     length = table.getLength(header);
@@ -365,19 +367,21 @@ public class IOHandler {
                     read += reader.read(bufferTables,0,bufferTables.length);
                     table.convertToSize(bufferTables);
                     table.setValue(header);
-                    printTTFTableInfo(table.info);
-                    //IOHandler.printInt(read);
+                    //printTTFTableInfo(table.info);
+                    //table.info.checkForValuesBelowZero();
+                    IOHandler.printInt(read);
                     //((TTFTag)header.table.getObject("head").value).setTableValues(head);
                 }
             }
         }
         catch(java.io.IOException err){
             IOHandler.logToFile(err.getMessage());
-            result.passed = false;
+            passed = false;
+            //result.passed = false;
             result.message = err.getMessage();
         }
         closeDataInputStream(reader);
-        result.passed = true;
+        result.passed = passed;
     }
 
     public static void offsetBufferedReader(DataInputStream reader,int skipBytes){

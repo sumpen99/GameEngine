@@ -6,7 +6,7 @@ import helper.struct.SMDateTime;
 
 import static helper.methods.CommonMethods.bytesToInt;
 
-public class TTFHeadInfo implements ITTFTableInfo {
+public class TTFheadInfo implements ITTFTableInfo {
     public short majorVersion,minorVersion,flags,unitsPerEM,
             macStyle,lowRecPPEM,indexToLocalFormat,glyphDataFormat,
             fontDirectionHint,xMin,yMin,xMax,yMax;
@@ -42,8 +42,12 @@ public class TTFHeadInfo implements ITTFTableInfo {
 
     }
 
+    @Override
+    public Object getValues(){return null;}
+
    @Override
     public void dumpValues(){
+        IOHandler.printString("---------HEADINFO----------");
         IOHandler.printString("majorVersion %d".formatted(majorVersion));
         IOHandler.printString("minorVersion %d".formatted(minorVersion));
         IOHandler.printString("fontRevision %d".formatted(fontRevision));
@@ -62,5 +66,27 @@ public class TTFHeadInfo implements ITTFTableInfo {
         IOHandler.printString("fontDirectionHint %d".formatted(fontDirectionHint));
         IOHandler.printString("indexToLocalFormat %d".formatted(indexToLocalFormat));
         IOHandler.printString("glyphDataFormat %d".formatted(glyphDataFormat));
+        IOHandler.printString("---------END----------");
+    }
+
+    @Override
+    public void checkForValuesBelowZero(){
+        IOHandler.printString("MAXPINFO Checking For Values Below Zero\nIf Found Maybe Switch To Larger DataType Because Lack Of Unsigned");
+        if(majorVersion<0)IOHandler.printString("majorVersion %d".formatted(majorVersion));
+        if(minorVersion<0)IOHandler.printString("minorVersion %d".formatted(minorVersion));
+        if(fontRevision<0)IOHandler.printString("fontRevision %d".formatted(fontRevision));
+        if(checkSumAdjustment<0)IOHandler.printString("checkSumAdjustment %d".formatted(checkSumAdjustment));
+        if(magicNumber<0)IOHandler.printString("magicNumber %d".formatted(magicNumber));
+        if(flags<0)IOHandler.printString("flags %d".formatted(flags));
+        if(unitsPerEM<0)IOHandler.printString("unitsPerEM %d".formatted(unitsPerEM));
+        if(xMin<0)IOHandler.printString("xMin %d But That Is Probably Correct".formatted(xMin));
+        if(yMin<0)IOHandler.printString("yMin %d But That Is Probably Correct".formatted(yMin));
+        if(xMax<0)IOHandler.printString("xMax %d".formatted(xMax));
+        if(yMax<0)IOHandler.printString("yMax %d".formatted(yMax));
+        if(macStyle<0)IOHandler.printString("macStyle %d".formatted(macStyle));
+        if(lowRecPPEM<0)IOHandler.printString("lowRecPPEM %d".formatted(lowRecPPEM));
+        if(fontDirectionHint<0)IOHandler.printString("fontDirectionHint %d".formatted(fontDirectionHint));
+        if(indexToLocalFormat<0)IOHandler.printString("indexToLocalFormat %d".formatted(indexToLocalFormat));
+        if(glyphDataFormat<0)IOHandler.printString("glyphDataFormat %d".formatted(glyphDataFormat));
     }
 }

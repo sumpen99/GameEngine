@@ -51,6 +51,10 @@ public class TTFFile {
         ((TTFTableTag)table.getObject(tag.getValue()).value).setTableValues(obj);
     }
 
+    public ITTFTableInfo getTableValue(TTFTable tag){
+        return ((TTFTableTag)table.getObject(tag.getValue()).value).getTableValue();
+    }
+
     public void setTable(){
         table = new SMHashMap(100,.75f);
     }

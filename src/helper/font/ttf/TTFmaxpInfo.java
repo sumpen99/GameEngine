@@ -3,7 +3,7 @@ import helper.interfaces.ITTFTableInfo;
 import helper.io.IOHandler;
 import static helper.methods.CommonMethods.bytesToInt;
 
-public class TTFMaxPInfo implements ITTFTableInfo {
+public class TTFmaxpInfo implements ITTFTableInfo {
     public short numGlyphs,maxPoints,maxContours,maxCompositePoints,
             maxCompositeContours,maxZones,maxTwilightPoints,maxStorage,
             maxFunctionDefs,maxInstructionDefs,maxStackElements,maxSizeOfInstructions,maxComponentElements,maxComponentDepth;
@@ -29,7 +29,11 @@ public class TTFMaxPInfo implements ITTFTableInfo {
     }
 
     @Override
+    public Object getValues(){return numGlyphs;}
+
+    @Override
     public void dumpValues(){
+        IOHandler.printString("---------MAXPINFO----------");
         IOHandler.printString("version %d".formatted(version));
         IOHandler.printString("numGlyphs %d".formatted(numGlyphs));
         IOHandler.printString("maxPoints %d".formatted(maxPoints));
@@ -45,5 +49,26 @@ public class TTFMaxPInfo implements ITTFTableInfo {
         IOHandler.printString("maxSizeOfInstructions %d".formatted(maxSizeOfInstructions));
         IOHandler.printString("maxComponentElements %d".formatted(maxComponentElements));
         IOHandler.printString("maxComponentDepth %d".formatted(maxComponentDepth));
+        IOHandler.printString("---------END----------");
+    }
+
+    @Override
+    public void checkForValuesBelowZero(){
+        IOHandler.printString("MAXPINFO Checking For Values Below Zero\nIf Found Maybe Switch To Larger DataType Because Lack Of Unsigned");
+        if(version<0)IOHandler.printString("version %d".formatted(version));
+        if(numGlyphs<0)IOHandler.printString("numGlyphs %d".formatted(numGlyphs));
+        if(maxPoints<0)IOHandler.printString("maxPoints %d".formatted(maxPoints));
+        if(maxContours<0)IOHandler.printString("maxContours %d".formatted(maxContours));
+        if(maxCompositePoints<0)IOHandler.printString("maxCompositePoints %d".formatted(maxCompositePoints));
+        if(maxCompositeContours<0)IOHandler.printString("maxCompositeContours %d".formatted(maxCompositeContours));
+        if(maxZones<0)IOHandler.printString("maxZones %d".formatted(maxZones));
+        if(maxTwilightPoints<0)IOHandler.printString("maxTwilightPoints %d".formatted(maxTwilightPoints));
+        if(maxStorage<0)IOHandler.printString("maxStorage %d".formatted(maxStorage));
+        if(maxFunctionDefs<0)IOHandler.printString("maxFunctionDefs %d".formatted(maxFunctionDefs));
+        if(maxInstructionDefs<0)IOHandler.printString("maxInstructionDefs %d".formatted(maxInstructionDefs));
+        if(maxStackElements<0)IOHandler.printString("maxStackElements %d".formatted(maxStackElements));
+        if(maxSizeOfInstructions<0)IOHandler.printString("maxSizeOfInstructions %d".formatted(maxSizeOfInstructions));
+        if(maxComponentElements<0)IOHandler.printString("maxComponentElements %d".formatted(maxComponentElements));
+        if(maxComponentDepth<0)IOHandler.printString("maxComponentDepth %d".formatted(maxComponentDepth));
     }
 }
