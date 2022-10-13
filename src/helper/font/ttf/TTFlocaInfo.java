@@ -12,6 +12,7 @@ public class TTFlocaInfo implements ITTFTableInfo {
     short sizeToRead;
 
     public TTFlocaInfo(short indexToLocalFormat,short numGlyphs){
+        //numGlyphs++;
         useLocaShort = indexToLocalFormat == 0;
         sizeToRead = numGlyphs;
         if(useLocaShort)locaShort = new short[numGlyphs];
@@ -35,11 +36,14 @@ public class TTFlocaInfo implements ITTFTableInfo {
     }
 
     @Override
-    public Object getValues(){return null;}
+    public Object getValues(){
+        if(useLocaShort)return locaShort;
+        return locaInt;
+    }
 
     @Override
     public void dumpValues(){
-        IOHandler.printString("---------TTFHMTXInfo----------");
+        IOHandler.printString("---------TTFLOCAInfo----------");
         int i=0;
         while(i<sizeToRead){
             if(useLocaShort){IOHandler.printString("ShortValue: %d".formatted(locaShort[i]));}

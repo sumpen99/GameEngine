@@ -7,8 +7,8 @@ checkSumAdjustment 1061745504
 magicNumber 1594834165
 flags 11
 unitsPerEM 1000
-created Fri Jun 17 14:23:33 CEST 1994
-modified Fri Jun 17 14:23:33 CEST 1994
+created Sat Jun 18 17:41:23 CEST 1994
+modified Sat Jun 18 17:41:23 CEST 1994
 xMin -24
 yMin -188
 xMax 1097
@@ -250,7 +250,13 @@ advanceWidth: 311 leftSideBearing: 55
 advanceWidth: 716 leftSideBearing: 62
 advanceWidth: 1443 leftSideBearing: 73
 ---------END----------
----------TTFHMTXInfo----------
+---------TTFCMAPInfo----------
+Version: 0 numTables: 3 format: 4
+platformID 0 encodingID 3 offset 28 isWindowsPlatform false isUniCodePlatform: true
+platformID 1 encodingID 0 offset 462 isWindowsPlatform false isUniCodePlatform: false
+platformID 3 encodingID 1 offset 28 isWindowsPlatform true isUniCodePlatform: false
+---------END----------
+---------TTFLOCAInfo----------
 ShortValue: 0
 ShortValue: 20
 ShortValue: 20
@@ -448,6 +454,205 @@ ShortValue: 9590
 ShortValue: 9690
 ShortValue: 9722
 ShortValue: 9784
+---------END----------
+---------TTFHMTXInfo----------
+numberOfContours: 2 xMin: 33 yMin: 0 xMax: 298 yMax: 666
+numberOfContours: 2 xMin: 93 yMin: 0 xMax: 202 yMax: 700
+numberOfContours: 2 xMin: 93 yMin: 0 xMax: 202 yMax: 700
+numberOfContours: 2 xMin: 93 yMin: 0 xMax: 202 yMax: 700
+numberOfContours: 2 xMin: 93 yMin: 0 xMax: 202 yMax: 700
+numberOfContours: 2 xMin: 69 yMin: 395 xMax: 435 yMax: 703
+numberOfContours: 2 xMin: 45 yMin: -5 xMax: 677 yMax: 705
+numberOfContours: 3 xMin: 61 yMin: -103 xMax: 593 yMax: 763
+numberOfContours: 1 xMin: 49 yMin: 0 xMax: 578 yMax: 700
+numberOfContours: 1 xMin: 69 yMin: 395 xMax: 217 yMax: 703
+numberOfContours: 1 xMin: 71 yMin: -94 xMax: 373 yMax: 706
+numberOfContours: 1 xMin: 60 yMin: -94 xMax: 362 yMax: 706
+numberOfContours: 1 xMin: 76 yMin: 377 xMax: 384 yMax: 707
+numberOfContours: 1 xMin: 64 yMin: 101 xMax: 572 yMax: 603
+numberOfContours: 1 xMin: 54 yMin: -145 xMax: 228 yMax: 143
+numberOfContours: 1 xMin: 66 yMin: 247 xMax: 372 yMax: 366
+numberOfContours: 1 xMin: 82 yMin: -7 xMax: 231 yMax: 142
+numberOfContours: 1 xMin: 85 yMin: 0 xMax: 432 yMax: 689
+numberOfContours: 2 xMin: 65 yMin: 0 xMax: 571 yMax: 700
+numberOfContours: 1 xMin: 39 yMin: 0 xMax: 273 yMax: 700
+numberOfContours: 1 xMin: 50 yMin: 0 xMax: 517 yMax: 700
+numberOfContours: 1 xMin: 76 yMin: 1 xMax: 517 yMax: 701
+numberOfContours: 2 xMin: 54 yMin: 0 xMax: 600 yMax: 700
+numberOfContours: 1 xMin: 66 yMin: 0 xMax: 507 yMax: 700
+numberOfContours: 2 xMin: 64 yMin: 0 xMax: 551 yMax: 699
+numberOfContours: 1 xMin: 64 yMin: 0 xMax: 514 yMax: 700
+numberOfContours: 3 xMin: 55 yMin: 0 xMax: 533 yMax: 700
+numberOfContours: 2 xMin: 66 yMin: 1 xMax: 553 yMax: 700
+numberOfContours: 2 xMin: 87 yMin: -7 xMax: 236 yMax: 540
+numberOfContours: 2 xMin: 59 yMin: -162 xMax: 270 yMax: 542
+numberOfContours: 1 xMin: 60 yMin: 0 xMax: 469 yMax: 694
+numberOfContours: 2 xMin: 79 yMin: 259 xMax: 336 yMax: 442
+numberOfContours: 1 xMin: 95 yMin: 0 xMax: 504 yMax: 694
+numberOfContours: 2 xMin: 46 yMin: 0 xMax: 443 yMax: 700
+numberOfContours: 2 xMin: 53 yMin: 0 xMax: 752 yMax: 700
+numberOfContours: 2 xMin: 65 yMin: 0 xMax: 613 yMax: 699
+numberOfContours: 3 xMin: 104 yMin: 0 xMax: 554 yMax: 700
+numberOfContours: 1 xMin: 73 yMin: 0 xMax: 692 yMax: 720
+numberOfContours: 2 xMin: 104 yMin: 0 xMax: 626 yMax: 700
+numberOfContours: 1 xMin: 104 yMin: 0 xMax: 541 yMax: 700
+numberOfContours: 1 xMin: 104 yMin: 0 xMax: 541 yMax: 700
+numberOfContours: 1 xMin: 73 yMin: 0 xMax: 693 yMax: 720
+numberOfContours: 1 xMin: 104 yMin: 0 xMax: 585 yMax: 700
+numberOfContours: 1 xMin: 111 yMin: 0 xMax: 222 yMax: 700
+numberOfContours: 1 xMin: 52 yMin: 0 xMax: 537 yMax: 700
+numberOfContours: 1 xMin: 104 yMin: 0 xMax: 632 yMax: 695
+numberOfContours: 1 xMin: 104 yMin: 0 xMax: 541 yMax: 700
+numberOfContours: 1 xMin: 104 yMin: 0 xMax: 706 yMax: 700
+numberOfContours: 1 xMin: 105 yMin: 0 xMax: 635 yMax: 693
+numberOfContours: 2 xMin: 73 yMin: 0 xMax: 757 yMax: 720
+numberOfContours: 2 xMin: 104 yMin: 0 xMax: 553 yMax: 700
+numberOfContours: 2 xMin: 66 yMin: -162 xMax: 833 yMax: 710
+numberOfContours: 2 xMin: 90 yMin: 0 xMax: 567 yMax: 700
+numberOfContours: 1 xMin: 71 yMin: 1 xMax: 617 yMax: 720
+numberOfContours: 1 xMin: 50 yMin: 0 xMax: 587 yMax: 700
+numberOfContours: 1 xMin: 105 yMin: 0 xMax: 683 yMax: 700
+numberOfContours: 1 xMin: 67 yMin: 0 xMax: 661 yMax: 689
+numberOfContours: 1 xMin: 71 yMin: 0 xMax: 1027 yMax: 689
+numberOfContours: 1 xMin: 80 yMin: 0 xMax: 615 yMax: 692
+numberOfContours: 1 xMin: 62 yMin: 0 xMax: 601 yMax: 693
+numberOfContours: 1 xMin: 71 yMin: 0 xMax: 613 yMax: 700
+numberOfContours: 1 xMin: 98 yMin: -130 xMax: 411 yMax: 700
+numberOfContours: 1 xMin: 72 yMin: 0 xMax: 420 yMax: 689
+numberOfContours: 1 xMin: 55 yMin: -130 xMax: 368 yMax: 700
+numberOfContours: 1 xMin: 80 yMin: 488 xMax: 425 yMax: 704
+numberOfContours: 1 xMin: -24 yMin: -160 xMax: 674 yMax: -66
+numberOfContours: 1 xMin: 163 yMin: 590 xMax: 349 yMax: 750
+numberOfContours: 2 xMin: 40 yMin: 0 xMax: 516 yMax: 500
+numberOfContours: 2 xMin: 93 yMin: 0 xMax: 579 yMax: 700
+numberOfContours: 1 xMin: 58 yMin: 0 xMax: 491 yMax: 500
+numberOfContours: 2 xMin: 60 yMin: 0 xMax: 546 yMax: 700
+numberOfContours: 2 xMin: 58 yMin: 0 xMax: 543 yMax: 500
+numberOfContours: 1 xMin: 65 yMin: 1 xMax: 353 yMax: 701
+numberOfContours: 2 xMin: 60 yMin: -179 xMax: 540 yMax: 500
+numberOfContours: 1 xMin: 93 yMin: 0 xMax: 529 yMax: 700
+numberOfContours: 2 xMin: 94 yMin: 0 xMax: 202 yMax: 700
+numberOfContours: 2 xMin: -5 yMin: -177 xMax: 160 yMax: 699
+numberOfContours: 1 xMin: 93 yMin: 0 xMax: 504 yMax: 700
+numberOfContours: 1 xMin: 100 yMin: 0 xMax: 211 yMax: 700
+numberOfContours: 1 xMin: 93 yMin: 0 xMax: 823 yMax: 500
+numberOfContours: 1 xMin: 93 yMin: 0 xMax: 510 yMax: 500
+numberOfContours: 2 xMin: 70 yMin: -3 xMax: 548 yMax: 500
+numberOfContours: 2 xMin: 93 yMin: -188 xMax: 579 yMax: 500
+numberOfContours: 2 xMin: 60 yMin: -187 xMax: 546 yMax: 500
+numberOfContours: 1 xMin: 93 yMin: 0 xMax: 401 yMax: 500
+numberOfContours: 1 xMin: 57 yMin: 0 xMax: 447 yMax: 500
+numberOfContours: 1 xMin: 42 yMin: 0 xMax: 318 yMax: 700
+numberOfContours: 1 xMin: 83 yMin: 0 xMax: 502 yMax: 500
+numberOfContours: 1 xMin: 64 yMin: 0 xMax: 489 yMax: 488
+numberOfContours: 1 xMin: 69 yMin: 0 xMax: 737 yMax: 489
+numberOfContours: 1 xMin: 74 yMin: 0 xMax: 464 yMax: 493
+numberOfContours: 1 xMin: 52 yMin: -170 xMax: 470 yMax: 500
+numberOfContours: 1 xMin: 61 yMin: 0 xMax: 456 yMax: 500
+numberOfContours: 1 xMin: 55 yMin: -135 xMax: 449 yMax: 709
+numberOfContours: 1 xMin: 121 yMin: -133 xMax: 218 yMax: 803
+numberOfContours: 1 xMin: 53 yMin: -135 xMax: 447 yMax: 709
+numberOfContours: 1 xMin: 85 yMin: 227 xMax: 450 yMax: 387
+numberOfContours: 2 xMin: 93 yMin: 0 xMax: 202 yMax: 700
+numberOfContours: 2 xMin: 62 yMin: -30 xMax: 504 yMax: 659
+numberOfContours: 1 xMin: 66 yMin: 0 xMax: 605 yMax: 710
+numberOfContours: 1 xMin: 53 yMin: -5 xMax: 639 yMax: 705
+numberOfContours: 2 xMin: 133 yMin: 572 xMax: 462 yMax: 701
+numberOfContours: 2 xMin: 133 yMin: 572 xMax: 462 yMax: 701
+numberOfContours: 3 xMin: 53 yMin: -12 xMax: 777 yMax: 712
+numberOfContours: 3 xMin: 58 yMin: 296 xMax: 350 yMax: 701
+numberOfContours: 2 xMin: 55 yMin: 42 xMax: 542 yMax: 486
+numberOfContours: 4 xMin: 34 yMin: 360 xMax: 382 yMax: 710
+numberOfContours: 2 xMin: 74 yMin: 381 xMax: 407 yMax: 706
+numberOfContours: 1 xMin: 201 yMin: 590 xMax: 386 yMax: 750
+numberOfContours: 1 xMin: 170 yMin: -160 xMax: 340 yMax: 10
+numberOfContours: 2 xMin: 67 yMin: 42 xMax: 554 yMax: 486
+numberOfContours: 2 xMin: 61 yMin: 0 xMax: 458 yMax: 700
+numberOfContours: 3 xMin: 65 yMin: 0 xMax: 613 yMax: 950
+numberOfContours: -1 xMin: 65 yMin: 0 xMax: 613 yMax: 950
+numberOfContours: 3 xMin: 66 yMin: 0 xMax: 614 yMax: 946
+numberOfContours: 3 xMin: 66 yMin: 0 xMax: 614 yMax: 942
+numberOfContours: 4 xMin: 66 yMin: 0 xMax: 614 yMax: 901
+numberOfContours: 3 xMin: 53 yMin: 0 xMax: 601 yMax: 857
+numberOfContours: 2 xMin: 35 yMin: -6 xMax: 995 yMax: 700
+numberOfContours: -1 xMin: 73 yMin: -160 xMax: 692 yMax: 720
+numberOfContours: -1 xMin: 104 yMin: 0 xMax: 541 yMax: 950
+numberOfContours: 2 xMin: 104 yMin: 0 xMax: 541 yMax: 950
+numberOfContours: -1 xMin: 104 yMin: 0 xMax: 541 yMax: 946
+numberOfContours: 3 xMin: 104 yMin: 0 xMax: 541 yMax: 901
+numberOfContours: 2 xMin: 148 yMin: 0 xMax: 334 yMax: 950
+numberOfContours: 2 xMin: 83 yMin: 0 xMax: 347 yMax: 950
+numberOfContours: 2 xMin: 1 yMin: 0 xMax: 309 yMax: 946
+numberOfContours: 3 xMin: -8 yMin: 0 xMax: 321 yMax: 901
+numberOfContours: 2 xMin: 55 yMin: 0 xMax: 673 yMax: 700
+numberOfContours: 2 xMin: 105 yMin: 0 xMax: 635 yMax: 942
+numberOfContours: -1 xMin: 73 yMin: 0 xMax: 757 yMax: 950
+numberOfContours: 3 xMin: 73 yMin: 0 xMax: 757 yMax: 950
+numberOfContours: -1 xMin: 73 yMin: 0 xMax: 757 yMax: 946
+numberOfContours: 3 xMin: 73 yMin: 0 xMax: 757 yMax: 942
+numberOfContours: -1 xMin: 73 yMin: 0 xMax: 757 yMax: 901
+numberOfContours: 1 xMin: 100 yMin: 131 xMax: 542 yMax: 573
+numberOfContours: 3 xMin: 73 yMin: -12 xMax: 805 yMax: 712
+numberOfContours: 2 xMin: 93 yMin: 0 xMax: 671 yMax: 950
+numberOfContours: 2 xMin: 93 yMin: 0 xMax: 671 yMax: 950
+numberOfContours: 2 xMin: 93 yMin: 0 xMax: 671 yMax: 946
+numberOfContours: 3 xMin: 93 yMin: 0 xMax: 671 yMax: 901
+numberOfContours: 2 xMin: 62 yMin: 0 xMax: 601 yMax: 950
+numberOfContours: 1 xMin: 93 yMin: -5 xMax: 588 yMax: 737
+numberOfContours: 3 xMin: 63 yMin: 0 xMax: 539 yMax: 730
+numberOfContours: 3 xMin: 63 yMin: 0 xMax: 539 yMax: 730
+numberOfContours: 3 xMin: 63 yMin: 0 xMax: 539 yMax: 726
+numberOfContours: 3 xMin: 63 yMin: 0 xMax: 539 yMax: 729
+numberOfContours: 4 xMin: 63 yMin: 0 xMax: 539 yMax: 699
+numberOfContours: 4 xMin: 51 yMin: 0 xMax: 527 yMax: 818
+numberOfContours: 3 xMin: 51 yMin: 0 xMax: 951 yMax: 510
+numberOfContours: 2 xMin: 58 yMin: -160 xMax: 491 yMax: 500
+numberOfContours: -1 xMin: 58 yMin: 0 xMax: 543 yMax: 730
+numberOfContours: 3 xMin: 58 yMin: 0 xMax: 543 yMax: 730
+numberOfContours: -1 xMin: 58 yMin: 0 xMax: 543 yMax: 726
+numberOfContours: 4 xMin: 61 yMin: 0 xMax: 546 yMax: 699
+numberOfContours: 2 xMin: 50 yMin: 0 xMax: 236 yMax: 730
+numberOfContours: 2 xMin: 50 yMin: 0 xMax: 313 yMax: 730
+numberOfContours: 2 xMin: 9 yMin: 0 xMax: 317 yMax: 726
+numberOfContours: 3 xMin: -6 yMin: 0 xMax: 323 yMax: 699
+numberOfContours: 2 xMin: 58 yMin: -12 xMax: 604 yMax: 738
+numberOfContours: 2 xMin: 94 yMin: 0 xMax: 511 yMax: 729
+numberOfContours: 3 xMin: 58 yMin: -3 xMax: 536 yMax: 730
+numberOfContours: 3 xMin: 58 yMin: -3 xMax: 536 yMax: 730
+numberOfContours: 3 xMin: 58 yMin: -3 xMax: 536 yMax: 726
+numberOfContours: 3 xMin: 58 yMin: -3 xMax: 536 yMax: 729
+numberOfContours: 4 xMin: 58 yMin: -3 xMax: 536 yMax: 699
+numberOfContours: 3 xMin: 64 yMin: 75 xMax: 572 yMax: 629
+numberOfContours: 3 xMin: 64 yMin: 0 xMax: 614 yMax: 513
+numberOfContours: -1 xMin: 83 yMin: 0 xMax: 502 yMax: 730
+numberOfContours: 2 xMin: 83 yMin: 0 xMax: 502 yMax: 730
+numberOfContours: -1 xMin: 83 yMin: 0 xMax: 502 yMax: 726
+numberOfContours: 3 xMin: 83 yMin: 0 xMax: 502 yMax: 698
+numberOfContours: -1 xMin: 52 yMin: -170 xMax: 470 yMax: 730
+numberOfContours: 3 xMin: 52 yMin: -170 xMax: 470 yMax: 699
+numberOfContours: 3 xMin: 52 yMin: -170 xMax: 470 yMax: 699
+numberOfContours: 1 xMin: 59 yMin: 418 xMax: 233 yMax: 705
+numberOfContours: 1 xMin: 77 yMin: 417 xMax: 252 yMax: 704
+numberOfContours: 2 xMin: 59 yMin: 418 xMax: 465 yMax: 705
+numberOfContours: 2 xMin: 77 yMin: 417 xMax: 484 yMax: 704
+numberOfContours: 5 xMin: 55 yMin: -8 xMax: 808 yMax: 708
+numberOfContours: 2 xMin: 22 yMin: 401 xMax: 568 yMax: 700
+numberOfContours: 3 xMin: 82 yMin: -7 xMax: 805 yMax: 142
+numberOfContours: 2 xMin: 54 yMin: -145 xMax: 460 yMax: 143
+numberOfContours: 3 xMin: 58 yMin: -3 xMax: 962 yMax: 510
+numberOfContours: 1 xMin: 111 yMin: 211 xMax: 394 yMax: 494
+numberOfContours: 1 xMin: 66 yMin: 249 xMax: 492 yMax: 364
+numberOfContours: 1 xMin: 105 yMin: 583 xMax: 471 yMax: 742
+numberOfContours: 2 xMin: 57 yMin: 0 xMax: 447 yMax: 746
+numberOfContours: 1 xMin: 66 yMin: 249 xMax: 862 yMax: 364
+numberOfContours: 1 xMin: 67 yMin: 42 xMax: 303 yMax: 486
+numberOfContours: 1 xMin: 54 yMin: -145 xMax: 228 yMax: 143
+numberOfContours: 1 xMin: 56 yMin: -7 xMax: 511 yMax: 706
+numberOfContours: 1 xMin: 141 yMin: 590 xMax: 449 yMax: 746
+numberOfContours: 2 xMin: 71 yMin: 1 xMax: 617 yMax: 938
+numberOfContours: 1 xMin: 55 yMin: 42 xMax: 291 yMax: 486
+numberOfContours: 3 xMin: 62 yMin: 0 xMax: 601 yMax: 901
+numberOfContours: 2 xMin: 73 yMin: 0 xMax: 1097 yMax: 720
 ---------END----------
 Tag: LOCA CheckSum: 884688770 offset: 1980 length: 396
 Tag: GLYF CheckSum: -1390321047 offset: 2376 length: 19724

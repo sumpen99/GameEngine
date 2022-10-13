@@ -302,7 +302,7 @@ public class IOHandler {
             return;
         }
         try{
-            int i = 0,checkSum=0,offset=0,length=0,diff = 0;
+            int i = 0,checkSum=0,offset=0,length=0,addedOffset=0,diff = 0;
             byte[] bufferFour = new byte[4];
             byte[] bufferTwo = new byte[2];
 
@@ -358,19 +358,24 @@ public class IOHandler {
                 table = new TTFTableBase(tag);
                 table.setSelf(header);
                 if(table.info != null){
+                    //reader.mark(read);
                     offset = table.getOffset(header);
                     length = table.getLength(header);
-                    bufferTables = new byte[length];
+                    addedOffset = table.getAddedOffset();
+                    bufferTables = new byte[length+addedOffset];
                     diff = offset-read;
                     read+=diff;
                     offsetBufferedReader(reader,diff);
+                    //IOHandler.printString(tag.getValue());
+                    //IOHandler.printString("%d %d %d".formatted(read,offset,length));
                     read += reader.read(bufferTables,0,bufferTables.length);
+                    //IOHandler.printInt(read);
                     table.convertToSize(bufferTables);
                     table.setValue(header);
                     printTTFTableInfo(table.info);
                     //table.info.checkForValuesBelowZero();
-                    //IOHandler.printInt(read);
-                    //((TTFTag)header.table.getObject("head").value).setTableValues(head);
+                    //IOHandler.printString("%d %d %d".formatted(read,offset,length));
+                    read = offset+length;
                 }
             }
         }
@@ -531,6 +536,14 @@ public class IOHandler {
         catch(Exception err){
             logToFile(err.getMessage());
         }
+    }
+
+    public static void printGlyph(Glyf g){
+        printString("numberOfContours: %d xMin: %d yMin: %d xMax: %d yMax: %d".formatted(g.numberOfContours,g.xMin,g.yMin,g.xMax,g.yMax));
+    }
+
+    public static void printEncodingRecord(EncodingRecord e){
+        printString("platformID %d encodingID %d offset %d isWindowsPlatform %b isUniCodePlatform: %b".formatted(e.platformID,e.encodingID,e.offSet,e.isWindowsPlatform,e.isUniCodePlatform));
     }
 
     public static void printWaveFileInfo(String[] info){

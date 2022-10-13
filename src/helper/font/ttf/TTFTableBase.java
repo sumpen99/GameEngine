@@ -15,11 +15,16 @@ public class TTFTableBase{
             info = new TTFlocaInfo(indexToLocalFormat,numGlyphs);
             return;
         }
-        if(tableTag == TTFTable.GLYF){return;}
+        if(tableTag == TTFTable.GLYF){
+            short indexToLocalFormat = (short)header.getTableValue(TTFTable.HEAD).getValues();
+            Object loca = header.getTableValue(TTFTable.LOCA).getValues();
+            info = new TTFglyfInfo(indexToLocalFormat,loca);
+            return;
+        }
         if(tableTag == TTFTable.DSIG){return;}
         if(tableTag == TTFTable.NAME){return;}
         if(tableTag == TTFTable.POST){return;}
-        if(tableTag == TTFTable.CMAP){return;}
+        if(tableTag == TTFTable.CMAP){info = new TTFcmapInfo();return;}
         if(tableTag == TTFTable.HMTX){
             short numOfLongHorMetrics = (short)header.getTableValue(TTFTable.HHEA).getValues();
             short numGlyphs = (short)header.getTableValue(TTFTable.MAXP).getValues();
@@ -42,6 +47,12 @@ public class TTFTableBase{
 
     public int getLength(TTFFile header){
         return header.getTableTag(tableTag).length;
+    }
+
+    public int getAddedOffset(){
+        //if(tableTag == TTFTable.LOCA)return 1;
+        //if(tableTag == TTFTable.GLYF)return 10;
+        return 0;
     }
 
     public void setValue(TTFFile header){header.setTableValue(tableTag,info);}
