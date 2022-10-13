@@ -27,6 +27,7 @@ public class TTFcmapInfo implements ITTFTableInfo {
         }
         format = (short)bytesToInt(buf,offset,2,false);
         offset+=2;
+        //parse format 4 if format == 4
     }
 
     @Override
