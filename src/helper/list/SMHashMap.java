@@ -1,5 +1,6 @@
 package helper.list;
 import helper.enums.EntrieType;
+import helper.io.IOHandler;
 import helper.struct.Entrie;
 import static helper.methods.HashHelper.decodeUriComponent;
 import static helper.methods.HashHelper.hashKey;
@@ -69,10 +70,8 @@ public class SMHashMap {
     }
 
     void addCollision(Entrie base,Entrie item){
-        Entrie t;
-        t = base;
-        while(t.next != null){t = t.next;}
-        t.next = item;
+        item.next = base.next;
+        base.next = item;
     }
 
     public boolean containsKey(String key){

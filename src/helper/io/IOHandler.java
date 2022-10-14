@@ -12,6 +12,7 @@ import helper.list.SMHashMap;
 import helper.struct.*;
 import helper.widget.Widget;
 
+import static helper.enums.EntrieType.ENTRIE_TTF_GLYPHINDEX;
 import static helper.enums.EntrieType.ENTRIE_TTF_TAG;
 import static helper.enums.KeyboardState.*;
 import static helper.enums.MouseState.*;
@@ -546,6 +547,17 @@ public class IOHandler {
         printString("platformID %d encodingID %d offset %d isWindowsPlatform %b isUniCodePlatform: %b".formatted(e.platformID,e.encodingID,e.offSet,e.isWindowsPlatform,e.isUniCodePlatform));
     }
 
+    public static void printFormatFour(FormatFour f4){
+        printString("Format Four");
+        printString("Length: %d\nLanguage: %d\nSegCountX2: %d\nSearchRange: %d\nEntrySelector: %d\nRangeShift: %d".formatted(f4.length,f4.language,f4.segCountX2,f4.searchRange,f4.entrySelector,f4.rangeShift));
+        for(int i = 0;i<f4.segCount;i++){
+            printString("SegCount: %d".formatted(i));
+            printString("endCode: %d\nstartCode: %d\nidDelta: %d\nidRangeOffset: %d".formatted(f4.endCode[i],f4.startCode[i],f4.idDelta[i],f4.idRangeOffset[i]));
+        }
+        printString("Format Four HashMap GlyphIndex");
+        printHashMap(f4.glyphIndexMap);
+    }
+
     public static void printWaveFileInfo(String[] info){
         int size = info.length,i=0;
         while(i<size)printString(info[i++]);
@@ -920,6 +932,9 @@ public class IOHandler {
     public static void printEntrie(Entrie e){
         if(e.eType == ENTRIE_TTF_TAG){
             printEntrieTTFTag((TTFTableTag)e.value);
+        }
+        else if(e.eType == ENTRIE_TTF_GLYPHINDEX){
+            System.out.println("Key: %s Value: %d Bucket: %d isSet: %b".formatted(e.key,(int)e.value,e.bucket,e.set));
         }
         else System.out.println("Key: %s Value(Object): %s Bucket: %d isSet: %b".formatted(e.key,e.value.toString(),e.bucket,e.set));
     }

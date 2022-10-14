@@ -7,8 +7,8 @@ checkSumAdjustment 1061745504
 magicNumber 1594834165
 flags 11
 unitsPerEM 1000
-created Sat Jun 18 17:41:23 CEST 1994
-modified Sat Jun 18 17:41:23 CEST 1994
+created Sun Jun 19 15:18:57 CEST 1994
+modified Sun Jun 19 15:18:57 CEST 1994
 xMin -24
 yMin -188
 xMax 1097
@@ -250,11 +250,244 @@ advanceWidth: 311 leftSideBearing: 55
 advanceWidth: 716 leftSideBearing: 62
 advanceWidth: 1443 leftSideBearing: 73
 ---------END----------
+End
 ---------TTFCMAPInfo----------
 Version: 0 numTables: 3 format: 4
 platformID 0 encodingID 3 offset 28 isWindowsPlatform false isUniCodePlatform: true
 platformID 1 encodingID 0 offset 462 isWindowsPlatform false isUniCodePlatform: false
 platformID 3 encodingID 1 offset 28 isWindowsPlatform true isUniCodePlatform: false
+Format Four
+Length: 434
+Language: 0
+SegCountX2: 50
+SearchRange: 32
+EntrySelector: 4
+RangeShift: 18
+SegCount: 0
+endCode: 126
+startCode: 32
+idDelta: 0
+idRangeOffset: 50
+SegCount: 1
+endCode: 163
+startCode: 161
+idDelta: -64
+idRangeOffset: 0
+SegCount: 2
+endCode: 165
+startCode: 165
+idDelta: -65
+idRangeOffset: 0
+SegCount: 3
+endCode: 171
+startCode: 167
+idDelta: -66
+idRangeOffset: 0
+SegCount: 4
+endCode: 174
+startCode: 174
+idDelta: -68
+idRangeOffset: 0
+SegCount: 5
+endCode: 176
+startCode: 176
+idDelta: -69
+idRangeOffset: 0
+SegCount: 6
+endCode: 180
+startCode: 180
+idDelta: -72
+idRangeOffset: 0
+SegCount: 7
+endCode: 184
+startCode: 184
+idDelta: -75
+idRangeOffset: 0
+SegCount: 8
+endCode: 187
+startCode: 187
+idDelta: -77
+idRangeOffset: 0
+SegCount: 9
+endCode: 221
+startCode: 191
+idDelta: -80
+idRangeOffset: 0
+SegCount: 10
+endCode: 255
+startCode: 223
+idDelta: -81
+idRangeOffset: 0
+SegCount: 11
+endCode: 339
+startCode: 338
+idDelta: 0
+idRangeOffset: 218
+SegCount: 12
+endCode: 353
+startCode: 352
+idDelta: 0
+idRangeOffset: 220
+SegCount: 13
+endCode: 376
+startCode: 376
+idDelta: -181
+idRangeOffset: 0
+SegCount: 14
+endCode: 402
+startCode: 402
+idDelta: -211
+idRangeOffset: 0
+SegCount: 15
+endCode: 710
+startCode: 710
+idDelta: -518
+idRangeOffset: 0
+SegCount: 16
+endCode: 732
+startCode: 732
+idDelta: -546
+idRangeOffset: 0
+SegCount: 17
+endCode: 8212
+startCode: 8211
+idDelta: 0
+idRangeOffset: 214
+SegCount: 18
+endCode: 8218
+startCode: 8216
+idDelta: 0
+idRangeOffset: 216
+SegCount: 19
+endCode: 8222
+startCode: 8220
+idDelta: 0
+idRangeOffset: 220
+SegCount: 20
+endCode: 8226
+startCode: 8226
+idDelta: -8042
+idRangeOffset: 0
+SegCount: 21
+endCode: 8230
+startCode: 8230
+idDelta: -8049
+idRangeOffset: 0
+SegCount: 22
+endCode: 8250
+startCode: 8249
+idDelta: 0
+idRangeOffset: 220
+SegCount: 23
+endCode: 8482
+startCode: 8482
+idDelta: -8302
+idRangeOffset: 0
+SegCount: 24
+endCode: -1
+startCode: -1
+idDelta: 1
+idRangeOffset: 0
+Format Four HashMap GlyphIndex
+Key: 111 Value: 81 Bucket: 2 isSet: true
+Key: 60 Value: 30 Bucket: 3 isSet: true
+Key: 36 Value: 7 Bucket: 4 isSet: true
+Key: 43 Value: 13 Bucket: 4 isSet: true
+Key: 99 Value: 69 Bucket: 7 isSet: true
+Key: 46 Value: 16 Bucket: 9 isSet: true
+Key: 123 Value: 93 Bucket: 11 isSet: true
+Key: 100 Value: 70 Bucket: 12 isSet: true
+Key: 85 Value: 55 Bucket: 14 isSet: true
+Key: 97 Value: 67 Bucket: 17 isSet: true
+Key: 52 Value: 22 Bucket: 18 isSet: true
+Key: 71 Value: 41 Bucket: 19 isSet: true
+Key: 80 Value: 50 Bucket: 19 isSet: true
+Key: 110 Value: 80 Bucket: 21 isSet: true
+Key: 63 Value: 33 Bucket: 22 isSet: true
+Key: 47 Value: 17 Bucket: 28 isSet: true
+Key: 120 Value: 90 Bucket: 30 isSet: true
+Key: 101 Value: 71 Bucket: 31 isSet: true
+Key: 69 Value: 39 Bucket: 32 isSet: true
+Key: 86 Value: 56 Bucket: 33 isSet: true
+Key: 90 Value: 60 Bucket: 36 isSet: true
+Key: 51 Value: 21 Bucket: 37 isSet: true
+Key: 352 Value: 193 Bucket: 37 isSet: true
+Key: 70 Value: 40 Bucket: 38 isSet: true
+Key: 81 Value: 51 Bucket: 38 isSet: true
+Key: 62 Value: 32 Bucket: 41 isSet: true
+Key: 40 Value: 10 Bucket: 47 isSet: true
+Key: 121 Value: 91 Bucket: 49 isSet: true
+Key: 102 Value: 72 Bucket: 50 isSet: true
+Key: 8221 Value: 177 Bucket: 50 isSet: true
+Key: 68 Value: 38 Bucket: 51 isSet: true
+Key: 87 Value: 57 Bucket: 52 isSet: true
+Key: 91 Value: 61 Bucket: 55 isSet: true
+Key: 50 Value: 20 Bucket: 56 isSet: true
+Key: 73 Value: 43 Bucket: 57 isSet: true
+Key: 82 Value: 52 Bucket: 57 isSet: true
+Key: 65 Value: 35 Bucket: 60 isSet: true
+Key: 33 Value: 4 Bucket: 61 isSet: true
+Key: 113 Value: 83 Bucket: 64 isSet: true
+Key: 41 Value: 11 Bucket: 66 isSet: true
+Key: 79 Value: 49 Bucket: 67 isSet: true
+Key: 88 Value: 58 Bucket: 67 isSet: true
+Key: 103 Value: 73 Bucket: 69 isSet: true
+Key: 8220 Value: 178 Bucket: 69 isSet: true
+Key: 39 Value: 9 Bucket: 71 isSet: true
+Key: 92 Value: 62 Bucket: 74 isSet: true
+Key: 72 Value: 42 Bucket: 76 isSet: true
+Key: 83 Value: 53 Bucket: 76 isSet: true
+Key: 64 Value: 34 Bucket: 79 isSet: true
+Key: 32 Value: 3 Bucket: 80 isSet: true
+Key: 112 Value: 82 Bucket: 83 isSet: true
+Key: 59 Value: 29 Bucket: 85 isSet: true
+Key: 42 Value: 12 Bucket: 85 isSet: true
+Key: 78 Value: 48 Bucket: 86 isSet: true
+Key: 89 Value: 59 Bucket: 86 isSet: true
+Key: 117 Value: 87 Bucket: 88 isSet: true
+Key: 38 Value: 8 Bucket: 90 isSet: true
+Key: 93 Value: 63 Bucket: 93 isSet: true
+Key: 48 Value: 18 Bucket: 95 isSet: true
+Key: 84 Value: 54 Bucket: 95 isSet: true
+Key: 8211 Value: 185 Bucket: 97 isSet: true
+Key: 67 Value: 37 Bucket: 98 isSet: true
+Key: 58 Value: 28 Bucket: 104 isSet: true
+Key: 124 Value: 94 Bucket: 106 isSet: true
+Key: 116 Value: 86 Bucket: 107 isSet: true
+Key: 49 Value: 19 Bucket: 114 isSet: true
+Key: 8216 Value: 176 Bucket: 116 isSet: true
+Key: 66 Value: 36 Bucket: 117 isSet: true
+Key: 57 Value: 27 Bucket: 123 isSet: true
+Key: 125 Value: 95 Bucket: 125 isSet: true
+Key: 115 Value: 85 Bucket: 126 isSet: true
+Key: 77 Value: 47 Bucket: 133 isSet: true
+Key: 8217 Value: 175 Bucket: 135 isSet: true
+Key: 104 Value: 74 Bucket: 136 isSet: true
+Key: 56 Value: 26 Bucket: 142 isSet: true
+Key: 114 Value: 84 Bucket: 145 isSet: true
+Key: 35 Value: 6 Bucket: 147 isSet: true
+Key: 76 Value: 46 Bucket: 152 isSet: true
+Key: 119 Value: 89 Bucket: 154 isSet: true
+Key: 105 Value: 75 Bucket: 155 isSet: true
+Key: 94 Value: 64 Bucket: 160 isSet: true
+Key: 55 Value: 25 Bucket: 161 isSet: true
+Key: 108 Value: 78 Bucket: 164 isSet: true
+Key: 34 Value: 5 Bucket: 166 isSet: true
+Key: 44 Value: 14 Bucket: 171 isSet: true
+Key: 118 Value: 88 Bucket: 173 isSet: true
+Key: 106 Value: 76 Bucket: 174 isSet: true
+Key: 95 Value: 65 Bucket: 179 isSet: true
+Key: 54 Value: 24 Bucket: 180 isSet: true
+Key: 109 Value: 79 Bucket: 183 isSet: true
+Key: 61 Value: 31 Bucket: 184 isSet: true
+Key: 8249 Value: 194 Bucket: 184 isSet: true
+Key: 37 Value: 179 Bucket: 185 isSet: true
+Key: 98 Value: 68 Bucket: 188 isSet: true
+Key: 45 Value: 15 Bucket: 190 isSet: true
+Key: 122 Value: 92 Bucket: 192 isSet: true
+Key: 107 Value: 77 Bucket: 193 isSet: true
+Key: 96 Value: 66 Bucket: 198 isSet: true
+Key: 53 Value: 23 Bucket: 199 isSet: true
 ---------END----------
 ---------TTFLOCAInfo----------
 ShortValue: 0
