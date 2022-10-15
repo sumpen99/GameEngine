@@ -4,19 +4,59 @@ import helper.enums.TTFTable;
 import helper.interfaces.ITTFTableInfo;
 import helper.io.IOHandler;
 import helper.list.SMHashMap;
+import helper.struct.FontChar;
+import helper.struct.Glyf;
+import helper.struct.HMetrics;
+
 import static helper.methods.CommonMethods.bytesToInt;
 
 public class TTFFile {
     public String path;
     public int scalarType;
-    public short numTables,searchRange,entrySelector,rangeShift;
+    public short numTables,searchRange,entrySelector,rangeShift,unitsPerEM;
     public String[] fileInfo;
     public SMHashMap table;
+    public FontChar[] map;
+    public SMHashMap glyphIndexMap;
+    public Glyf[] glyfs;
+    public HMetrics[] hMetrics;
     public TTFFile(String dir){
         path = dir;
         setTable();
     }
 
+    public void setUpFontMap(){
+        TTFheadInfo head = (TTFheadInfo)getTableValue(TTFTable.HEAD);
+        unitsPerEM = head.unitsPerEM;
+        glyphIndexMap = (SMHashMap)getTableValue(TTFTable.CMAP).getValues();
+        glyfs = (Glyf[])getTableValue(TTFTable.GLYF).getValues();
+        hMetrics = (HMetrics[])getTableValue(TTFTable.HMTX).getValues();
+    }
+
+    public void setUpCharMap(){
+        char[] alphabet = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~".toCharArray();
+        map = new FontChar[alphabet.length];
+        Glyf glyf;
+        HMetrics hmetric;
+        Object m;
+        for(char c:alphabet){
+            m = glyphIndexMap.getValue("%s".formatted((int)c));
+            if(m!= null){
+                int index = (int)m;
+                glyf = glyfs[index];
+                hmetric = hMetrics[index];
+                map[c-' '] = new FontChar(c,glyf.xMin,glyf.xMax,glyf.yMin,glyf.yMax,hmetric.leftSideBearing,hmetric.advanceWidth);
+            }
+        }
+    }
+
+    public void clearTable(){
+        table = null;
+    }
+
+    public void dumpCharMap(){
+        IOHandler.printFontCharMap(map);
+    }
 
     public void convertToSize(TTFBits dst, byte[] buf){
         switch(dst){

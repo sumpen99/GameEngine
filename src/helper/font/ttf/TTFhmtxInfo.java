@@ -31,7 +31,9 @@ public class TTFhmtxInfo implements ITTFTableInfo {
     }
 
     @Override
-    public Object getValues(){return null;}
+    public Object getValues(){
+        return hMetrics;
+    }
 
     @Override
     public void dumpValues(){

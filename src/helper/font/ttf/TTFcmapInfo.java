@@ -92,8 +92,6 @@ public class TTFcmapInfo implements ITTFTableInfo {
             }
             i++;
         }
-
-        IOHandler.printString("End");
     }
 
     @Override
@@ -116,7 +114,9 @@ public class TTFcmapInfo implements ITTFTableInfo {
     }
 
     @Override
-    public Object getValues(){return null;}
+    public Object getValues(){
+        return format4.glyphIndexMap;
+    }
 
     @Override
     public void dumpValues(){

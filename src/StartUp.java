@@ -19,13 +19,18 @@ public class StartUp {
         IOHandler.removeFilesFromFolder("./resources/files/log/gc");
         //IOHandler.removeFilesFromFolder("./resources/files/sound");
         //IOHandler.removeFile("./resources/files/log/error/error.log");
-
         PassedCheck psc = new PassedCheck();
         TTFFile ttf = new TTFFile("./resources/files/fonts/Quicksand-Bold.ttf");
         IOHandler.parseTTFFile(ttf,psc);
         ttf.setFileInfo();
+        ttf.setUpFontMap();
+        ttf.setUpCharMap();
+        //ttf.clearTable();
+        //ttf.dumpCharMap();
+
+
         //ttf.printFileInfo();
-        ttf.printTableInfo();
+        //ttf.printTableInfo();
 
         //WaveFile f = new WaveFile("./resources/files/sound/soundClip-2.wav");
 

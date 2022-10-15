@@ -42,7 +42,9 @@ public class TTFglyfInfo implements ITTFTableInfo {
     }
 
     @Override
-    public Object getValues(){return null;}
+    public Object getValues(){
+        return glyf;
+    }
 
     @Override
     public void dumpValues(){

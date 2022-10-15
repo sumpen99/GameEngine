@@ -373,7 +373,7 @@ public class IOHandler {
                     //IOHandler.printInt(read);
                     table.convertToSize(bufferTables);
                     table.setValue(header);
-                    printTTFTableInfo(table.info);
+                    //printTTFTableInfo(table.info);
                     //table.info.checkForValuesBelowZero();
                     //IOHandler.printString("%d %d %d".formatted(read,offset,length));
                     read = offset+length;
@@ -945,6 +945,15 @@ public class IOHandler {
 
     public static void printTTFTableInfo(ITTFTableInfo tableInfo){
         tableInfo.dumpValues();
+    }
+
+    public static void printFontCharMap(FontChar[] map){
+        int size = map.length,i = 0;
+        while(i<size)printFontChar(map[i++]);
+    }
+
+    public static void printFontChar(FontChar c){
+        if(c!=null)printString("%c xMin: %d yMIn: %d width: %d height: %d leftSideBearing: %d rightSideBearing %d".formatted(c.charValue,c.x,c.y,c.width,c.height,c.lsb,c.rsb));
     }
 
     public static void printSampleDataPairs(SamplePair[] samplePairs){
