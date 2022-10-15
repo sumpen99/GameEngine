@@ -13,7 +13,7 @@ import static helper.methods.CommonMethods.bytesToInt;
 public class TTFFile {
     public String path;
     public int scalarType;
-    public short numTables,searchRange,entrySelector,rangeShift,unitsPerEM;
+    public short numTables,searchRange,entrySelector,rangeShift;
     public String[] fileInfo;
     public SMHashMap table;
     public FontChar[] map;
@@ -25,9 +25,15 @@ public class TTFFile {
         setTable();
     }
 
+    public TTFheadInfo getTableHead(){return (TTFheadInfo)getTableValue(TTFTable.HEAD);}
+    public TTFcmapInfo getTableCMap(){return (TTFcmapInfo) getTableValue(TTFTable.CMAP);}
+    public TTFglyfInfo getTableGlyf(){return (TTFglyfInfo) getTableValue(TTFTable.GLYF);}
+    public TTFhheaInfo getTableHhea(){return (TTFhheaInfo) getTableValue(TTFTable.HHEA);}
+    public TTFhmtxInfo getTableHmtx(){return (TTFhmtxInfo) getTableValue(TTFTable.HMTX);}
+    public TTFlocaInfo getTableLoca(){return (TTFlocaInfo) getTableValue(TTFTable.LOCA);}
+    public TTFmaxpInfo getTableMaxP(){return (TTFmaxpInfo)getTableValue(TTFTable.MAXP);}
+
     public void setUpFontMap(){
-        TTFheadInfo head = (TTFheadInfo)getTableValue(TTFTable.HEAD);
-        unitsPerEM = head.unitsPerEM;
         glyphIndexMap = (SMHashMap)getTableValue(TTFTable.CMAP).getValues();
         glyfs = (Glyf[])getTableValue(TTFTable.GLYF).getValues();
         hMetrics = (HMetrics[])getTableValue(TTFTable.HMTX).getValues();
