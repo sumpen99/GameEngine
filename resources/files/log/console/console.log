@@ -1,1 +1,197 @@
 Unable To Remove File .\resources\files\log\gc\gc.log
+index ( ): 32 value glyphindex: 3 
+index (!): 33 value glyphindex: 4 
+index ("): 34 value glyphindex: 5 
+index (#): 35 value glyphindex: 6 
+index ($): 36 value glyphindex: 7 
+index (%): 37 value glyphindex: 179 
+index (&): 38 value glyphindex: 8 
+index ('): 39 value glyphindex: 9 
+index ((): 40 value glyphindex: 10 
+index ()): 41 value glyphindex: 11 
+index (*): 42 value glyphindex: 12 
+index (+): 43 value glyphindex: 13 
+index (,): 44 value glyphindex: 14 
+index (-): 45 value glyphindex: 15 
+index (.): 46 value glyphindex: 16 
+index (/): 47 value glyphindex: 17 
+index (0): 48 value glyphindex: 18 
+index (1): 49 value glyphindex: 19 
+index (2): 50 value glyphindex: 20 
+index (3): 51 value glyphindex: 21 
+index (4): 52 value glyphindex: 22 
+index (5): 53 value glyphindex: 23 
+index (6): 54 value glyphindex: 24 
+index (7): 55 value glyphindex: 25 
+index (8): 56 value glyphindex: 26 
+index (9): 57 value glyphindex: 27 
+index (:): 58 value glyphindex: 28 
+index (;): 59 value glyphindex: 29 
+index (<): 60 value glyphindex: 30 
+index (=): 61 value glyphindex: 31 
+index (>): 62 value glyphindex: 32 
+index (?): 63 value glyphindex: 33 
+index (@): 64 value glyphindex: 34 
+index (A): 65 value glyphindex: 35 
+index (B): 66 value glyphindex: 36 
+index (C): 67 value glyphindex: 37 
+index (D): 68 value glyphindex: 38 
+index (E): 69 value glyphindex: 39 
+index (F): 70 value glyphindex: 40 
+index (G): 71 value glyphindex: 41 
+index (H): 72 value glyphindex: 42 
+index (I): 73 value glyphindex: 43 
+index (J): 74 value glyphindex: 44 
+index (K): 75 value glyphindex: 45 
+index (L): 76 value glyphindex: 46 
+index (M): 77 value glyphindex: 47 
+index (N): 78 value glyphindex: 48 
+index (O): 79 value glyphindex: 49 
+index (P): 80 value glyphindex: 50 
+index (Q): 81 value glyphindex: 51 
+index (R): 82 value glyphindex: 52 
+index (S): 83 value glyphindex: 53 
+index (T): 84 value glyphindex: 54 
+index (U): 85 value glyphindex: 55 
+index (V): 86 value glyphindex: 56 
+index (W): 87 value glyphindex: 57 
+index (X): 88 value glyphindex: 58 
+index (Y): 89 value glyphindex: 59 
+index (Z): 90 value glyphindex: 60 
+index ([): 91 value glyphindex: 61 
+index (\): 92 value glyphindex: 62 
+index (]): 93 value glyphindex: 63 
+index (^): 94 value glyphindex: 64 
+index (_): 95 value glyphindex: 65 
+index (`): 96 value glyphindex: 66 
+index (a): 97 value glyphindex: 67 
+index (b): 98 value glyphindex: 68 
+index (c): 99 value glyphindex: 69 
+index (d): 100 value glyphindex: 70 
+index (e): 101 value glyphindex: 71 
+index (f): 102 value glyphindex: 72 
+index (g): 103 value glyphindex: 73 
+index (h): 104 value glyphindex: 74 
+index (i): 105 value glyphindex: 75 
+index (j): 106 value glyphindex: 76 
+index (k): 107 value glyphindex: 77 
+index (l): 108 value glyphindex: 78 
+index (m): 109 value glyphindex: 79 
+index (n): 110 value glyphindex: 80 
+index (o): 111 value glyphindex: 81 
+index (p): 112 value glyphindex: 82 
+index (q): 113 value glyphindex: 83 
+index (r): 114 value glyphindex: 84 
+index (s): 115 value glyphindex: 85 
+index (t): 116 value glyphindex: 86 
+index (u): 117 value glyphindex: 87 
+index (v): 118 value glyphindex: 88 
+index (w): 119 value glyphindex: 89 
+index (x): 120 value glyphindex: 90 
+index (y): 121 value glyphindex: 91 
+index (z): 122 value glyphindex: 92 
+index ({): 123 value glyphindex: 93 
+index (|): 124 value glyphindex: 94 
+index (}): 125 value glyphindex: 95 
+index (Œ): 338 value glyphindex: 196 
+index (Š): 352 value glyphindex: 193 
+index (–): 8211 value glyphindex: 185 
+index (‘): 8216 value glyphindex: 176 
+index (’): 8217 value glyphindex: 175 
+index (“): 8220 value glyphindex: 178 
+index (”): 8221 value glyphindex: 177 
+index (‹): 8249 value glyphindex: 194 
+  xMin: 93 yMIn: 0 width: 109 height: 700 leftSideBearing: 0 rightSideBearing 191
+! xMin: 93 yMIn: 0 width: 109 height: 700 leftSideBearing: 93 rightSideBearing 50
+" xMin: 69 yMIn: 395 width: 366 height: 308 leftSideBearing: 69 rightSideBearing -25
+# xMin: 45 yMIn: -5 width: 632 height: 710 leftSideBearing: 45 rightSideBearing 23
+$ xMin: 61 yMIn: -103 width: 532 height: 866 leftSideBearing: 61 rightSideBearing 39
+% xMin: 55 yMIn: -8 width: 753 height: 716 leftSideBearing: 55 rightSideBearing 16
+& xMin: 49 yMIn: 0 width: 529 height: 700 leftSideBearing: 49 rightSideBearing 118
+' xMin: 69 yMIn: 395 width: 148 height: 308 leftSideBearing: 69 rightSideBearing 13
+( xMin: 71 yMIn: -94 width: 302 height: 800 leftSideBearing: 71 rightSideBearing 57
+) xMin: 60 yMIn: -94 width: 302 height: 800 leftSideBearing: 60 rightSideBearing 68
+* xMin: 76 yMIn: 377 width: 308 height: 330 leftSideBearing: 76 rightSideBearing 46
++ xMin: 64 yMIn: 101 width: 508 height: 502 leftSideBearing: 64 rightSideBearing 48
+, xMin: 54 yMIn: -145 width: 174 height: 288 leftSideBearing: 54 rightSideBearing 2
+- xMin: 66 yMIn: 247 width: 306 height: 119 leftSideBearing: 66 rightSideBearing 36
+. xMin: 82 yMIn: -7 width: 149 height: 149 leftSideBearing: 82 rightSideBearing -1
+/ xMin: 85 yMIn: 0 width: 347 height: 689 leftSideBearing: 85 rightSideBearing -10
+0 xMin: 65 yMIn: 0 width: 506 height: 700 leftSideBearing: 65 rightSideBearing 139
+1 xMin: 39 yMIn: 0 width: 234 height: 700 leftSideBearing: 39 rightSideBearing 62
+2 xMin: 50 yMIn: 0 width: 467 height: 700 leftSideBearing: 50 rightSideBearing 73
+3 xMin: 76 yMIn: 1 width: 441 height: 700 leftSideBearing: 76 rightSideBearing 93
+4 xMin: 54 yMIn: 0 width: 546 height: 700 leftSideBearing: 54 rightSideBearing 64
+5 xMin: 66 yMIn: 0 width: 441 height: 700 leftSideBearing: 66 rightSideBearing 98
+6 xMin: 64 yMIn: 0 width: 487 height: 699 leftSideBearing: 64 rightSideBearing 91
+7 xMin: 64 yMIn: 0 width: 450 height: 700 leftSideBearing: 64 rightSideBearing 73
+8 xMin: 55 yMIn: 0 width: 478 height: 700 leftSideBearing: 55 rightSideBearing 97
+9 xMin: 66 yMIn: 1 width: 487 height: 699 leftSideBearing: 66 rightSideBearing 89
+: xMin: 87 yMIn: -7 width: 149 height: 547 leftSideBearing: 87 rightSideBearing 4
+; xMin: 59 yMIn: -162 width: 211 height: 704 leftSideBearing: 59 rightSideBearing -30
+< xMin: 60 yMIn: 0 width: 409 height: 694 leftSideBearing: 60 rightSideBearing 151
+= xMin: 79 yMIn: 259 width: 257 height: 183 leftSideBearing: 79 rightSideBearing 284
+> xMin: 95 yMIn: 0 width: 409 height: 694 leftSideBearing: 95 rightSideBearing 116
+? xMin: 46 yMIn: 0 width: 397 height: 700 leftSideBearing: 46 rightSideBearing 91
+@ xMin: 53 yMIn: 0 width: 699 height: 700 leftSideBearing: 53 rightSideBearing 228
+A xMin: 65 yMIn: 0 width: 548 height: 699 leftSideBearing: 65 rightSideBearing 33
+B xMin: 104 yMIn: 0 width: 450 height: 700 leftSideBearing: 104 rightSideBearing 40
+C xMin: 73 yMIn: 0 width: 619 height: 720 leftSideBearing: 73 rightSideBearing 79
+D xMin: 104 yMIn: 0 width: 522 height: 700 leftSideBearing: 104 rightSideBearing 93
+E xMin: 104 yMIn: 0 width: 437 height: 700 leftSideBearing: 104 rightSideBearing 52
+F xMin: 104 yMIn: 0 width: 437 height: 700 leftSideBearing: 104 rightSideBearing 64
+G xMin: 73 yMIn: 0 width: 620 height: 720 leftSideBearing: 73 rightSideBearing 121
+H xMin: 104 yMIn: 0 width: 481 height: 700 leftSideBearing: 104 rightSideBearing 124
+I xMin: 111 yMIn: 0 width: 111 height: 700 leftSideBearing: 111 rightSideBearing 83
+J xMin: 52 yMIn: 0 width: 485 height: 700 leftSideBearing: 52 rightSideBearing 57
+K xMin: 104 yMIn: 0 width: 528 height: 695 leftSideBearing: 104 rightSideBearing 83
+L xMin: 104 yMIn: 0 width: 437 height: 700 leftSideBearing: 104 rightSideBearing 22
+M xMin: 104 yMIn: 0 width: 602 height: 700 leftSideBearing: 104 rightSideBearing 138
+N xMin: 105 yMIn: 0 width: 530 height: 693 leftSideBearing: 105 rightSideBearing 136
+O xMin: 73 yMIn: 0 width: 684 height: 720 leftSideBearing: 73 rightSideBearing 93
+P xMin: 104 yMIn: 0 width: 449 height: 700 leftSideBearing: 104 rightSideBearing 30
+Q xMin: 66 yMIn: -162 width: 767 height: 872 leftSideBearing: 66 rightSideBearing 11
+R xMin: 90 yMIn: 0 width: 477 height: 700 leftSideBearing: 90 rightSideBearing 58
+S xMin: 71 yMIn: 1 width: 546 height: 719 leftSideBearing: 71 rightSideBearing 50
+T xMin: 50 yMIn: 0 width: 537 height: 700 leftSideBearing: 50 rightSideBearing 61
+U xMin: 105 yMIn: 0 width: 578 height: 700 leftSideBearing: 105 rightSideBearing 131
+V xMin: 67 yMIn: 0 width: 594 height: 689 leftSideBearing: 67 rightSideBearing 89
+W xMin: 71 yMIn: 0 width: 956 height: 689 leftSideBearing: 71 rightSideBearing 75
+X xMin: 80 yMIn: 0 width: 535 height: 692 leftSideBearing: 80 rightSideBearing 107
+Y xMin: 62 yMIn: 0 width: 539 height: 693 leftSideBearing: 62 rightSideBearing 3
+Z xMin: 71 yMIn: 0 width: 542 height: 700 leftSideBearing: 71 rightSideBearing 54
+[ xMin: 98 yMIn: -130 width: 313 height: 830 leftSideBearing: 98 rightSideBearing 19
+\ xMin: 72 yMIn: 0 width: 348 height: 689 leftSideBearing: 72 rightSideBearing 28
+] xMin: 55 yMIn: -130 width: 313 height: 830 leftSideBearing: 55 rightSideBearing 62
+^ xMin: 80 yMIn: 488 width: 345 height: 216 leftSideBearing: 80 rightSideBearing 75
+_ xMin: -24 yMIn: -160 width: 698 height: 94 leftSideBearing: -24 rightSideBearing -74
+` xMin: 163 yMIn: 590 width: 186 height: 160 leftSideBearing: 163 rightSideBearing 151
+a xMin: 40 yMIn: 0 width: 476 height: 500 leftSideBearing: 40 rightSideBearing 103
+b xMin: 93 yMIn: 0 width: 486 height: 700 leftSideBearing: 93 rightSideBearing 81
+c xMin: 58 yMIn: 0 width: 433 height: 500 leftSideBearing: 58 rightSideBearing 80
+d xMin: 60 yMIn: 0 width: 486 height: 700 leftSideBearing: 60 rightSideBearing 114
+e xMin: 58 yMIn: 0 width: 485 height: 500 leftSideBearing: 58 rightSideBearing 66
+f xMin: 65 yMIn: 1 width: 288 height: 700 leftSideBearing: 65 rightSideBearing 9
+g xMin: 60 yMIn: -179 width: 480 height: 679 leftSideBearing: 60 rightSideBearing 120
+h xMin: 93 yMIn: 0 width: 436 height: 700 leftSideBearing: 93 rightSideBearing 84
+i xMin: 94 yMIn: 0 width: 108 height: 700 leftSideBearing: 94 rightSideBearing 79
+j xMin: -5 yMIn: -177 width: 165 height: 876 leftSideBearing: -5 rightSideBearing 89
+k xMin: 93 yMIn: 0 width: 411 height: 700 leftSideBearing: 93 rightSideBearing 56
+l xMin: 100 yMIn: 0 width: 111 height: 700 leftSideBearing: 100 rightSideBearing 38
+m xMin: 93 yMIn: 0 width: 730 height: 500 leftSideBearing: 93 rightSideBearing 128
+n xMin: 93 yMIn: 0 width: 417 height: 500 leftSideBearing: 93 rightSideBearing 103
+o xMin: 70 yMIn: -3 width: 478 height: 503 leftSideBearing: 70 rightSideBearing 77
+p xMin: 93 yMIn: -188 width: 486 height: 688 leftSideBearing: 93 rightSideBearing 81
+q xMin: 60 yMIn: -187 width: 486 height: 687 leftSideBearing: 60 rightSideBearing 114
+r xMin: 93 yMIn: 0 width: 308 height: 500 leftSideBearing: 93 rightSideBearing 38
+s xMin: 57 yMIn: 0 width: 390 height: 500 leftSideBearing: 57 rightSideBearing 45
+t xMin: 42 yMIn: 0 width: 276 height: 700 leftSideBearing: 42 rightSideBearing 82
+u xMin: 83 yMIn: 0 width: 419 height: 500 leftSideBearing: 83 rightSideBearing 111
+v xMin: 64 yMIn: 0 width: 425 height: 488 leftSideBearing: 64 rightSideBearing 93
+w xMin: 69 yMIn: 0 width: 668 height: 489 leftSideBearing: 69 rightSideBearing 124
+x xMin: 74 yMIn: 0 width: 390 height: 493 leftSideBearing: 74 rightSideBearing 106
+y xMin: 52 yMIn: -170 width: 418 height: 670 leftSideBearing: 52 rightSideBearing 118
+z xMin: 61 yMIn: 0 width: 395 height: 500 leftSideBearing: 61 rightSideBearing 98
+{ xMin: 55 yMIn: -135 width: 394 height: 844 leftSideBearing: 55 rightSideBearing 31
+| xMin: 121 yMIn: -133 width: 97 height: 936 leftSideBearing: 121 rightSideBearing 68
+} xMin: 53 yMIn: -135 width: 394 height: 844 leftSideBearing: 53 rightSideBearing 33

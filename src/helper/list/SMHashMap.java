@@ -102,7 +102,7 @@ public class SMHashMap {
 
     public Object getValue(String key){
         Entrie e;
-        int bucket =  hashKey(key,capacity);
+        int bucket = hashKey(key,capacity);
         if(entries[bucket].set){
             e = entries[bucket];
             while(e != null){
@@ -110,6 +110,7 @@ public class SMHashMap {
                 e = e.next;
             }
         }
+        //IOHandler.printString(key);
         return null;
     }
 

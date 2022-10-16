@@ -48,7 +48,7 @@ public class TTFglyfInfo implements ITTFTableInfo {
 
     @Override
     public void dumpValues(){
-        IOHandler.printString("---------TTFHMTXInfo----------");
+        IOHandler.printString("---------TTFGlyfInfo----------");
         int size = glyf.length,i=0;
         while(i<size){
             IOHandler.printGlyph(glyf[i++]);
