@@ -11,10 +11,10 @@ public class Entrie {
     public Entrie next;
     public EntrieType eType;
 
-    public Entrie(String key,Object value,int capacity,EntrieType eType){
+    public Entrie(String key,Object value,int bucket,EntrieType eType){
         this.key = key;
         this.value = value;
-        this.bucket = hashKey(key,capacity);
+        this.bucket = bucket;
         this.set = true;
         this.eType = eType;
         this.next = null;

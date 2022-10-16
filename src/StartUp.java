@@ -1,14 +1,17 @@
 import engine.GameEngine;
+import helper.list.SMHashMap;
 import helper.struct.PassedCheck;
 import helper.font.ttf.TTFFile;
 import helper.struct.SMDateTime;
 import program.RecordSound;
 import helper.io.IOHandler;
+
+import static helper.enums.EntrieType.ENTRIE_JSON_STRING;
 //https://personal.ntu.edu.sg/ehchua/programming/java/javanativeinterface.html
 //http://midi.teragonaudio.com/tech/lowaud.htm
 //https://tchayen.github.io/posts/ttf-file-parsing
 
-
+// leftsidebearing vs rightsidebearing seems odd
 
 public class StartUp {
 
@@ -26,8 +29,7 @@ public class StartUp {
         ttf.setUpFontMap();
         ttf.setUpCharMap();
         //ttf.clearTable();
-        //ttf.dumpCharMap();
-
+        ttf.dumpCharMap();
 
         //ttf.printFileInfo();
         //ttf.printTableInfo();
@@ -45,4 +47,5 @@ public class StartUp {
             IOHandler.logToFile(program.getErrorMessage());
         }
     }
+
 }

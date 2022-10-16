@@ -35,25 +35,36 @@ public class SMHashMap {
                 h1 = entries[i];
                 while(h1 != null){
                     int bucket = hashKey(h1.key,capacity);
-                    if(temp.entries[bucket].set){addCollision(temp.entries[bucket],h1);}
-                    else{temp.entries[bucket].setValues(bucket,h1.key,h1.value,h1.eType);}
-                    h1 = h1.next;
+                    if(temp.entries[bucket].set){
+                        h1 = extendCollision(temp.entries[bucket],h1);
+                    }
+                    else{
+                        temp.entries[bucket].setValues(bucket,h1.key,h1.value,h1.eType);
+                        h1 = h1.next;
+                    }
                 }
             }
         }
-        entries = null;
+        entries = temp.entries;
+        //count = temp.count;
+
+        /*entries = null;
         count = 0;
         hashmapInit();
         for(int i = 0;i<capacity;i++){
             if(temp.entries[i].set){
                 h2 = temp.entries[i];
                 while(h2 != null){
-                    if(entries[h2.bucket].set){addCollision(entries[h2.bucket],h2);}
-                    else{entries[h2.bucket].setValues(h2.bucket,h2.key,h2.value,h2.eType);}
-                    h2 = h2.next;
+                    if(entries[h2.bucket].set){
+                        h2 = extendCollision(entries[h2.bucket],h2);
+                    }
+                    else{
+                        entries[h2.bucket].setValues(h2.bucket,h2.key,h2.value,h2.eType);
+                        h2 = h2.next;
+                    }
                 }
             }
-        }
+        }*/
     }
 
     public void addNewItem(String key,Object value,EntrieType eType){
@@ -61,7 +72,7 @@ public class SMHashMap {
         int bucket = hashKey(key,capacity);
         if(!entries[bucket].set){entries[bucket].setValues(bucket,key,value,eType);}
         else{
-            Entrie e = new Entrie(key,value,capacity,eType);
+            Entrie e = new Entrie(key,value,bucket,eType);
             addCollision(entries[bucket],e);
         }
         count++;
@@ -72,6 +83,16 @@ public class SMHashMap {
     void addCollision(Entrie base,Entrie item){
         item.next = base.next;
         base.next = item;
+    }
+
+    Entrie extendCollision(Entrie base,Entrie item){
+        Entrie e = null;
+        if(item.next != null){
+            e  = new Entrie(item.next.key,item.next.value,item.next.bucket,item.next.eType);
+        }
+        item.next = base.next;
+        base.next = item;
+        return e;
     }
 
     public boolean containsKey(String key){
@@ -104,13 +125,19 @@ public class SMHashMap {
         Entrie e;
         int bucket = hashKey(key,capacity);
         if(entries[bucket].set){
+            //IOHandler.printString("Valid: %s Bucket: %d".formatted(key,bucket));
             e = entries[bucket];
             while(e != null){
-                if(e.key.equals(key))return e.value;
+                if(e.key.equals(key)){
+                    return e.value;
+                }
+                else{
+                    //IOHandler.printString("e.key: %s key: %s".formatted(e.key,key));
+                }
                 e = e.next;
             }
         }
-        //IOHandler.printString(key);
+        //IOHandler.printString("Invalid: %s Bucket: %d".formatted(key,bucket));
         return null;
     }
 

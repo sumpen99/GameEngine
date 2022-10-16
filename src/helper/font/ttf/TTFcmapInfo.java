@@ -86,7 +86,6 @@ public class TTFcmapInfo implements ITTFTableInfo {
                     else{
                         glyphIndex = (c + idDelta) & 0xffff;
                     }
-                    IOHandler.printString("index (%c): %d value glyphindex: %d ".formatted((int)c,c,glyphIndex));
                     format4.glyphIndexMap.addNewItem("%d".formatted((int)c),glyphIndex,ENTRIE_TTF_GLYPHINDEX);
                 }
             }

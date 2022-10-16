@@ -9,6 +9,6 @@ public class FormatFour {
     public SMHashMap glyphIndexMap;
 
     public FormatFour(){
-        glyphIndexMap = new SMHashMap(200,.75f);
+        glyphIndexMap = new SMHashMap(100,.75f);
     }
 }
