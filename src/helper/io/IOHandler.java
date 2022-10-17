@@ -290,7 +290,7 @@ public class IOHandler {
         return true;
     }
 
-    public static void parseTTFFile(TTFFile header, PassedCheck result){
+    public static void parseTTFFile(TTFFile header,boolean printHeaderInfo, PassedCheck result){
         DataInputStream reader = null;
         boolean passed = true;
         int read;
@@ -373,7 +373,7 @@ public class IOHandler {
                     //IOHandler.printInt(read);
                     table.convertToSize(bufferTables);
                     table.setValue(header);
-                    //printTTFTableInfo(table.info);
+                    if(printHeaderInfo)printTTFTableInfo(table.info);
                     //table.info.checkForValuesBelowZero();
                     //IOHandler.printString("%d %d %d".formatted(read,offset,length));
                     read = offset+length;
@@ -838,6 +838,9 @@ public class IOHandler {
         // uint32 0x91AF0214 =  2444165652
         // MaxValues int32 = -2147483648 +2147483647
         // MaxValues uint32 = 0 4294967295
+        // 0x8000     0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+        // 0x80000000 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+        // 0x80000000 -2147483648
         int num1 = 0x91AF0214,num2 = 0x1392C790;
         int i1 = num1,i2 = num2;
         printIntBits(i1);

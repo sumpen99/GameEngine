@@ -1,24 +1,27 @@
-package helper.drawobjects;
-import engine.GameEngine;
+package helper.text;
 import helper.canvas.CanvasHandler;
+import helper.enums.TextWriterType;
 import helper.enums.Token;
+import helper.font.ttf.TTFFile;
 import helper.io.IOHandler;
 import helper.struct.AutoWords;
+import helper.struct.PassedCheck;
 
 /*
-*     # # # # # # # #
-*     # # # # # # # # #
-*             #       # #
-*             #         # #
-*             #         # #
-*             #       # #
-*     # # # # # # # # #
-*     # # # # # # # #
-*
-* 0x00 0x00 0xc3 0xc3 0xc3 0xff 0xc3 0xc3 0xc3 0x66 0x3c 0x18 -> A
-* */
+ *     # # # # # # # #
+ *     # # # # # # # # #
+ *             #       # #
+ *             #         # #
+ *             #         # #
+ *             #       # #
+ *     # # # # # # # # #
+ *     # # # # # # # #
+ *
+ * 0x00 0x00 0xc3 0xc3 0xc3 0xff 0xc3 0xc3 0xc3 0x66 0x3c 0x18 -> A
+ * */
 public class TextWriter{
     // 94 13
+    private static TextWriterType typeOfText;
     private static TextWriter self = null;
     private static boolean isSet = false;
     private final int CHAR_GAP = 0;
@@ -127,7 +130,7 @@ public class TextWriter{
             {0x00, 0x00, 0xf0, 0x18, 0x18, 0x18, 0x1c, 0x0f, 0x1c, 0x18, 0x18, 0x18, 0xf0},//['}' - 32] = 93
             {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x8f, 0xf1, 0x60, 0x00, 0x00, 0x00},//['~' - 32] = 94
             {0x00, 0x00, 0x7c, 0xc6, 0xc6, 0xc6, 0xc6, 0xc6, 0x7c, 0x00, 0x00, 0x00, 0x00},//['¤' - 32] = 95 DEL
-};
+    };
 
     public TextWriter(){
         assert !TextWriter.isSet :"TextWriter is already set!";
@@ -135,15 +138,33 @@ public class TextWriter{
         if(!buildAutoCorrect("./resources/files/words/WordsUSA.txt")){TextWriter.autoWords =null;}
     }
 
+    private static void readTTFFile(){
+        PassedCheck psc = new PassedCheck();
+        TTFFile ttf = new TTFFile("./resources/files/fonts/Quicksand-Bold.ttf");
+        IOHandler.parseTTFFile(ttf,false,psc);
+        ttf.setFileInfo();
+        ttf.setUpFontMap();
+        ttf.setUpCharMap();
+        //ttf.clearTable();
+        ttf.dumpCharMap();
+
+        //ttf.printFileInfo();
+        //ttf.printTableInfo();
+    }
+
     public boolean buildAutoCorrect(String pathWords){
         TextWriter.autoWords = new AutoWords();
         return IOHandler.readFromWordList(pathWords,TextWriter.autoWords);
     }
 
-    private static void setInstance(){TextWriter.isSet = true;}
+    private static void setInstance(){
+        TextWriter.isSet = true;
+        if(TextWriter.typeOfText == TextWriterType.FONT_WRITER)readTTFFile();
+    }
 
-    public static void initTextWriter(){
+    public static void initTextWriter(TextWriterType typeOfText){
         if(self == null) {
+            TextWriter.typeOfText = typeOfText;
             self = new TextWriter();
         }
     }

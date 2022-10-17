@@ -1,6 +1,6 @@
 package helper.widget;
 import helper.drawobjects.Rectangle;
-import helper.drawobjects.TextWriter;
+import helper.text.TextWriter;
 import helper.enums.Color;
 import helper.enums.WidgetType;
 

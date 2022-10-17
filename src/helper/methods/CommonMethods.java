@@ -215,6 +215,16 @@ public class CommonMethods{
         return buf[offset] & 255;
     }
 
+    public static int getUint16(byte[] buf,int offset){
+        return ((buf[offset] & 255) << 8) | (buf[offset+1] & 255);
+    }
+
+    public static int getInt16(byte[] buf,int offset){
+        int number = getUint16(buf,offset);
+        if((number & 0x8000) != 0)number-=1 << 16;
+        return number;
+    }
+
     public static void getRandomInt(FVec2d pos,int bound_x, int bound_y){
         pos.x = (float)((Math.random()*10000) % bound_x);
         pos.y = (float)((Math.random()*10000) % bound_y);

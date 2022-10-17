@@ -1,5 +1,5 @@
 package helper.methods;
-import helper.drawobjects.TextWriter;
+import helper.text.TextWriter;
 import helper.enums.Token;
 import helper.struct.AutoWord;
 import helper.struct.Edit;

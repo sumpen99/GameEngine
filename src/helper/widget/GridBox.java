@@ -1,7 +1,7 @@
 package helper.widget;
 import helper.drawobjects.Line;
 import helper.drawobjects.Rectangle;
-import helper.drawobjects.TextWriter;
+import helper.text.TextWriter;
 import helper.enums.Color;
 import helper.enums.WidgetType;
 import helper.struct.Vec2d;

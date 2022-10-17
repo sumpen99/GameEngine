@@ -1,6 +1,6 @@
 package helper.widget;
 import helper.drawobjects.DrawObject;
-import helper.drawobjects.TextWriter;
+import helper.text.TextWriter;
 import helper.enums.*;
 import helper.input.KeyboardHandler;
 import helper.methods.Levenstein;

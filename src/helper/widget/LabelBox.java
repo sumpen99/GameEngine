@@ -1,5 +1,5 @@
 package helper.widget;
-import helper.drawobjects.TextWriter;
+import helper.text.TextWriter;
 import helper.enums.WidgetType;
 import helper.struct.DrawValues;
 

@@ -11,6 +11,6 @@ public class FontChar {
         width = (short)(xMax-xMin);
         height = (short)(yMax-yMin);
         lsb = leftSideBearing;
-        rsb = (short)(advanceWidth - leftSideBearing - (xMax-xMin));
+        rsb = (short)(advanceWidth - (leftSideBearing + xMax - xMin));
     }
 }

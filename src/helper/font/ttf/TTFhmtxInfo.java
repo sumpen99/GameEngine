@@ -4,7 +4,7 @@ import helper.interfaces.ITTFTableInfo;
 import helper.io.IOHandler;
 import helper.struct.HMetrics;
 
-import static helper.methods.CommonMethods.bytesToInt;
+import static helper.methods.CommonMethods.*;
 
 public class TTFhmtxInfo implements ITTFTableInfo {
     HMetrics[] hMetrics;

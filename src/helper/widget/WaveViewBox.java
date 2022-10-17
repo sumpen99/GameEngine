@@ -1,8 +1,7 @@
 package helper.widget;
 import helper.drawobjects.Line;
-import helper.drawobjects.TextWriter;
+import helper.text.TextWriter;
 import helper.enums.Color;
-import helper.io.IOHandler;
 import helper.struct.DrawValues;
 import helper.struct.SamplePair;
 
