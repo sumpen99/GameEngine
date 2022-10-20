@@ -1,16 +1,16 @@
 package helper.struct;
 
 public class FontChar {
-    public short x,y,width,height,lsb,rsb;
+    public int x,y,width,height,lsb,rsb;
     public char charValue;
 
-    public FontChar(char ch,short xMin,short xMax,short yMin,short yMax,short leftSideBearing,short advanceWidth){
+    public FontChar(char ch,int xMin,int xMax,int yMin,int yMax,int leftSideBearing,int advanceWidth){
         charValue = ch;
         x = xMin;
         y = yMin;
-        width = (short)(xMax-xMin);
-        height = (short)(yMax-yMin);
+        width = xMax-xMin;
+        height = yMax-yMin;
         lsb = leftSideBearing;
-        rsb = (short)(advanceWidth - (leftSideBearing + xMax - xMin));
+        rsb = advanceWidth - (leftSideBearing + xMax - xMin);
     }
 }

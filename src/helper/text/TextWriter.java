@@ -1,10 +1,12 @@
 package helper.text;
 import helper.canvas.CanvasHandler;
+import helper.drawobjects.Rectangle;
 import helper.enums.TextWriterType;
 import helper.enums.Token;
 import helper.font.ttf.TTFFile;
 import helper.io.IOHandler;
 import helper.struct.AutoWords;
+import helper.struct.FontChar;
 import helper.struct.PassedCheck;
 
 /*
@@ -23,15 +25,17 @@ public class TextWriter{
     // 94 13
     private static TextWriterType typeOfText;
     private static TextWriter self = null;
+    private TTFFile ttf;
     private static boolean isSet = false;
+    private float unitsPerEm;
     private final int CHAR_GAP = 0;
     private final int CHAR_WIDTH = 13;
     private final int CHAR_HEIGHT = 8;
     private final int CHAR_PAD_DUMMY = 127;
-    protected final char END_OF_BUF = Token.END_OF_BUF.getChar();
-    protected final char SKIP_CHAR = Token.SKIP_CHAR.getChar();
-    protected final char NEW_LINE = Token.NEW_LINE.getChar();
-    protected final char NEW_TAB = Token.NEW_TAB.getChar();
+    private final char END_OF_BUF = Token.END_OF_BUF.getChar();
+    private final char SKIP_CHAR = Token.SKIP_CHAR.getChar();
+    private final char NEW_LINE = Token.NEW_LINE.getChar();
+    private final char NEW_TAB = Token.NEW_TAB.getChar();
     public static AutoWords autoWords;
     private final char[][] charBuf = {
             {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},//[        ] = 0
@@ -140,16 +144,21 @@ public class TextWriter{
 
     private static void readTTFFile(){
         PassedCheck psc = new PassedCheck();
-        TTFFile ttf = new TTFFile("./resources/files/fonts/Quicksand-Bold.ttf");
-        IOHandler.parseTTFFile(ttf,false,psc);
-        ttf.setFileInfo();
-        ttf.setUpFontMap();
-        ttf.setUpCharMap();
-        //ttf.clearTable();
-        ttf.dumpCharMap();
+        self.ttf = new TTFFile("./resources/files/fonts/Quicksand-Bold.ttf");
+        IOHandler.parseTTFFile(self.ttf,true,psc);
+        self.ttf.setFileInfo();
+        self.ttf.setUpFontMap();
+        self.ttf.setUpCharMap();
+        //self.ttf.clearTable();
+        //self.ttf.dumpCharMap();
 
-        //ttf.printFileInfo();
-        //ttf.printTableInfo();
+        //self.ttf.printFileInfo();
+        //self.ttf.printTableInfo();
+        setUnitsPerEm();
+    }
+
+    static void setUnitsPerEm(){
+        self.unitsPerEm = self.ttf.getUnitsPerEm();
     }
 
     public boolean buildAutoCorrect(String pathWords){
@@ -159,7 +168,6 @@ public class TextWriter{
 
     private static void setInstance(){
         TextWriter.isSet = true;
-        if(TextWriter.typeOfText == TextWriterType.FONT_WRITER)readTTFFile();
     }
 
     public static void initTextWriter(TextWriterType typeOfText){
@@ -167,6 +175,7 @@ public class TextWriter{
             TextWriter.typeOfText = typeOfText;
             self = new TextWriter();
         }
+        if(TextWriter.typeOfText == TextWriterType.FONT_WRITER)readTTFFile();
     }
 
     public static int getCharWidth(){return self.CHAR_WIDTH;}
@@ -223,5 +232,25 @@ public class TextWriter{
             }
         }
         return CHAR_WIDTH + CHAR_GAP;
+    }
+
+    public static void drawFontText(char[] buf,int x,int y,int fontSize,int color){
+        float scale = self.unitsPerEm*fontSize;
+        int i = 0,posX = 0;
+        final short space = ' ';
+        while(i<buf.length){
+            char c = buf[i++];
+            int charValue = c&0x7F;
+            if(charValue >= 32 && charValue <= 125){
+                FontChar font = self.ttf.getFontChar(c);
+                int x1 = (int)(x + (font.x + (i!=0 ? font.lsb : 0 )) * scale);
+                int y1 = (int)(48 - (font.y + font.height) * scale);
+                int width = (int)(font.width*scale);
+                int height = (int)(font.height*scale);
+                Rectangle.drawRectangleFilled(x1,y1,width,height,color);
+                x+=((i != 0 ? font.lsb : 0) + font.width+font.rsb) * scale;
+                IOHandler.printString("%d %d %d %d %f %f".formatted(x1,y1,width,height, self.unitsPerEm,scale));
+            }
+        }
     }
 }

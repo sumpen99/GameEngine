@@ -540,7 +540,26 @@ public class IOHandler {
     }
 
     public static void printGlyph(Glyf g){
-        printString("numberOfContours: %d xMin: %d yMin: %d xMax: %d yMax: %d".formatted(g.numberOfContours,g.xMin,g.yMin,g.xMax,g.yMax));
+        printString("instructionlength: %d numberOfContours: %d (xMin: %d yMin: %d) (xMax: %d yMax: %d)".formatted(g.instructionLength,g.numberOfContours,g.xMin,g.yMin,g.xMax,g.yMax));
+        if(g.numberOfContours >= 0){
+            int lastIndex = g.endPtsOfContours[g.numberOfContours-1],i=0;
+            while(i<lastIndex){
+                printString("x: %d y: %d".formatted(g.xCoordinates[i],g.yCoordinates[i]));
+                i++;
+            }
+        }
+    }
+
+    public static void printGlyphFlag(byte flag){
+        boolean onCurve = (0x01 & flag) != 0;
+        boolean xShort = (0x02 & flag) != 0;
+        boolean yShort = (0x04 & flag) != 0;
+        boolean repeat = (0x08 & flag) != 0;
+        boolean xShortPos = (0x10 & flag) != 0;
+        boolean yShortPos = (0x20 & flag) != 0;
+        boolean reservedOne = (0x40 & flag) != 0;
+        boolean reservedTwo = (0x80 & flag) != 0;
+        printString("onCurve:%b xShort:%b yShort:%b repeat:%b xShortPos:%b yShortPos:%b reservedOne:%b reservedTwo:%b".formatted(onCurve,xShort,yShort,repeat,xShortPos,yShortPos,reservedOne,reservedTwo));
     }
 
     public static void printEncodingRecord(EncodingRecord e){

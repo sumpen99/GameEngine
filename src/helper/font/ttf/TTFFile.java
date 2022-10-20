@@ -56,12 +56,21 @@ public class TTFFile {
         }
     }
 
+    public float getUnitsPerEm(){
+        return (float)1/(float)getTableHead().unitsPerEM;
+    }
+
     public void clearTable(){
         table = null;
     }
 
     public void dumpCharMap(){
         IOHandler.printFontCharMap(map);
+    }
+
+    public FontChar getFontChar(char c){
+        //if()
+        return map[c-' '];
     }
 
     public void convertToSize(TTFBits dst, byte[] buf){

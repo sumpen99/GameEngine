@@ -1,0 +1,87 @@
+offset+=10;
+            if((numCountour=g.numberOfContours) >= 0){ // Simple Glyf
+                j=k=l=0;
+                g.endPtsOfContours = new short[numCountour];
+                while(j<numCountour){
+                    g.endPtsOfContours[j++] = (short)bytesToInt(buf,offset,2,false);
+                    offset+=2;
+                }
+                g.instructionLength = (short)bytesToInt(buf,offset,2,false);
+                g.instructions = new byte[g.instructionLength];
+                while(k<g.instructionLength){
+                    g.instructions[k++] = (byte)bytesToInt(buf,offset,1,false);
+                    offset++;
+                }
+                if(numCountour>0){
+                    int pointCount = g.endPtsOfContours[g.endPtsOfContours.length-1] + 1;
+                    g.flags = new byte[pointCount];
+                    while(l<pointCount){
+                        byte flag = (byte)bytesToInt(buf,offset,1,false);
+                        offset++;
+                        g.flags[l] = flag;
+                        if((flag & (1<<3)) != 0){
+                            byte repeat = (byte)bytesToInt(buf,offset,1,false);
+                            offset++;
+                            for(byte m = 0;m<repeat;m++){
+                                g.flags[++l] = flag;
+                            }
+                        }
+                        l++;
+                    }
+                    g.xCoordinates = new short[pointCount];
+                    g.yCoordinates = new short[pointCount];
+                    for(int n = 0;n<pointCount;n++){
+                        if((g.flags[n] & (1 << 1)) != 0) {
+                            if((g.flags[n] & (1 << 4)) != 0) {
+                                g.xCoordinates[n] = (byte)bytesToInt(buf,offset,1,false);
+                                offset++;
+                            }
+                            else {
+                                g.xCoordinates[n] = (byte)((byte)bytesToInt(buf,offset,1,false) * -1);
+                                offset++;
+                            }
+                        }
+                        else {
+                            if((g.flags[n] & (1 << 4)) != 0) {
+                                if(n > 0) {
+                                    g.xCoordinates[n] = g.xCoordinates[n - 1];
+                                }
+                                else {
+                                    g.xCoordinates[n] = 0;
+                                }
+                            }
+                            else {
+                                g.xCoordinates[n] = (byte)bytesToInt(buf,offset,2,false);
+                                offset+=2;
+                            }
+                        }
+                    }
+
+                    for(int o = 0; o < pointCount; o++) {
+                        if((g.flags[o] & (1 << 2)) != 0) {
+                            if((g.flags[o] & (1 << 5)) != 0) {
+                                g.yCoordinates[o] = (byte)bytesToInt(buf,offset,1,false);
+                                offset++;
+                            }
+                            else {
+                                g.yCoordinates[o] = (byte)((byte)bytesToInt(buf,offset,1,false) * -1);
+                                offset++;
+                            }
+                        }
+                        else {
+                            if((g.flags[o] & (1 << 5)) != 0) {
+                                if(o == 0) {
+                                    g.yCoordinates[o] = 0;
+                                }
+                                else {
+                                    g.yCoordinates[o] = g.yCoordinates[o - 1];
+                                }
+                            }
+                            else {
+                                g.yCoordinates[o] = (byte)bytesToInt(buf,offset,2,false);
+                                offset+=2;
+                            }
+                        }
+                    }
+                }
+            }
