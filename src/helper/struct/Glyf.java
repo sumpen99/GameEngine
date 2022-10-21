@@ -1,5 +1,5 @@
 package helper.struct;
-
+//https://handmade.network/forums/articles/t/7330-implementing_a_font_reader_and_rasterizer_from_scratch%252C_part_1__ttf_font_reader.
 public class Glyf {
     public int numberOfContours,xMin,yMin,xMax,yMax,instructionLength;
     public short[] endPtsOfContours;
@@ -12,6 +12,13 @@ public class Glyf {
         xMax = xmax;
         yMax = ymax;
     }
+
+    // Bit 1: if set it means this point is on the Glyphs curve, otherwise the point is off curve.
+    // Bit 2: if set the corrosponding x coordiante is 1 byte otherwise its 2 bytes.
+    // Bit 3: if set the corrosponding y coordinate is 1 byte otherwise its 2 bytes.
+    // Bit 4: (repeat) if set the next byte specifies how many timet his flag repeats. this is a small way to compress the flags array.
+    // Bit 5, 6: these both relate to bit 1 and 2 respectivily and are better explained in a table.
+    // Bit 7, 8: those are reserved and set to zero in TrueType.
 
     public boolean getOnCurve(int index){
         return (0x01 & flags[index]) != 0;

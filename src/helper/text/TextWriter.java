@@ -145,7 +145,7 @@ public class TextWriter{
     private static void readTTFFile(){
         PassedCheck psc = new PassedCheck();
         self.ttf = new TTFFile("./resources/files/fonts/Quicksand-Bold.ttf");
-        IOHandler.parseTTFFile(self.ttf,true,psc);
+        IOHandler.parseTTFFile(self.ttf,false,psc);
         self.ttf.setFileInfo();
         self.ttf.setUpFontMap();
         self.ttf.setUpCharMap();

@@ -69,6 +69,11 @@ public class TTFglyfInfo implements ITTFTableInfo {
                     l++;
                 }
 
+                //(0) current coordinate is 16 bit signed delta change.
+                //(1) current coordinate is 16 bit, has the same value as the previous one.
+                //(2) current coordinate is 8 bit, value is negative.
+                //(3) current coordinate is 8 bit, value is positive.
+
                 g.xCoordinates = new int[(lastIndex+1)*2];
                 int prevCoordinate=0,currentCoordinate=0;
                 while(m<(lastIndex+1)){

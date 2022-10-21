@@ -19,6 +19,7 @@ import static helper.enums.EntrieType.ENTRIE_JSON_STRING;
 public class StartUp {
 
     public static void main(String[] args){
+
         GameEngine program;
         //IOHandler.refreshBitWiseOperations();
         IOHandler.removeFilesFromFolder("./resources/files/log/gc");

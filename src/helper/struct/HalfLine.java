@@ -100,4 +100,8 @@ public class HalfLine {
         float cy = r.y + (r.y - p.y) / length;
         ext = new Point(cx,cy);
     }
+
+    public static HalfLine getHalfLine(int p1X,int p1Y,int p2X,int p2Y){
+        return new HalfLine(new Point((float)p1X,(float)p1Y),new Point((float)p2X,(float)p2Y));
+    }
 }

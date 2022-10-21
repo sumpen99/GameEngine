@@ -287,6 +287,18 @@ public class CommonMethods{
         return points;
     }
 
+    public static Point[] buildPointArr(int[] xPoints,int[] yPoints){
+        assert (xPoints.length == yPoints.length) && xPoints.length >0 : "MisMatch Between XPoints And YPoints";
+        int size = xPoints.length,i=0;
+        Point[] points = new Point[size];
+        while(i<size){
+            points[i] = new Point(xPoints[i],yPoints[i]);
+            i++;
+        }
+
+        return points;
+    }
+
     public static boolean splitColorsAndMix(String val,DrawValues dww){
         try{
             String[] c = val.split(" ");
