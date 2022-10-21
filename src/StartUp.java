@@ -4,6 +4,7 @@ import helper.list.SMHashMap;
 import helper.struct.PassedCheck;
 import helper.font.ttf.TTFFile;
 import helper.struct.SMDateTime;
+import helper.struct.Spline;
 import helper.text.TextWriter;
 import program.RecordSound;
 import helper.io.IOHandler;
@@ -15,6 +16,7 @@ import static helper.enums.EntrieType.ENTRIE_JSON_STRING;
 //https://tchayen.github.io/posts/ttf-file-parsing
 
 // TODO WRITE TEXT FROM TTF FILE
+// TODO BUILD TEXTWRITER USING TTF AND START BY DRAW/FILL IT USING SPLINE LINES
 
 public class StartUp {
 

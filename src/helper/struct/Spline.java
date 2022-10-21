@@ -152,7 +152,7 @@ public class Spline {
         int size,cnt=0;
         if(looped){
             size = (int)(((float)points.length-1.0f)/frac);
-            splinePoints = new Point[size];
+            splinePoints = new Point[size+1];
             while(t<(float)points.length-1.0f){
                 splinePoints[cnt++] = getSplinePoint(t);
                 t+=frac;
@@ -160,7 +160,7 @@ public class Spline {
         }
         else{
             size = (int)(((float)points.length-3.0f)/frac);
-            splinePoints = new Point[size];
+            splinePoints = new Point[size+1];
             while(t<(float)points.length-3.0f){
                 splinePoints[cnt++] = getSplinePoint(t);
                 t+=frac;
@@ -207,7 +207,7 @@ public class Spline {
         return mainSpline;
     }
 
-    public static Spline buildSpline(Point[] line){
+    static Spline buildSpline(Point[] line){
         Spline mainSpline = new Spline(line,true);
         mainSpline.setSplinePoints(false);
         return mainSpline;

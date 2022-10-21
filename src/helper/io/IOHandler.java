@@ -611,6 +611,22 @@ public class IOHandler {
         return null;
     }
 
+    public static void printSpline(Spline s){
+        int size = s.splinePoints.length,i=0;
+        printString("SplinePoints");
+        while(i<size){
+            printString("X: %f Y: %f".formatted(s.splinePoints[i].x,s.splinePoints[i].y));
+            i++;
+        }
+        i=0;
+        size = s.points.length;
+        printString("BasePoints");
+        while(i<size){
+            printString("X: %f Y: %f".formatted(s.points[i].x,s.points[i].y));
+            i++;
+        }
+    }
+
     public static void printCharBuf(char[] buf,boolean asInt){
         int size = buf.length,i = 0;
         if(asInt)while(i<size)printInt(buf[i++]);

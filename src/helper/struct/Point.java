@@ -2,11 +2,13 @@ package helper.struct;
 
 public class Point {
     public float x,y,length;
+
     public Point(float px,float py){
         x = px;
         y = py;
         length = (float)Math.sqrt(Math.pow(px,2)+Math.pow(py,2));
     }
+
     public Point(int px,int py){
         x = (float)px;
         y = (float)py;
