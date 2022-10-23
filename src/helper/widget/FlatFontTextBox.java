@@ -24,6 +24,6 @@ public class FlatFontTextBox extends TextBox{
         }
         if(this.cursor.cInfo.visible){this.cursor.draw();}
         if(this.suggestionBox.visible){this.suggestionBox.draw();}
-        TextWriter.drawFontCharBuffer(this.str.buf,this.textPos.x,this.textPos.y,cursor.cInfo.colCount,this.txtColor);
+        TextWriter.drawFontCharBuffer(this.str.buf,this.textPos.x,this.textPos.y,cursor.cInfo.colCount,50,this.txtColor);
     }
 }

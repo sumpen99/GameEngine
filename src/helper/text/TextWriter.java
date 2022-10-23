@@ -29,8 +29,12 @@ public class TextWriter{
     private static TextWriter self = null;
     private TTFFile ttf;
     private static boolean isSet = false;
-    private float unitsPerEm;
+    private float unitsPerEm,fontScale;
+    private int fontWidth,fontHeight;
     private final int CHAR_GAP = 0;
+    private int CHAR_FONT_GAP = 0;
+    private int CHAR_FONT_WIDTH = 0;
+    private int CHAR_FONT_HEIGHT = 0;
     private final int CHAR_WIDTH = 13;
     private final int CHAR_HEIGHT = 8;
     private final int CHAR_PAD_DUMMY = 127;
@@ -39,6 +43,7 @@ public class TextWriter{
     private final char NEW_LINE = Token.NEW_LINE.getChar();
     private final char NEW_TAB = Token.NEW_TAB.getChar();
     public static AutoWords autoWords;
+    // TODO REMOVE WHEN WRITING FROM TTF IS 100% ACCURATE
     private final char[][] charBuf = {
             {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},//[        ] = 0
             {0x18, 0x18, 0x00, 0x00, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18},//['!' - 32] = 1
@@ -161,6 +166,9 @@ public class TextWriter{
 
     static void setUnitsPerEm(){
         self.unitsPerEm = self.ttf.getUnitsPerEm();
+        self.CHAR_FONT_GAP = self.ttf.getFontGap();
+        self.CHAR_FONT_WIDTH = self.ttf.getFontMaxWidth();
+        self.CHAR_FONT_HEIGHT = self.ttf.getFontMaxHeigth();
     }
 
     public boolean buildAutoCorrect(String pathWords){
@@ -236,63 +244,46 @@ public class TextWriter{
         return CHAR_WIDTH + CHAR_GAP;
     }
 
-    public static void drawFontText(char[] buf,int x,int y,int fontSize,int color){
+    public static void drawFontCharBuffer(char[] buf,int x,int y,int col,int fontSize,int color){
         float scale = self.unitsPerEm*fontSize;
-        int i = 0,posX = 0;
-        final short space = ' ';
-        while(i<buf.length){
-            char c = buf[i++];
-            int charValue = c&0x7F;
-            if(charValue >= 32 && charValue <= 125){
-                //IOHandler.printString("FontChar: %c".formatted(c));
-                FontChar font = self.ttf.getFontChar(c);
-
-                if(charValue == 32)IOHandler.printPoints(font.splines[0].splinePoints);
-                //IOHandler.printSpline(font.spline,true);
-                /*int x1 = (int)(x + (font.x + (i!=0 ? font.lsb : 0 )) * scale);
-                int y1 = (int)(48 - (font.y + font.height) * scale);
-                int width = (int)(font.width*scale);
-                int height = (int)(font.height*scale);
-                Rectangle.drawRectangleFilled(x1,y1,width,height,color);
-                x+=((i != 0 ? font.lsb : 0) + font.width+font.rsb) * scale;*/
-                //IOHandler.printString("%d %d %d %d %f %f".formatted(x1,y1,width,height, self.unitsPerEm,scale));
-            }
-        }
-    }
-
-
-    public static void drawFontCharBuffer(char[] buf,int x,int y,int col,int color){
         int i = 0,baseX = x;
         char c;
         while(buf[i] != self.END_OF_BUF){
             c=buf[i];
             if(i % col == 0 && i != 0){
-                y+=self.CHAR_HEIGHT*2;
+                y+=((self.CHAR_FONT_HEIGHT)*scale);
                 x=baseX;
             }
-            x += self.drawFontChar(c, x, y,color);
+            x += self.drawFontChar(c, x, y,scale,color);
             i++;
         }
     }
 
-
-    private int drawFontChar(char c,int x,int y,int color){
+    private int drawFontChar(char c,int x,int y,float scale,int color){
         int i,j=0;
-        float scale = .08f;
-        c = (char)(c & 0x7F); // set max to 127 (125 == 0x7D),shift = 127,enter = 10 '\n',backspace = 8
-        if(c <= ' ' || c > 125)return 0;
-        else{c -= ' ';}      // sub 32
+        c = (char)(c & 0x7F);// set max to 127 (125 == 0x7D),shift = 127,enter = 10 '\n',backspace = 8
+        if(c < ' '){c = 0;}
+        else if(c == 127)return 0; // shift
+        else{c -= ' ';} // sub 32
         int index = c;
         FontChar font = self.ttf.getFontCharByIndex(index);
+
+        if(index == 0){return (int)((float)self.CHAR_FONT_WIDTH*scale);}
 
         while(j<font.splines.length){
             Point[] p = font.splines[j++].splinePoints;
             i=1;
             while(i<p.length){
-                if(p[i] != null)Line.drawLine((int)(p[i-1].x*scale)+x,(int)(p[i-1].y*scale)+y,(int)(p[i].x*scale)+x,(int)(p[i].y*scale)+y,color);
+                if(p[i] != null){
+                    int x1 = (int)((p[i-1].x+font.lsb)*scale)+x;
+                    int x2 = (int)((p[i].x+font.lsb)*scale)+x;
+                    int y1 = (int)((p[i-1].y)*scale)+y;
+                    int y2 = (int)((p[i].y)*scale)+y;
+                    Line.drawLine(x1,y1,x2,y2,color);
+                }
                 i++;
             }
         }
-        return CHAR_WIDTH + CHAR_GAP;
+        return (int)((float)(font.width+font.lsb)*scale);
     }
 }

@@ -65,6 +65,18 @@ public class TTFFile {
         return (float)1/(float)getTableHead().unitsPerEM;
     }
 
+    public int getFontGap(){
+        return map[' '-32].width;
+    }
+
+    public int getFontMaxWidth(){
+        return getTableHead().xMax/2;
+    }
+
+    public int getFontMaxHeigth(){
+        return getTableHead().yMax;
+    }
+
     public void clearTable(){
         table = null;
     }
