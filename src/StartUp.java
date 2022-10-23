@@ -33,8 +33,6 @@ public class StartUp {
         //program = new QuadTreeBalls(800,500); // ./resources/files/gui/quadtree.fs
         //program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
         if(program.setUpProgram()){
-            //char[] buf = {'h','e','l','o',' ','w','o','r','l','d'};
-            //TextWriter.drawFontText(buf,0,0,12, Color.PALEGOLDENROD.getValue());
             program.runEngineLoop();
         }
         else{
