@@ -16,8 +16,7 @@ import static helper.enums.EntrieType.ENTRIE_JSON_STRING;
 //http://midi.teragonaudio.com/tech/lowaud.htm
 //https://tchayen.github.io/posts/ttf-file-parsing
 
-// TODO WRITE TEXT FROM TTF FILE
-// TODO BUILD TEXTWRITER USING TTF AND START BY DRAW/FILL IT USING SPLINE LINES
+// TODO FLOODFILL FONT INSTEAD OF CONTOURLINES
 
 public class StartUp {
 
