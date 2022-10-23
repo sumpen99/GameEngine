@@ -1,6 +1,7 @@
 package helper.text;
 import helper.canvas.CanvasHandler;
 import helper.drawobjects.Line;
+import helper.drawobjects.Polygon;
 import helper.drawobjects.Rectangle;
 import helper.enums.TextWriterType;
 import helper.enums.Token;
@@ -254,12 +255,14 @@ public class TextWriter{
                 y+=((self.CHAR_FONT_HEIGHT)*scale);
                 x=baseX;
             }
+            //x += self.fillFontChar(c, x, y,scale,color);
             x += self.drawFontChar(c, x, y,scale,color);
             i++;
         }
     }
 
     private int drawFontChar(char c,int x,int y,float scale,int color){
+
         int i,j=0;
         c = (char)(c & 0x7F);// set max to 127 (125 == 0x7D),shift = 127,enter = 10 '\n',backspace = 8
         if(c < ' '){c = 0;}
@@ -267,9 +270,7 @@ public class TextWriter{
         else{c -= ' ';} // sub 32
         int index = c;
         FontChar font = self.ttf.getFontCharByIndex(index);
-
         if(index == 0){return (int)((float)self.CHAR_FONT_WIDTH*scale);}
-
         while(j<font.splines.length){
             Point[] p = font.splines[j++].splinePoints;
             i=1;
@@ -283,6 +284,34 @@ public class TextWriter{
                 }
                 i++;
             }
+        }
+        return (int)((float)(font.width+font.lsb)*scale);
+    }
+
+    private int fillFontChar(char c,int x,int y,float scale,int color){
+        int i,j=0;
+        c = (char)(c & 0x7F);// set max to 127 (125 == 0x7D),shift = 127,enter = 10 '\n',backspace = 8
+        if(c < ' '){c = 0;}
+        else if(c == 127)return 0; // shift
+        else{c -= ' ';} // sub 32
+        int index = c;
+        FontChar font = self.ttf.getFontCharByIndex(index);
+
+        if(index == 0){return (int)((float)self.CHAR_FONT_WIDTH*scale);}
+
+        int fy = font.y-font.height;
+        int x1 = (int)((font.x+font.lsb)*scale)+x;
+        int x2 = (int)((font.x+font.width+font.lsb)*scale)+x;
+        int y1 = (int)(fy*scale)+y;
+        int y2 = (int)((fy+font.height)*scale)+y;
+        /*Line.drawLine(x1,y1,x2,y1,color);
+        Line.drawLine(x1,y1,x1,y2,color);
+        Line.drawLine(x1,y2,x2,y2,color);
+        Line.drawLine(x2,y2,x2,y1,color);*/
+        while(j<font.splines.length){
+            Point[] p = font.splines[j++].splinePoints;
+            Polygon.fillPolygonShape(p,x1,y1,x2,y2,x,y,font.lsb,scale,color);
+
         }
         return (int)((float)(font.width+font.lsb)*scale);
     }

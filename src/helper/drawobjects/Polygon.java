@@ -251,4 +251,40 @@ public class Polygon extends DrawObject{
         }
     }
 
+    public static void fillPolygonShape(Point[] vertices,int minX,int minY,int maxX,int maxY,int x,int y,int lsb,float scale,int color){
+        int IMAGE_TOP = minY;
+        int IMAGE_BOT = maxY;
+        int IMAGE_LEFT = minX;
+        int IMAGE_RIGHT = maxX;
+        int polycorners = vertices.length;
+        //IOHandler.printString("X1: %d Y1: %d X2: %d Y2: %d".formatted(IMAGE_LEFT,IMAGE_TOP,IMAGE_RIGHT,IMAGE_BOT));
+        int nodes,pixelX,pixelY,i,j;
+        int[] nodeX = new int[polycorners];
+        for(pixelY = IMAGE_TOP;pixelY<IMAGE_BOT;pixelY++){
+            nodes = 0;
+            j = polycorners-1;
+            for(i = 0;i<polycorners;i++){
+                float ipolyX = ((vertices[i].x+lsb)*scale)+x,ipolyY = (vertices[i].y*scale)+y,jpolyX = ((vertices[j].x+lsb)*scale)+x,jpolyY = (vertices[j].y*scale)+y;
+                if((ipolyY < (float)pixelY && jpolyY >= (float)pixelY) ||
+                        (jpolyY < (float)pixelY && ipolyY >= (float)pixelY)){
+                    nodeX[nodes++] = (int)(ipolyX + (pixelY-ipolyY) / (jpolyY-ipolyY) * (jpolyX - ipolyX));
+                }
+                j = i;
+            }
+
+            BubbleSort.minBubbleSort(nodeX,nodes);
+            for(i = 0;i<nodes;i+=2){
+                if(nodeX[i]>=IMAGE_RIGHT)break;
+                if(nodeX[i+1] > IMAGE_LEFT){
+                    if(nodeX[i] < IMAGE_LEFT)nodeX[i] = IMAGE_LEFT;
+                    if(nodeX[i+1] > IMAGE_RIGHT)nodeX[i+1] = IMAGE_RIGHT;
+                    for(pixelX = nodeX[i];pixelX<nodeX[i+1];pixelX++){
+                        CanvasHandler.setPixel(pixelX,pixelY,color);
+                    }
+                }
+            }
+
+        }
+    }
+
 }
