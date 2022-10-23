@@ -1,16 +1,33 @@
 package helper.struct;
+
+import static helper.methods.CommonMethods.buildInvertPointArr;
+
 //https://handmade.network/forums/articles/t/7330-implementing_a_font_reader_and_rasterizer_from_scratch%252C_part_1__ttf_font_reader.
 public class Glyf {
     public int numberOfContours,xMin,yMin,xMax,yMax,instructionLength;
     public short[] endPtsOfContours;
     public int[] xCoordinates,yCoordinates;
     public byte[] instructions,flags;
+    public Point[][] pointList;
     public Glyf(short contours,short xmin,short ymin,short xmax,short ymax){
         numberOfContours = contours;
         xMin = xmin;
         yMin = ymin;
         xMax = xmax;
         yMax = ymax;
+    }
+
+    public void splitCoordinates(){
+        int i = 0,startIdx=0,endIdx;
+        pointList = new Point[numberOfContours][];
+        while(i<numberOfContours){
+            endIdx = endPtsOfContours[i];
+            pointList[i] = buildInvertPointArr(xCoordinates,yCoordinates,0,yMin,startIdx,endIdx);
+            startIdx = endIdx+1;
+            i++;
+        }
+        xCoordinates = null;
+        yCoordinates = null;
     }
 
     // Bit 1: if set it means this point is on the Glyphs curve, otherwise the point is off curve.

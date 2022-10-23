@@ -7,6 +7,7 @@ public enum WidgetType{
     SM_ROUNDED_BUTTON("roundedbutton"),
     SM_RECORDER("recorder"),
     SM_FLAT_TEXTBOX("flattextbox"),
+    SM_FLAT_FONT_TEXTBOX("flatfonttextbox"),
     SM_SPELL_ME_TEXTBOX("spellmetextbox"),
     SM_ROUNDED_TEXTBOX("roundedtextbox"),
     SM_ROUNDED_LABEL("roundedlabel"),

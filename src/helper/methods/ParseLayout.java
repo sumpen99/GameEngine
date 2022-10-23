@@ -260,6 +260,10 @@ public class ParseLayout {
             dww.wType = SM_FLAT_TEXTBOX;
             return true;
         }
+        if(element.equals(SM_FLAT_FONT_TEXTBOX.getValue())) {
+            dww.wType = SM_FLAT_FONT_TEXTBOX;
+            return true;
+        }
         if(element.equals(SM_ROUNDED_TEXTBOX.getValue())) {
             dww.wType = SM_ROUNDED_TEXTBOX;
             return true;
@@ -337,6 +341,9 @@ public class ParseLayout {
             }
             case SM_FLAT_TEXTBOX:{
                 return new FlatTextBox(objCallerClass,dww);
+            }
+            case SM_FLAT_FONT_TEXTBOX:{
+                return new FlatFontTextBox(objCallerClass,dww);
             }
             case SM_SPELL_ME_TEXTBOX:{
                 return new SpellMeTextBox(objCallerClass,dww);

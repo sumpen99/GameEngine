@@ -74,7 +74,8 @@ public class TTFglyfInfo implements ITTFTableInfo {
                 //(2) current coordinate is 8 bit, value is negative.
                 //(3) current coordinate is 8 bit, value is positive.
 
-                g.xCoordinates = new int[(lastIndex+1)*2];
+                //g.xCoordinates = new int[(lastIndex+1)*2]; ???
+                g.xCoordinates = new int[(lastIndex+1)];
                 int prevCoordinate=0,currentCoordinate=0;
                 while(m<(lastIndex+1)){
                     int flagCombined = g.xShort(m) << 1 | g.xShortPos(m);
@@ -104,7 +105,8 @@ public class TTFglyfInfo implements ITTFTableInfo {
                     m++;
                 }
 
-                g.yCoordinates = new int[(lastIndex+1)*2];
+                //g.yCoordinates = new int[(lastIndex+1)*2]; ???
+                g.yCoordinates = new int[(lastIndex+1)];
                 prevCoordinate=0;
                 currentCoordinate=0;
                 while(n<(lastIndex+1)){
@@ -150,7 +152,7 @@ public class TTFglyfInfo implements ITTFTableInfo {
         IOHandler.printString("---------TTFGlyfInfo----------");
         int size = glyf.length,i=0;
         while(i<size){
-            IOHandler.printGlyph(glyf[i++]);
+            IOHandler.printGlyph(glyf[i++],true);
         }
         IOHandler.printString("---------END----------");
     }

@@ -100,6 +100,7 @@ public class IOHandler {
     }
 
     public static void printPoint(Point p){
+        if(p == null)return;
         printString("X: %f Y: %f Length: %f".formatted(p.x,p.y,p.length));
     }
 
@@ -539,14 +540,29 @@ public class IOHandler {
         }
     }
 
-    public static void printGlyph(Glyf g){
+    public static void printGlyph(Glyf g,boolean printPoints){
+        int i = 0;
         printString("instructionlength: %d numberOfContours: %d (xMin: %d yMin: %d) (xMax: %d yMax: %d)".formatted(g.instructionLength,g.numberOfContours,g.xMin,g.yMin,g.xMax,g.yMax));
-        if(g.numberOfContours >= 0){
-            int lastIndex = g.endPtsOfContours[g.numberOfContours-1],i=0;
-            while(i<lastIndex){
+        while(i<g.numberOfContours){
+            printString("Contour %d ends at Index: %d".formatted(i+1,g.endPtsOfContours[i]));
+            i++;
+        }
+        if(g.numberOfContours >= 0 && printPoints){
+            int lastIndex = g.endPtsOfContours[g.numberOfContours-1];
+            i=0;
+            while(i<=lastIndex){
                 printString("x: %d y: %d".formatted(g.xCoordinates[i],g.yCoordinates[i]));
                 i++;
             }
+        }
+    }
+
+    public static void printXAndYCoordinates(int[] xCoordinates,int[] yCoordinates){
+        assert xCoordinates.length == yCoordinates.length;
+        int i=0,size=xCoordinates.length;
+        while(i<size){
+            printString("x: %d y: %d".formatted(xCoordinates[i],yCoordinates[i]));
+            i++;
         }
     }
 
@@ -611,19 +627,21 @@ public class IOHandler {
         return null;
     }
 
-    public static void printSpline(Spline s){
+    public static void printSpline(Spline s,boolean onlySplinePoints){
         int size = s.splinePoints.length,i=0;
         printString("SplinePoints");
         while(i<size){
             printString("X: %f Y: %f".formatted(s.splinePoints[i].x,s.splinePoints[i].y));
             i++;
         }
-        i=0;
-        size = s.points.length;
-        printString("BasePoints");
-        while(i<size){
-            printString("X: %f Y: %f".formatted(s.points[i].x,s.points[i].y));
-            i++;
+        if(!onlySplinePoints){
+            i=0;
+            size = s.points.length;
+            printString("BasePoints");
+            while(i<size){
+                printString("X: %f Y: %f".formatted(s.points[i].x,s.points[i].y));
+                i++;
+            }
         }
     }
 

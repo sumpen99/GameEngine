@@ -299,6 +299,19 @@ public class CommonMethods{
         return points;
     }
 
+    public static Point[] buildInvertPointArr(int[] xPoints,int[] yPoints,int invertX,int invertY,int startIdx,int endIdx){
+        assert (xPoints.length == yPoints.length) && xPoints.length >0 : "MisMatch Between XPoints And YPoints";
+        int cnt = 0;
+        Point[] points = new Point[endIdx-startIdx+2];
+        while(startIdx<=endIdx){
+            points[cnt] = new Point(xPoints[startIdx],invertY-yPoints[startIdx]);
+            startIdx++;
+            cnt++;
+        }
+        points[cnt] = new Point(points[0].x,points[0].y);
+        return points;
+    }
+
     public static boolean splitColorsAndMix(String val,DrawValues dww){
         try{
             String[] c = val.split(" ");

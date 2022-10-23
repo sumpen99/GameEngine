@@ -71,7 +71,6 @@ public class CanvasHandler{
     private int getIndex(int x,int y){
         int i = ((y*this.screenWidth)+x)*4;
         return (i <this.frameBuffer.length-4) ? i : -1;
-
     }
 
 }

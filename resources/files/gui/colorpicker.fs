@@ -1575,3 +1575,16 @@ CheckBox
         draw:fill
         shape:rectangle
 ;
+FlatFontTextbox
+        left:0
+        top:50
+        width:600
+        height:100
+        color:GAINSBORO
+        textcolor:Black
+        draw:fill
+        shape:rectangle
+        hintText:Test Font
+        opacity:1
+        enableAutoCorrect:false
+;

@@ -1,5 +1,6 @@
 package helper.text;
 import helper.canvas.CanvasHandler;
+import helper.drawobjects.Line;
 import helper.drawobjects.Rectangle;
 import helper.enums.TextWriterType;
 import helper.enums.Token;
@@ -8,6 +9,7 @@ import helper.io.IOHandler;
 import helper.struct.AutoWords;
 import helper.struct.FontChar;
 import helper.struct.PassedCheck;
+import helper.struct.Point;
 
 /*
  *     # # # # # # # #
@@ -242,15 +244,55 @@ public class TextWriter{
             char c = buf[i++];
             int charValue = c&0x7F;
             if(charValue >= 32 && charValue <= 125){
+                //IOHandler.printString("FontChar: %c".formatted(c));
                 FontChar font = self.ttf.getFontChar(c);
-                int x1 = (int)(x + (font.x + (i!=0 ? font.lsb : 0 )) * scale);
+
+                if(charValue == 32)IOHandler.printPoints(font.splines[0].splinePoints);
+                //IOHandler.printSpline(font.spline,true);
+                /*int x1 = (int)(x + (font.x + (i!=0 ? font.lsb : 0 )) * scale);
                 int y1 = (int)(48 - (font.y + font.height) * scale);
                 int width = (int)(font.width*scale);
                 int height = (int)(font.height*scale);
                 Rectangle.drawRectangleFilled(x1,y1,width,height,color);
-                x+=((i != 0 ? font.lsb : 0) + font.width+font.rsb) * scale;
-                IOHandler.printString("%d %d %d %d %f %f".formatted(x1,y1,width,height, self.unitsPerEm,scale));
+                x+=((i != 0 ? font.lsb : 0) + font.width+font.rsb) * scale;*/
+                //IOHandler.printString("%d %d %d %d %f %f".formatted(x1,y1,width,height, self.unitsPerEm,scale));
             }
         }
+    }
+
+
+    public static void drawFontCharBuffer(char[] buf,int x,int y,int col,int color){
+        int i = 0,baseX = x;
+        char c;
+        while(buf[i] != self.END_OF_BUF){
+            c=buf[i];
+            if(i % col == 0 && i != 0){
+                y+=self.CHAR_HEIGHT*2;
+                x=baseX;
+            }
+            x += self.drawFontChar(c, x, y,color);
+            i++;
+        }
+    }
+
+
+    private int drawFontChar(char c,int x,int y,int color){
+        int i,j=0;
+        float scale = .08f;
+        c = (char)(c & 0x7F); // set max to 127 (125 == 0x7D),shift = 127,enter = 10 '\n',backspace = 8
+        if(c <= ' ' || c > 125)return 0;
+        else{c -= ' ';}      // sub 32
+        int index = c;
+        FontChar font = self.ttf.getFontCharByIndex(index);
+
+        while(j<font.splines.length){
+            Point[] p = font.splines[j++].splinePoints;
+            i=1;
+            while(i<p.length){
+                if(p[i] != null)Line.drawLine((int)(p[i-1].x*scale)+x,(int)(p[i-1].y*scale)+y,(int)(p[i].x*scale)+x,(int)(p[i].y*scale)+y,color);
+                i++;
+            }
+        }
+        return CHAR_WIDTH + CHAR_GAP;
     }
 }

@@ -1,4 +1,6 @@
 package helper.struct;
+import helper.io.IOHandler;
+
 import static helper.methods.CommonMethods.buildPointArr;
 
 
@@ -168,19 +170,15 @@ public class Spline {
         }
     }
 
-    public static Spline buildMultipleSplines(int[] xCoordinates,int yCoordinates[],int offset){
-        assert xCoordinates.length == yCoordinates.length : "MisMatch Between XPoints And YPoints";
-        Point[] line = buildPointArr(xCoordinates,yCoordinates);
+    public static Spline buildMultipleSplines(Point[] line,int offset){
         return buildSplineWithOffset(line,offset);
     }
 
-    public static Spline buildSingleSpline(int[] xCoordinates,int yCoordinates[]){
-        assert xCoordinates.length == yCoordinates.length : "MisMatch Between XPoints And YPoints";
-        Point[] line = buildPointArr(xCoordinates,yCoordinates);
+    public static Spline buildSingleSpline(Point[] line){
         return buildSpline(line);
     }
 
-    public static Spline buildSplineWithOffset(Point[] line,float offset){
+    static Spline buildSplineWithOffset(Point[] line,float offset){
         int numPoints = line.length,i=1;
         float glen;
         Point p1,g1;

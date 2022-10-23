@@ -4,11 +4,9 @@ import helper.enums.TTFTable;
 import helper.interfaces.ITTFTableInfo;
 import helper.io.IOHandler;
 import helper.list.SMHashMap;
-import helper.struct.FontChar;
-import helper.struct.Glyf;
-import helper.struct.HMetrics;
+import helper.struct.*;
 
-import static helper.methods.CommonMethods.bytesToInt;
+import static helper.methods.CommonMethods.*;
 
 public class TTFFile {
     public String path;
@@ -48,10 +46,17 @@ public class TTFFile {
         for(char c:alphabet){
             m = glyphIndexMap.getValue("%s".formatted((int)c));
             if(m!= null){
-                int index = (int)m;
+                int index = (int)m,i=0;
                 glyf = glyfs[index];
                 hmetric = hMetrics[index];
-                map[c-' '] = new FontChar(c,glyf.xMin,glyf.xMax,glyf.yMin,glyf.yMax,hmetric.leftSideBearing,hmetric.advanceWidth);
+                Spline[] splines = new Spline[glyf.numberOfContours];
+                glyf.splitCoordinates();
+                while(i<glyf.numberOfContours){
+                    Spline sp = Spline.buildSingleSpline(glyf.pointList[i]);
+                    splines[i] = sp;
+                    i++;
+                }
+                map[c-' '] = new FontChar(c,glyf.xMin,glyf.xMax,glyf.yMin,glyf.yMax,hmetric.leftSideBearing,hmetric.advanceWidth,splines);
             }
         }
     }
@@ -71,6 +76,11 @@ public class TTFFile {
     public FontChar getFontChar(char c){
         //if()
         return map[c-' '];
+    }
+
+    public FontChar getFontCharByIndex(int index){
+        //if()
+        return map[index];
     }
 
     public void convertToSize(TTFBits dst, byte[] buf){
