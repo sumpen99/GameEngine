@@ -275,7 +275,7 @@ public class TextWriter{
             Point[] p = font.splines[j++].splinePoints;
             i=1;
             while(i<p.length){
-                if(p[i] != null){
+                if(p[i] != null && p[i-1] != null){
                     int x1 = (int)((p[i-1].x+font.lsb)*scale)+x;
                     int x2 = (int)((p[i].x+font.lsb)*scale)+x;
                     int y1 = (int)((p[i-1].y)*scale)+y;

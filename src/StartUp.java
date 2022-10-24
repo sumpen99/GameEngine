@@ -1,10 +1,8 @@
 import engine.GameEngine;
 import helper.enums.Color;
 import helper.list.SMHashMap;
-import helper.struct.PassedCheck;
+import helper.struct.*;
 import helper.font.ttf.TTFFile;
-import helper.struct.SMDateTime;
-import helper.struct.Spline;
 import helper.text.TextWriter;
 import program.ColorPicker;
 import program.RecordSound;
@@ -24,6 +22,7 @@ public class StartUp {
 
         GameEngine program;
         //IOHandler.refreshBitWiseOperations();
+        //IOHandler.printPoints(BezierCurve.tessellate(new Point(0,0),new Point(10,10),new Point(10,0)));
         IOHandler.removeFilesFromFolder("./resources/files/log/gc");
         //IOHandler.removeFilesFromFolder("./resources/files/sound");
         //IOHandler.removeFile("./resources/files/log/error/error.log");

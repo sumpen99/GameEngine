@@ -12,6 +12,9 @@ public class Spline {
     public float totalSplineLength;
     boolean looped;
 
+    public Spline(){
+    }
+
     public Spline(Point[] line,boolean isLooped){
         points = line;
         looped = isLooped;

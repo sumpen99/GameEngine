@@ -1,5 +1,7 @@
 package helper.struct;
 
+import helper.io.IOHandler;
+
 import static helper.methods.CommonMethods.buildInvertPointArr;
 
 //https://handmade.network/forums/articles/t/7330-implementing_a_font_reader_and_rasterizer_from_scratch%252C_part_1__ttf_font_reader.
@@ -9,6 +11,7 @@ public class Glyf {
     public int[] xCoordinates,yCoordinates;
     public byte[] instructions,flags;
     public Point[][] pointList;
+    public static int globalCounter;
     public Glyf(short contours,short xmin,short ymin,short xmax,short ymax){
         numberOfContours = contours;
         xMin = xmin;
@@ -29,6 +32,97 @@ public class Glyf {
         xCoordinates = null;
         yCoordinates = null;
     }
+
+    public void generatePoints(){
+        assert (xCoordinates.length == yCoordinates.length) && xCoordinates.length >0 : "MisMatch Between XPoints And YPoints";
+        int i = 0,startIdx=0,endIdx;
+        pointList = new Point[numberOfContours][];
+        while(i<numberOfContours){
+            int contourStartIndex = startIdx;
+            int genereatedPointsStartIndex = 0;
+            int contourStart = 1;
+            int contourStartedOff = 0;
+            endIdx = endPtsOfContours[i];
+            int cnt = 0;
+            Point[] points = new Point[256];
+            while(startIdx<=endIdx){
+                int x = xCoordinates[startIdx];
+                int y = yMin-yCoordinates[startIdx];
+
+                int contourLen = endPtsOfContours[i] - contourStartIndex + 1;
+                int nextIndex = (startIdx+1 - contourStartIndex)%contourLen+contourStartIndex;
+
+                if(getOnCurve(startIdx)){
+                    points[cnt++] = new Point(x,y);
+                }
+                else{
+                    if(contourStart != 0){
+                        contourStartedOff = 1;
+                        if(getOnCurve(nextIndex)){
+                            points[cnt] = new Point(xCoordinates[nextIndex],yMin-yCoordinates[nextIndex]);
+                            cnt++;
+                            startIdx++;
+                            continue;
+                        }
+                        x = (int)((float)(x + (xCoordinates[nextIndex] - x)) / 2.0f);
+                        y = (int)((float)(y + ((yMin-yCoordinates[nextIndex]) - y)) / 2.0f);
+                        points[cnt] = new Point(x,y);
+                        cnt++;
+                    }
+
+                    Point p0 = points[cnt-1];
+                    Point p1 = new Point(x,y);
+                    Point p2 = new Point(xCoordinates[nextIndex],yMin-yCoordinates[nextIndex]);
+
+                    if(!getOnCurve(nextIndex)){
+                        p2.x = p1.x + (p2.x-p1.x)/2.0f;
+                        p2.y = p1.y + (p2.y-p1.y)/2.0f;
+                    }
+                    else{
+                        startIdx++;
+                    }
+                    tessellateBezier(points,cnt,p0,p1,p2);
+                    cnt+=globalCounter;
+                }
+                contourStart = 0;
+                startIdx++;
+            }
+
+            if(getOnCurve(startIdx-2)){
+                points[cnt++] = new Point(points[genereatedPointsStartIndex].x,points[genereatedPointsStartIndex].y);
+            }
+            if(contourStartedOff != 0){
+                Point p0 = points[cnt-1];
+                Point p1 = new Point(xCoordinates[contourStartIndex],yMin-yCoordinates[contourStartIndex]);
+                Point p2 = points[genereatedPointsStartIndex];
+                tessellateBezier(points,cnt,p0,p1,p2);
+                cnt+=globalCounter;
+            }
+
+            //points[cnt] = new Point(points[0].x,points[0].y);
+            pointList[i] = points;
+            startIdx = endIdx+1;
+            i++;
+        }
+        xCoordinates = null;
+        yCoordinates = null;
+    }
+
+    public void tessellateBezier(Point[] output,int currentIndex,Point p0,Point p1,Point p2){
+        int subDivInto = 2,i=1;
+        float stepPerIter = 1.0f/(float)subDivInto;
+        while(i<=subDivInto){
+            float t = i*stepPerIter;
+            float t1 = (1.0f-t);
+            float t2 = t*t;
+            float x = t1*t1*p0.x + 2*t1*t*p1.x + t2*p2.x;
+            float y = t1*t1*p0.y + 2*t1*t*p1.y + t2*p2.y;
+            output[currentIndex+i] = new Point(x,y);
+            i++;
+        }
+        globalCounter = i-1;
+    }
+
 
     // Bit 1: if set it means this point is on the Glyphs curve, otherwise the point is off curve.
     // Bit 2: if set the corrosponding x coordiante is 1 byte otherwise its 2 bytes.
