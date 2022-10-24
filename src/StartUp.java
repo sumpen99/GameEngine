@@ -16,7 +16,7 @@ import static helper.enums.EntrieType.ENTRIE_JSON_STRING;
 //http://midi.teragonaudio.com/tech/lowaud.htm
 //https://tchayen.github.io/posts/ttf-file-parsing
 
-// TODO FLOODFILL FONT INSTEAD OF CONTOURLINES
+// TODO RASTERIZE FONT USE BEIZER CURVE
 
 public class StartUp {
 
