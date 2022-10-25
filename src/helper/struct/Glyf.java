@@ -33,7 +33,7 @@ public class Glyf {
         yCoordinates = null;
     }
 
-    public void generatePoints(){
+    public void generatePoints(char c){
         assert (xCoordinates.length == yCoordinates.length) && xCoordinates.length >0 : "MisMatch Between XPoints And YPoints";
         int i = 0,startIdx=0,endIdx;
         pointList = new Point[numberOfContours][];
@@ -42,14 +42,14 @@ public class Glyf {
             int genereatedPointsStartIndex = 0;
             int contourStart = 1;
             int contourStartedOff = 0;
-            endIdx = endPtsOfContours[i];
             int cnt = 0;
-            Point[] points = new Point[256];
+            int contourLen = endPtsOfContours[i] - contourStartIndex + 1;
+            endIdx = endPtsOfContours[i];
+            Point[] points = new Point[128];
             while(startIdx<=endIdx){
-                int x = xCoordinates[startIdx];
-                int y = yMin-yCoordinates[startIdx];
+                float x = xCoordinates[startIdx];
+                float y = yMin-yCoordinates[startIdx];
 
-                int contourLen = endPtsOfContours[i] - contourStartIndex + 1;
                 int nextIndex = (startIdx+1 - contourStartIndex)%contourLen+contourStartIndex;
 
                 if(getOnCurve(startIdx)){
@@ -59,17 +59,14 @@ public class Glyf {
                     if(contourStart != 0){
                         contourStartedOff = 1;
                         if(getOnCurve(nextIndex)){
-                            points[cnt] = new Point(xCoordinates[nextIndex],yMin-yCoordinates[nextIndex]);
-                            cnt++;
-                            startIdx++;
+                            points[cnt++] = new Point(xCoordinates[nextIndex],yMin-yCoordinates[nextIndex]);
+                            startIdx+=2;
                             continue;
                         }
-                        x = (int)((float)(x + (xCoordinates[nextIndex] - x)) / 2.0f);
-                        y = (int)((float)(y + ((yMin-yCoordinates[nextIndex]) - y)) / 2.0f);
-                        points[cnt] = new Point(x,y);
-                        cnt++;
+                        x = x + (xCoordinates[nextIndex] - x) / 2.0f;
+                        y = y + ((yMin-yCoordinates[nextIndex] - y)) / 2.0f;
+                        points[cnt++] = new Point(x,y);
                     }
-
                     Point p0 = points[cnt-1];
                     Point p1 = new Point(x,y);
                     Point p2 = new Point(xCoordinates[nextIndex],yMin-yCoordinates[nextIndex]);
@@ -81,25 +78,23 @@ public class Glyf {
                     else{
                         startIdx++;
                     }
-                    tessellateBezier(points,cnt,p0,p1,p2);
+                    tessellateBezier(points,cnt-1,p0,p1,p2);
                     cnt+=globalCounter;
                 }
                 contourStart = 0;
                 startIdx++;
             }
 
-            if(getOnCurve(startIdx-2)){
+            int idx = Math.min(startIdx-1,flags.length-1);
+            if(getOnCurve(idx)){
                 points[cnt++] = new Point(points[genereatedPointsStartIndex].x,points[genereatedPointsStartIndex].y);
             }
             if(contourStartedOff != 0){
                 Point p0 = points[cnt-1];
                 Point p1 = new Point(xCoordinates[contourStartIndex],yMin-yCoordinates[contourStartIndex]);
                 Point p2 = points[genereatedPointsStartIndex];
-                tessellateBezier(points,cnt,p0,p1,p2);
-                cnt+=globalCounter;
+                tessellateBezier(points,cnt-1,p0,p1,p2);
             }
-
-            //points[cnt] = new Point(points[0].x,points[0].y);
             pointList[i] = points;
             startIdx = endIdx+1;
             i++;
