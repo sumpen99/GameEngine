@@ -50,8 +50,10 @@ public class TTFFile {
                 glyf = glyfs[index];
                 hmetric = hMetrics[index];
                 Spline[] splines = new Spline[glyf.numberOfContours];
-                IOHandler.printChar(c);
-                glyf.generatePoints(c);
+                //IOHandler.printChar(c);
+                glyf.generatePoints();
+                //glyf.scalePointsToFitBitmap();
+                glyf.generateEdges();
                 //glyf.splitCoordinates();
                 while(i<glyf.numberOfContours){
                     Spline sp = new Spline();

@@ -275,13 +275,11 @@ public class TextWriter{
             Point[] p = font.splines[j++].splinePoints;
             i=1;
             while(i<p.length){
-                if(p[i] != null && p[i-1] != null){
-                    int x1 = (int)((p[i-1].x+font.lsb)*scale)+x;
-                    int x2 = (int)((p[i].x+font.lsb)*scale)+x;
-                    int y1 = (int)((p[i-1].y)*scale)+y;
-                    int y2 = (int)((p[i].y)*scale)+y;
-                    Line.drawLine(x1,y1,x2,y2,color);
-                }
+                int x1 = (int)((p[i-1].x+font.lsb)*scale)+x;
+                int x2 = (int)((p[i].x+font.lsb)*scale)+x;
+                int y1 = (int)((p[i-1].y)*scale)+y;
+                int y2 = (int)((p[i].y)*scale)+y;
+                Line.drawLine(x1,y1,x2,y2,color);
                 i++;
             }
         }

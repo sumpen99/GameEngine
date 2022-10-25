@@ -168,7 +168,7 @@ public class IOHandler {
     }
 
     public static void printEdge(Edge e){
-        System.out.println(" E1.x: " + e.e1.x + " E1.y: " + e.e1.y + " E2.x: " + e.e2.x + " E2.y: " + e.e2.y);
+        System.out.println(" E1.x: " + e.p1.x + " E1.y: " + e.p1.y + " E2.x: " + e.p2.x + " E2.y: " + e.p2.y);
     }
 
     public static void printSearchInfo(SearchInfo s){

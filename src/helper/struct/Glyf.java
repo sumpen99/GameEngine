@@ -2,16 +2,21 @@ package helper.struct;
 
 import helper.io.IOHandler;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 import static helper.methods.CommonMethods.buildInvertPointArr;
 
 //https://handmade.network/forums/articles/t/7330-implementing_a_font_reader_and_rasterizer_from_scratch%252C_part_1__ttf_font_reader.
 public class Glyf {
-    public int numberOfContours,xMin,yMin,xMax,yMax,instructionLength;
+    public int numberOfContours,xMin,yMin,xMax,yMax,instructionLength,edgeCount;
     public short[] endPtsOfContours;
     public int[] xCoordinates,yCoordinates;
     public byte[] instructions,flags;
     public Point[][] pointList;
     public static int globalCounter;
+    public final int bitmapWidth = 64,bitmapHeight=64;
+    public Edge[] lines;
     public Glyf(short contours,short xmin,short ymin,short xmax,short ymax){
         numberOfContours = contours;
         xMin = xmin;
@@ -33,7 +38,8 @@ public class Glyf {
         yCoordinates = null;
     }
 
-    public void generatePoints(char c){
+    //https://handmade.network/forums/wip/t/7610-reading_ttf_files_and_rasterizing_them_using_a_handmade_approach,_part_2__rasterization
+    public void generatePoints(){
         assert (xCoordinates.length == yCoordinates.length) && xCoordinates.length >0 : "MisMatch Between XPoints And YPoints";
         int i = 0,startIdx=0,endIdx;
         pointList = new Point[numberOfContours][];
@@ -94,13 +100,29 @@ public class Glyf {
                 Point p1 = new Point(xCoordinates[contourStartIndex],yMin-yCoordinates[contourStartIndex]);
                 Point p2 = points[genereatedPointsStartIndex];
                 tessellateBezier(points,cnt-1,p0,p1,p2);
+                cnt+=globalCounter;
             }
-            pointList[i] = points;
+            pointList[i] = Arrays.copyOf(points,cnt);
+            edgeCount+=pointList[i].length;
             startIdx = endIdx+1;
             i++;
         }
         xCoordinates = null;
         yCoordinates = null;
+    }
+
+    public void generateEdges(){
+        int i=0,j,cnt = 0;
+        lines = new Edge[edgeCount-1];
+        while(i<numberOfContours){
+            j=0;
+            while(j<pointList[i].length-1){
+                lines[cnt++] = new Edge(pointList[i][j].x,pointList[i][j].y,pointList[i][j+1].x,pointList[i][j+1].y);
+                j++;
+            }
+            i++;
+        }
+
     }
 
     public void tessellateBezier(Point[] output,int currentIndex,Point p0,Point p1,Point p2){
@@ -116,6 +138,24 @@ public class Glyf {
             i++;
         }
         globalCounter = i-1;
+    }
+
+    public void scalePointsToFitBitmap(){
+        int i=0,j=0;
+        float scale = getBitMapScale();
+        while(i<pointList.length){
+            j=0;
+            while(j<pointList[i].length){
+                pointList[i][j].x =  (pointList[i][j].x - xMin)*scale;
+                pointList[i][j].y =  (pointList[i][j].y - yMin)*scale;
+                j++;
+            }
+            i++;
+        }
+    }
+
+    public float getBitMapScale(){
+        return (float)bitmapHeight/(float)(yMax-yMin);
     }
 
 
