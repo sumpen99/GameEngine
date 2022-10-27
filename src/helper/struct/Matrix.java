@@ -23,4 +23,27 @@ public abstract class Matrix implements IMatrix {
         return (row*columns)+col;
     }
 
+    public void flipVertical(){
+        int c,r=0,j;
+        while(r<rows/2) {
+            c = rows - 1 - r;
+            j = 0;
+            while (j < columns) {
+                float temp = m[r * columns + j];
+                m[r * columns + j] = m[c * columns + j];
+                m[c * columns + j] = temp;
+                j++;
+            }
+            r++;
+        }
+    }
+
+   int getColFromIndex(int index){
+        return index%columns;
+    }
+
+   int getRowFromIndex(int index){
+        return index/columns;
+    }
+
 }

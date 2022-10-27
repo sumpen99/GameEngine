@@ -53,10 +53,10 @@ public class Glyf {
         while(i<numberOfContours){
             j = 0;
             while(j<pointList[i].length){
-                if(pointList[i][j].x < fxMin){fxMin = pointList[i][j].x;}
-                if(pointList[i][j].x > fxMax){fxMax = pointList[i][j].x;}
-                if(pointList[i][j].y < fyMin){fyMin = pointList[i][j].y;}
-                if(pointList[i][j].y > fyMax){fyMax = pointList[i][j].y;}
+                if(pointList[i][j].x <= fxMin){fxMin = pointList[i][j].x;}
+                if(pointList[i][j].x >= fxMax){fxMax = pointList[i][j].x;}
+                if(pointList[i][j].y <= fyMin){fyMin = pointList[i][j].y;}
+                if(pointList[i][j].y >= fyMax){fyMax = pointList[i][j].y;}
                 j++;
             }
             i++;
@@ -68,8 +68,8 @@ public class Glyf {
         while(i<numberOfContours){
             j = 0;
             while(j<pointList[i].length){
-                if(pointList[i][j].x < fxMin || pointList[i][j].x > fxMax){IOHandler.printString("X outside Range: %f  fXmin: %f  fXMax: %f".formatted(pointList[i][j].x,fxMin,fxMax));}
-                if(pointList[i][j].y < fyMin || pointList[i][j].y > fyMax){IOHandler.printString("Y outside Range: %f  fYmin: %f  fYMax: %f".formatted(pointList[i][j].y,fyMin,fyMax));}
+                if(pointList[i][j].x < xMin || pointList[i][j].x > xMax){IOHandler.printString("X outside Range: %f  fXmin: %d  fXMax: %d".formatted(pointList[i][j].x,xMin,xMax));}
+                if(pointList[i][j].y < yMin || pointList[i][j].y > yMax){IOHandler.printString("Y outside Range: %f  fYmin: %d  fYMax: %d".formatted(pointList[i][j].y,yMin,yMax));}
                 j++;
             }
             i++;
@@ -222,7 +222,7 @@ public class Glyf {
                     intersections[intersectionCount++] = intersection;
                 }
 
-                QuickSort.sortFloatArray(intersections,0,intersectionCount);
+                //QuickSort.sortFloatArray(intersections,0,intersectionCount);
 
                 if(intersectionCount>1){
                     for(int m = 0;m<intersectionCount;m+=2){
@@ -235,15 +235,15 @@ public class Glyf {
                         float endCovered = endIntersection - endIndex;
 
                         if(startIndex == endIndex){
-                            texture[Math.min(texture.length-1,startIndex + i*bitmapWidth)] += alphaWeight*startCovered;
+                            texture[startIndex + i*bitmapWidth] += alphaWeight*startCovered;
                         }
                         else{
-                            texture[Math.min(texture.length-1,startIndex + i*bitmapWidth)] += alphaWeight*startCovered;
-                            texture[Math.min(texture.length-1,endIndex + i*bitmapWidth)] += alphaWeight*endCovered;
+                            texture[startIndex + i*bitmapWidth] += alphaWeight*startCovered;
+                            texture[endIndex + i*bitmapWidth] += alphaWeight*endCovered;
                         }
 
                         for(int j = startIndex+1;j<endIndex;j++){
-                            texture[Math.min(texture.length-1,j + i*bitmapWidth)] += alphaWeight;
+                            texture[j + i*bitmapWidth] += alphaWeight;
                         }
 
                     }
@@ -270,21 +270,27 @@ public class Glyf {
 
     public void scalePointsToFitBitmap(){
         int i=0,j;
-        float scale = getBitMapScale();
+        float scaleX = getBitMapXScale();
+        float scaleY = getBitMapYScale();
         while(i<numberOfContours){
             j=0;
             while(j<pointList[i].length){
-                pointList[i][j].x =  (pointList[i][j].x - fxMin)*scale;
-                pointList[i][j].y =  (pointList[i][j].y - fyMin)*scale;
+                pointList[i][j].x =  (pointList[i][j].x - fxMin)*scaleX;
+                pointList[i][j].y =  (pointList[i][j].y - fyMin)*scaleY;
+                if(pointList[i][j].x < 0 || pointList[i][j].x > bitmapWidth){IOHandler.printString("[X] outside Range: %f Scale: %f".formatted(pointList[i][j].x,scaleX));}
+                if(pointList[i][j].y < 0 || pointList[i][j].y > bitmapHeight){IOHandler.printString("[Y] outside Range: %f Scale: %f".formatted(pointList[i][j].y,scaleY));}
                 j++;
             }
             i++;
         }
     }
 
-    public float getBitMapScale(){
-
+    public float getBitMapYScale(){
         return (float)bitmapHeight/(fyMax-fyMin);
+    }
+
+    public float getBitMapXScale(){
+        return (float)bitmapWidth/(fxMax-fxMin);
     }
 
 
