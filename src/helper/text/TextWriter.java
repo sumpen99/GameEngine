@@ -3,14 +3,12 @@ import helper.canvas.CanvasHandler;
 import helper.drawobjects.Line;
 import helper.drawobjects.Polygon;
 import helper.drawobjects.Rectangle;
+import helper.drawobjects.Triangle;
 import helper.enums.TextWriterType;
 import helper.enums.Token;
 import helper.font.ttf.TTFFile;
 import helper.io.IOHandler;
-import helper.struct.AutoWords;
-import helper.struct.FontChar;
-import helper.struct.PassedCheck;
-import helper.struct.Point;
+import helper.struct.*;
 
 /*
  *     # # # # # # # #
@@ -39,6 +37,7 @@ public class TextWriter{
     private final int CHAR_WIDTH = 13;
     private final int CHAR_HEIGHT = 8;
     private final int CHAR_PAD_DUMMY = 127;
+    public final int bitmapWidth = 64,bitmapHeight=64;
     private final char END_OF_BUF = Token.END_OF_BUF.getChar();
     private final char SKIP_CHAR = Token.SKIP_CHAR.getChar();
     private final char NEW_LINE = Token.NEW_LINE.getChar();
@@ -255,14 +254,13 @@ public class TextWriter{
                 y+=((self.CHAR_FONT_HEIGHT)*scale);
                 x=baseX;
             }
-            //x += self.fillFontChar(c, x, y,scale,color);
-            x += self.drawFontChar(c, x, y,scale,color);
+            x += self.fillFontChar(c, x, y,scale,color);
+            //x += self.drawFontChar(c, x, y,scale,color);
             i++;
         }
     }
 
     private int drawFontChar(char c,int x,int y,float scale,int color){
-
         int i,j=0;
         c = (char)(c & 0x7F);// set max to 127 (125 == 0x7D),shift = 127,enter = 10 '\n',backspace = 8
         if(c < ' '){c = 0;}
@@ -302,15 +300,30 @@ public class TextWriter{
         int x2 = (int)((font.x+font.width+font.lsb)*scale)+x;
         int y1 = (int)(fy*scale)+y;
         int y2 = (int)((fy+font.height)*scale)+y;
+
+        int u1 = 0;
+        int v1 = 0;
+        int u2 = 1;
+        int v2 = 1;
+
+        //float ortho_matrix[16] = {0};
+
+        Tri tri1,tri2;
+
+        tri1 = new Tri(x1,y1,u1,v1,x1,y2,u1,v2,x2,y2,u2,v2);
+        tri2 = new Tri(x1,y1,u1,v1,x2,y2,u2,v2,x2,y1,u2,v1);
+        Triangle.texturedTriangle(tri1,font.texture,bitmapWidth,bitmapHeight);
+        Triangle.texturedTriangle(tri2,font.texture,bitmapWidth,bitmapHeight);
+
         /*Line.drawLine(x1,y1,x2,y1,color);
         Line.drawLine(x1,y1,x1,y2,color);
         Line.drawLine(x1,y2,x2,y2,color);
         Line.drawLine(x2,y2,x2,y1,color);*/
-        while(j<font.splines.length){
+        /*while(j<font.splines.length){
             Point[] p = font.splines[j++].splinePoints;
             Polygon.fillPolygonShape(p,x1,y1,x2,y2,x,y,font.lsb,scale,color);
 
-        }
+        }*/
         return (int)((float)(font.width+font.lsb)*scale);
     }
 }

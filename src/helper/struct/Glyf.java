@@ -1,6 +1,7 @@
 package helper.struct;
 
 import helper.io.IOHandler;
+import helper.sort.QuickSort;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -10,6 +11,7 @@ import static helper.methods.CommonMethods.buildInvertPointArr;
 //https://handmade.network/forums/articles/t/7330-implementing_a_font_reader_and_rasterizer_from_scratch%252C_part_1__ttf_font_reader.
 public class Glyf {
     public int numberOfContours,xMin,yMin,xMax,yMax,instructionLength,edgeCount;
+    public float fxMin,fyMin,fxMax,fyMax;
     public short[] endPtsOfContours;
     public int[] xCoordinates,yCoordinates;
     public byte[] instructions,flags;
@@ -17,12 +19,61 @@ public class Glyf {
     public static int globalCounter;
     public final int bitmapWidth = 64,bitmapHeight=64;
     public Edge[] lines;
-    public Glyf(short contours,short xmin,short ymin,short xmax,short ymax){
+    public byte[] texture;
+    public Glyf(short contours,int xmin,int ymin,int xmax,int ymax){
         numberOfContours = contours;
         xMin = xmin;
         yMin = ymin;
         xMax = xmax;
         yMax = ymax;
+        texture = new byte[bitmapWidth*bitmapHeight];
+    }
+
+    public void flipTextureVertical(){
+        int c,r=0,j;
+        while(r<bitmapHeight/2) {
+            c = bitmapHeight - 1 - r;
+            j = 0;
+            while (j < bitmapWidth) {
+                byte temp = texture[r * bitmapWidth + j];
+                texture[r * bitmapWidth + j] = texture[c * bitmapWidth + j];
+                texture[c * bitmapWidth + j] = temp;
+                j++;
+            }
+            r++;
+        }
+    }
+
+    public void setFloatBoundaries(){
+        fxMin = xMin;
+        fyMin = yMin;
+        fxMax = xMax;
+        fyMax = yMax;
+        int i = 0,j;
+        while(i<numberOfContours){
+            j = 0;
+            while(j<pointList[i].length){
+                if(pointList[i][j].x < fxMin){fxMin = pointList[i][j].x;}
+                if(pointList[i][j].x > fxMax){fxMax = pointList[i][j].x;}
+                if(pointList[i][j].y < fyMin){fyMin = pointList[i][j].y;}
+                if(pointList[i][j].y > fyMax){fyMax = pointList[i][j].y;}
+                j++;
+            }
+            i++;
+        }
+    }
+
+    public void coordinatesInsideRange(){
+        int i = 0,j;
+        while(i<numberOfContours){
+            j = 0;
+            while(j<pointList[i].length){
+                if(pointList[i][j].x < fxMin || pointList[i][j].x > fxMax){IOHandler.printString("X outside Range: %f  fXmin: %f  fXMax: %f".formatted(pointList[i][j].x,fxMin,fxMax));}
+                if(pointList[i][j].y < fyMin || pointList[i][j].y > fyMax){IOHandler.printString("Y outside Range: %f  fYmin: %f  fYMax: %f".formatted(pointList[i][j].y,fyMin,fyMax));}
+                j++;
+            }
+            i++;
+        }
     }
 
     public void splitCoordinates(){
@@ -36,6 +87,18 @@ public class Glyf {
         }
         xCoordinates = null;
         yCoordinates = null;
+    }
+
+    public void flipYCoordinate(){
+        int i = 0,j;
+        while(i<numberOfContours){
+            j = 0;
+            while(j<pointList[i].length){
+                pointList[i][j].y = yMin - pointList[i][j].y;
+                j++;
+            }
+            i++;
+        }
     }
 
     //https://handmade.network/forums/wip/t/7610-reading_ttf_files_and_rasterizing_them_using_a_handmade_approach,_part_2__rasterization
@@ -54,7 +117,7 @@ public class Glyf {
             Point[] points = new Point[128];
             while(startIdx<=endIdx){
                 float x = xCoordinates[startIdx];
-                float y = yMin-yCoordinates[startIdx];
+                float y = yCoordinates[startIdx];
 
                 int nextIndex = (startIdx+1 - contourStartIndex)%contourLen+contourStartIndex;
 
@@ -65,17 +128,17 @@ public class Glyf {
                     if(contourStart != 0){
                         contourStartedOff = 1;
                         if(getOnCurve(nextIndex)){
-                            points[cnt++] = new Point(xCoordinates[nextIndex],yMin-yCoordinates[nextIndex]);
+                            points[cnt++] = new Point(xCoordinates[nextIndex],yCoordinates[nextIndex]);
                             startIdx+=2;
                             continue;
                         }
                         x = x + (xCoordinates[nextIndex] - x) / 2.0f;
-                        y = y + ((yMin-yCoordinates[nextIndex] - y)) / 2.0f;
+                        y = y + (yCoordinates[nextIndex] - y) / 2.0f;
                         points[cnt++] = new Point(x,y);
                     }
                     Point p0 = points[cnt-1];
                     Point p1 = new Point(x,y);
-                    Point p2 = new Point(xCoordinates[nextIndex],yMin-yCoordinates[nextIndex]);
+                    Point p2 = new Point(xCoordinates[nextIndex],yCoordinates[nextIndex]);
 
                     if(!getOnCurve(nextIndex)){
                         p2.x = p1.x + (p2.x-p1.x)/2.0f;
@@ -97,7 +160,7 @@ public class Glyf {
             }
             if(contourStartedOff != 0){
                 Point p0 = points[cnt-1];
-                Point p1 = new Point(xCoordinates[contourStartIndex],yMin-yCoordinates[contourStartIndex]);
+                Point p1 = new Point(xCoordinates[contourStartIndex],yCoordinates[contourStartIndex]);
                 Point p2 = points[genereatedPointsStartIndex];
                 tessellateBezier(points,cnt-1,p0,p1,p2);
                 cnt+=globalCounter;
@@ -113,7 +176,8 @@ public class Glyf {
 
     public void generateEdges(){
         int i=0,j,cnt = 0;
-        lines = new Edge[edgeCount-1];
+        edgeCount-=Math.max(1,numberOfContours);
+        lines = new Edge[edgeCount];
         while(i<numberOfContours){
             j=0;
             while(j<pointList[i].length-1){
@@ -122,7 +186,71 @@ public class Glyf {
             }
             i++;
         }
+    }
 
+    public void rasterizeSelf(){
+        float[] intersections = new float[32];
+        int intersectionCount,scanlineSubDiv = 5;
+        float alphaWeight = 255.0f/(float)scanlineSubDiv;
+        float stepPerScanline = 1.0f/5.0f;
+        for(int i=0;i<bitmapHeight;i++){
+            for(int x = 0;x<scanlineSubDiv;x++){
+                intersectionCount = 0;
+                float scanLine = i + x*stepPerScanline;
+
+                for(int j=0;j<edgeCount;j++){
+                    Edge edge = lines[j];
+
+                    float biggerY = Math.max(edge.p1.y,edge.p2.y);
+                    float smallerY = Math.min(edge.p1.y,edge.p2.y);
+
+                    if(scanLine <= smallerY || scanLine > biggerY)continue;
+
+                    float dx = edge.p2.x - edge.p1.x;
+                    float dy = edge.p2.y - edge.p1.y;
+
+                    if(dy == 0)continue;
+
+                    float intersection = -1.0f;
+                    if(dx == 0){
+                        intersection = edge.p1.x;
+                    }
+                    else{
+                        intersection = (scanLine - edge.p1.y)*(dx/dy) + edge.p1.x;
+                        if(intersection<0)intersection = edge.p1.x;
+                    }
+                    intersections[intersectionCount++] = intersection;
+                }
+
+                QuickSort.sortFloatArray(intersections,0,intersectionCount);
+
+                if(intersectionCount>1){
+                    for(int m = 0;m<intersectionCount;m+=2){
+                        float startIntersection = intersections[m];
+                        int startIndex = (int)intersections[m];
+                        float startCovered = (startIndex+1) - startIntersection;
+
+                        float endIntersection = intersections[m+1];
+                        int endIndex = (int)intersections[m+1];
+                        float endCovered = endIntersection - endIndex;
+
+                        if(startIndex == endIndex){
+                            texture[Math.min(texture.length-1,startIndex + i*bitmapWidth)] += alphaWeight*startCovered;
+                        }
+                        else{
+                            texture[Math.min(texture.length-1,startIndex + i*bitmapWidth)] += alphaWeight*startCovered;
+                            texture[Math.min(texture.length-1,endIndex + i*bitmapWidth)] += alphaWeight*endCovered;
+                        }
+
+                        for(int j = startIndex+1;j<endIndex;j++){
+                            texture[Math.min(texture.length-1,j + i*bitmapWidth)] += alphaWeight;
+                        }
+
+                    }
+                }
+
+            }
+        }
     }
 
     public void tessellateBezier(Point[] output,int currentIndex,Point p0,Point p1,Point p2){
@@ -141,13 +269,13 @@ public class Glyf {
     }
 
     public void scalePointsToFitBitmap(){
-        int i=0,j=0;
+        int i=0,j;
         float scale = getBitMapScale();
-        while(i<pointList.length){
+        while(i<numberOfContours){
             j=0;
             while(j<pointList[i].length){
-                pointList[i][j].x =  (pointList[i][j].x - xMin)*scale;
-                pointList[i][j].y =  (pointList[i][j].y - yMin)*scale;
+                pointList[i][j].x =  (pointList[i][j].x - fxMin)*scale;
+                pointList[i][j].y =  (pointList[i][j].y - fyMin)*scale;
                 j++;
             }
             i++;
@@ -155,7 +283,8 @@ public class Glyf {
     }
 
     public float getBitMapScale(){
-        return (float)bitmapHeight/(float)(yMax-yMin);
+
+        return (float)bitmapHeight/(fyMax-fyMin);
     }
 
 

@@ -152,6 +152,12 @@ public class CommonMethods{
         w2.swapValues(index,edits,word);
     }
 
+    public static void swapFloat(float[] arr,int a,int b){
+        float temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+
     public static void swapIntArrayObject(int[] arr,int i1,int i2){
         int temp = arr[i1];
         arr[i1] = arr[i2];

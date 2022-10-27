@@ -6,8 +6,9 @@ public class FontChar {
     public int x,y,width,height,lsb,rsb;
     public char charValue;
     public Spline[] splines;
+    public byte[] texture;
 
-    public FontChar(char ch,int xMin,int xMax,int yMin,int yMax,int leftSideBearing,int advanceWidth,Spline[] sps){
+    public FontChar(char ch,int xMin,int xMax,int yMin,int yMax,int leftSideBearing,int advanceWidth,Spline[] sps,byte[] tex){
         charValue = ch;
         x = xMin;
         y = yMin;
@@ -16,5 +17,6 @@ public class FontChar {
         lsb = leftSideBearing;
         rsb = advanceWidth - (leftSideBearing + xMax - xMin);
         splines = sps;
+        texture = tex;
     }
 }

@@ -81,7 +81,7 @@ public class TTFglyfInfo implements ITTFTableInfo {
                     int flagCombined = g.xShort(m) << 1 | g.xShortPos(m);
                     switch(flagCombined){
                         case 0:{
-                            currentCoordinate = bytesToInt(buf,offset,2,false);
+                            currentCoordinate = (short)bytesToInt(buf,offset,2,false);
                             offset+=2;
                             break;
                         }
@@ -100,7 +100,7 @@ public class TTFglyfInfo implements ITTFTableInfo {
                             break;
                         }
                     }
-                    g.xCoordinates[m] = (short)(currentCoordinate+prevCoordinate);
+                    g.xCoordinates[m] = (currentCoordinate+prevCoordinate);
                     prevCoordinate = g.xCoordinates[m];
                     m++;
                 }
@@ -113,7 +113,7 @@ public class TTFglyfInfo implements ITTFTableInfo {
                     int flagCombined = g.yShort(n) << 1 | g.yShortPos(n);
                     switch(flagCombined){
                         case 0:{
-                            currentCoordinate = bytesToInt(buf,offset,2,false);
+                            currentCoordinate = (short)bytesToInt(buf,offset,2,false);
                             offset+=2;
                             break;
                         }
@@ -132,7 +132,7 @@ public class TTFglyfInfo implements ITTFTableInfo {
                             break;
                         }
                     }
-                    g.yCoordinates[n] = (short)(currentCoordinate+prevCoordinate);
+                    g.yCoordinates[n] = (currentCoordinate+prevCoordinate);
                     prevCoordinate = g.yCoordinates[n];
                     n++;
                 }

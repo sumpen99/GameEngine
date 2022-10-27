@@ -86,6 +86,11 @@ public class IOHandler {
         System.out.println("[%s] -> needs [%d] swaps to become -> [%s]".formatted(strIn,edit.n,strOut));
     }
 
+    public static void printMultiPoints(Point[][] points){
+        int i = 0,size = points.length;
+        while(i<size)printPoints(points[i++]);
+    }
+
     public static void printPoints(Point[] points){
         int i = 0,size = points.length;
         while(i<size)printPoint(points[i++]);
@@ -107,6 +112,13 @@ public class IOHandler {
     public static void printIntArray(int[] arr){
         printString("Int Array length: %d".formatted(arr.length));
         for(int i = 0;i<arr.length;i++)printInt(arr[i]);
+    }
+
+    public static void printByteArray(byte[] arr){
+        for(int i = 0;i<arr.length;i++){
+            if(i%64 == 0 && i != 0)printString("");
+            System.out.print(arr[i] + " ");
+        }
     }
 
     public static void printCharBuf(CharBuf buf,int col){

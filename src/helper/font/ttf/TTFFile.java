@@ -52,8 +52,19 @@ public class TTFFile {
                 Spline[] splines = new Spline[glyf.numberOfContours];
                 //IOHandler.printChar(c);
                 glyf.generatePoints();
-                //glyf.scalePointsToFitBitmap();
+                glyf.setFloatBoundaries();
+                //glyf.coordinatesInsideRange();
+                //glyf.flipYCoordinate();
+                glyf.scalePointsToFitBitmap();
+                //IOHandler.printMultiPoints(glyf.pointList);
                 glyf.generateEdges();
+                glyf.rasterizeSelf();
+                glyf.flipTextureVertical();
+                /*if(c == 'A'){
+                    //IOHandler.printGlyph(glyf,false);
+                    //IOHandler.printMultiPoints(glyf.pointList);
+                    IOHandler.printByteArray(glyf.texture);
+                }*/
                 //glyf.splitCoordinates();
                 while(i<glyf.numberOfContours){
                     Spline sp = new Spline();
@@ -62,7 +73,7 @@ public class TTFFile {
                     splines[i] = sp;
                     i++;
                 }
-                map[c-' '] = new FontChar(c,glyf.xMin,glyf.xMax,glyf.yMin,glyf.yMax,hmetric.leftSideBearing,hmetric.advanceWidth,splines);
+                map[c-' '] = new FontChar(c,glyf.xMin,glyf.xMax,glyf.yMin,glyf.yMax,hmetric.leftSideBearing,hmetric.advanceWidth,splines,glyf.texture);
             }
         }
     }

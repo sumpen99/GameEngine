@@ -1,7 +1,10 @@
 package helper.drawobjects;
 import helper.canvas.CanvasHandler;
+import helper.enums.Color;
 import helper.enums.DrawMode;
 import helper.enums.WidgetShape;
+import helper.io.IOHandler;
+import helper.struct.Tri;
 import helper.struct.Vec2d;
 import helper.struct.VecMinMax;
 
@@ -143,6 +146,201 @@ public class Triangle extends DrawObject{
                     CanvasHandler.setPixel(j,i,this.color);
             }
         }
+    }
+
+    public static void texturedTriangle(Tri tri,byte[] texture,int bufWidth,int bufHeight){
+        tri.swapPos1Pos2();
+        tri.swapPos3Pos1();
+        tri.swapPos3Pos2();
+        int dx1,dx2,dy1,dy2;
+        float du1,du2,dv1,dv2,dw1,dw2;
+        float tex_u,tex_v,tex_w;
+        float dax_step,dbx_step,du1_step,dv1_step,du2_step,dv2_step,dw1_step,dw2_step;
+
+        dax_step = 0.0f;
+        dbx_step= 0.0f;
+        du1_step= 0.0f;
+        dv1_step= 0.0f;
+        du2_step= 0.0f;
+        dv2_step= 0.0f;
+        dw1_step= 0.0f;
+        dw2_step= 0.0f;
+
+        dx1 = (int)(tri.p2.x-tri.p1.x);
+        dy1 = (int)(tri.p2.y-tri.p1.y);
+        du1 = tri.p2.u-tri.p1.u;
+        dv1 = tri.p2.v-tri.p1.v;
+        dw1 = tri.p2.w-tri.p1.w;
+
+        dx2 = (int)(tri.p3.x-tri.p1.x);
+        dy2 = (int)(tri.p3.y-tri.p1.y);
+        du2 = tri.p3.u-tri.p1.u;
+        dv2 = tri.p3.v-tri.p1.v;
+        dw2 = tri.p3.w-tri.p1.w;
+
+        if (dy1 != 0){dax_step = (float)dx1 / Math.abs(dy1);}
+        if (dy2 != 0){dbx_step = (float)dx2 / Math.abs(dy2);}
+        if (dy1 != 0){du1_step = du1 / Math.abs(dy1);}
+        if (dy1 != 0){dv1_step = dv1 / Math.abs(dy1);}
+        if (dy1 != 0){dw1_step = dw1 / Math.abs(dy1);}
+
+        if (dy2 != 0){du2_step = du2 / Math.abs(dy2);}
+        if (dy2 != 0){dv2_step = dv2 / Math.abs(dy2);}
+        if (dy2 != 0){dw2_step = dw2 / Math.abs(dy2);}
+
+        if(dy1 != 0){
+           int i = (int)tri.p1.y,stop = (int)tri.p2.y;
+            //IOHandler.printString("I: %d Stop: %d".formatted(i,stop));
+            while(i<stop){
+                int ax = (int)(tri.p1.x + ((float)i - tri.p1.y) * dax_step);
+                int bx = (int)(tri.p1.x + ((float)i - tri.p1.y) * dbx_step);
+
+                float tex_su = tri.p1.u + ((float)i - tri.p1.y) * du1_step;
+                float tex_sv = tri.p1.v + ((float)i - tri.p1.y) * dv1_step;
+                float tex_sw = tri.p1.w + ((float)i - tri.p1.y) * dw1_step;
+
+                float tex_eu = tri.p1.u + ((float)i - tri.p1.y) * du2_step;
+                float tex_ev = tri.p1.v + ((float)i - tri.p1.y) * dv2_step;
+                float tex_ew = tri.p1.w + ((float)i - tri.p1.y) * dw2_step;
+                //IOHandler.printString("Ax: %d Bx: %d".formatted(ax,bx));
+                if(ax > bx){
+                    int tempX;
+                    float tempSu,tempSv,tempSw;
+                    tempX = ax;
+                    ax = bx;
+                    bx = tempX;
+
+                    tempSu = tex_su;
+                    tex_su = tex_eu;
+                    tex_eu = tempSu;
+
+                    tempSv = tex_sv;
+                    tex_sv = tex_ev;
+                    tex_ev = tempSv;
+
+                    tempSw = tex_sw;
+                    tex_sw = tex_ew;
+                    tex_ew = tempSw;
+
+                }
+                float tstep = 0.0f;
+                if(bx-ax != 0){tstep = 1.0f / (float)(bx-ax);}
+                float t = 0.0f;
+                int j = ax;
+                //IOHandler.printString("J: %d Bx: %d".formatted(j,bx));
+                while(j < bx){
+                    tex_u = (1.0f - t) * tex_su + t * tex_eu;
+                    tex_v = (1.0f - t) * tex_sv + t * tex_ev;
+                    tex_w = (1.0f - t) * tex_sw + t * tex_ew;
+                    //int ind = (i*bufWidth) + j;
+                    //IOHandler.printString("Index: %d j: %d i: %d".formatted(ind,j,i));
+                    int sampleX = (int)((tex_u/tex_w)*bufWidth);
+                    int sampleY = (int)((tex_v/tex_w)*bufHeight);
+                    int index = (sampleY*bufWidth)+sampleX;
+                    if(texture[index] != 0){
+                        CanvasHandler.setPixel(j,i, Color.BLACK.getValue());
+                    }
+                    //if(ind >= 0 && ind < texture.length){
+                        //if (tex_w > pDepthBuffer[ind]):
+                        //color = tex.sample_texture_color(tex_u / tex_w, tex_v / tex_w,f'loop 1 x: {j} y: {i} tex_u: {tex_u} tex_v: {tex_v} tex_w: {tex_w}')
+                        //CanvasHandler.setPixel(j,i, Color.PALEGOLDENROD.getValue());
+                        //set_pixel(px=j,py=i,buf_frame=buf,bufferWidth=width,bufferHeight=height,color=color,r=r,align=PIXELALIGN.BOTTOMLEFT.value)
+                        //pDepthBuffer[ind] = tex_w
+
+                    //}
+                    t += tstep;
+                    j+=1;
+                }
+                i+=1;
+            }
+
+        }
+
+        dy1 = (int)(tri.p3.y - tri.p2.y);
+        dx1 = (int)(tri.p3.x - tri.p2.x);
+        dv1 = tri.p3.v - tri.p2.v;
+        du1 = tri.p3.u - tri.p2.u;
+        dw1 = tri.p3.w - tri.p2.w;
+
+        if(dy1 != 0){dax_step = (float)dx1 / Math.abs(dy1);}
+        if(dy2 != 0){dbx_step = (float)dx2 / Math.abs(dy2);}
+        du1_step = 0.0f;
+        dv1_step = 0.0f;
+        if(dy1 != 0){du1_step = du1 / Math.abs(dy1);}
+        if (dy1 != 0){dv1_step = dv1 / Math.abs(dy1);}
+        if (dy1 != 0){dw1_step = dw1 / Math.abs(dy1);}
+
+        if(dy1 != 0){
+            int i = (int)tri.p2.y,stop = (int)tri.p3.y;
+
+            while(i<stop) {
+                int ax = (int) (tri.p2.x + ((float) i - tri.p2.y) * dax_step);
+                int bx = (int) (tri.p1.x + ((float) i - tri.p1.y) * dbx_step);
+
+                float tex_su = tri.p2.u + ((float) i - tri.p2.y) * du1_step;
+                float tex_sv = tri.p2.v + ((float) i - tri.p2.y) * dv1_step;
+                float tex_sw = tri.p2.w + ((float) i - tri.p2.y) * dw1_step;
+
+                float tex_eu = tri.p1.u + ((float) i - tri.p1.y) * du2_step;
+                float tex_ev = tri.p1.v + ((float) i - tri.p1.y) * dv2_step;
+                float tex_ew = tri.p1.w + ((float) i - tri.p1.y) * dw2_step;
+
+                if (ax > bx) {
+                    int tempX;
+                    float tempSu, tempSv, tempSw;
+                    tempX = ax;
+                    ax = bx;
+                    bx = tempX;
+
+                    tempSu = tex_su;
+                    tex_su = tex_eu;
+                    tex_eu = tempSu;
+
+                    tempSv = tex_sv;
+                    tex_sv = tex_ev;
+                    tex_ev = tempSv;
+
+                    tempSw = tex_sw;
+                    tex_sw = tex_ew;
+                    tex_ew = tempSw;
+
+                }
+
+                float tstep = 0.0f;
+                if (bx - ax != 0) {tstep = 1.0f / ((float)bx - (float)ax);}
+
+                float t = 0.0f;
+                int j = ax;
+                while(j < bx){
+                    tex_u = (1.0f - t) * tex_su + t * tex_eu;
+                    tex_v = (1.0f - t) * tex_sv + t * tex_ev;
+                    tex_w = (1.0f - t) * tex_sw + t * tex_ew;
+                    //int ind = (i * bufWidth) + j;
+                    //IOHandler.printString("tex_u / tex_w %f , tex_v / tex_w %f".formatted(tex_u / tex_w, tex_v / tex_w));
+                    int sampleX = (int)((tex_u/tex_w)*bufWidth);
+                    int sampleY = (int)((tex_v/tex_w)*bufHeight);
+                    int index = (sampleY*bufWidth)+sampleX;
+                    if(texture[index] != 0){
+                        //IOHandler.printString("Index: %d Byte[index] %d".formatted(index,texture[index]));
+                        CanvasHandler.setPixel(j,i, Color.BLACK.getValue());
+                    }
+                    //if(ind >= 0 && ind <texture.length){
+                        //IOHandler.printString("hepp 2");
+                        //if (tex_w > pDepthBuffer[ind]):
+                        //color = tex.sample_texture_color(tex_u / tex_w, tex_v / tex_w, f 'loop 2 x: {j} y:{i}')
+                        //CanvasHandler.setPixel(j,i, Color.PALEGOLDENROD.getValue());
+                        //set_pixel(px = j, py = i, buf_frame = buf, bufferWidth = width, bufferHeight = height, color = color, r = r, align = PIXELALIGN.BOTTOMLEFT.value)
+                        //pDepthBuffer[ind] = tex_w
+
+                    //}
+                    t += tstep;
+                    j++;
+                }
+                i++;
+            }
+
+        }
+
     }
 
 }
