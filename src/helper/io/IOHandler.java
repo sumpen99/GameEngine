@@ -802,41 +802,15 @@ public class IOHandler {
         return true;
     }
 
-    public static void printValueError(WidgetVariable err, String lnum){
-        switch(err){
-            case LEFT:{printStringMessage("NOT A CORRECT LEFT VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case TOP:{printStringMessage("NOT A CORRECT TOP VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case COL:{printStringMessage("NOT A CORRECT COL VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case ROW:{printStringMessage("NOT A CORRECT ROW VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case OBJ_COUNT:{printStringMessage("NOT A CORRECT OBJ_COUNT VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case IDENTITY:{printStringMessage("NOT A CORRECT IDENTITY VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case BIND:{printStringMessage("NOT A CORRECT BIND VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case WIDTH:{printStringMessage("NOT A CORRECT WIDTH VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case HEIGHT:{printStringMessage("NOT A CORRECT HEIGHT VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case CALLBACK:{printStringMessage("NOT A CORRECT TP_CALLBACK. ELEMENT AT VALUE Line ->:: ",lnum);break;}
-            case PATH:{printStringMessage("NOT A CORRECT PATH VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case UPDATE:{printStringMessage("NOT A CORRECT UPDATE VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case OPACITY:{printStringMessage("NOT A CORRECT OPACITY VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case FUNCTION:{printStringMessage("NOT A CORRECT FUNC VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case COLOR:{printStringMessage("NOT A CORRECT COLOR VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case BLEND:{printStringMessage("COLORS ADDED TO BLEND NOT ACCURATE. ELEMENT AT Line ->:: ",lnum);break;}
-            case TEXT_COLOR:{printStringMessage("NOT A CORRECT TEXT_COLOR VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case ENABLE_AUTO_CORRECT:{printStringMessage("NOT A CORRECT ENABLE_AUTO_CORRECT. ELEMENT AT Line ->:: ",lnum);break;}
-            case VALIGN:{printStringMessage("NOT A CORRECT VALIGN VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case HALIGN:{printStringMessage("NOT A CORRECT HALIGN VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case DRAW:{printStringMessage("NOT A CORRECT DRAW VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case POINTS:{printStringMessage("NOT A CORRECT TP_POINTS VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case TEXT:{printStringMessage("NOT A CORRECT TEXT VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case HINT_TEXT:{printStringMessage("NOT A CORRECT HINT_TEXT VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case ARGS:{printStringMessage("NOT A CORRECT ARGS VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case WSHAPE:{printStringMessage("NOT A CORRECT SHAPE VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case WTYPE:{printStringMessage("NOT A CORRECT TYPE VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case RADIE:{printStringMessage("NOT A CORRECT SHAPE VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case RADIEX:{printStringMessage("NOT A CORRECT SHAPE VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case RADIEY:{printStringMessage("NOT A CORRECT SHAPE VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case DEGREES:{printStringMessage("NOT A CORRECT DEGREES VALUE. ELEMENT AT Line ->:: ",lnum);break;}
-            case SM_VARIABLE_NOT_IMPLEMENTED:{printStringMessage("NOT A CORRECT WIDGETVARIABLE VALUE Line ->:: ",lnum);break;}
-            default:{printStringMessage("NOT A CORRECT VARIABLE Line ->:: ",lnum);break;}
+    public static void printValueError(WidgetVariable err, int lnum){
+        WidgetVariable[] ww = WidgetVariable.values();
+        int size = ww.length,i=0;
+        while(i<size){
+            if(err == ww[i]){
+                assert false : "\nNOT A CORRECT %s VALUE. ELEMENT AT Line ->:: %d (linenumber is not totally accurate)".formatted(err.toString(),lnum);
+                break;
+            }
+            i++;
         }
     }
 

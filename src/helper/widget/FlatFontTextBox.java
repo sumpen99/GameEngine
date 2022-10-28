@@ -11,7 +11,7 @@ public class FlatFontTextBox extends TextBox{
                 dww.functionMethod,
                 WidgetType.SM_FLAT_FONT_TEXTBOX,
                 new Rectangle(dww.left,dww.top,dww.width,dww.height,dww.color,dww.opacity,dww.draw),
-                dww.text,dww.hintText,dww.textColor,dww.alignText,dww.enableAutoCorrect);
+                dww.text,dww.hintText,dww.textColor,dww.fontSize,dww.alignText,dww.enableAutoCorrect);
     }
 
 
@@ -24,6 +24,6 @@ public class FlatFontTextBox extends TextBox{
         }
         if(this.cursor.cInfo.visible){this.cursor.draw();}
         if(this.suggestionBox.visible){this.suggestionBox.draw();}
-        TextWriter.drawFontCharBuffer(this.str.buf,this.textPos.x,this.textPos.y,cursor.cInfo.colCount,50,this.txtColor);
+        TextWriter.drawFontCharBuffer(this.str.buf,this.textPos.x,this.textPos.y,cursor.cInfo.colCount,this.fontSize,this.txtColor);
     }
 }

@@ -13,12 +13,13 @@ public abstract class Label extends Widget implements ILabel {
     protected Vec2d textPos;
     protected Vec2d centerTextPos;
     protected String hintText;
-    protected int fontWidth,fontHeight;
-    public Label(Object obj, Callback callback, WidgetType type, DrawObject shape, String text,String hinttext, int txtclr, boolean alignText){
+    protected int fontWidth,fontHeight,fontSize;
+    public Label(Object obj, Callback callback, WidgetType type, DrawObject shape, String text,String hinttext, int txtclr,int fontSize, boolean alignText){
         super(obj,callback,type,shape);
         hintText = hinttext;
         fontWidth = TextWriter.getCharWidth();
         fontHeight = TextWriter.getCharHeight();
+        this.fontSize = fontSize;
         this.text = text;
         this.txtColor = txtclr;
         this.textPos = new Vec2d(0,0);

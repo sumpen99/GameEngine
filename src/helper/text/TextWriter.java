@@ -285,7 +285,6 @@ public class TextWriter{
     }
 
     private int fillFontChar(char c,int x,int y,float scale,int color){
-        int i,j=0;
         c = (char)(c & 0x7F);// set max to 127 (125 == 0x7D),shift = 127,enter = 10 '\n',backspace = 8
         if(c < ' '){c = 0;}
         else if(c == 127)return 0; // shift

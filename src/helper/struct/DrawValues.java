@@ -12,6 +12,7 @@ public class DrawValues {
     public boolean enableAutoCorrect;
     public boolean alignText;
     public boolean callback;
+    public int fontSize;
     public int objCount;
     public int lnum;
     public int col;
@@ -39,6 +40,7 @@ public class DrawValues {
         hintText = "";
         text = "";
         opacity = 1;
+        fontSize = 20;
         color = Color.WHITE.getValue();
         textColor = Color.BLACK.getValue();
         alignText = true;

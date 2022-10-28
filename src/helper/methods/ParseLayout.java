@@ -78,6 +78,12 @@ public class ParseLayout {
                 else{err = ROW;}
                 break;
             }
+            case FONT_SIZE:{
+                verify = stringIsInt(val);
+                if(verify.passed){dww.fontSize = verify.iNum;}
+                else{err = FONT_SIZE;}
+                break;
+            }
             case OBJ_COUNT:{
                 verify = stringIsInt(val);
                 if(verify.passed){dww.objCount = verify.iNum;}
@@ -218,8 +224,8 @@ public class ParseLayout {
             }
         }
         if(err != SM_VARIABLE_DUMMY){
-            IOHandler.printValueError(err,"Variable %s Value %s %d".formatted(var,val,dww.lnum));
-            assert false : "Not A Correct Widget/Layout Value, Check Out LogFile And update [helper.methods.StringToEnum]";
+            assert err!= SM_VARIABLE_NOT_IMPLEMENTED: "Not A Correct Widget/Layout Value, Check Out LogFile And update [helper.methods.StringToEnum] lineNumber:%d (not totally accurate)".formatted(dww.lnum);
+            IOHandler.printValueError(err,dww.lnum);
         }
     }
 

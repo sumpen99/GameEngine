@@ -10,6 +10,6 @@ public class FlatTextBox extends TextBox{
                 dww.functionMethod,
                 WidgetType.SM_FLAT_TEXTBOX,
                 new Rectangle(dww.left,dww.top,dww.width,dww.height,dww.color,dww.opacity,dww.draw),
-                dww.text,dww.hintText,dww.textColor,dww.alignText,dww.enableAutoCorrect);
+                dww.text,dww.hintText,dww.textColor,dww.fontSize,dww.alignText,dww.enableAutoCorrect);
     }
 }

@@ -1580,6 +1580,7 @@ FlatFontTextbox
         top:50
         width:600
         height:100
+        fontsize:50
         color:GAINSBORO
         textcolor:DarkOrchid
         draw:fill

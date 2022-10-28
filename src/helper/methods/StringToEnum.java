@@ -254,6 +254,7 @@ public class StringToEnum {
         if(var.equals("path"))return WidgetVariable.PATH;
         if(var.equals("opacity"))return WidgetVariable.OPACITY;
         if(var.equals("text"))return WidgetVariable.TEXT;
+        if(var.equals("fontsize"))return WidgetVariable.FONT_SIZE;
         if(var.equals("hinttext"))return WidgetVariable.HINT_TEXT;
         if(var.equals("textcolor"))return WidgetVariable.TEXT_COLOR;
         if(var.equals("func"))return WidgetVariable.FUNCTION;

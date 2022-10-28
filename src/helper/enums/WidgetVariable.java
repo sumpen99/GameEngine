@@ -17,6 +17,7 @@ public enum WidgetVariable {
     ARGS("args"),
     PATH("path"),
     OPACITY("opacity"),
+    FONT_SIZE("fontsize"),
     TEXT("text"),
     HINT_TEXT("hinttext"),
     FUNCTION("function"),
