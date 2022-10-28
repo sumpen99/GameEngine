@@ -49,31 +49,18 @@ public class TTFFile {
                 int index = (int)m,i=0;
                 glyf = glyfs[index];
                 hmetric = hMetrics[index];
-                Spline[] splines = new Spline[glyf.numberOfContours];
-                //IOHandler.printChar(c);
                 glyf.generatePoints();
                 glyf.setFloatBoundaries();
-                //glyf.coordinatesInsideRange();
-                //glyf.flipYCoordinate();
                 glyf.scalePointsToFitBitmap();
-                //IOHandler.printMultiPoints(glyf.pointList);
                 glyf.generateEdges();
                 glyf.rasterizeSelf();
                 glyf.flipTextureVertical();
-                if(c == 'w'){
+                if(c == 'W'){
                     //IOHandler.printGlyph(glyf,false);
                     //IOHandler.printMultiPoints(glyf.pointList);
-                    IOHandler.printByteArray(glyf.texture);
+                    IOHandler.printShortArray(glyf.texture);
                 }
-                //glyf.splitCoordinates();
-                while(i<glyf.numberOfContours){
-                    Spline sp = new Spline();
-                    sp.splinePoints = glyf.pointList[i];
-                    //Spline sp = Spline.buildSingleSpline(glyf.pointList[i]);
-                    splines[i] = sp;
-                    i++;
-                }
-                map[c-' '] = new FontChar(c,glyf.xMin,glyf.xMax,glyf.yMin,glyf.yMax,hmetric.leftSideBearing,hmetric.advanceWidth,splines,glyf.texture);
+                map[c-' '] = new FontChar(c,glyf.xMin,glyf.xMax,glyf.yMin,glyf.yMax,hmetric.leftSideBearing,hmetric.advanceWidth,glyf.texture);
             }
         }
     }

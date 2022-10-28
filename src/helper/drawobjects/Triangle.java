@@ -148,7 +148,7 @@ public class Triangle extends DrawObject{
         }
     }
 
-    public static void texturedTriangle(Tri tri,byte[] texture,int bufWidth,int bufHeight,int color){
+    public static void texturedTriangle(Tri tri,short[] texture,int bufWidth,int bufHeight,int color){
         tri.swapPos1Pos2();
         tri.swapPos3Pos1();
         tri.swapPos3Pos2();
@@ -232,7 +232,9 @@ public class Triangle extends DrawObject{
                     int sampleX = (int)((tex_u/tex_w)*bufWidth);
                     int sampleY = (int)((tex_v/tex_w)*bufHeight);
                     int index = (sampleY*bufWidth)+sampleX;
-                    if(texture[index] < 0){
+                    if(texture[index] > 0){
+                        // texture = opacity
+                        // needs blending
                         CanvasHandler.setPixel(j,i,color);
                     }
                     t += tstep;
@@ -305,7 +307,9 @@ public class Triangle extends DrawObject{
                     int sampleX = (int)((tex_u/tex_w)*bufWidth);
                     int sampleY = (int)((tex_v/tex_w)*bufHeight);
                     int index = (sampleY*bufWidth)+sampleX;
-                    if(texture[index] < 0){
+                    if(texture[index] > 0){
+                        // texture = opacity
+                        // needs blending
                         CanvasHandler.setPixel(j,i, color);
                     }
                     t += tstep;

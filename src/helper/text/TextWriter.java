@@ -254,37 +254,12 @@ public class TextWriter{
                 y+=((self.CHAR_FONT_HEIGHT)*scale);
                 x=baseX;
             }
-            x += self.fillFontChar(c, x, y,scale,color);
-            //x += self.drawFontChar(c, x, y,scale,color);
+            x += self.drawFontChar(c, x, y,scale,color);
             i++;
         }
     }
 
     private int drawFontChar(char c,int x,int y,float scale,int color){
-        int i,j=0;
-        c = (char)(c & 0x7F);// set max to 127 (125 == 0x7D),shift = 127,enter = 10 '\n',backspace = 8
-        if(c < ' '){c = 0;}
-        else if(c == 127)return 0; // shift
-        else{c -= ' ';} // sub 32
-        int index = c;
-        FontChar font = self.ttf.getFontCharByIndex(index);
-        if(index == 0){return (int)((float)self.CHAR_FONT_WIDTH*scale);}
-        while(j<font.splines.length){
-            Point[] p = font.splines[j++].splinePoints;
-            i=1;
-            while(i<p.length){
-                int x1 = (int)((p[i-1].x+font.lsb)*scale)+x;
-                int x2 = (int)((p[i].x+font.lsb)*scale)+x;
-                int y1 = (int)((p[i-1].y)*scale)+y;
-                int y2 = (int)((p[i].y)*scale)+y;
-                Line.drawLine(x1,y1,x2,y2,color);
-                i++;
-            }
-        }
-        return (int)((float)(font.width+font.lsb)*scale);
-    }
-
-    private int fillFontChar(char c,int x,int y,float scale,int color){
         c = (char)(c & 0x7F);// set max to 127 (125 == 0x7D),shift = 127,enter = 10 '\n',backspace = 8
         if(c < ' '){c = 0;}
         else if(c == 127)return 0; // shift

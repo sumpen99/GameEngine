@@ -19,14 +19,14 @@ public class Glyf {
     public static int globalCounter;
     public final int bitmapWidth = 64,bitmapHeight=64;
     public Edge[] lines;
-    public byte[] texture;
+    public short[] texture;
     public Glyf(short contours,int xmin,int ymin,int xmax,int ymax){
         numberOfContours = contours;
         xMin = xmin;
         yMin = ymin;
         xMax = xmax;
         yMax = ymax;
-        texture = new byte[bitmapWidth*bitmapHeight];
+        texture = new short[bitmapWidth*bitmapHeight];
     }
 
     public void flipTextureVertical(){
@@ -35,7 +35,7 @@ public class Glyf {
             c = bitmapHeight - 1 - r;
             j = 0;
             while (j < bitmapWidth) {
-                byte temp = texture[r * bitmapWidth + j];
+                short temp = texture[r * bitmapWidth + j];
                 texture[r * bitmapWidth + j] = texture[c * bitmapWidth + j];
                 texture[c * bitmapWidth + j] = temp;
                 j++;
@@ -189,7 +189,6 @@ public class Glyf {
     }
 
     public void rasterizeSelf(){
-        float[] intersections = new float[32];
         int intersectionCount,scanlineSubDiv = 5;
         float alphaWeight = 255.0f/(float)scanlineSubDiv;
         float stepPerScanline = 1.0f/5.0f;
@@ -197,7 +196,7 @@ public class Glyf {
             for(int x = 0;x<scanlineSubDiv;x++){
                 intersectionCount = 0;
                 float scanLine = y + x*stepPerScanline;
-
+                float[] intersections = new float[16];
                 for(int j=0;j<edgeCount;j++){
                     Edge edge = lines[j];
 
@@ -222,8 +221,7 @@ public class Glyf {
                     intersections[intersectionCount++] = intersection;
                 }
 
-                QuickSort.sortFloatArray(intersections,0,intersectionCount);
-
+                QuickSort.sortFloatArray(intersections,0,intersectionCount-1);
                 if(intersectionCount>1){
                     for(int m = 0;m<intersectionCount;m+=2){
                         float startIntersection = intersections[m];

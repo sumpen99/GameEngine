@@ -121,6 +121,14 @@ public class IOHandler {
         }
     }
 
+    public static void printFloatArray(float[] arr){
+        for(int i = 0;i<arr.length;i++){
+            if(i%64 == 0 && i != 0)printString("");
+            System.out.print(arr[i] + " ");
+        }
+        printString("\n");
+    }
+
     public static void printShortArray(short[] arr){
         for(int i = 0;i<arr.length;i++){
             if(i%64 == 0 && i != 0)printString("");
