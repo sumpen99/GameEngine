@@ -121,6 +121,13 @@ public class IOHandler {
         }
     }
 
+    public static void printShortArray(short[] arr){
+        for(int i = 0;i<arr.length;i++){
+            if(i%64 == 0 && i != 0)printString("");
+            System.out.print(arr[i] + " ");
+        }
+    }
+
     public static void printCharBuf(CharBuf buf,int col){
         int i = 0,base = col,d;
         while(buf.buf[i] != '\0'){

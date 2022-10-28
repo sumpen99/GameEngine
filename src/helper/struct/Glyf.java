@@ -193,10 +193,10 @@ public class Glyf {
         int intersectionCount,scanlineSubDiv = 5;
         float alphaWeight = 255.0f/(float)scanlineSubDiv;
         float stepPerScanline = 1.0f/5.0f;
-        for(int i=0;i<bitmapHeight;i++){
+        for(int y=0;y<bitmapHeight;y++){
             for(int x = 0;x<scanlineSubDiv;x++){
                 intersectionCount = 0;
-                float scanLine = i + x*stepPerScanline;
+                float scanLine = y + x*stepPerScanline;
 
                 for(int j=0;j<edgeCount;j++){
                     Edge edge = lines[j];
@@ -222,7 +222,7 @@ public class Glyf {
                     intersections[intersectionCount++] = intersection;
                 }
 
-                //QuickSort.sortFloatArray(intersections,0,intersectionCount);
+                QuickSort.sortFloatArray(intersections,0,intersectionCount);
 
                 if(intersectionCount>1){
                     for(int m = 0;m<intersectionCount;m+=2){
@@ -235,15 +235,15 @@ public class Glyf {
                         float endCovered = endIntersection - endIndex;
 
                         if(startIndex == endIndex){
-                            texture[startIndex + i*bitmapWidth] += alphaWeight*startCovered;
+                            texture[startIndex + y*bitmapWidth] += alphaWeight*startCovered;
                         }
                         else{
-                            texture[startIndex + i*bitmapWidth] += alphaWeight*startCovered;
-                            texture[endIndex + i*bitmapWidth] += alphaWeight*endCovered;
+                            texture[startIndex + y*bitmapWidth] += alphaWeight*startCovered;
+                            texture[endIndex + y*bitmapWidth] += alphaWeight*endCovered;
                         }
 
-                        for(int j = startIndex+1;j<endIndex;j++){
-                            texture[j + i*bitmapWidth] += alphaWeight;
+                        for(int index = startIndex+1;index<endIndex;index++){
+                            texture[index + y*bitmapWidth] += alphaWeight;
                         }
 
                     }

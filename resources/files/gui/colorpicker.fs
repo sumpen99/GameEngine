@@ -1581,7 +1581,7 @@ FlatFontTextbox
         width:600
         height:100
         color:GAINSBORO
-        textcolor:Black
+        textcolor:DarkOrchid
         draw:fill
         shape:rectangle
         hintText:Test Font

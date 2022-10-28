@@ -148,7 +148,7 @@ public class Triangle extends DrawObject{
         }
     }
 
-    public static void texturedTriangle(Tri tri,byte[] texture,int bufWidth,int bufHeight){
+    public static void texturedTriangle(Tri tri,byte[] texture,int bufWidth,int bufHeight,int color){
         tri.swapPos1Pos2();
         tri.swapPos3Pos1();
         tri.swapPos3Pos2();
@@ -189,8 +189,7 @@ public class Triangle extends DrawObject{
         if (dy2 != 0){dw2_step = dw2 / Math.abs(dy2);}
 
         if(dy1 != 0){
-           int i = (int)tri.p1.y,stop = (int)tri.p2.y;
-            //IOHandler.printString("I: %d Stop: %d".formatted(i,stop));
+            int i = (int)tri.p1.y,stop = (int)tri.p2.y;
             while(i<stop){
                 int ax = (int)(tri.p1.x + ((float)i - tri.p1.y) * dax_step);
                 int bx = (int)(tri.p1.x + ((float)i - tri.p1.y) * dbx_step);
@@ -202,7 +201,6 @@ public class Triangle extends DrawObject{
                 float tex_eu = tri.p1.u + ((float)i - tri.p1.y) * du2_step;
                 float tex_ev = tri.p1.v + ((float)i - tri.p1.y) * dv2_step;
                 float tex_ew = tri.p1.w + ((float)i - tri.p1.y) * dw2_step;
-                //IOHandler.printString("Ax: %d Bx: %d".formatted(ax,bx));
                 if(ax > bx){
                     int tempX;
                     float tempSu,tempSv,tempSw;
@@ -227,27 +225,16 @@ public class Triangle extends DrawObject{
                 if(bx-ax != 0){tstep = 1.0f / (float)(bx-ax);}
                 float t = 0.0f;
                 int j = ax;
-                //IOHandler.printString("J: %d Bx: %d".formatted(j,bx));
                 while(j < bx){
                     tex_u = (1.0f - t) * tex_su + t * tex_eu;
                     tex_v = (1.0f - t) * tex_sv + t * tex_ev;
                     tex_w = (1.0f - t) * tex_sw + t * tex_ew;
-                    //int ind = (i*bufWidth) + j;
-                    //IOHandler.printString("Index: %d j: %d i: %d".formatted(ind,j,i));
                     int sampleX = (int)((tex_u/tex_w)*bufWidth);
                     int sampleY = (int)((tex_v/tex_w)*bufHeight);
                     int index = (sampleY*bufWidth)+sampleX;
-                    if(texture[index] != 0){
-                        CanvasHandler.setPixel(j,i, Color.BLACK.getValue());
+                    if(texture[index] < 0){
+                        CanvasHandler.setPixel(j,i,color);
                     }
-                    //if(ind >= 0 && ind < texture.length){
-                        //if (tex_w > pDepthBuffer[ind]):
-                        //color = tex.sample_texture_color(tex_u / tex_w, tex_v / tex_w,f'loop 1 x: {j} y: {i} tex_u: {tex_u} tex_v: {tex_v} tex_w: {tex_w}')
-                        //CanvasHandler.setPixel(j,i, Color.PALEGOLDENROD.getValue());
-                        //set_pixel(px=j,py=i,buf_frame=buf,bufferWidth=width,bufferHeight=height,color=color,r=r,align=PIXELALIGN.BOTTOMLEFT.value)
-                        //pDepthBuffer[ind] = tex_w
-
-                    //}
                     t += tstep;
                     j+=1;
                 }
@@ -315,24 +302,12 @@ public class Triangle extends DrawObject{
                     tex_u = (1.0f - t) * tex_su + t * tex_eu;
                     tex_v = (1.0f - t) * tex_sv + t * tex_ev;
                     tex_w = (1.0f - t) * tex_sw + t * tex_ew;
-                    //int ind = (i * bufWidth) + j;
-                    //IOHandler.printString("tex_u / tex_w %f , tex_v / tex_w %f".formatted(tex_u / tex_w, tex_v / tex_w));
                     int sampleX = (int)((tex_u/tex_w)*bufWidth);
                     int sampleY = (int)((tex_v/tex_w)*bufHeight);
                     int index = (sampleY*bufWidth)+sampleX;
-                    if(texture[index] != 0){
-                        //IOHandler.printString("Index: %d Byte[index] %d".formatted(index,texture[index]));
-                        CanvasHandler.setPixel(j,i, Color.BLACK.getValue());
+                    if(texture[index] < 0){
+                        CanvasHandler.setPixel(j,i, color);
                     }
-                    //if(ind >= 0 && ind <texture.length){
-                        //IOHandler.printString("hepp 2");
-                        //if (tex_w > pDepthBuffer[ind]):
-                        //color = tex.sample_texture_color(tex_u / tex_w, tex_v / tex_w, f 'loop 2 x: {j} y:{i}')
-                        //CanvasHandler.setPixel(j,i, Color.PALEGOLDENROD.getValue());
-                        //set_pixel(px = j, py = i, buf_frame = buf, bufferWidth = width, bufferHeight = height, color = color, r = r, align = PIXELALIGN.BOTTOMLEFT.value)
-                        //pDepthBuffer[ind] = tex_w
-
-                    //}
                     t += tstep;
                     j++;
                 }

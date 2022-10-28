@@ -50,7 +50,7 @@ public class TTFFile {
                 glyf = glyfs[index];
                 hmetric = hMetrics[index];
                 Spline[] splines = new Spline[glyf.numberOfContours];
-                IOHandler.printChar(c);
+                //IOHandler.printChar(c);
                 glyf.generatePoints();
                 glyf.setFloatBoundaries();
                 //glyf.coordinatesInsideRange();
@@ -60,11 +60,11 @@ public class TTFFile {
                 glyf.generateEdges();
                 glyf.rasterizeSelf();
                 glyf.flipTextureVertical();
-                /*if(c == 'W'){
-                    IOHandler.printGlyph(glyf,false);
-                    IOHandler.printMultiPoints(glyf.pointList);
-                    //IOHandler.printByteArray(glyf.texture);
-                }*/
+                if(c == 'w'){
+                    //IOHandler.printGlyph(glyf,false);
+                    //IOHandler.printMultiPoints(glyf.pointList);
+                    IOHandler.printByteArray(glyf.texture);
+                }
                 //glyf.splitCoordinates();
                 while(i<glyf.numberOfContours){
                     Spline sp = new Spline();
