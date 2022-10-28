@@ -55,6 +55,7 @@ public class TTFFile {
                 glyf.generateEdges();
                 glyf.rasterizeSelf();
                 glyf.flipTextureVertical();
+                glyf.clearBuffers();
                 if(c == 'W'){
                     //IOHandler.printGlyph(glyf,false);
                     //IOHandler.printMultiPoints(glyf.pointList);

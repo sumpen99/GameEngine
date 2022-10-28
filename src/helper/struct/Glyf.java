@@ -85,8 +85,6 @@ public class Glyf {
             startIdx = endIdx+1;
             i++;
         }
-        xCoordinates = null;
-        yCoordinates = null;
     }
 
     public void flipYCoordinate(){
@@ -99,6 +97,13 @@ public class Glyf {
             }
             i++;
         }
+    }
+
+    public void clearBuffers(){
+        xCoordinates = null;
+        yCoordinates = null;
+        pointList = null;
+        lines = null;
     }
 
     //https://handmade.network/forums/wip/t/7610-reading_ttf_files_and_rasterizing_them_using_a_handmade_approach,_part_2__rasterization
