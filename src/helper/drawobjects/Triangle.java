@@ -10,6 +10,8 @@ import helper.struct.VecMinMax;
 
 import java.lang.Math;
 
+import static helper.methods.CommonMethods.mixColors;
+
 public class Triangle extends DrawObject{
     protected Vec2d p1;
     protected Vec2d p2;
@@ -233,9 +235,8 @@ public class Triangle extends DrawObject{
                     int sampleY = (int)((tex_v/tex_w)*bufHeight);
                     int index = (sampleY*bufWidth)+sampleX;
                     if(texture[index] > 0){
-                        // texture = opacity
-                        // needs blending
-                        CanvasHandler.setPixel(j,i,color);
+                        float opacity = (float)texture[index] / 255.0f;
+                        CanvasHandler.setPixel(j,i, mixColors(CanvasHandler.getPixel(j,i),color,opacity));
                     }
                     t += tstep;
                     j+=1;
@@ -308,9 +309,8 @@ public class Triangle extends DrawObject{
                     int sampleY = (int)((tex_v/tex_w)*bufHeight);
                     int index = (sampleY*bufWidth)+sampleX;
                     if(texture[index] > 0){
-                        // texture = opacity
-                        // needs blending
-                        CanvasHandler.setPixel(j,i, color);
+                        float opacity = (float)texture[index] / 255.0f;
+                        CanvasHandler.setPixel(j,i, mixColors(CanvasHandler.getPixel(j,i),color,opacity));
                     }
                     t += tstep;
                     j++;

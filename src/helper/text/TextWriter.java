@@ -268,11 +268,10 @@ public class TextWriter{
         FontChar font = self.ttf.getFontCharByIndex(index);
 
         if(index == 0){return (int)((float)self.CHAR_FONT_WIDTH*scale);}
-
-        int fy = font.y-font.height;
-        int x1 = (int)((font.x+font.lsb)*scale)+x;
-        int x2 = (int)((font.x+font.width+font.lsb)*scale)+x;
-        int y1 = (int)(fy*scale)+y;
+        int fy = -font.y-font.height;
+        int x1 = (int)((-font.x+font.lsb)*scale)+x;
+        int x2 = (int)((-font.x+font.width+font.lsb)*scale)+x;
+        int y1 = (int)((fy)*scale)+y;
         int y2 = (int)((fy+font.height)*scale)+y;
 
         int u1 = 0;

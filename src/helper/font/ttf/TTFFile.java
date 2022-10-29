@@ -56,10 +56,10 @@ public class TTFFile {
                 glyf.rasterizeSelf();
                 glyf.flipTextureVertical();
                 glyf.clearBuffers();
-                if(c == 'W'){
-                    //IOHandler.printGlyph(glyf,false);
+                if(c == 'i' || c == 'j'){
+                    IOHandler.printGlyph(glyf,false);
                     //IOHandler.printMultiPoints(glyf.pointList);
-                    IOHandler.printShortArray(glyf.texture);
+                    //IOHandler.printShortArray(glyf.texture);
                 }
                 map[c-' '] = new FontChar(c,glyf.xMin,glyf.xMax,glyf.yMin,glyf.yMax,hmetric.leftSideBearing,hmetric.advanceWidth,glyf.texture);
             }

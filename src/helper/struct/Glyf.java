@@ -1,9 +1,6 @@
 package helper.struct;
-
 import helper.io.IOHandler;
 import helper.sort.QuickSort;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import static helper.methods.CommonMethods.buildInvertPointArr;

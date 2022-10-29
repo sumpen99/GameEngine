@@ -56,9 +56,9 @@ public class CanvasHandler{
     }
 
     public static void setPixel(int x,int y,int color){
-        if(x>=0 && x< self.screenWidth && y>= 0 && y < self.screenHeight) {
+        if(self.inBounds(y,x)) {
             int i = self.getIndex(x, y);
-            if (i != -1) {
+            if (i != -1){
                 if(((color) & 255) == 0)return;
                 self.frameBuffer[i] = (byte) (color);
                 self.frameBuffer[i + 1] = (byte) (color >> 8);
@@ -68,9 +68,36 @@ public class CanvasHandler{
         }
     }
 
+    public static int getPixel(int x,int y){
+        if(self.inBounds(y,x)) {
+            return self.getFrameBufferColor(self.getIndex(x, y));
+        }
+        return 0xffffffff;
+    }
+
+    boolean inBounds(int row,int col){
+        return (col >=0 && col< self.screenWidth && row >= 0 && row < self.screenHeight);
+    }
+
     private int getIndex(int x,int y){
         int i = ((y*this.screenWidth)+x)*4;
         return (i <this.frameBuffer.length-4) ? i : -1;
+    }
+
+    int getFrameBufferColor(int index){
+        int color = 0x0;
+        if(index >= 0 && index < self.frameBuffer.length-3){
+            color <<=8;
+            color|=self.frameBuffer[index+3] & 0xff; // red
+            color <<=8;
+            color|=self.frameBuffer[index+2] & 0xff; // green
+            color <<=8;
+            color|=self.frameBuffer[index+1] & 0xff; // blue
+            color <<=8;
+            color|=self.frameBuffer[index] & 0xff;// alpha
+            return color;
+        }
+        return 0xffffffff;
     }
 
 }

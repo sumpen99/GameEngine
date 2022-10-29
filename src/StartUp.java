@@ -5,6 +5,7 @@ import helper.struct.*;
 import helper.font.ttf.TTFFile;
 import helper.text.TextWriter;
 import program.ColorPicker;
+import program.QuadTreeBalls;
 import program.RecordSound;
 import helper.io.IOHandler;
 import program.SpellMe;
@@ -14,7 +15,6 @@ import static helper.enums.EntrieType.ENTRIE_JSON_STRING;
 //http://midi.teragonaudio.com/tech/lowaud.htm
 //https://tchayen.github.io/posts/ttf-file-parsing
 
-// TODO RASTERIZE FONT USE BEIZER CURVE
 
 public class StartUp {
 

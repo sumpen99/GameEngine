@@ -1,7 +1,5 @@
 package helper.struct;
 
-import helper.io.IOHandler;
-
 public class FontChar {
     public int x,y,width,height,lsb,rsb;
     public char charValue;
