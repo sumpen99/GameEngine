@@ -236,7 +236,8 @@ public class Triangle extends DrawObject{
                     int index = (sampleY*bufWidth)+sampleX;
                     if(texture[index] > 0){
                         float opacity = (float)texture[index] / 255.0f;
-                        CanvasHandler.setPixel(j,i, mixColors(CanvasHandler.getPixel(j,i),color,opacity));
+                        // TODO NEEDS BLENDING MODE
+                        CanvasHandler.setPixel(j,i, mixColors(CanvasHandler.getPixel(j,i),color,1.0f));
                     }
                     t += tstep;
                     j+=1;
@@ -310,7 +311,8 @@ public class Triangle extends DrawObject{
                     int index = (sampleY*bufWidth)+sampleX;
                     if(texture[index] > 0){
                         float opacity = (float)texture[index] / 255.0f;
-                        CanvasHandler.setPixel(j,i, mixColors(CanvasHandler.getPixel(j,i),color,opacity));
+                        // TODO NEEDS BLENDING MODE
+                        CanvasHandler.setPixel(j,i, mixColors(CanvasHandler.getPixel(j,i),color,1.0f));
                     }
                     t += tstep;
                     j++;

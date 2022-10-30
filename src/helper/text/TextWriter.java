@@ -156,34 +156,45 @@ public class TextWriter{
     }
 
     private static void readTTFFile(){
-        int size=1,i=0;
-        while(i++<size){
-            PassedCheck psc = new PassedCheck();
-            TTFFile ttf = new TTFFile("./resources/files/fonts/Quicksand-Bold.ttf");
-            IOHandler.parseTTFFile(ttf,false,psc);
-            ttf.setFileInfo();
-            ttf.setUpFontMap();
-            ttf.setUpCharMap();
-            //ttf.clearTable();
-            //ttf.dumpCharMap();
-            //ttf.printFileInfo();
-            //ttf.printTableInfo();
-            self.fontFiles.addNewItem("Quicksand-Bold",ttf,ENTRIE_TTF_FILE);
+        int size,i=0;
+        String[] ttfFiles = IOHandler.getTTFFiles();
+        if(ttfFiles != null){
+            size = ttfFiles.length;
+            while(i<size && ttfFiles[i] != null){
+                String path = ttfFiles[i];
+                IOHandler.printString(path);
+                String fontName = path.split("\\\\")[4].split("\\.")[0];
+                PassedCheck psc = new PassedCheck();
+                TTFFile ttf = new TTFFile(path);
+                IOHandler.parseTTFFile(ttf,false,psc);
+                ttf.setFileInfo();
+                ttf.setUpFontMap();
+                ttf.setUpCharMap();
+                //ttf.clearTable();
+                //ttf.dumpCharMap();
+                //ttf.printFileInfo();
+                //ttf.printTableInfo();
+                self.fontFiles.addNewItem(fontName,ttf,ENTRIE_TTF_FILE);
+                i++;
+            }
         }
     }
 
-    public static void setUnitsPerEm(String font){
-        self.ttf = (TTFFile)self.fontFiles.getObject(font).value;
-        self.unitsPerEm = self.ttf.getUnitsPerEm();
-        self.CHAR_FONT_GAP = self.ttf.getFontGap();
-        self.CHAR_FONT_WIDTH = self.ttf.getFontMaxWidth()/2;
-        self.CHAR_FONT_HEIGHT = self.ttf.getFontMaxHeigth();
+    public static void setCurrentFont(String font){
+        assert font != null : "Please Set A Correct Font Inside GUi-File ex[Quicksand-Bold]";
+        Entrie entrie = self.fontFiles.getObject(font);
+        assert entrie!= null : "Selected font does not exist [%s]".formatted(font);
+        self.ttf = (TTFFile)entrie.value;
     }
 
-    public static void setCurrentFontScale(int fontSize){
-        int index = 'a'-32;
+    public static void setCurrentFontUnits(int fontSize){
+        int index = 'A'-32;
         FontChar font = self.ttf.getFontCharByIndex(index);
+        self.unitsPerEm = self.ttf.getUnitsPerEm();
         self.fontScale = self.unitsPerEm*fontSize;
+        self.CHAR_FONT_GAP = (int)(self.ttf.getFontGap()*self.fontScale);
+        self.CHAR_FONT_WIDTH = font.width;
+        self.CHAR_FONT_HEIGHT = font.height;
         self.CHAR_FONT_OFFSET = (int)((-font.y-font.height)*self.fontScale);
     }
 

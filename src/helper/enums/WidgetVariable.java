@@ -3,6 +3,7 @@ package helper.enums;
 public enum WidgetVariable {
     IDENTITY("id"),
     BIND("bind"),
+    FONT("font"),
     LEFT("left"),
     TOP("top"),
     WIDTH("width"),

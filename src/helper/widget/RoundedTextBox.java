@@ -10,7 +10,7 @@ public class RoundedTextBox extends TextBox{
                 dww.functionMethod,
                 WidgetType.SM_ROUNDED_TEXTBOX,
                 new Ellipse(dww.left,dww.top,dww.radiex,dww.radiey,dww.color,dww.opacity,dww.draw),
-                dww.text,dww.hintText,dww.textColor,dww.fontSize,dww.alignText,dww.enableAutoCorrect);
+                dww.text,dww.hintText,dww.textColor,dww.fontSize,dww.font,dww.alignText,dww.enableAutoCorrect);
 
     }
 }

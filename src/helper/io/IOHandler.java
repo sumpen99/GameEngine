@@ -318,6 +318,16 @@ public class IOHandler {
         return true;
     }
 
+    public static String[] getTTFFiles(){
+        String[] ttfs = new String[20];
+        File dir = new File("./resources/files/fonts");
+        int cnt = 0;
+        for(File file: dir.listFiles()){
+            ttfs[cnt++] = file.toString();
+        }
+        return cnt>0 ? ttfs : null;
+    }
+
     public static void parseTTFFile(TTFFile header,boolean printHeaderInfo, PassedCheck result){
         DataInputStream reader = null;
         boolean passed = true;

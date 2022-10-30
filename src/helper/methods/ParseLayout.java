@@ -42,6 +42,11 @@ public class ParseLayout {
                 else{err = BIND;}
                 break;
             }
+            case FONT:{
+                if(val.length() > 0){dww.font = val;}
+                else{err = FONT;}
+                break;
+            }
             case LEFT:{
                 verify = stringIsInt(val);
                 if(verify.passed){dww.left = verify.iNum;}

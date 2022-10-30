@@ -20,8 +20,8 @@ public abstract class TextBox extends Label{
     protected final char NEW_LINE = Token.NEW_LINE.getChar();
     protected final char SKIP_CHAR = Token.SKIP_CHAR.getChar();
     protected final char END_OF_BUF = Token.END_OF_BUF.getChar();
-    public TextBox(Object obj, Callback callback, WidgetType type, DrawObject shape, String text,String hintText, int txtclr,int fontSize, boolean alignText,boolean enableAutoCorrect){
-        super(obj,callback,type,shape,text,hintText,txtclr,fontSize,alignText);
+    public TextBox(Object obj, Callback callback, WidgetType type, DrawObject shape, String text,String hintText, int txtclr,int fontSize,String font,boolean alignText,boolean enableAutoCorrect){
+        super(obj,callback,type,shape,text,hintText,txtclr,fontSize,font,alignText);
         this.enableAutoCorrect = enableAutoCorrect;
         initTextBox();
     }

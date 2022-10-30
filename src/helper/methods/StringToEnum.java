@@ -238,6 +238,7 @@ public class StringToEnum {
     public static WidgetVariable getWidgetVariable(String var){
         if(var.equals("id"))return WidgetVariable.IDENTITY;
         if(var.equals("bind"))return WidgetVariable.BIND;
+        if(var.equals("font"))return WidgetVariable.FONT;
         if(var.equals("args"))return WidgetVariable.ARGS;
         if(var.equals("left"))return WidgetVariable.LEFT;
         if(var.equals("top"))return WidgetVariable.TOP;

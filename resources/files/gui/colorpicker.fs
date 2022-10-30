@@ -1581,6 +1581,7 @@ FlatFontTextbox
         width:600
         height:100
         fontsize:50
+        font:Quicksand-Bold
         color:GAINSBORO
         textcolor:DarkOrchid
         draw:fill

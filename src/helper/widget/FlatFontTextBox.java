@@ -13,14 +13,13 @@ public class FlatFontTextBox extends TextBox{
                 dww.functionMethod,
                 WidgetType.SM_FLAT_FONT_TEXTBOX,
                 new Rectangle(dww.left,dww.top,dww.width,dww.height,dww.color,dww.opacity,dww.draw),
-                dww.text,dww.hintText,dww.textColor,dww.fontSize,dww.alignText,dww.enableAutoCorrect);
+                dww.text,dww.hintText,dww.textColor,dww.fontSize,dww.font,dww.alignText,dww.enableAutoCorrect);
     }
 
     @Override
     void initTextBox(){
         int colCount,rowCount,cursorHeight;
-        TextWriter.setUnitsPerEm("Quicksand-Bold");
-        TextWriter.setCurrentFontScale(this.fontSize);
+        updateTextWriter();
         cursorHeight = TextWriter.getFontCharHeight();
         colCount = this.wObj.getSize().x/TextWriter.getFontCharWidth();
         rowCount = this.wObj.getSize().y/(TextWriter.getFontCharHeight());
@@ -49,11 +48,15 @@ public class FlatFontTextBox extends TextBox{
         alignCenterTextPos();
     }
 
+    public void updateTextWriter(){
+        TextWriter.setCurrentFont(this.font);
+        TextWriter.setCurrentFontUnits(this.fontSize);
+    }
+
 
     @Override
     public void draw(){
-        TextWriter.setUnitsPerEm("Quicksand-Bold");
-        TextWriter.setCurrentFontScale(this.fontSize);
+        updateTextWriter();
         if(this.wObj.opacity != 0){this.wObj.draw();}
         if(this.drawHintText){
             if(hintText.length()*fontWidth > getSize().x) TextWriter.drawTextLine("%s".formatted(hintText),getPos().x,centerTextPos.y,getSize().x,this.txtColor);

@@ -6,8 +6,8 @@ import helper.struct.Vec2d;
 import static helper.enums.WidgetState.SM_TOUCH_PROCESSED;
 
 public abstract class Button extends Label{
-    public Button(Object obj,Callback callback,WidgetType type,DrawObject shape,String text,String hintText,int txtclr,int fontSize,boolean alignText){
-        super(obj,callback,type,shape,text,hintText,txtclr,fontSize,alignText);
+    public Button(Object obj,Callback callback,WidgetType type,DrawObject shape,String text,String hintText,int txtclr,int fontSize,String font,boolean alignText){
+        super(obj,callback,type,shape,text,hintText,txtclr,fontSize,font,alignText);
     }
 
     @Override

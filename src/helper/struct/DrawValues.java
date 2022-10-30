@@ -8,6 +8,7 @@ public class DrawValues {
     public String text;
     public String hintText;
     public String id;
+    public String font;
     public Callback functionMethod;
     public boolean enableAutoCorrect;
     public boolean alignText;
