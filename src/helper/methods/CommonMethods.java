@@ -331,6 +331,48 @@ public class CommonMethods{
         return false;
     }
 
+    public static int shadeColor(int color,float opacity){
+        int r1 = (color & ColorMask.RED_MASK.getValue()) >>> 24;
+        int g1 = (color & ColorMask.GREEN_MASK.getValue()) >>> 16;
+        int b1 = (color & ColorMask.BLUE_MASK.getValue()) >>> 8;
+
+        int red = (int)(r1*opacity);
+        int green = (int)(g1*opacity);
+        int blue = (int)(b1*opacity);
+        int alpha = 0xFF;
+        return (red<<24) + (green<<16) + (blue<<8) + alpha;
+    }
+
+    public static int tintColor(int color,float opacity){
+        int r1 = (color & ColorMask.RED_MASK.getValue()) >>> 24;
+        int g1 = (color & ColorMask.GREEN_MASK.getValue()) >>> 16;
+        int b1 = (color & ColorMask.BLUE_MASK.getValue()) >>> 8;
+
+        int red = (int)(r1 + (255-r1) * (1.0f-opacity));
+        int green = (int)(g1 + (255-g1) * (1.0f-opacity));
+        int blue = (int)(b1 + (255-b1) * (1.0f-opacity));
+        int alpha = 0xFF;
+        return (red<<24) + (green<<16) + (blue<<8) + alpha;
+    }
+
+    public static int layerColor(int c1,int c2,float opacity){
+        int r1 = (c1 & ColorMask.RED_MASK.getValue()) >>> 24;
+        int g1 = (c1 & ColorMask.GREEN_MASK.getValue()) >>> 16;
+        int b1 = (c1 & ColorMask.BLUE_MASK.getValue()) >>> 8;
+        int a1 = (c1 & ColorMask.ALPHA_MASK.getValue());
+
+        int r2 = (c2 & ColorMask.RED_MASK.getValue()) >>> 24;
+        int g2 = (c2 & ColorMask.GREEN_MASK.getValue()) >>> 16;
+        int b2 = (c2 & ColorMask.BLUE_MASK.getValue()) >>> 8;
+        int a2 = (c2 & ColorMask.ALPHA_MASK.getValue());
+
+        int red = (int)(r1 + (r2-r1) * opacity);
+        int green = (int)(g1 + (g2-g1) * opacity);
+        int blue = (int)(b1 + (b2-b1) * opacity);
+        int alpha = 0xFF;
+        return (red<<24) + (green<<16) + (blue<<8) + alpha;
+    }
+
     public static int mixColors(int c1,int c2,float t){
         int r1 = (c1 & ColorMask.RED_MASK.getValue()) >>> 24;
         int g1 = (c1 & ColorMask.GREEN_MASK.getValue()) >>> 16;

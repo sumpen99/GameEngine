@@ -6,7 +6,7 @@ public enum Color {
     GREEN(0x00ff00ff),
     BLUE(0x0000ffff),
     YELLOW(0xffff00ff),
-    RED(0xff0000ff),
+    RED(0xff0000FF),
     LIGHTGREEN(0x90ee90ff),
     LIGHTBLUE(0xb7e9f7ff),
     LIGHTORANGE(0xfbbf77ff),

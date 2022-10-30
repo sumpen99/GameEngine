@@ -304,8 +304,6 @@ public class TextWriter{
         int y1 = fy+y-self.CHAR_FONT_OFFSET;
         int y2 = (int)(y1+font.height*self.fontScale);
 
-        //IOHandler.printString("font.y: %d font.height: %d fy: %d y: %d y1: %d y2: %d".formatted(font.y,font.height,fy,y,y1,y2));
-        //IOHandler.printString("self.CHAR_FONT_OFFSET %d".formatted(self.CHAR_FONT_OFFSET));
         int u1 = 0;
         int v1 = 0;
         int u2 = 1;
