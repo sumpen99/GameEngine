@@ -8,7 +8,10 @@ import helper.enums.TextWriterType;
 import helper.enums.Token;
 import helper.font.ttf.TTFFile;
 import helper.io.IOHandler;
+import helper.list.SMHashMap;
 import helper.struct.*;
+
+import static helper.enums.EntrieType.ENTRIE_TTF_FILE;
 
 /*
  *     # # # # # # # #
@@ -27,11 +30,13 @@ public class TextWriter{
     private static TextWriterType typeOfText;
     private static TextWriter self = null;
     private TTFFile ttf;
+    private SMHashMap fontFiles;
     private static boolean isSet = false;
     private float unitsPerEm,fontScale;
     private int fontWidth,fontHeight;
     private final int CHAR_GAP = 0;
     private int CHAR_FONT_GAP = 0;
+    private int CHAR_FONT_OFFSET = 0;
     private int CHAR_FONT_WIDTH = 0;
     private int CHAR_FONT_HEIGHT = 0;
     private final int CHAR_WIDTH = 13;
@@ -146,29 +151,40 @@ public class TextWriter{
     public TextWriter(){
         assert !TextWriter.isSet :"TextWriter is already set!";
         TextWriter.setInstance();
+        fontFiles = new SMHashMap(100,.75f);
         if(!buildAutoCorrect("./resources/files/words/WordsUSA.txt")){TextWriter.autoWords =null;}
     }
 
     private static void readTTFFile(){
-        PassedCheck psc = new PassedCheck();
-        self.ttf = new TTFFile("./resources/files/fonts/Quicksand-Bold.ttf");
-        IOHandler.parseTTFFile(self.ttf,false,psc);
-        self.ttf.setFileInfo();
-        self.ttf.setUpFontMap();
-        self.ttf.setUpCharMap();
-        //self.ttf.clearTable();
-        //self.ttf.dumpCharMap();
-
-        //self.ttf.printFileInfo();
-        //self.ttf.printTableInfo();
-        setUnitsPerEm();
+        int size=1,i=0;
+        while(i++<size){
+            PassedCheck psc = new PassedCheck();
+            TTFFile ttf = new TTFFile("./resources/files/fonts/Quicksand-Bold.ttf");
+            IOHandler.parseTTFFile(ttf,false,psc);
+            ttf.setFileInfo();
+            ttf.setUpFontMap();
+            ttf.setUpCharMap();
+            //ttf.clearTable();
+            //ttf.dumpCharMap();
+            //ttf.printFileInfo();
+            //ttf.printTableInfo();
+            self.fontFiles.addNewItem("Quicksand-Bold",ttf,ENTRIE_TTF_FILE);
+        }
     }
 
-    static void setUnitsPerEm(){
+    public static void setUnitsPerEm(String font){
+        self.ttf = (TTFFile)self.fontFiles.getObject(font).value;
         self.unitsPerEm = self.ttf.getUnitsPerEm();
         self.CHAR_FONT_GAP = self.ttf.getFontGap();
-        self.CHAR_FONT_WIDTH = self.ttf.getFontMaxWidth();
+        self.CHAR_FONT_WIDTH = self.ttf.getFontMaxWidth()/2;
         self.CHAR_FONT_HEIGHT = self.ttf.getFontMaxHeigth();
+    }
+
+    public static void setCurrentFontScale(int fontSize){
+        int index = 'a'-32;
+        FontChar font = self.ttf.getFontCharByIndex(index);
+        self.fontScale = self.unitsPerEm*fontSize;
+        self.CHAR_FONT_OFFSET = (int)((-font.y-font.height)*self.fontScale);
     }
 
     public boolean buildAutoCorrect(String pathWords){
@@ -187,6 +203,10 @@ public class TextWriter{
         }
         if(TextWriter.typeOfText == TextWriterType.FONT_WRITER)readTTFFile();
     }
+
+    public static int getFontCharWidth(){return (int)(self.CHAR_FONT_WIDTH*self.fontScale);}
+
+    public static int getFontCharHeight(){return (int)(self.CHAR_FONT_HEIGHT*self.fontScale);}
 
     public static int getCharWidth(){return self.CHAR_WIDTH;}
 
@@ -244,22 +264,21 @@ public class TextWriter{
         return CHAR_WIDTH + CHAR_GAP;
     }
 
-    public static void drawFontCharBuffer(char[] buf,int x,int y,int col,int fontSize,int color){
-        float scale = self.unitsPerEm*fontSize;
+    public static void drawFontCharBuffer(char[] buf,int x,int y,int col,int color){
         int i = 0,baseX = x;
         char c;
         while(buf[i] != self.END_OF_BUF){
             c=buf[i];
             if(i % col == 0 && i != 0){
-                y+=((self.CHAR_FONT_HEIGHT)*scale);
+                y+=getFontCharHeight();
                 x=baseX;
             }
-            x += self.drawFontChar(c, x, y,scale,color);
+            x += self.drawFontChar(c, x, y,color);
             i++;
         }
     }
 
-    private int drawFontChar(char c,int x,int y,float scale,int color){
+    private int drawFontChar(char c,int x,int y,int color){
         c = (char)(c & 0x7F);// set max to 127 (125 == 0x7D),shift = 127,enter = 10 '\n',backspace = 8
         if(c < ' '){c = 0;}
         else if(c == 127)return 0; // shift
@@ -267,13 +286,15 @@ public class TextWriter{
         int index = c;
         FontChar font = self.ttf.getFontCharByIndex(index);
 
-        if(index == 0){return (int)((float)self.CHAR_FONT_WIDTH*scale);}
-        int fy = -font.y-font.height;
-        int x1 = (int)((-font.x+font.lsb)*scale)+x;
-        int x2 = (int)((-font.x+font.width+font.lsb)*scale)+x;
-        int y1 = (int)((fy)*scale)+y;
-        int y2 = (int)((fy+font.height)*scale)+y;
+        if(index == 0){return (int)((float)self.CHAR_FONT_WIDTH*self.fontScale);}
+        int fy = (int)((-font.y-font.height)* self.fontScale);
+        int x1 = (int)(font.lsb*self.fontScale)+x;
+        int x2 = (int)((font.lsb+font.width)*self.fontScale)+x;
+        int y1 = fy+y-self.CHAR_FONT_OFFSET;
+        int y2 = (int)(y1+font.height*self.fontScale);
 
+        //IOHandler.printString("font.y: %d font.height: %d fy: %d y: %d y1: %d y2: %d".formatted(font.y,font.height,fy,y,y1,y2));
+        //IOHandler.printString("self.CHAR_FONT_OFFSET %d".formatted(self.CHAR_FONT_OFFSET));
         int u1 = 0;
         int v1 = 0;
         int u2 = 1;
@@ -286,6 +307,6 @@ public class TextWriter{
         Triangle.texturedTriangle(tri1,font.texture,bitmapWidth,bitmapHeight,color);
         Triangle.texturedTriangle(tri2,font.texture,bitmapWidth,bitmapHeight,color);
 
-        return (int)((float)(font.width+font.lsb)*scale);
+        return (int)((float)(font.width+font.lsb)*self.fontScale);
     }
 }

@@ -6,5 +6,6 @@ public enum EntrieType {
     ENTRIE_WIDGET,
     ENTRIE_TTF_TAG,
     ENTRIE_TTF_GLYPHINDEX,
+    ENTRIE_TTF_FILE,
     ENTRIE_LAYOUT
 }

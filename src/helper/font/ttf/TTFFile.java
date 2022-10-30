@@ -46,7 +46,7 @@ public class TTFFile {
         for(char c:alphabet){
             m = glyphIndexMap.getValue("%s".formatted((int)c));
             if(m!= null){
-                int index = (int)m,i=0;
+                int index = (int)m;
                 glyf = glyfs[index];
                 hmetric = hMetrics[index];
                 glyf.generatePoints();
@@ -56,11 +56,11 @@ public class TTFFile {
                 glyf.rasterizeSelf();
                 glyf.flipTextureVertical();
                 glyf.clearBuffers();
-                if(c == 'i' || c == 'j'){
+                /*if(c == 'j' || c == 'k'){
                     IOHandler.printGlyph(glyf,false);
                     //IOHandler.printMultiPoints(glyf.pointList);
                     //IOHandler.printShortArray(glyf.texture);
-                }
+                }*/
                 map[c-' '] = new FontChar(c,glyf.xMin,glyf.xMax,glyf.yMin,glyf.yMax,hmetric.leftSideBearing,hmetric.advanceWidth,glyf.texture);
             }
         }
@@ -75,7 +75,7 @@ public class TTFFile {
     }
 
     public int getFontMaxWidth(){
-        return getTableHead().xMax/2;
+        return getTableHead().xMax;
     }
 
     public int getFontMaxHeigth(){
