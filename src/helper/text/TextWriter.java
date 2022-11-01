@@ -48,7 +48,7 @@ public class TextWriter{
     private final char NEW_LINE = Token.NEW_LINE.getChar();
     private final char NEW_TAB = Token.NEW_TAB.getChar();
     public static AutoWords autoWords;
-    // TODO REMOVE WHEN WRITING FROM TTF IS 100% ACCURATE
+    // TODO REMOVE WHEN WRITING FROM TTF IS 100% ACCURATE LIKE IT ALMOST IS NOW
     private final char[][] charBuf = {
             {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},//[        ] = 0
             {0x18, 0x18, 0x00, 0x00, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18},//['!' - 32] = 1
@@ -162,7 +162,6 @@ public class TextWriter{
             size = ttfFiles.length;
             while(i<size && ttfFiles[i] != null){
                 String path = ttfFiles[i];
-                IOHandler.printString(path);
                 String fontName = path.split("\\\\")[4].split("\\.")[0];
                 PassedCheck psc = new PassedCheck();
                 TTFFile ttf = new TTFFile(path);
@@ -188,7 +187,7 @@ public class TextWriter{
     }
 
     public static void setCurrentFontUnits(int fontSize){
-        int index = 'A'-32;
+        int index = 'A'-' ';
         FontChar font = self.ttf.getFontCharByIndex(index);
         self.unitsPerEm = self.ttf.getUnitsPerEm();
         self.fontScale = self.unitsPerEm*fontSize;
@@ -196,6 +195,12 @@ public class TextWriter{
         self.CHAR_FONT_WIDTH = font.width;
         self.CHAR_FONT_HEIGHT = font.height;
         self.CHAR_FONT_OFFSET = (int)((-font.y-font.height)*self.fontScale);
+        /*char[] alphabet = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}".toCharArray();
+        for(char c :alphabet){
+            index = c-' ';
+            FontChar f = self.ttf.getFontCharByIndex(index);
+            IOHandler.printString("Char: %c Width: %f".formatted(f.charValue,f.width*self.fontScale));
+        }*/
     }
 
     public boolean buildAutoCorrect(String pathWords){
@@ -284,7 +289,7 @@ public class TextWriter{
                 y+=getFontCharHeight();
                 x=baseX;
             }
-            x += self.drawFontChar(c, x, y,color);
+            x += self.drawFontChar(c,x, y,color);
             i++;
         }
     }
@@ -315,7 +320,6 @@ public class TextWriter{
         tri2 = new Tri(x1,y1,u1,v1,x2,y2,u2,v2,x2,y1,u2,v1);
         Triangle.texturedTriangle(tri1,font.texture,bitmapWidth,bitmapHeight,color);
         Triangle.texturedTriangle(tri2,font.texture,bitmapWidth,bitmapHeight,color);
-
         return (int)((float)(font.width+font.lsb)*self.fontScale);
     }
 }

@@ -10,6 +10,7 @@ import helper.interfaces.ITTFTableInfo;
 import helper.layout.Layout;
 import helper.list.SMHashMap;
 import helper.struct.*;
+import helper.widget.Cursor;
 import helper.widget.Widget;
 
 import static helper.enums.EntrieType.ENTRIE_TTF_GLYPHINDEX;
@@ -39,6 +40,10 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 
 public class IOHandler {
+
+    public static void printCursor(Cursor c){
+        printString("OffsetPos.X %d OffsetPos.Y %d".formatted(c.getOffsetPos().x,c.getOffsetPos().y));
+    }
 
     public static  void printJsonObject(JsonObject jsonObj){
         if(jsonObj.listCount > 0){

@@ -65,6 +65,7 @@ public class Cursor extends Widget{
         int row = pos.y/cInfo.cursorHeight;
         return (row*(cInfo.colCount))+col;
     }
+    public Vec2d getOffsetPos(){return offsetPos;}
     public void setVisibility(boolean value){this.cInfo.visible = value;}
     public int goDown(){
         if(!verticalSpace())return currentIndexPos.y;
@@ -91,7 +92,7 @@ public class Cursor extends Widget{
 
     @Override
     public void draw(){
-        if(this.cInfo.visible){Line.drawLine(offsetPos.x, offsetPos.y, offsetPos.x, offsetPos.y+ cursorSize.y,cInfo.color);}
+        if(this.cInfo.visible){Line.drawLine(offsetPos.x, offsetPos.y,offsetPos.x, offsetPos.y+ cursorSize.y,cInfo.color);}
     }
 
 }

@@ -2,6 +2,7 @@ package helper.widget;
 import helper.drawobjects.Rectangle;
 import helper.enums.Color;
 import helper.enums.WidgetType;
+import helper.io.IOHandler;
 import helper.struct.CharBuf;
 import helper.struct.DrawValues;
 import helper.struct.Vec2d;
@@ -62,8 +63,8 @@ public class FlatFontTextBox extends TextBox{
             if(hintText.length()*fontWidth > getSize().x) TextWriter.drawTextLine("%s".formatted(hintText),getPos().x,centerTextPos.y,getSize().x,this.txtColor);
             else{TextWriter.drawText("%s".formatted(hintText),centerTextPos.x,centerTextPos.y,this.txtColor);}
         }
-        if(this.cursor.cInfo.visible){this.cursor.draw();}
         if(this.suggestionBox.visible){this.suggestionBox.draw();}
+        if(this.cursor.cInfo.visible){this.cursor.draw();}
         TextWriter.drawFontCharBuffer(this.str.buf,this.textPos.x,this.textPos.y,cursor.cInfo.colCount,this.txtColor);
     }
 }

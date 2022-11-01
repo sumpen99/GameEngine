@@ -78,9 +78,7 @@ public class TTFFile {
         return getTableHead().xMax;
     }
 
-    public int getFontMaxHeigth(){
-        return getTableHead().yMax;
-    }
+    public int getFontMaxHeigth(){return getTableHead().yMax;}
 
     public void clearTable(){
         table = null;
