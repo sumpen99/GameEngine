@@ -4,6 +4,7 @@ import helper.list.SMHashMap;
 import helper.struct.*;
 import helper.font.ttf.TTFFile;
 import helper.text.TextWriter;
+import helper.tree.RedBlackTree;
 import program.ColorPicker;
 import program.QuadTreeBalls;
 import program.RecordSound;
@@ -29,6 +30,27 @@ public class StartUp {
         //WaveFile f = new WaveFile("./resources/files/sound/soundClip-2.wav");
         //program = new SpellMe(800,500); // ./resources/files/gui/spellme.fs
 
+
+
+
+
+        RedBlackTree tree = new RedBlackTree();
+        tree.redBlackInsert(-1);
+        tree.redBlackInsert(100);
+        tree.redBlackInsert(100);
+        tree.redBlackInsert(0);
+        tree.redBlackInsert(7);
+        tree.redBlackInsert(6);
+        tree.redBlackInsert(9);
+        tree.redBlackInsert(1);
+        tree.redBlackInsert(99);
+        tree.redBlackInsert(4);
+        tree.redBlackInsert(2);
+        tree.redBlackInsert(3);
+        tree.redBlackInsert(8);
+        tree.searchTree(0);
+        tree.printRedBlackTree();
+
         program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs
         //program = new QuadTreeBalls(800,500); // ./resources/files/gui/quadtree.fs
         //program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
@@ -39,5 +61,4 @@ public class StartUp {
             IOHandler.logToFile(program.getErrorMessage());
         }
     }
-
 }
