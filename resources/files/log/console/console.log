@@ -1,20 +1,21 @@
 Unable To Remove File .\resources\files\log\gc\gc.log
-Node Key: 1 numberOfInserts=2 isRoot: false isleft: true isRight: false)
-Node Key: 3 numberOfInserts=2 isRoot: false isleft: false isRight: true)
-Node Key: 4 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 5 numberOfInserts=1 isRoot: false isleft: true isRight: false)
-Node Key: 6 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 9 numberOfInserts=3 isRoot: true isleft: false isRight: false)
-Algorithm runTime: 0.016
-Sorted Array: 
-1
-2
-3
-3
-4
-4
-6
-7
-8
-8
-Algorithm runTime: 0.001
+Node Key: 103 numberOfInserts=1 isRoot: false isleft: true isRight: false)
+Node Key: 1761 numberOfInserts=1 isRoot: false isleft: true isRight: false)
+Node Key: 2217 numberOfInserts=1 isRoot: false isleft: false isRight: true)
+Node Key: 2443 numberOfInserts=1 isRoot: false isleft: true isRight: false)
+Node Key: 3330 numberOfInserts=1 isRoot: false isleft: true isRight: false)
+Node Key: 3580 numberOfInserts=1 isRoot: false isleft: true isRight: false)
+Node Key: 5296 numberOfInserts=1 isRoot: false isleft: false isRight: true)
+Node Key: 6083 numberOfInserts=1 isRoot: true isleft: false isRight: false)
+Node Key: 6828 numberOfInserts=1 isRoot: false isleft: true isRight: false)
+Node Key: 8764 numberOfInserts=1 isRoot: false isleft: false isRight: true)
+Value To Delete: 1761
+Node Key: 103 numberOfInserts=1 isRoot: false isleft: true isRight: false)
+Node Key: 2217 numberOfInserts=1 isRoot: false isleft: false isRight: true)
+Node Key: 2443 numberOfInserts=1 isRoot: false isleft: true isRight: false)
+Node Key: 3330 numberOfInserts=1 isRoot: false isleft: true isRight: false)
+Node Key: 3580 numberOfInserts=1 isRoot: false isleft: true isRight: false)
+Node Key: 5296 numberOfInserts=1 isRoot: false isleft: false isRight: true)
+Node Key: 6083 numberOfInserts=1 isRoot: true isleft: false isRight: false)
+Node Key: 6828 numberOfInserts=1 isRoot: false isleft: true isRight: false)
+Node Key: 8764 numberOfInserts=1 isRoot: false isleft: false isRight: true)

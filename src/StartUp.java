@@ -36,26 +36,26 @@ public class StartUp {
 
 
         int size = 10;
-
-        SMTimer timer = new SMTimer();
-        timer.startClock();
         BinarySearchTree tree = new BinarySearchTree();
+        int toDelete = 0;
         for(int i = 0;i<size;i++){
-            tree.insert(CommonMethods.getRand(size));
+            toDelete = CommonMethods.getRand(10000);
+            tree.insert(toDelete);
         }
-        tree.printBinaryTree(tree.root,true,false,false);
-        IOHandler.printString("Algorithm runTime: %s".formatted(timer.getTimePassedString()));
+        tree.inOrderTraversal(tree.root,true,false,false);
+        IOHandler.printString("Value To Delete: %d".formatted(toDelete));
+        tree.delete(toDelete);
+        tree.inOrderTraversal(tree.root,true,false,false);
 
-        timer = new SMTimer();
+        /*
         int[]arr = new int[size];
         for(int i = 0;i<size;i++){
             arr[i] = CommonMethods.getRand(size);
         }
 
-        timer.startClock();
         HeapSort.sort(arr,arr.length);
         HeapSort.printSortedArray(arr,arr.length);
-        IOHandler.printString("Algorithm runTime: %s".formatted(timer.getTimePassedString()));
+        */
 
         /*RedBlackTree tree = new RedBlackTree();
         tree.redBlackInsert(-1);

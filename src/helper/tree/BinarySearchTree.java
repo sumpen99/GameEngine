@@ -28,11 +28,54 @@ public class BinarySearchTree {
         else{insertNewNode(root,key);}
     }
 
-    public void printBinaryTree(Node node,boolean isRoot,boolean isLeft,boolean isRight){
+    public void inOrderTraversal(Node node,boolean isRoot,boolean isLeft,boolean isRight){
         if(node != null){
-            printBinaryTree(node.left,false,true,false);
+            inOrderTraversal(node.left,false,true,false);
             IOHandler.printString("Node Key: %d numberOfInserts=%d isRoot: %b isleft: %b isRight: %b)".formatted(node.key,node.count,isRoot,isLeft,isRight));
-            printBinaryTree(node.right,false,false,true);
+            inOrderTraversal(node.right,false,false,true);
         }
+    }
+
+    Node minValueNode(Node node){
+        Node current = node;
+        while(current != null && current.left != null){
+            current = current.left;
+        }
+        return current;
+    }
+
+    Node deleteNode(Node node,int key){
+        if(node == null)return null;
+
+        if(key<node.key){
+            node.left = deleteNode(node.left,key);
+        }
+        else if(key>node.key){
+            node.right = deleteNode(node.right,key);
+        }
+
+        else{
+            Node temp;
+            if(node.left == null){
+                temp = node.right;
+                node = null;
+                return temp;
+            }
+            else if(node.right == null){
+                temp = node.left;
+                node = null;
+                return temp;
+            }
+            temp = minValueNode(node);
+            node.key = temp.key;
+            node.right = deleteNode(node.right,temp.key);
+        }
+
+        return node;
+    }
+
+    public void delete(int key){
+        if(root == null)return;
+        deleteNode(root,key);
     }
 }
