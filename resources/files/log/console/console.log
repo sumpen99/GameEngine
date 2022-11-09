@@ -1,28 +1,20 @@
 Unable To Remove File .\resources\files\log\gc\gc.log
-Found Key: 0 Inside Node 0 RED [Searched Nodes: 3]
-Tree Height=6, Black-Height=4
-0 - BLACK(height=1,blackheight=1,numberOfInserts=0)
--1 - BLACK(height=2,blackheight=2,numberOfInserts=1)
-0 - BLACK(height=1,blackheight=1,numberOfInserts=0)
-0 - RED(height=3,blackheight=2,numberOfInserts=1)
-0 - BLACK(height=1,blackheight=1,numberOfInserts=0)
-1 - BLACK(height=2,blackheight=2,numberOfInserts=1)
-0 - BLACK(height=1,blackheight=1,numberOfInserts=0)
-2 - BLACK(height=5,blackheight=3,numberOfInserts=1)
-0 - BLACK(height=1,blackheight=1,numberOfInserts=0)
-3 - RED(height=2,blackheight=1,numberOfInserts=1)
-0 - BLACK(height=1,blackheight=1,numberOfInserts=0)
-4 - BLACK(height=3,blackheight=2,numberOfInserts=1)
-0 - BLACK(height=1,blackheight=1,numberOfInserts=0)
-6 - RED(height=4,blackheight=2,numberOfInserts=1)
-0 - BLACK(height=1,blackheight=1,numberOfInserts=0)
-7 - BLACK(height=6,blackheight=4,numberOfInserts=1)
-0 - BLACK(height=1,blackheight=1,numberOfInserts=0)
-8 - RED(height=2,blackheight=1,numberOfInserts=1)
-0 - BLACK(height=1,blackheight=1,numberOfInserts=0)
-9 - BLACK(height=3,blackheight=2,numberOfInserts=1)
-0 - BLACK(height=1,blackheight=1,numberOfInserts=0)
-99 - RED(height=2,blackheight=1,numberOfInserts=1)
-0 - BLACK(height=1,blackheight=1,numberOfInserts=0)
-100 - RED(height=4,blackheight=2,numberOfInserts=2)
-0 - BLACK(height=1,blackheight=1,numberOfInserts=0)
+Node Key: 1 numberOfInserts=2 isRoot: false isleft: true isRight: false)
+Node Key: 3 numberOfInserts=2 isRoot: false isleft: false isRight: true)
+Node Key: 4 numberOfInserts=1 isRoot: false isleft: false isRight: true)
+Node Key: 5 numberOfInserts=1 isRoot: false isleft: true isRight: false)
+Node Key: 6 numberOfInserts=1 isRoot: false isleft: false isRight: true)
+Node Key: 9 numberOfInserts=3 isRoot: true isleft: false isRight: false)
+Algorithm runTime: 0.016
+Sorted Array: 
+1
+2
+3
+3
+4
+4
+6
+7
+8
+8
+Algorithm runTime: 0.001

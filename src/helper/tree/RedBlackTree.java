@@ -172,7 +172,29 @@ public class RedBlackTree {
         }
     }
 
+    int isTreeValid(Node node){
+        int isBlack = 1,leftBlackNodes,rightBlackNodes;
+        if(node == null || node == TNULL)return 1;
+
+        if(RED == node.color){
+            if((node.left != null && RED == node.left.color) ||
+            (node.right != null && RED == node.right.color)){return -1;}
+            isBlack = 0;
+        }
+        if(0 > (leftBlackNodes=isTreeValid(node.left)))return -1;
+        if(0 > (rightBlackNodes=isTreeValid(node.right)))return -1;
+
+        if(leftBlackNodes!=rightBlackNodes)return -1;
+        return isBlack+leftBlackNodes;
+    }
+
+    public boolean validateTree(){
+        return root == null || (BLACK == root.color && 0 < isTreeValid(root));
+    }
+
+
     public void printRedBlackTree(){
+        IOHandler.printString("Validation Of Tree %b".formatted(validateTree()));
         IOHandler.printString("Tree Height=%d, Black-Height=%d".formatted(getTreeHeight(root),getBlackHeight(root)));
         printTree(root);
     }

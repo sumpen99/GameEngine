@@ -1,9 +1,12 @@
 import engine.GameEngine;
 import helper.enums.Color;
 import helper.list.SMHashMap;
+import helper.methods.CommonMethods;
+import helper.sort.HeapSort;
 import helper.struct.*;
 import helper.font.ttf.TTFFile;
 import helper.text.TextWriter;
+import helper.tree.BinarySearchTree;
 import helper.tree.RedBlackTree;
 import program.ColorPicker;
 import program.QuadTreeBalls;
@@ -32,9 +35,29 @@ public class StartUp {
 
 
 
+        int size = 10;
 
+        SMTimer timer = new SMTimer();
+        timer.startClock();
+        BinarySearchTree tree = new BinarySearchTree();
+        for(int i = 0;i<size;i++){
+            tree.insert(CommonMethods.getRand(size));
+        }
+        tree.printBinaryTree(tree.root,true,false,false);
+        IOHandler.printString("Algorithm runTime: %s".formatted(timer.getTimePassedString()));
 
-        RedBlackTree tree = new RedBlackTree();
+        timer = new SMTimer();
+        int[]arr = new int[size];
+        for(int i = 0;i<size;i++){
+            arr[i] = CommonMethods.getRand(size);
+        }
+
+        timer.startClock();
+        HeapSort.sort(arr,arr.length);
+        HeapSort.printSortedArray(arr,arr.length);
+        IOHandler.printString("Algorithm runTime: %s".formatted(timer.getTimePassedString()));
+
+        /*RedBlackTree tree = new RedBlackTree();
         tree.redBlackInsert(-1);
         tree.redBlackInsert(100);
         tree.redBlackInsert(100);
@@ -49,7 +72,7 @@ public class StartUp {
         tree.redBlackInsert(3);
         tree.redBlackInsert(8);
         tree.searchTree(0);
-        tree.printRedBlackTree();
+        tree.printRedBlackTree();*/
 
         program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs
         //program = new QuadTreeBalls(800,500); // ./resources/files/gui/quadtree.fs

@@ -164,6 +164,10 @@ public class CommonMethods{
         arr[i2] = temp;
     }
 
+    public static void swapIntOneLiner(int[] arr,int i1,int i2){
+        arr[i1]=arr[i1]^arr[i2]^(arr[i2]=arr[i1]);
+    }
+
     public static String byteBufToString(byte[] buf){
         int size = buf.length,i = 0;
         String str = "";
@@ -234,6 +238,10 @@ public class CommonMethods{
     public static void getRandomInt(FVec2d pos,int bound_x, int bound_y){
         pos.x = (float)((Math.random()*10000) % bound_x);
         pos.y = (float)((Math.random()*10000) % bound_y);
+    }
+
+    public static int getRand(int maxSize){
+        return (int)((Math.random()*1000000) % maxSize);
     }
 
     public static boolean lineLineIntersect(Vec2d P0,Vec2d P1,Vec2d Q0,Vec2d Q1,Vec2d ptr){
