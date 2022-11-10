@@ -3,6 +3,7 @@ import helper.enums.Color;
 import helper.list.SMHashMap;
 import helper.methods.CommonMethods;
 import helper.sort.HeapSort;
+import helper.sort.QuickSort;
 import helper.struct.*;
 import helper.font.ttf.TTFFile;
 import helper.text.TextWriter;
@@ -34,7 +35,6 @@ public class StartUp {
         //program = new SpellMe(800,500); // ./resources/files/gui/spellme.fs
 
 
-
         int size = 10;
         BinarySearchTree tree = new BinarySearchTree();
         int toDelete = 0;
@@ -42,20 +42,33 @@ public class StartUp {
             toDelete = CommonMethods.getRand(10000);
             tree.insert(toDelete);
         }
+        //tree.inOrderTraversal(tree.root,true,false,false);
+        //IOHandler.printString("Value To Delete: %d".formatted(toDelete));
+        //tree.delete(toDelete);
         tree.inOrderTraversal(tree.root,true,false,false);
-        IOHandler.printString("Value To Delete: %d".formatted(toDelete));
-        tree.delete(toDelete);
-        tree.inOrderTraversal(tree.root,true,false,false);
-
-        /*
-        int[]arr = new int[size];
-        for(int i = 0;i<size;i++){
-            arr[i] = CommonMethods.getRand(size);
+        if(!tree.isBalanced()){
+            tree.balanceTree();
+            tree.isBalanced();
+            tree.inOrderTraversal(tree.root,true,false,false);
         }
 
-        HeapSort.sort(arr,arr.length);
-        HeapSort.printSortedArray(arr,arr.length);
-        */
+        /*int[]arrHeap = new int[size];
+        int[]arrQSort = new int[size];
+        for(int i = 0;i<size;i++){
+            arrHeap[i] = arrQSort[i] =  CommonMethods.getRand(size);
+        }
+
+
+        SMTimer timer = new SMTimer();
+        timer.startClock();
+        HeapSort.sort(arrHeap,arrHeap.length);
+        IOHandler.printString("HeapSort RunningTime: %s".formatted(timer.getTimePassedString()));
+        timer = new SMTimer();
+        timer.startClock();
+        QuickSort.sortIntArray(arrQSort,0,arrQSort.length-1);
+        IOHandler.printString("QuickSort RunningTime: %s".formatted(timer.getTimePassedString()));*/
+
+        //HeapSort.printSortedArray(arrHeap,arrHeap.length);
 
         /*RedBlackTree tree = new RedBlackTree();
         tree.redBlackInsert(-1);

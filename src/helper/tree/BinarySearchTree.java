@@ -5,6 +5,7 @@ import helper.struct.Node;
 
 public class BinarySearchTree {
     public Node root;
+    static int staticCount;
 
     Node getNewNode(int key){
         Node n = new Node();
@@ -77,5 +78,58 @@ public class BinarySearchTree {
     public void delete(int key){
         if(root == null)return;
         deleteNode(root,key);
+    }
+
+    Node buildBalancedTree(Node[] nodes,int start,int end){
+        if(start>end){return null;}
+        int mid = (start+end)/2;
+        Node current = nodes[mid];
+
+        current.left = buildBalancedTree(nodes,start,mid-1);
+        current.right = buildBalancedTree(nodes,mid+1,end);
+        return current;
+    }
+
+    void storeNodesToList(Node[] nodes,Node node){
+        if(node == null){return;}
+        storeNodesToList(nodes,node.left);
+        nodes[staticCount++] = node;
+        storeNodesToList(nodes,node.right);
+    }
+
+    public void balanceTree(){
+        Node[] nodes = new Node[countNumberOfNodes(root)];
+        staticCount = 0;
+        storeNodesToList(nodes,root);
+        //root = null;
+        int n = nodes.length;
+        Node newRoot;
+        newRoot = buildBalancedTree(nodes,0,n-1);
+        root = null;
+        root = newRoot;
+    }
+
+    int countNumberOfNodes(Node node){
+        if(node == null){return 0;}
+        return 1 + countNumberOfNodes(node.left) + countNumberOfNodes(node.right);
+    }
+
+    int balancedHeight(Node node){
+        if(node == null)return 0;
+        int leftSubTreeHeight = balancedHeight(node.left);
+        if(leftSubTreeHeight == -1){return -1;}
+        int rightSubTreeHeight = balancedHeight(node.right);
+        if(rightSubTreeHeight == -1){return -1;}
+
+        if(Math.abs(leftSubTreeHeight-rightSubTreeHeight) > 1){return -1;}
+
+        return (Math.max(leftSubTreeHeight,rightSubTreeHeight)+1);
+    }
+
+    public boolean isBalanced(){
+        int r;
+        String result = (r=balancedHeight(root)) == -1 ? "Tree Returned -1. Its Not Balanced Correctly." : "Tree Returned %d. Its OK.".formatted(r);
+        IOHandler.printString(result);
+        return r != -1;
     }
 }

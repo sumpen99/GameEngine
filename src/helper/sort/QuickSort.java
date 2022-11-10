@@ -1,9 +1,9 @@
 package helper.sort;
-import static helper.methods.CommonMethods.swapAutoWord;
-import static helper.methods.CommonMethods.swapFloat;
 
 import helper.struct.AutoWord;
 import helper.struct.PriorityQueue;
+
+import static helper.methods.CommonMethods.*;
 
 public class QuickSort {
 
@@ -14,6 +14,11 @@ public class QuickSort {
 
     public static void sortFloatArray(float[] floatList,int low,int high){
         sortFloatList(floatList,low,high);
+
+    }
+
+    public static void sortIntArray(int[] intList,int low,int high){
+        sortIntList(intList,low,high);
 
     }
 
@@ -53,6 +58,26 @@ public class QuickSort {
             while(++i < high && floatList[i] < pivot);
             while(--j > low && floatList[j] > pivot);
             if(i < j){swapFloat(floatList,i,j);}
+            else{return j;}
+        }
+    }
+
+    static void sortIntList(int[] intList,int low,int high){
+        if(low < high){
+            int q = partitionIntList(intList,low,high);
+            sortIntList(intList,low,q);
+            sortIntList(intList,q+1,high);
+        }
+    }
+
+    static int partitionIntList(int[] intList,int low,int high){
+        float pivot = intList[low];
+        int i = low-1;
+        int j = high+1;
+        while(true){
+            while(++i < high && intList[i] < pivot);
+            while(--j > low && intList[j] > pivot);
+            if(i < j){swapIntArrayObject(intList,i,j);}
             else{return j;}
         }
     }
