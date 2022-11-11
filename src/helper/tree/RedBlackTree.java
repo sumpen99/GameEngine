@@ -87,6 +87,179 @@ public class RedBlackTree {
         root.color = BLACK;
     }
 
+    Node successor(Node x) {
+        if(x.right != TNULL) {
+            return minimum(x.right);
+        }
+        Node y = x.parent;
+        while(y != TNULL && x == y.right){
+            x = y;
+            y = y.parent;
+        }
+        return y;
+    }
+
+    Node predecessor(Node x){
+        if (x.left != TNULL) {
+            return maximum(x.left);
+        }
+
+        Node y = x.parent;
+
+        while (y != TNULL && x == y.left){
+            x = y;
+            y = y.parent;
+        }
+
+        return y;
+
+    }
+
+    Node minimum(Node node) {
+        while (node.left != TNULL) {
+            node = node.left;
+        }
+        return node;
+    }
+
+    Node maximum(Node node) {
+        while(node.right != TNULL) {
+            node = node.right;
+        }
+        return node;
+    }
+
+    void rbTransplant(Node u, Node v) {
+        if (u.parent == null) {
+            root = v;
+        }
+        else if (u == u.parent.left) {
+            u.parent.left = v;
+        }
+        else {
+            u.parent.right = v;
+        }
+        v.parent = u.parent;
+    }
+
+    void deleteFix(Node x) {
+        Node s;
+        while (x != root && x.color == BLACK) {
+            if (x == x.parent.left) {
+                s = x.parent.right;
+                if (s.color == RED){
+                    s.color = BLACK;
+                    x.parent.color = RED;
+                    rotateLeft(x.parent);
+                    s = x.parent.right;
+                }
+                if (s.left.color == BLACK && s.right.color == BLACK){
+                    s.color = RED;
+                    x = x.parent;
+                }
+                else{
+                    if (s.right.color == BLACK){
+                        s.left.color = BLACK;
+                        s.color = RED;
+                        rotateRight(s);
+                        s = x.parent.right;
+                    }
+                    s.color = x.parent.color;
+                    x.parent.color = BLACK;
+                    s.right.color = BLACK;
+                    rotateLeft(x.parent);
+                    x = root;
+                }
+            }
+            else {
+                s = x.parent.left;
+                if (s.color == RED) {
+                    s.color = BLACK;
+                    x.parent.color = RED;
+                    rotateRight(x.parent);
+                    s = x.parent.left;
+                }
+                if(s.left.color == BLACK && s.right.color == BLACK) {
+                    s.color = RED;
+                    x = x.parent;
+                }
+                else {
+                    if (s.left.color == BLACK) {
+                        s.right.color = BLACK;
+                        s.color = RED;
+                        rotateLeft(s);
+                        s = x.parent.left;
+                    }
+                    s.color = x.parent.color;
+                    x.parent.color = BLACK;
+                    s.left.color = BLACK;
+                    rotateRight(x.parent);
+                    x = root;
+                }
+            }
+        }
+        x.color = BLACK;
+    }
+
+    void deleteNodeHelper(Node node, int key){
+        Node z = TNULL;
+        Node x, y;
+        while (node != TNULL) {
+            if (node.key == key) {
+                z = node;
+            }
+            if(node.key <= key){
+                node = node.right;
+            }
+            else{
+                node = node.left;
+            }
+        }
+        if(z == TNULL){
+            IOHandler.printString("Key not found in the tree");
+            return;
+        }
+        y = z;
+        Color y_original_color = y.color;
+        if(z.left == TNULL) {
+            x = z.right;
+            rbTransplant(z,z.right);
+        }
+        else if (z.right == TNULL) {
+            x = z.left;
+            rbTransplant(z,z.left);
+        }
+        else {
+            y = minimum(z.right);
+
+            y_original_color = y.color;
+
+            x = y.right;
+
+            if(y.parent == z) {
+                x.parent = y;
+            }
+            else{
+                rbTransplant(y,y.right);
+                y.right = z.right;
+                y.right.parent = y;
+            }
+            rbTransplant(z, y);
+            y.left = z.left;
+            y.left.parent = y;
+            y.color = z.color;
+        }
+
+        z = null;
+        if(y_original_color == BLACK) {
+            deleteFix(x);
+        }
+    }
+
+    public void deleteNode(int key){
+        deleteNodeHelper(root,key);
+    }
+
     public void searchTree(int key){
         Node temp = root;
         int cnt = 1;
@@ -100,6 +273,17 @@ public class RedBlackTree {
             cnt++;
         }
         IOHandler.printString("Could Not Find Key: %d Inside Tree".formatted(key));
+    }
+
+    Node searchTreeTraversal(Node node, int key) {
+        if (node == TNULL || key == node.key) {
+            return node;
+        }
+
+        if(key < node.key) {
+            return searchTreeTraversal(node.left, key);
+        }
+        return searchTreeTraversal(node.right, key);
     }
 
     private Node getNewNode(int key){
@@ -194,8 +378,8 @@ public class RedBlackTree {
 
 
     public void printRedBlackTree(){
-        IOHandler.printString("Validation Of Tree %b".formatted(validateTree()));
-        IOHandler.printString("Tree Height=%d, Black-Height=%d".formatted(getTreeHeight(root),getBlackHeight(root)));
+        //IOHandler.printString("Validation Of Tree %b".formatted(validateTree()));
+        //IOHandler.printString("Tree Height=%d, Black-Height=%d".formatted(getTreeHeight(root),getBlackHeight(root)));
         printTree(root);
     }
 

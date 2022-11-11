@@ -29,18 +29,70 @@ public class BinarySearchTree {
         else{insertNewNode(root,key);}
     }
 
-    public void inOrderTraversal(Node node,boolean isRoot,boolean isLeft,boolean isRight){
+    public void inOrderTraversal(Node node,Node[] nodes){
         if(node != null){
-            inOrderTraversal(node.left,false,true,false);
-            IOHandler.printString("Node Key: %d numberOfInserts=%d isRoot: %b isleft: %b isRight: %b)".formatted(node.key,node.count,isRoot,isLeft,isRight));
-            inOrderTraversal(node.right,false,false,true);
+            inOrderTraversal(node.left,nodes);
+            nodes[staticCount++] = node;
+            inOrderTraversal(node.right,nodes);
         }
+    }
+
+    public void printInOrder(Node node,boolean isRoot,boolean isLeft,boolean isRight){
+        if(node != null){
+            printInOrder(node.left,false,true,false);
+            IOHandler.printString("Node Key: %d numberOfInserts=%d isRoot: %b isleft: %b isRight: %b)".formatted(node.key,node.count,isRoot,isLeft,isRight));
+            printInOrder(node.right,false,false,true);
+        }
+    }
+
+    public void printPreOrder(Node node,boolean isRoot,boolean isLeft,boolean isRight){
+        if(node != null){
+            IOHandler.printString("Node Key: %d numberOfInserts=%d isRoot: %b isleft: %b isRight: %b)".formatted(node.key,node.count,isRoot,isLeft,isRight));
+            printInOrder(node.left,false,true,false);
+            printInOrder(node.right,false,false,true);
+        }
+    }
+
+    public void printPostOrder(Node node,boolean isRoot,boolean isLeft,boolean isRight){
+        if(node != null){
+            printInOrder(node.left,false,true,false);
+            printInOrder(node.right,false,false,true);
+            IOHandler.printString("Node Key: %d numberOfInserts=%d isRoot: %b isleft: %b isRight: %b)".formatted(node.key,node.count,isRoot,isLeft,isRight));
+        }
+    }
+
+    public Node[] getSortedNodeList(){
+        if(root == null){return null;}
+        staticCount = 0;
+        int size = countNumberOfNodes(root);
+        Node[] nodes = new Node[size];
+        inOrderTraversal(root,nodes);
+        return nodes;
+    }
+
+    public Node searchForNode(int key){
+        Node temp;
+        temp = root;
+        while(temp!= null){
+            if(temp.key==key){return temp;}
+            else if(key<temp.key){temp = temp.left;}
+            else{temp=temp.right;}
+        }
+        return null;
     }
 
     Node minValueNode(Node node){
         Node current = node;
         while(current != null && current.left != null){
             current = current.left;
+        }
+        return current;
+    }
+
+    Node maxValueNode(Node node){
+        Node current = node;
+        while(current != null && current.right != null){
+            current = current.right;
         }
         return current;
     }
