@@ -7,6 +7,7 @@ import static helper.enums.Color.BLACK;
 import static helper.enums.Color.RED;
 
 //https://stackoverflow.com/questions/42800462/trying-to-implement-a-red-black-tree-in-c
+//https://www.studymite.com/data-structure/red-black-tree-deletion/
 
 public class RedBlackTree {
     private Node root;
