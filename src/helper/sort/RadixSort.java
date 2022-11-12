@@ -11,7 +11,7 @@ public class RadixSort {
 
     // Unsigned Int
     public static void sort256(int[] arr, int n) {
-        IOHandler.printString("Only Use Unsigned Int With RadixSort");
+        IOHandler.printString("Only Use Unsigned Int With RadixSort..Equal To QuickSort Up To 10 000 elements");
         if(n<=1){return;}
         int[] output = new int[n];
         int[] count = new int[256];
@@ -54,10 +54,8 @@ public class RadixSort {
         //count = null;
     }
 
-    static void printArray(int[] arr,int size){
-        for(int i=0;i<size;i++){
-            IOHandler.printInt(arr[i]);
-        }
+    static void printArray(int[] arr){
+        IOHandler.printIntArray(arr);
     }
 
     public static void runTest(int size){
@@ -69,5 +67,6 @@ public class RadixSort {
         timer.startClock();
         RadixSort.sort256(arrRadix,arrRadix.length);
         IOHandler.printString("RadixSort RunningTime on %d elements: %s".formatted(size,timer.getTimePassedString()));
+        //printArray(arrRadix);
     }
 }

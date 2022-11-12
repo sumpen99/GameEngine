@@ -17,6 +17,10 @@ public class BubbleSort {
                 }
     }
 
+    static void printIntArray(int[] arr){
+        IOHandler.printIntArray(arr);
+    }
+
     public static void runTest(int size){
         SMTimer timer = new SMTimer();
         int[]arrBubble = new int[size];
@@ -26,5 +30,6 @@ public class BubbleSort {
         timer.startClock();
         BubbleSort.sortMin(arrBubble,size);
         IOHandler.printString("BubbleSort RunningTime on %d elements: %s".formatted(size,timer.getTimePassedString()));
+        printIntArray(arrBubble);
     }
 }

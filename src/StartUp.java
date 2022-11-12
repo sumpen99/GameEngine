@@ -35,10 +35,10 @@ public class StartUp {
         //WaveFile f = new WaveFile("./resources/files/sound/soundClip-2.wav");
         //program = new SpellMe(800,500); // ./resources/files/gui/spellme.fs
 
-        int size = 100;
+        int size = 1000000;
         //BubbleSort.runTest(size);
         //HeapSort.runTest(size);
-        //QuickSort.runTest(size);
+        QuickSort.runTest(size);
         RadixSort.runTest(size);
         //BinarySearchTree.runTest();
         //RedBlackTree.runTest();

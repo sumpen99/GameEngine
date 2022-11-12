@@ -85,6 +85,10 @@ public class QuickSort {
         }
     }
 
+    static void printIntArray(int[] arr){
+        IOHandler.printIntArray(arr);
+    }
+
     public static void runTest(int size){
         SMTimer timer = new SMTimer();
         int[]arrQuick = new int[size];
@@ -94,6 +98,7 @@ public class QuickSort {
         timer.startClock();
         QuickSort.sortIntArray(arrQuick,0,arrQuick.length-1);
         IOHandler.printString("QuickSort RunningTime on %d elements: %s".formatted(size,timer.getTimePassedString()));
+        //printIntArray(arrQuick);
     }
 
 }

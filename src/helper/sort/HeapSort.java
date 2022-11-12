@@ -38,6 +38,10 @@ public class HeapSort {
        }
     }
 
+    static void printIntArray(int[] arr){
+        IOHandler.printIntArray(arr);
+    }
+
     public static void runTest(int size){
         SMTimer timer = new SMTimer();
         int[]arrHeap = new int[size];
@@ -47,5 +51,6 @@ public class HeapSort {
         timer.startClock();
         HeapSort.sort(arrHeap,arrHeap.length);
         IOHandler.printString("HeapSort RunningTime on %d elements: %s".formatted(size,timer.getTimePassedString()));
+        //printIntArray(arrHeap);
    }
 }
