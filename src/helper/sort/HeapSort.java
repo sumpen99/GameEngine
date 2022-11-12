@@ -38,9 +38,8 @@ public class HeapSort {
        }
     }
 
-    public static void runTest(){
+    public static void runTest(int size){
         SMTimer timer = new SMTimer();
-        int size = 10000;
         int[]arrHeap = new int[size];
         for(int i = 0;i<size;i++){
             arrHeap[i] = CommonMethods.getRand(size);

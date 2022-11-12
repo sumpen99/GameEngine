@@ -17,9 +17,8 @@ public class BubbleSort {
                 }
     }
 
-    public static void runTest(){
+    public static void runTest(int size){
         SMTimer timer = new SMTimer();
-        int size = 10000;
         int[]arrBubble = new int[size];
         for(int i = 0;i<size;i++){
             arrBubble[i] = CommonMethods.getRand(size);

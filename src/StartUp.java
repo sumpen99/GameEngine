@@ -5,6 +5,7 @@ import helper.methods.CommonMethods;
 import helper.sort.BubbleSort;
 import helper.sort.HeapSort;
 import helper.sort.QuickSort;
+import helper.sort.RadixSort;
 import helper.struct.*;
 import helper.font.ttf.TTFFile;
 import helper.text.TextWriter;
@@ -34,10 +35,12 @@ public class StartUp {
         //WaveFile f = new WaveFile("./resources/files/sound/soundClip-2.wav");
         //program = new SpellMe(800,500); // ./resources/files/gui/spellme.fs
 
-        //BubbleSort.runTest();
-        //HeapSort.runTest();
-        //QuickSort.runTest();
-        BinarySearchTree.runTest();
+        int size = 100;
+        //BubbleSort.runTest(size);
+        //HeapSort.runTest(size);
+        //QuickSort.runTest(size);
+        RadixSort.runTest(size);
+        //BinarySearchTree.runTest();
         //RedBlackTree.runTest();
 
         program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs

@@ -1,33 +1,3 @@
 Unable To Remove File .\resources\files\log\gc\gc.log
-Node Key: 1060 numberOfInserts=1 isRoot: false isleft: true isRight: false)
-Node Key: 1436 numberOfInserts=1 isRoot: false isleft: true isRight: false)
-Node Key: 3203 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 3302 numberOfInserts=1 isRoot: true isleft: false isRight: false)
-Node Key: 3727 numberOfInserts=1 isRoot: false isleft: true isRight: false)
-Node Key: 4029 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 4174 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 4338 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 6522 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 8398 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Value To Delete: 6522
-Node Key: 1060 numberOfInserts=1 isRoot: false isleft: true isRight: false)
-Node Key: 1436 numberOfInserts=1 isRoot: false isleft: true isRight: false)
-Node Key: 3203 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 3302 numberOfInserts=1 isRoot: true isleft: false isRight: false)
-Node Key: 3727 numberOfInserts=1 isRoot: false isleft: true isRight: false)
-Node Key: 4029 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 4174 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 4338 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 8398 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Tree Returned -1. Its Not Balanced Correctly.
-Balancing Tree..
-Tree Returned 4. Its OK.
-Node Key: 1060 numberOfInserts=1 isRoot: false isleft: true isRight: false)
-Node Key: 1436 numberOfInserts=1 isRoot: false isleft: true isRight: false)
-Node Key: 3203 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 3302 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 3727 numberOfInserts=1 isRoot: true isleft: false isRight: false)
-Node Key: 4029 numberOfInserts=1 isRoot: false isleft: true isRight: false)
-Node Key: 4174 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 4338 numberOfInserts=1 isRoot: false isleft: false isRight: true)
-Node Key: 8398 numberOfInserts=1 isRoot: false isleft: false isRight: true)
+Only Use Unsigned Int
+RadixSort RunningTime on 100 elements: 0.0
