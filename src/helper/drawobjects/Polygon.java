@@ -236,7 +236,7 @@ public class Polygon extends DrawObject{
                 j = i;
             }
 
-            BubbleSort.minBubbleSort(nodeX,nodes);
+            BubbleSort.sortMin(nodeX,nodes);
             for(i = 0;i<nodes;i+=2){
                 if(nodeX[i]>=IMAGE_RIGHT)break;
                 if(nodeX[i+1] > IMAGE_LEFT){
@@ -272,7 +272,7 @@ public class Polygon extends DrawObject{
                 j = i;
             }
 
-            BubbleSort.minBubbleSort(nodeX,nodes);
+            BubbleSort.sortMin(nodeX,nodes);
             for(i = 0;i<nodes;i+=2){
                 if(nodeX[i]>=IMAGE_RIGHT)break;
                 if(nodeX[i+1] > IMAGE_LEFT){

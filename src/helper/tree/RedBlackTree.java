@@ -384,4 +384,26 @@ public class RedBlackTree {
         printTree(root);
     }
 
+    public static void runTest(){
+        RedBlackTree tree = new RedBlackTree();
+        IOHandler.printString("Insert -1 100 100 0 7 6 9 1 99 4 2 3 8");
+        tree.redBlackInsert(-1);
+        tree.redBlackInsert(100);
+        tree.redBlackInsert(0);
+        tree.redBlackInsert(7);
+        tree.redBlackInsert(6);
+        tree.redBlackInsert(9);
+        tree.redBlackInsert(1);
+        tree.redBlackInsert(99);
+        tree.redBlackInsert(4);
+        tree.redBlackInsert(2);
+        tree.redBlackInsert(3);
+        tree.redBlackInsert(8);
+        tree.printRedBlackTree();
+        IOHandler.printString("Removing -1 100");
+        tree.deleteNode(-1);
+        tree.deleteNode(100);
+        tree.printRedBlackTree();
+    }
+
 }

@@ -2,6 +2,7 @@ package helper.sort;
 
 import helper.io.IOHandler;
 import helper.methods.CommonMethods;
+import helper.struct.SMTimer;
 
 public class HeapSort {
 
@@ -18,7 +19,7 @@ public class HeapSort {
             heapify(arr,n,largest);
         }
 
-    }
+   }
 
     public static void sort(int[] arr,int n){
         for(int i = n/2-1;i>=0;i--){
@@ -36,4 +37,16 @@ public class HeapSort {
            IOHandler.printInt(arr[i]);
        }
     }
+
+    public static void runTest(){
+        SMTimer timer = new SMTimer();
+        int size = 10000;
+        int[]arrHeap = new int[size];
+        for(int i = 0;i<size;i++){
+            arrHeap[i] = CommonMethods.getRand(size);
+        }
+        timer.startClock();
+        HeapSort.sort(arrHeap,arrHeap.length);
+        IOHandler.printString("HeapSort RunningTime on %d elements: %s".formatted(size,timer.getTimePassedString()));
+   }
 }

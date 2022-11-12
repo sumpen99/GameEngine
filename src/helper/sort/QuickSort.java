@@ -1,7 +1,10 @@
 package helper.sort;
 
+import helper.io.IOHandler;
+import helper.methods.CommonMethods;
 import helper.struct.AutoWord;
 import helper.struct.PriorityQueue;
+import helper.struct.SMTimer;
 
 import static helper.methods.CommonMethods.*;
 
@@ -80,6 +83,18 @@ public class QuickSort {
             if(i < j){swapIntArrayObject(intList,i,j);}
             else{return j;}
         }
+    }
+
+    public static void runTest(){
+        SMTimer timer = new SMTimer();
+        int size = 10000;
+        int[]arrQuick = new int[size];
+        for(int i = 0;i<size;i++){
+            arrQuick[i] = CommonMethods.getRand(size);
+        }
+        timer.startClock();
+        QuickSort.sortIntArray(arrQuick,0,arrQuick.length-1);
+        IOHandler.printString("QuickSort RunningTime on %d elements: %s".formatted(size,timer.getTimePassedString()));
     }
 
 }

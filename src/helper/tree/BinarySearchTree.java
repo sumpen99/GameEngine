@@ -1,7 +1,7 @@
 package helper.tree;
 import helper.io.IOHandler;
+import helper.methods.CommonMethods;
 import helper.struct.Node;
-
 
 public class BinarySearchTree {
     public Node root;
@@ -183,5 +183,29 @@ public class BinarySearchTree {
         String result = (r=balancedHeight(root)) == -1 ? "Tree Returned -1. Its Not Balanced Correctly." : "Tree Returned %d. Its OK.".formatted(r);
         IOHandler.printString(result);
         return r != -1;
+    }
+
+    public static void runTest(){
+        int size = 10;
+        BinarySearchTree tree = new BinarySearchTree();
+        int toDelete = 0;
+        for(int i = 0;i<size;i++){
+            toDelete = CommonMethods.getRand(10000);
+            tree.insert(toDelete);
+        }
+        tree.printInOrder(tree.root,true,false,false);
+        IOHandler.printString("Value To Delete: %d".formatted(toDelete));
+        tree.delete(toDelete);
+        tree.printInOrder(tree.root,true,false,false);
+        if(!tree.isBalanced()){
+            IOHandler.printString("Balancing Tree..");
+            tree.balanceTree();
+            tree.isBalanced();
+            tree.printInOrder(tree.root,true,false,false);
+            Node temp = tree.searchForNode(toDelete);
+            if(temp!= null){
+                IOHandler.printString("Found Key: %d Sesrched For: %d".formatted(temp.key,toDelete));
+            }
+        }
     }
 }
