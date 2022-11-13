@@ -43,6 +43,7 @@ import static helper.struct.SMDateTime.secondsToTime;
 public class WaveFile {
     public byte[] riff,wave,fmtChunkMarker,dataChunkHeader;
     public long numSamples,sizeOfEachSample,lowLimit,highLimit;
+    public float durationInSeconds;
     public int overallSize,lengthOfFmt,formatType,channels,sampleRate,byteRate,blockAlign,bitsPerSample,dataSize;
     public final int BUF_OFFSET = 44,SAMPLE_CHUNK_SIZE = 256;
     public WaveFormatType format;
@@ -96,7 +97,7 @@ public class WaveFile {
 
     void setFileInfo(){
         fileInfo = new String[18];
-        float duration_in_seconds = (float) overallSize / byteRate;
+        durationInSeconds = (float) overallSize / byteRate;
         fileInfo[0] = ("(1-4)   %s".formatted(byteBufToString(riff)));
         fileInfo[1] = ("(5-8)   Overall size: bytes:%d, Kb:%d".formatted(overallSize,overallSize/1024));
         fileInfo[2] = ("(9-12)  Wave marker: %s".formatted(byteBufToString(wave)));
@@ -112,8 +113,8 @@ public class WaveFile {
         fileInfo[12] = ("(41-44) Size of data chunk: %d".formatted(dataSize));
         fileInfo[13] = ("Number of samples:%d".formatted(numSamples));
         fileInfo[14] = ("Size of each sample:%d bytes".formatted(sizeOfEachSample));
-        fileInfo[15] = ("Approx.Duration in seconds=%f".formatted(duration_in_seconds));
-        fileInfo[16] = ("Approx.Duration in h:m:s=%s".formatted(secondsToTime(duration_in_seconds)));
+        fileInfo[15] = ("Approx.Duration in seconds=%f".formatted(durationInSeconds));
+        fileInfo[16] = ("Approx.Duration in h:m:s=%s".formatted(secondsToTime(durationInSeconds)));
         fileInfo[17] = ("Valid range for data values : %d to %d".formatted(lowLimit,highLimit));
     }
 

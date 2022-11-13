@@ -15,6 +15,7 @@ public enum WidgetVariable {
     HALIGN("halign"),
     VALIGN("valign"),
     CALLBACK("callback"),
+    SELECTED("selected"),
     ARGS("args"),
     PATH("path"),
     OPACITY("opacity"),

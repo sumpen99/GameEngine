@@ -163,6 +163,11 @@ public class ParseLayout {
                 else{err = TALIGN;}
                 break;
             }
+            case SELECTED:{
+                if(val.length() > 0){dww.selected = ("true".equals(val));}
+                else{err = SELECTED;}
+                break;
+            }
             case VALIGN:{
                 if(val.length() > 0){dww.valign = ("true".equals(val));}
                 else{err = VALIGN;}

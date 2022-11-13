@@ -1,5 +1,1 @@
 Unable To Remove File .\resources\files\log\gc\gc.log
-HeapSort RunningTime on 1000000 elements: 0.226
-QuickSort RunningTime on 1000000 elements: 0.18
-Only Use Unsigned Int With RadixSort..Equal To QuickSort Up To 10 000 elements
-RadixSort RunningTime on 1000000 elements: 0.038

@@ -126,8 +126,8 @@ RoundedButton
         radiey:18
         color:PALEGOLDENROD
         textcolor:Black
-        args:wavebox,boxpath
-        #func:playwavefile
+        args:wavebox
+        func:playwavefile
         draw:fill
         text:Play
         shape:rectangle
@@ -149,6 +149,7 @@ RoundedButton
         top:0
         width:40
         height:40
+        selected:true
         bind:wavebox
         color:WHITESMOKE
         draw:fill

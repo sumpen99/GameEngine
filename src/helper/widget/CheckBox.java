@@ -19,7 +19,7 @@ public class CheckBox extends Widget{
         super(obj,dww.functionMethod, WidgetType.SM_CHECK_BOX,
                 new Rectangle(dww.left,dww.top,dww.width,dww.height,dww.color,dww.opacity,dww.draw));
         initPolygonSymbol(dww);
-        selected = true;
+        selected = dww.selected;
     }
 
     void updateBindingWidget(){

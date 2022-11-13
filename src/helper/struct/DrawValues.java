@@ -13,6 +13,7 @@ public class DrawValues {
     public boolean enableAutoCorrect;
     public boolean alignText;
     public boolean callback;
+    public boolean selected;
     public int fontSize;
     public int objCount;
     public int lnum;

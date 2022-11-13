@@ -16,13 +16,14 @@ public class AudioReader extends BaseThreading {
     public boolean setWaveFile(String path){
         String fileName = verifyPath(path);
         if(fileName != null){
-            f = new WaveFile(verifyPath(fileName));
+            f = new WaveFile(fileName);
             return true;
         }
         return false;
     }
 
     String verifyPath(String fileName){
+        fileName = fileName.length() == 0 ? "-1" : fileName;
         String dir = "./resources/files/sound/%s".formatted(fileName);
         if(fileExists(dir))return dir;
         return IOHandler.getFileFromFolder("./resources/files/sound",0);
@@ -31,10 +32,11 @@ public class AudioReader extends BaseThreading {
     @Override
     public void heavyDuty(){
         if(f.readFile()){
-            wSelf.setBindingValue(f.getFileInfo());
+            wSelf.setBindingValue(f);
+            /*wSelf.setBindingValue(f.getFileInfo());
             wSelf.setBindingValue(f.getSampleChunkSize());
             wSelf.setBindingValue(f.getLimitsLowHigh());
-            wSelf.setBindingValue(f.getSamplePairs());
+            wSelf.setBindingValue(f.getSamplePairs());*/
         }
     }
 }

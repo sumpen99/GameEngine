@@ -35,17 +35,17 @@ public class StartUp {
         //WaveFile f = new WaveFile("./resources/files/sound/soundClip-2.wav");
         //program = new SpellMe(800,500); // ./resources/files/gui/spellme.fs
 
-        int size = 1000000;
+        //int size = 100000;
         //BubbleSort.runTest(size);
         //HeapSort.runTest(size);
-        QuickSort.runTest(size);
-        RadixSort.runTest(size);
+        //QuickSort.runTest(size);
+        //RadixSort.runTest(size);
         //BinarySearchTree.runTest();
         //RedBlackTree.runTest();
 
-        program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs
+        //program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs
         //program = new QuadTreeBalls(800,500); // ./resources/files/gui/quadtree.fs
-        //program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
+        program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
         if(program.setUpProgram()){
             program.runEngineLoop();
         }

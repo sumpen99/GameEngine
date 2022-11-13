@@ -232,6 +232,7 @@ public class StringToEnum {
         if(callback.equals("getcolorinfo"))return Callback.GET_COLOR_INFO;
         if(callback.equals("recordaudio"))return Callback.RECORD_AUDIO;
         if(callback.equals("readwavefile"))return Callback.READ_WAVE_FILE;
+        if(callback.equals("playwavefile"))return Callback.PLAY_WAVE_FILE;
         return Callback.SM_CALLBACK_NOT_IMPLEMENTED;
     }
 
@@ -249,6 +250,7 @@ public class StringToEnum {
         if(var.equals("objcount"))return WidgetVariable.OBJ_COUNT;
         if(var.equals("enableautocorrect"))return WidgetVariable.ENABLE_AUTO_CORRECT;
         if(var.equals("talign"))return WidgetVariable.TALIGN;
+        if(var.equals("selected"))return WidgetVariable.SELECTED;
         if(var.equals("halign"))return WidgetVariable.HALIGN;
         if(var.equals("valign"))return WidgetVariable.VALIGN;
         if(var.equals("callback"))return WidgetVariable.CALLBACK;

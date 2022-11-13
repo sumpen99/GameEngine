@@ -2,6 +2,7 @@ package helper.enums;
 
 public enum Callback {
     READ_WAVE_FILE("readWaveFile"),
+    PLAY_WAVE_FILE("playWaveFile"),
     RECORD_AUDIO("recordAudio"),
     GET_HIGH_SCORE("getHighScore"),
     UPLOAD_HIGH_SCORE("uploadHighScore"),

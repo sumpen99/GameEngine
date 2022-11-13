@@ -119,6 +119,11 @@ public class IOHandler {
         for(int i = 0;i<arr.length;i++)printInt(arr[i]);
     }
 
+    public static void printStringArray(String[] arr){
+        printString("String Array length: %d".formatted(arr.length));
+        for(int i = 0;i<arr.length;i++)printString(arr[i]);
+    }
+
     public static void printByteArray(byte[] arr){
         for(int i = 0;i<arr.length;i++){
             if(i%64 == 0 && i != 0)printString("");
