@@ -2,10 +2,7 @@ import engine.GameEngine;
 import helper.enums.Color;
 import helper.list.SMHashMap;
 import helper.methods.CommonMethods;
-import helper.sort.BubbleSort;
-import helper.sort.HeapSort;
-import helper.sort.QuickSort;
-import helper.sort.RadixSort;
+import helper.sort.*;
 import helper.struct.*;
 import helper.font.ttf.TTFFile;
 import helper.text.TextWriter;
@@ -36,6 +33,7 @@ public class StartUp {
         //program = new SpellMe(800,500); // ./resources/files/gui/spellme.fs
 
         //int size = 100000;
+        //CountingSort.runTest(size);
         //BubbleSort.runTest(size);
         //HeapSort.runTest(size);
         //QuickSort.runTest(size);

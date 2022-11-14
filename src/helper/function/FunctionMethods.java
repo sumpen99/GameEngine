@@ -45,7 +45,14 @@ public class FunctionMethods {
         Widget wSelf = (Widget)self;
         WaveViewBox wWaveView = (WaveViewBox)GameEngine.getWidgetById(args[0]);
         if(wSelf != null && wWaveView != null){
-            ThreadHandler.executeNewThread(wWaveView);
+            wWaveView.pressPlayButton();
+            if(wWaveView.isAudioPlaying()){
+                wSelf.setBindingValue("Stop");
+                ThreadHandler.executeNewThread(wWaveView);
+            }
+            else{
+                wSelf.setBindingValue("Play");
+            }
         }
     }
 

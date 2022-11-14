@@ -12,14 +12,13 @@ import helper.struct.SamplePair;
 import static helper.methods.CommonMethods.intReMapValue;
 
 public class WaveViewBox extends LabelBox implements IThreading {
-    boolean drawInfo;
+    boolean drawInfo,isPlaying;
     SamplePair[] samplePairs;
     SamplePair limitsLowHigh;
-    int sampleChunkSize,sampleLineColor,SAMPLE_RANGE=10;
+    int sampleChunkSize,sampleLineColor,SAMPLE_RANGE=1;
     WaveFile waveFile;
     Vec2d wavePos;
     float duration = 0.0f;
-    String playMessage;
     public WaveViewBox(DrawValues dww){
         super(dww);
         lineColor = dww.textColor;
@@ -62,7 +61,21 @@ public class WaveViewBox extends LabelBox implements IThreading {
         limitsLowHigh = waveFile.getLimitsLowHigh();
         samplePairs = waveFile.getSamplePairs();
         wavePos.x = wObj.getSize().x;
-        setMessage("Press Play");
+    }
+
+    void reWind(){
+        pressPlayButton();
+        wavePos.x = wObj.getSize().x;
+        duration = 0.0f;
+        childWidget.setBindingValue("Play"); // Play Button
+    }
+
+    public void pressPlayButton(){
+        isPlaying^=true;
+    }
+
+    public boolean isAudioPlaying(){
+        return isPlaying;
     }
 
     @Override
@@ -79,15 +92,10 @@ public class WaveViewBox extends LabelBox implements IThreading {
         else{
             if(samplePairs != null){
                 getCenterPos(0);
-                TextWriter.drawText(playMessage,fontWidth*2,centerPos.y+fontHeight, lineColor);
                 TextWriter.drawText("Duration: %f (Under Construction...)".formatted(duration),fontWidth*2,wObj.getPos().y+wObj.getSize().y, lineColor);
                 drawSampleDataPairs();
             }
         }
-    }
-
-    void setMessage(String str){
-        playMessage = str;
     }
 
     void drawSampleDataPairs(){
@@ -101,7 +109,11 @@ public class WaveViewBox extends LabelBox implements IThreading {
         while(i<samplePairSize){
             int yMin = samplePairs[i].minValue,yMax = samplePairs[i].maxValue;
             x = left+(int)(offSet*i)+wavePos.x;
-            if(x>right)return;
+            if(x>right){
+                yMax = intReMapValue(.5f,0.0f,1.0f,top,bottom);
+                Line.drawLine(left,yMax,right,yMax,sampleLineColor);
+                return;
+            }
             if(x >= 0){
                 yMin = intReMapValue(yMin,limitsLowHigh.minValue,limitsLowHigh.maxValue,top,bottom);
                 yMax = intReMapValue(yMax,limitsLowHigh.minValue,limitsLowHigh.maxValue,top,bottom);
@@ -114,8 +126,7 @@ public class WaveViewBox extends LabelBox implements IThreading {
     @Override
     public void heavyDuty(){
         if(waveFile == null)return;
-        setMessage("Press Stop (when implemented)");
-        while(wavePos.x>=-samplePairs.length){
+        while(wavePos.x>=-samplePairs.length && isPlaying){
             wavePos.x--;
             try{
                 Thread.sleep(SAMPLE_RANGE);
@@ -124,9 +135,11 @@ public class WaveViewBox extends LabelBox implements IThreading {
             catch(Exception err){
                 IOHandler.logToFile(err.getMessage());
             }
-            if(duration>= waveFile.durationInSeconds)break;
+            //if(duration>= waveFile.durationInSeconds)break;
         }
-        setMessage("Press Play");
+        if(isPlaying){
+            reWind();
+        }
     }
 
 

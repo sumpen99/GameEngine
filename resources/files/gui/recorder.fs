@@ -168,6 +168,7 @@ BoxLayout
 ;
     WaveViewBox
         id:wavebox
+        bind:playfile
         left:0
         top:0
         width:800
