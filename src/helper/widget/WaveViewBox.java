@@ -1,4 +1,5 @@
 package helper.widget;
+import engine.GameEngine;
 import helper.drawobjects.Line;
 import helper.interfaces.IThreading;
 import helper.io.IOHandler;
@@ -9,6 +10,7 @@ import helper.enums.Color;
 import helper.struct.DrawValues;
 import helper.struct.SamplePair;
 
+import static helper.enums.WidgetState.SM_TOUCH_PROCESSED;
 import static helper.methods.CommonMethods.intReMapValue;
 
 public class WaveViewBox extends LabelBox implements IThreading {
@@ -18,13 +20,48 @@ public class WaveViewBox extends LabelBox implements IThreading {
     int sampleChunkSize,sampleLineColor,SAMPLE_RANGE=1;
     WaveFile waveFile;
     Vec2d wavePos;
-    float duration = 0.0f;
+    float duration = 0.0f,WAVE_OFFSET = 1.0f;
     public WaveViewBox(DrawValues dww){
         super(dww);
         lineColor = dww.textColor;
         sampleLineColor = Color.WHITESMOKE.getValue();
         setDrawInfoMode(true);
         wavePos = new Vec2d();
+        startPos = new Vec2d();
+        mPos = new Vec2d();
+    }
+
+    @Override
+    public boolean onMouseLeftDown(int x,int y){
+        if(touchEventNotProcessed()){
+            setWidgetBit(SM_TOUCH_PROCESSED.getValue());
+            startPos.x = x;
+            startPos.y = y;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onMouseReleaseTouch(int x,int y){
+        if(getWidgetBitSet(SM_TOUCH_PROCESSED.getIndex())){
+            clearWidgetBits();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onMouseLeftMove(int x,int y){
+        if(getWidgetBitSet(SM_TOUCH_PROCESSED.getIndex())){
+            mPos.x = x-startPos.x;
+            mPos.y = y-startPos.y;
+            wavePos.x+=mPos.x;
+            startPos.x = x;
+            startPos.y = y;
+            return true;
+        }
+        return false;
     }
 
     public void setDrawInfoMode(boolean value){
@@ -33,19 +70,6 @@ public class WaveViewBox extends LabelBox implements IThreading {
 
     @Override
     public void setBindingValue(Object value){
-        /*Class c = value.getClass();
-        if(rowValues.getClass() == c){
-            rowValues = (String[])value;
-        }
-        else if(c == SamplePair[].class){
-            samplePairs = (SamplePair[])value;
-        }
-        else if(c == SamplePair.class){
-            limitsLowHigh = (SamplePair)value;
-        }
-        else if(c == Integer.class){
-            sampleChunkSize = (int)value;
-        }*/
         if(WaveFile.class == value.getClass()){
             waveFile = (WaveFile)value;
             setWaveFileInfo();
@@ -65,9 +89,17 @@ public class WaveViewBox extends LabelBox implements IThreading {
 
     void reWind(){
         pressPlayButton();
-        wavePos.x = wObj.getSize().x;
+        //wavePos.x = wObj.getSize().x;
         duration = 0.0f;
         childWidget.setBindingValue("Play"); // Play Button
+    }
+
+    public boolean getDurationStatus(){
+        return duration == 0.0f;
+    }
+
+    public void rewindPosition(){
+        wavePos.x = wObj.getSize().x;
     }
 
     public void pressPlayButton(){
@@ -99,25 +131,30 @@ public class WaveViewBox extends LabelBox implements IThreading {
     }
 
     void drawSampleDataPairs(){
-        playSamplePairData(1.0f);
+        playSamplePairData();
         //Line.drawLine(wObj.getPos().x,wObj.getPos().y+wObj.getSize().y/2,wObj.getPos().x+wObj.getSize().x,wObj.getPos().y+wObj.getSize().y/2,sampleLineColor);
     }
 
-    void playSamplePairData(float offSet){
+    void playSamplePairData(){
         int samplePairSize = samplePairs.length,i=0,x;
         int left = wObj.getPos().x,top = wObj.getPos().y,bottom = wObj.getPos().y+wObj.getSize().y,right=wObj.getPos().x+wObj.getSize().x;
+        //int lastYMax = samplePairs[0].maxValue;
+        //int lastX = left+wavePos.x;
         while(i<samplePairSize){
             int yMin = samplePairs[i].minValue,yMax = samplePairs[i].maxValue;
-            x = left+(int)(offSet*i)+wavePos.x;
+            x = left+(int)(WAVE_OFFSET*i)+wavePos.x;
             if(x>right){
-                yMax = intReMapValue(.5f,0.0f,1.0f,top,bottom);
-                Line.drawLine(left,yMax,right,yMax,sampleLineColor);
+                //yMax = intReMapValue(.5f,0.0f,1.0f,top,bottom);
+                //Line.drawLine(left,yMax,right,yMax,sampleLineColor);
                 return;
             }
             if(x >= 0){
                 yMin = intReMapValue(yMin,limitsLowHigh.minValue,limitsLowHigh.maxValue,top,bottom);
                 yMax = intReMapValue(yMax,limitsLowHigh.minValue,limitsLowHigh.maxValue,top,bottom);
                 Line.drawLine(x,yMin,x,yMax,sampleLineColor);
+                //Line.drawLine(lastX,lastYMax,x,yMin,sampleLineColor);
+                //lastX = x;
+                //lastYMax = yMax;
             }
             i++;
         }
@@ -126,7 +163,7 @@ public class WaveViewBox extends LabelBox implements IThreading {
     @Override
     public void heavyDuty(){
         if(waveFile == null)return;
-        while(wavePos.x>=-samplePairs.length && isPlaying){
+        while(duration<=waveFile.durationInSeconds && isPlaying){
             wavePos.x--;
             try{
                 Thread.sleep(SAMPLE_RANGE);

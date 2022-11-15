@@ -47,6 +47,7 @@ public class FunctionMethods {
         if(wSelf != null && wWaveView != null){
             wWaveView.pressPlayButton();
             if(wWaveView.isAudioPlaying()){
+                if(wWaveView.getDurationStatus()){wWaveView.rewindPosition();}
                 wSelf.setBindingValue("Stop");
                 ThreadHandler.executeNewThread(wWaveView);
             }

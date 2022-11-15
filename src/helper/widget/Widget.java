@@ -29,6 +29,7 @@ public abstract class Widget implements IWidget{
     protected String wID;
     protected String childID;
     protected int shiftedBits;
+    protected Vec2d startPos,mPos;
     public Widget(Object obj,Callback callback,WidgetType type, DrawObject shape){
         this.obj = obj;
         this.callback = callback;

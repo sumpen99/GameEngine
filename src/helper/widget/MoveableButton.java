@@ -6,7 +6,6 @@ import helper.struct.Vec2d;
 import static helper.enums.WidgetState.SM_TOUCH_PROCESSED;
 
 public class MoveableButton extends FlatButton{
-    Vec2d startPos,mPos;
     public MoveableButton(Object obj, DrawValues dww){
         super(obj,dww);
         startPos = new Vec2d();

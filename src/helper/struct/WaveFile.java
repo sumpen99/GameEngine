@@ -45,7 +45,7 @@ public class WaveFile {
     public long numSamples,sizeOfEachSample,lowLimit,highLimit;
     public float durationInSeconds;
     public int overallSize,lengthOfFmt,formatType,channels,sampleRate,byteRate,blockAlign,bitsPerSample,dataSize;
-    public final int BUF_OFFSET = 44,SAMPLE_CHUNK_SIZE = 256;
+    public final int BUF_OFFSET = 44,SAMPLE_CHUNK_SIZE = 44;
     public WaveFormatType format;
     public String path;
     public String[] fileInfo;
