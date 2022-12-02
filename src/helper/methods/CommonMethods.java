@@ -145,6 +145,18 @@ public class CommonMethods{
         return str.charAt(offset);
     }
 
+    public static void swapKDNode(KDNode n1,KDNode n2){
+        double lat = n1.lat;
+        double lon = n1.lon;
+        double distance = n1.distance;
+        String id = n1.id;
+        KDNode left = n1.left;
+        KDNode right = n1.right;
+        boolean found = n1.found;
+        n1.swapValues(n2.lat,n2.lon,n2.distance,n2.id,n2.left,n2.right,n2.found);
+        n2.swapValues(lat,lon,distance,id,left,right,found);
+    }
+
     public static void swapAutoWord(AutoWord w1,AutoWord w2){
         int index = w1.index,edits = w1.edits;
         String word = w1.word;
@@ -238,6 +250,30 @@ public class CommonMethods{
     public static void getRandomInt(FVec2d pos,int bound_x, int bound_y){
         pos.x = (float)((Math.random()*10000) % bound_x);
         pos.y = (float)((Math.random()*10000) % bound_y);
+    }
+
+    public static float getRandomFloat(int pow){
+        return (float)Math.random()*pow;
+    }
+
+    public static double distanceSquaredKDNod(KDNode n1,KDNode n2){
+        return latLonToMeter(n1.lat,n1.lon,n2.lat,n2.lon);
+    }
+
+    public static double distanceSquared(double x1,double y1,double x2,double y2){
+        return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+    }
+
+    public static double latLonToMeter(double lat1,double lon1,double lat2,double lon2){
+        double r = 6371e3;
+        double d1 = lat1 * Math.PI/180;
+        double d2 = lat2 * Math.PI/180;
+        double dlat = (lat2-lat1) * Math.PI/180;
+        double dlon = (lon2-lon1) * Math.PI/180;
+
+        double a = (Math.sin(dlat/2) * Math.sin(dlat/2) + Math.cos(d1) * Math.cos(d2) * Math.sin(dlon/2) * Math.sin(dlon/2));
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return (r * c);
     }
 
     public static int getRand(int maxSize){

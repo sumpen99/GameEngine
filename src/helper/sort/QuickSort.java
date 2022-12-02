@@ -3,12 +3,21 @@ package helper.sort;
 import helper.io.IOHandler;
 import helper.methods.CommonMethods;
 import helper.struct.AutoWord;
+import helper.struct.KDNode;
 import helper.struct.PriorityQueue;
 import helper.struct.SMTimer;
+
+import java.util.Collection;
+import java.util.Collections;
 
 import static helper.methods.CommonMethods.*;
 
 public class QuickSort {
+
+    public static void sortKDNodes(KDNode nodes[], int low, int high,int axis){
+        sortKDNodeList(nodes,low,high,axis);
+
+    }
 
     public static void sortPriorityQueue(PriorityQueue pQueue,int low,int high){
         sortWordList(pQueue.bufWords,low,high);
@@ -30,6 +39,26 @@ public class QuickSort {
             int q = partitionWordList(wordList,low,high);
             sortWordList(wordList,low,q);
             sortWordList(wordList,q+1,high);
+        }
+    }
+
+    static void sortKDNodeList(KDNode[] nodeList,int low,int high,int axis){
+        if(low < high){
+            int q = partitionKDNodeList(nodeList,low,high,axis);
+            sortKDNodeList(nodeList,low,q,axis);
+            sortKDNodeList(nodeList,q+1,high,axis);
+        }
+    }
+
+    static int partitionKDNodeList(KDNode[] nodeList,int low,int high,int axis){
+        double pivot = nodeList[low].compare(axis);
+        int i = low-1;
+        int j = high+1;
+        while(true){
+            while(++i < high && nodeList[i].compare(axis) < pivot);
+            while(--j > low && nodeList[j].compare(axis) > pivot);
+            if(i < j){swapKDNode(nodeList[i],nodeList[j]);}
+            else{return j;}
         }
     }
 

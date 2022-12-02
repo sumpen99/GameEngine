@@ -127,7 +127,7 @@ public class ApiHandler extends BaseThreading {
             if(ssls != null){
                 httpsCon = (HttpsURLConnection) urlObject.openConnection();
                 httpsCon.setSSLSocketFactory(ssls);
-                httpsCon.setDoOutput(true);
+                //httpsCon.setDoOutput(true);
                 httpsCon.setDoInput(true);
                 httpsCon.setRequestMethod("GET");
                 httpsCon.setRequestProperty("Content-Type", "application/json; charset=UTF-8");

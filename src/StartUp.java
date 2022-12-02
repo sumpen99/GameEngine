@@ -7,6 +7,7 @@ import helper.struct.*;
 import helper.font.ttf.TTFFile;
 import helper.text.TextWriter;
 import helper.tree.BinarySearchTree;
+import helper.tree.KDTree;
 import helper.tree.RedBlackTree;
 import program.ColorPicker;
 import program.QuadTreeBalls;
@@ -40,7 +41,11 @@ public class StartUp {
         //RadixSort.runTest(size);
         //BinarySearchTree.runTest();
         //RedBlackTree.runTest();
-
+        KDTree tree = new KDTree();
+        tree.setTestNodes();
+        tree.setTreeStructure(2);
+        tree.search(tree.testNode,2);
+        //tree.printInOrder(tree.root);
         //program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs
         //program = new QuadTreeBalls(800,500); // ./resources/files/gui/quadtree.fs
         program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs

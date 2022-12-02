@@ -1,5 +1,6 @@
 package helper.widget;
 import engine.GameEngine;
+import helper.drawobjects.Circle;
 import helper.drawobjects.Line;
 import helper.interfaces.IThreading;
 import helper.io.IOHandler;
@@ -17,7 +18,7 @@ public class WaveViewBox extends LabelBox implements IThreading {
     boolean drawInfo,isPlaying;
     SamplePair[] samplePairs;
     SamplePair limitsLowHigh;
-    int sampleChunkSize,sampleLineColor,SAMPLE_RANGE=1;
+    int sampleChunkSize,sampleLineColor,SAMPLE_RANGE=1,loopCount;
     WaveFile waveFile;
     Vec2d wavePos;
     float duration = 0.0f,WAVE_OFFSET = 1.0f;
@@ -57,6 +58,7 @@ public class WaveViewBox extends LabelBox implements IThreading {
             mPos.x = x-startPos.x;
             mPos.y = y-startPos.y;
             wavePos.x+=mPos.x;
+            increamentDuration((float)-mPos.x/1000.0f);
             startPos.x = x;
             startPos.y = y;
             return true;
@@ -138,6 +140,7 @@ public class WaveViewBox extends LabelBox implements IThreading {
     void playSamplePairData(){
         int samplePairSize = samplePairs.length,i=0,x;
         int left = wObj.getPos().x,top = wObj.getPos().y,bottom = wObj.getPos().y+wObj.getSize().y,right=wObj.getPos().x+wObj.getSize().x;
+        int cX = wObj.getCenter().x,cy=wObj.getCenter().y;
         //int lastYMax = samplePairs[0].maxValue;
         //int lastX = left+wavePos.x;
         while(i<samplePairSize){
@@ -152,9 +155,11 @@ public class WaveViewBox extends LabelBox implements IThreading {
                 yMin = intReMapValue(yMin,limitsLowHigh.minValue,limitsLowHigh.maxValue,top,bottom);
                 yMax = intReMapValue(yMax,limitsLowHigh.minValue,limitsLowHigh.maxValue,top,bottom);
                 Line.drawLine(x,yMin,x,yMax,sampleLineColor);
-                //Line.drawLine(lastX,lastYMax,x,yMin,sampleLineColor);
-                //lastX = x;
-                //lastYMax = yMax;
+                Line.drawLine(cX,top,cX,bottom,Color.MEDIUMAQUAMARINE.getValue());
+                if(x == cX){
+                    Circle.drawFilledCircle(cX,yMin-5,5,Color.AQUA.getValue());
+                    Circle.drawFilledCircle(cX,yMax+5,5,Color.AQUA.getValue());
+                }
             }
             i++;
         }
@@ -162,21 +167,25 @@ public class WaveViewBox extends LabelBox implements IThreading {
 
     @Override
     public void heavyDuty(){
+        //use wavepos instead maybe
         if(waveFile == null)return;
         while(duration<=waveFile.durationInSeconds && isPlaying){
             wavePos.x--;
             try{
                 Thread.sleep(SAMPLE_RANGE);
-                duration+=(float)SAMPLE_RANGE/1000;
+                increamentDuration((float)SAMPLE_RANGE/1000);
             }
             catch(Exception err){
                 IOHandler.logToFile(err.getMessage());
             }
-            //if(duration>= waveFile.durationInSeconds)break;
         }
         if(isPlaying){
             reWind();
         }
+    }
+
+    void increamentDuration(float value){
+        duration+=value;
     }
 
 

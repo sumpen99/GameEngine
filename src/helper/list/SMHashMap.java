@@ -46,25 +46,6 @@ public class SMHashMap {
             }
         }
         entries = temp.entries;
-        //count = temp.count;
-
-        /*entries = null;
-        count = 0;
-        hashmapInit();
-        for(int i = 0;i<capacity;i++){
-            if(temp.entries[i].set){
-                h2 = temp.entries[i];
-                while(h2 != null){
-                    if(entries[h2.bucket].set){
-                        h2 = extendCollision(entries[h2.bucket],h2);
-                    }
-                    else{
-                        entries[h2.bucket].setValues(h2.bucket,h2.key,h2.value,h2.eType);
-                        h2 = h2.next;
-                    }
-                }
-            }
-        }*/
     }
 
     public void addNewItem(String key,Object value,EntrieType eType){
