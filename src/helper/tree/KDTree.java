@@ -3,7 +3,6 @@ import helper.io.IOHandler;
 import helper.struct.KDNode;
 import java.util.Arrays;
 import java.util.UUID;
-
 import static helper.methods.CommonMethods.*;
 import static helper.sort.QuickSort.sortKDNodes;
 
@@ -73,7 +72,7 @@ public class KDTree{
         return node;
     }
 
-    private KDNode traverseTree(KDNode root,KDNode pivot,int depth,int k){
+    private KDNode traverseTree(KDNode root,KDNode pivot,int depth){
         if(root == null){return null;}
         if(root.distance<MIN_DISTANCE){return root;}
 
@@ -91,15 +90,15 @@ public class KDTree{
             oppositeBranch = root.left;
         }
 
-        KDNode best = checkDistance(pivot,traverseTree(nextBranch,pivot,depth+1,k),root);
+        KDNode best = checkDistance(pivot,traverseTree(nextBranch,pivot,depth+1),root);
         if(distSqrt(pivot,best) > Math.pow(pivot.compare(axis) - root.compare(axis),2)){
-            best = checkDistance(pivot,traverseTree(oppositeBranch,pivot,depth+1,k),best);
+            best = checkDistance(pivot,traverseTree(oppositeBranch,pivot,depth+1),best);
         }
         return best;
     }
 
     public KDNode search(KDNode key){
-        KDNode found = traverseTree(root,key,0,k);
+        KDNode found = traverseTree(root,key,0);
         IOHandler.printString("Searched For -> ");
         IOHandler.printKDNode(key);
         IOHandler.printString("Found -> ");
