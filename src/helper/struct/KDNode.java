@@ -9,11 +9,11 @@ public class KDNode {
     public KDNode right;
     public boolean found;
 
-    public KDNode(double lat,double lon,String id){
+    public KDNode(double lat,double lon,String id,double dist){
         this.lat = lat;
         this.lon = lon;
         this.id = id;
-        this.distance = 100.0;
+        this.distance = dist;
     }
 
     public double compare(int axis){

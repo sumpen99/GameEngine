@@ -116,6 +116,13 @@ public class IOHandler {
         printString("ID: %s Lat: %.2f Lon: %.2f Distance: %.2f Left: %s Right: %s".formatted(node.id,node.lat,node.lon,node.distance,left,right));
     }
 
+    public static void printKDNodeWithPosition(KDNode node,String pos){
+        if(node == null){printString("KDNode Is Null!");return;}
+        String left = node.left != null ? node.left.id : "Null";
+        String right = node.right != null ? node.right.id : "Null";
+        printString("ID: %s Lat: %.2f Lon: %.2f Distance: %.2f Left: %s Right: %s Pos: %s".formatted(node.id,node.lat,node.lon,node.distance,left,right,pos));
+    }
+
     public static void printPoint(Point p){
         if(p == null)return;
         printString("X: %f Y: %f Length: %f".formatted(p.x,p.y,p.length));

@@ -1,55 +1,52 @@
 package helper.tree;
 import helper.io.IOHandler;
 import helper.struct.KDNode;
-import helper.struct.Node;
-
 import java.util.Arrays;
 import java.util.UUID;
-import static helper.methods.CommonMethods.distanceSquaredKDNod;
-import static helper.methods.CommonMethods.getRandomFloat;
+
+import static helper.methods.CommonMethods.*;
 import static helper.sort.QuickSort.sortKDNodes;
 
 
-public class KDTree {
+public class KDTree{
     private KDNode[] nodeList;
     public KDNode testNode;
     public KDNode root;
+    private int k;
     float MIN_DISTANCE = 20.0f;
 
-    public void setTestNodes(){
-        nodeList = getTestNodes();
-        testNode = nodeList[nodeList.length-1];
+    public KDTree(KDNode[] nodes,int k){
+        this.nodeList = nodes != null ? nodes : getTestNodes();
+        this.k = k;
+        setTestNode();
+        setTreeStructure();
     }
 
-    public void setTreeStructure(int k){
-        root = buildKDTree(nodeList,0,k);
+    private void setTestNode(){
+        testNode = nodeList[getRand(nodeList.length)];
     }
 
-    public KDNode search(KDNode key,int k){
-        KDNode found = traverseTree(root,key,0,k);
-        IOHandler.printString("Searched For -> ");
-        IOHandler.printKDNode(key);
-        IOHandler.printString("Found -> ");
-        IOHandler.printKDNode(found);
-        return found;
+    private void setTreeStructure(){
+        assert(nodeList != null) : "nodeList Not Set!";
+        root = buildKDTree(nodeList,0);
     }
 
-    public KDNode[] getTestNodes(){
-        int size = 10,pow=1000,i=0;
+    private KDNode[] getTestNodes(){
+        int size = 100000,pow=1000,i=0;
         KDNode[] nodes = new KDNode[size];
         while(i<size){
             String nodeID = UUID.randomUUID().toString();
-            nodes[i] = new KDNode(getRandomFloat(pow),getRandomFloat(pow),nodeID);
+            nodes[i] = new KDNode(getRandomFloat(pow),getRandomFloat(pow),nodeID,MIN_DISTANCE);
             i++;
         }
         return nodes;
     }
 
-    public double distSqrt(KDNode n1,KDNode n2){
+    private double distSqrt(KDNode n1,KDNode n2){
         return distanceSquaredKDNod(n1,n2);
     }
 
-    public KDNode checkDistance(KDNode pivot,KDNode p1,KDNode p2){
+    private KDNode checkDistance(KDNode pivot,KDNode p1,KDNode p2){
         if(p1 == null){return p2;}
         if(p2 == null){return p1;}
 
@@ -63,7 +60,7 @@ public class KDTree {
         return p2;
     }
 
-    public KDNode buildKDTree(KDNode[]points,int depth,int k){
+    private KDNode buildKDTree(KDNode[]points,int depth){
         int n = points.length;
         if(n==0){return null;}
 
@@ -71,12 +68,12 @@ public class KDTree {
         sortKDNodes(points,0,points.length-1,axis);
         int floorDiv = Math.floorDiv(n,2);
         KDNode node = points[floorDiv];
-        node.left = buildKDTree(Arrays.copyOfRange(points,0,floorDiv),depth+1,k);
-        node.right = buildKDTree(Arrays.copyOfRange(points,floorDiv+1,points.length),depth+1,k);
+        node.left = buildKDTree(Arrays.copyOfRange(points,0,floorDiv),depth+1);
+        node.right = buildKDTree(Arrays.copyOfRange(points,floorDiv+1,points.length),depth+1);
         return node;
     }
 
-    public KDNode traverseTree(KDNode root,KDNode pivot,int depth,int k){
+    private KDNode traverseTree(KDNode root,KDNode pivot,int depth,int k){
         if(root == null){return null;}
         if(root.distance<MIN_DISTANCE){return root;}
 
@@ -101,11 +98,20 @@ public class KDTree {
         return best;
     }
 
-    public void printInOrder(KDNode node){
+    public KDNode search(KDNode key){
+        KDNode found = traverseTree(root,key,0,k);
+        IOHandler.printString("Searched For -> ");
+        IOHandler.printKDNode(key);
+        IOHandler.printString("Found -> ");
+        IOHandler.printKDNode(found);
+        return found;
+    }
+
+    public void printInOrder(KDNode node,String pos){
         if(node != null){
-            printInOrder(node.left);
-            IOHandler.printKDNode(node);
-            printInOrder(node.right);
+            printInOrder(node.left,"IsLeft");
+            IOHandler.printKDNodeWithPosition(node,pos);
+            printInOrder(node.right,"IsRight");
         }
     }
 

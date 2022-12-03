@@ -41,11 +41,9 @@ public class StartUp {
         //RadixSort.runTest(size);
         //BinarySearchTree.runTest();
         //RedBlackTree.runTest();
-        KDTree tree = new KDTree();
-        tree.setTestNodes();
-        tree.setTreeStructure(2);
-        tree.search(tree.testNode,2);
-        //tree.printInOrder(tree.root);
+        KDTree tree = new KDTree(null,2);
+        tree.search(tree.testNode);
+        //tree.printInOrder(tree.root,"IsRoot");
         //program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs
         //program = new QuadTreeBalls(800,500); // ./resources/files/gui/quadtree.fs
         program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
