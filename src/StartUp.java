@@ -2,6 +2,7 @@ import engine.GameEngine;
 import helper.enums.Color;
 import helper.list.SMHashMap;
 import helper.methods.CommonMethods;
+import helper.search.InterpolationSearch;
 import helper.sort.*;
 import helper.struct.*;
 import helper.font.ttf.TTFFile;
@@ -43,6 +44,7 @@ public class StartUp {
         //RedBlackTree.runTest();
         //KDTree tree = new KDTree(null,2);
         //tree.search(tree.testNode);
+        InterpolationSearch.testAlgorithm();
         //program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs
         //program = new QuadTreeBalls(800,500); // ./resources/files/gui/quadtree.fs
         program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
