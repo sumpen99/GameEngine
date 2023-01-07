@@ -1,5 +1,6 @@
 package helper.methods;
 
+import helper.enums.FormatVersion;
 import helper.enums.KeyType;
 
 public class IntToEnum {
@@ -12,6 +13,12 @@ public class IntToEnum {
         else if(value == 39)return KeyType.KEY_RIGHT;
         else if(value == 40)return KeyType.KEY_DOWN;
         return KeyType.KEY_DUMMY;
+    }
+
+    public static FormatVersion shortToFormatVersion(short value){
+        if(value == 1){return FormatVersion.LEGACY;}
+        if(value == 2){return FormatVersion.WRITE_AHEAD_LOG;}
+        return FormatVersion.UNKNOWN;
     }
 
 

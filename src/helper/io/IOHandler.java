@@ -18,8 +18,7 @@ import static helper.enums.EntrieType.ENTRIE_TTF_GLYPHINDEX;
 import static helper.enums.EntrieType.ENTRIE_TTF_TAG;
 import static helper.enums.KeyboardState.*;
 import static helper.enums.MouseState.*;
-import static helper.enums.SqliteBits.MAGIC_STRING;
-import static helper.enums.SqliteBits.PAGE_SIZE;
+import static helper.enums.SqliteBits.*;
 import static helper.methods.CommonMethods.*;
 import static helper.methods.CommonMethods.littleEndianToBigEndian;
 import static helper.methods.StringToEnum.*;
@@ -369,12 +368,17 @@ public class IOHandler {
             byte[] bufferSixteen = new byte[16];
             byte[] bufferFour = new byte[4];
             byte[] bufferTwo = new byte[2];
+            byte[] bufferOne = new byte[1];
 
             // READ FILEINFO ... NUMTABLES
             read = reader.read(bufferSixteen,0,bufferSixteen.length);
             header.convertToSize(MAGIC_STRING,bufferSixteen);
             read += reader.read(bufferTwo,0,bufferTwo.length);
             header.convertToSize(PAGE_SIZE,bufferTwo);
+            read += reader.read(bufferOne,0,bufferOne.length);
+            header.convertToSize(FORMAT_VERSION_WRITE,bufferOne);
+            read += reader.read(bufferOne,0,bufferOne.length);
+            header.convertToSize(FORMAT_VERSION_READ,bufferOne);
             /*read += reader.read(bufferTwo,0,bufferTwo.length);
             header.convertToSize(TTFBits.SEARCH_RANGE,bufferTwo);
             read += reader.read(bufferTwo,0,bufferTwo.length);

@@ -1,7 +1,10 @@
 package helper.sql;
 import helper.enums.ErrorCodes;
+import helper.enums.FormatVersion;
 import helper.enums.SqliteBits;
 import helper.io.IOHandler;
+import helper.methods.IntToEnum;
+import helper.struct.FormatFour;
 import helper.struct.PassedCheck;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -15,6 +18,8 @@ public class SqliteFile {
     public String path;
     public int pageSize;
     public byte[] magicString;
+    public FormatVersion formatVersionRead;
+    public FormatVersion formatVersionWrite;
     public short searchRange,entrySelector;
 
     public SqliteFile(String pathToFile){
@@ -34,7 +39,27 @@ public class SqliteFile {
                 validatePageSize();
                 break;
             }
+            case FORMAT_VERSION_WRITE:{
+                formatVersionWrite = IntToEnum.shortToFormatVersion((short)bytesToInt(buf,0,1,false));
+                validateFormatVersionWrite();
+                break;
+            }
+            case FORMAT_VERSION_READ:{
+                formatVersionRead = IntToEnum.shortToFormatVersion((short)bytesToInt(buf,0,1,false));
+                validateFormatVersionRead();
+                break;
+            }
+
+
         }
+    }
+
+    private void validateFormatVersionWrite(){
+        if(formatVersionWrite == FormatVersion.UNKNOWN){errorCodes.add(FORMAT_VERSION_WRITE_UNKNOWN);}
+    }
+
+    private void validateFormatVersionRead(){
+        if(formatVersionRead == FormatVersion.UNKNOWN){errorCodes.add(FORMAT_VERSION_READ_UNKNOWN);}
     }
 
     private void validateMagicString(){
@@ -52,6 +77,8 @@ public class SqliteFile {
         IOHandler.printString("Magic String");
         IOHandler.printCharBufInLine(new String(magicString,StandardCharsets.UTF_8).toCharArray(),true);
         IOHandler.printString("\nPage Size\n%d".formatted(pageSize));
+        IOHandler.printString("Format Version Write\n%s".formatted(formatVersionWrite.name()));
+        IOHandler.printString("Format Version Read\n%s".formatted(formatVersionWrite.name()));
 
     }
 

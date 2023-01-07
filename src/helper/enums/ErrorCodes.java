@@ -4,7 +4,9 @@ public enum ErrorCodes {
     MAGIC_NUMBER_MISMATCH("Magic String Is Not A Match"),
     PAGE_SIZE_TO_SMALL("PageSize can not be less then 512"),
     PAGE_SIZE_TO_BIG("PageSize can not be greater then 65536"),
-    PAGE_SIZE_NOT_A_POWER_OF_TWO("PageSize must be a power of 2");
+    PAGE_SIZE_NOT_A_POWER_OF_TWO("PageSize must be a power of 2"),
+    FORMAT_VERSION_READ_UNKNOWN("Format version read is not reconized"),
+    FORMAT_VERSION_WRITE_UNKNOWN("Format version write is not reconized");
 
     private final String value;
     ErrorCodes(String value){this.value = value;}
