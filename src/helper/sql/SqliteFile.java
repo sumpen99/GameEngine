@@ -15,7 +15,7 @@ public class SqliteFile {
     public String path;
     public int pageSize;
     public byte[] magicString;
-    public short searchRange,entrySelector,rangeShift;
+    public short searchRange,entrySelector;
 
     public SqliteFile(String pathToFile){
         path = pathToFile;
