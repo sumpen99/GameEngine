@@ -370,7 +370,7 @@ public class IOHandler {
             byte[] bufferTwo = new byte[2];
             byte[] bufferOne = new byte[1];
 
-            // READ FILEINFO ... NUMTABLES
+            // READ SQLITE HEADER INFO
             read = reader.read(bufferSixteen,0,bufferSixteen.length);
             header.convertToSize(MAGIC_STRING,bufferSixteen);
             read += reader.read(bufferTwo,0,bufferTwo.length);
@@ -391,6 +391,26 @@ public class IOHandler {
             header.convertToSize(CHANGE_COUNTER,bufferFour);
             read += reader.read(bufferFour,0,bufferFour.length);
             header.convertToSize(DATABASE_SIZE,bufferFour);
+            read += reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(FIRST_FREE_PAGE,bufferFour);
+            read += reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(FIRST_FREE_PAGE_LEN,bufferFour);
+            read += reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(SCHEMA_COOKIE,bufferFour);
+            read += reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(SCHEMA_VERSION,bufferFour);
+            read += reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(CACHE_SIZE,bufferFour);
+            read += reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(VACUUM_SETTING,bufferFour);
+            read += reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(TEXT_ENCODING,bufferFour);
+            read += reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(USER_VERSION,bufferFour);
+            read += reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(INCREMENTAL_VACUUM,bufferFour);
+            read += reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(APPLICATION_ID,bufferFour);
             /*read += reader.read(bufferTwo,0,bufferTwo.length);
             header.convertToSize(TTFBits.SEARCH_RANGE,bufferTwo);
             read += reader.read(bufferTwo,0,bufferTwo.length);

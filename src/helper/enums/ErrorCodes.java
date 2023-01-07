@@ -12,7 +12,16 @@ public enum ErrorCodes {
     FRACTION_MIN_MISMATH("Minimum payload fraction out of bounds"),
     FRACTION_LEAF_MISMATH("Leaf fraction out of bounds"),
     CHANGE_COUNTER_MISMATH("Change counter out of bounds"),
-    DATABASE_SIZE_MISMATCH("Database size out of bounds");
+    DATABASE_SIZE_MISMATCH("Database size out of bounds"),
+    FIRST_FREE_PAGE_INFO_MISMATCH("First free page info not set up correspondly"),
+    FIRST_FREE_PAGE_MISMATCH("First free page out of bounds"),
+    FIRST_FREE_PAGE_LENGTH_MISMATCH("First free page length out of bounds"),
+    SCHEMA_COOKIE_MISMATCH("Schema cookie out of bounds"),
+    SCHEMA_VERSION_MISMATCH("Schema version out of bounds (valid be range 1-4)"),
+    CACHE_SIZE_MISMATCH("Cache size out of bounds"),
+    VACUUM_SETTINGS_MISMATCH("Vacuum settings most be in range 0 -> 4,294,967,295"),
+    TEXT_ENCODING_MISMATCH("Text encoding must be in range of 1-3"),
+    APPLICATION_ID_MISMATCH("Application ID out of bounds");
 
     private final String value;
     ErrorCodes(String value){this.value = value;}
