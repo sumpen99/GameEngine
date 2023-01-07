@@ -79,7 +79,7 @@ public abstract class GameEngine extends JFrame implements IGameEngine{
     void builUiElements(String [] data,GlobalCounter counter){
         int j,rows,idx,start;
         j = 0;
-        layoutRoot = new RootLayout(0,0,this.screenWidth,this.screenHeight);
+        layoutRoot = new RootLayout(0,0,GameEngine.screenWidth,GameEngine.screenHeight);
         String END_OF_ELEMENT = Token.END_OF_ELEMENT.getValue();
         while(!data[j].equals(Token.END_OF_GUI.getValue())){
             boolean doLayout = false,doWidget = false,topLevel = false;

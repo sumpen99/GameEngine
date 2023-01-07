@@ -9,6 +9,7 @@ import helper.input.MouseHandler;
 import helper.interfaces.ITTFTableInfo;
 import helper.layout.Layout;
 import helper.list.SMHashMap;
+import helper.sql.SqliteFile;
 import helper.struct.*;
 import helper.widget.Cursor;
 import helper.widget.Widget;
@@ -17,6 +18,8 @@ import static helper.enums.EntrieType.ENTRIE_TTF_GLYPHINDEX;
 import static helper.enums.EntrieType.ENTRIE_TTF_TAG;
 import static helper.enums.KeyboardState.*;
 import static helper.enums.MouseState.*;
+import static helper.enums.SqliteBits.MAGIC_STRING;
+import static helper.enums.SqliteBits.PAGE_SIZE;
 import static helper.methods.CommonMethods.*;
 import static helper.methods.CommonMethods.littleEndianToBigEndian;
 import static helper.methods.StringToEnum.*;
@@ -38,6 +41,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
+import java.util.ArrayList;
 
 public class IOHandler {
 
@@ -131,6 +135,11 @@ public class IOHandler {
     public static void printIntArray(int[] arr){
         printString("Int Array length: %d".formatted(arr.length));
         for(int i = 0;i<arr.length;i++)printInt(arr[i]);
+    }
+
+    public static void printIntArrayList(ArrayList<Integer> arr){
+        printString("Int Array length: %d".formatted(arr.size()));
+        for(int i = 0;i<arr.size();i++)printInt(arr.get(i));
     }
 
     public static void printStringArray(String[] arr){
@@ -340,6 +349,45 @@ public class IOHandler {
             return false;
         }
         return true;
+    }
+
+    //https://freemasen.com/blog/sqlite-parser-pt-1/
+    public static void parseSqliteFile(SqliteFile header){
+        DataInputStream reader = null;
+        header.passedCheck.passed = true;
+        int read;
+        try{
+            reader = new DataInputStream(new BufferedInputStream(new FileInputStream(header.path)));
+        }
+        catch(FileNotFoundException err){
+            header.passedCheck.passed = false;
+            header.passedCheck.message = err.getMessage();
+            return;
+        }
+        try{
+            int i = 0,checkSum=0,offset=0,length=0,addedOffset=0,diff = 0;
+            byte[] bufferSixteen = new byte[16];
+            byte[] bufferFour = new byte[4];
+            byte[] bufferTwo = new byte[2];
+
+            // READ FILEINFO ... NUMTABLES
+            read = reader.read(bufferSixteen,0,bufferSixteen.length);
+            header.convertToSize(MAGIC_STRING,bufferSixteen);
+            read += reader.read(bufferTwo,0,bufferTwo.length);
+            header.convertToSize(PAGE_SIZE,bufferTwo);
+            /*read += reader.read(bufferTwo,0,bufferTwo.length);
+            header.convertToSize(TTFBits.SEARCH_RANGE,bufferTwo);
+            read += reader.read(bufferTwo,0,bufferTwo.length);
+            header.convertToSize(TTFBits.ENTRY_SELECTOR,bufferTwo);
+            read += reader.read(bufferTwo,0,bufferTwo.length);
+            header.convertToSize(TTFBits.RANGE_SHIFT,bufferTwo);*/
+        }
+        catch(java.io.IOException err){
+            IOHandler.logToFile(err.getMessage());
+            header.passedCheck.passed = false;
+            header.passedCheck.message = err.getMessage();
+        }
+        closeDataInputStream(reader);
     }
 
     public static String[] getTTFFiles(){
@@ -712,6 +760,12 @@ public class IOHandler {
         else while(i<size)printChar(buf[i++]);
     }
 
+    public static void printCharBufInLine(char[] buf,boolean asInt){
+        int size = buf.length,i = 0;
+        if(asInt)while(i<size)System.out.printf("%d ",(int)buf[i++]);
+        else while(i<size)System.out.printf("%c ", buf[i++]);
+    }
+
     public static void printImageInfo(ImageInfo img){
         printString("Image name: %s".formatted(img.name));
         printString("Image type: %s".formatted(img.imgType));
@@ -1059,6 +1113,12 @@ public class IOHandler {
     public static void printCharValues(){
         for(int i = 0;i< 96;i++){
             System.out.println("Char: %c Value: %d".formatted((char)(i+32),i));
+        }
+    }
+
+    public static void printErrorCodes(ArrayList<ErrorCodes> errCodes){
+        for(ErrorCodes err : errCodes){
+            printString(err.getMessage());
         }
     }
 

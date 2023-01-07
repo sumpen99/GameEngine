@@ -180,6 +180,14 @@ public class CommonMethods{
         arr[i1]=arr[i1]^arr[i2]^(arr[i2]=arr[i1]);
     }
 
+    public static boolean shortIsPowerOfTwo(short num){
+        return (num != 0) && ((num & (num - 1)) == 0);
+    }
+    public static boolean intIsPowerOfTwo(int num){
+        return (num != 0) && ((num & (num - 1)) == 0);
+    }
+
+
     public static String byteBufToString(byte[] buf){
         int size = buf.length,i = 0;
         String str = "";
