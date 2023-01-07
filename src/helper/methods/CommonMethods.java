@@ -245,6 +245,10 @@ public class CommonMethods{
         return buf[offset] & 255;
     }
 
+    public static boolean validUint32(long value){
+        return value >= 0 && value<=4294967295L;
+    }
+
     public static int getUint16(byte[] buf,int offset){
         return ((buf[offset] & 255) << 8) | (buf[offset+1] & 255);
     }

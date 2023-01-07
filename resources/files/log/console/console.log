@@ -7,3 +7,15 @@ Format Version Write
 LEGACY
 Format Version Read
 LEGACY
+Reserved Bytes
+0
+Fraction Max
+64
+Fraction Min
+32
+Fraction Leaf
+32
+Change Counter
+341069
+Database Size
+31764

@@ -379,6 +379,18 @@ public class IOHandler {
             header.convertToSize(FORMAT_VERSION_WRITE,bufferOne);
             read += reader.read(bufferOne,0,bufferOne.length);
             header.convertToSize(FORMAT_VERSION_READ,bufferOne);
+            read += reader.read(bufferOne,0,bufferOne.length);
+            header.convertToSize(RESERVED_BYTES,bufferOne);
+            read += reader.read(bufferOne,0,bufferOne.length);
+            header.convertToSize(FRACTION_MAX,bufferOne);
+            read += reader.read(bufferOne,0,bufferOne.length);
+            header.convertToSize(FRACTION_MIN,bufferOne);
+            read += reader.read(bufferOne,0,bufferOne.length);
+            header.convertToSize(FRACTION_LEAF,bufferOne);
+            read += reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(CHANGE_COUNTER,bufferFour);
+            read += reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(DATABASE_SIZE,bufferFour);
             /*read += reader.read(bufferTwo,0,bufferTwo.length);
             header.convertToSize(TTFBits.SEARCH_RANGE,bufferTwo);
             read += reader.read(bufferTwo,0,bufferTwo.length);
