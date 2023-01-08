@@ -1,8 +1,10 @@
 package helper.methods;
 import helper.enums.Color;
 import helper.enums.ColorMask;
+import helper.enums.ConstantValues;
 import helper.struct.Point;
 
+import static helper.enums.ConstantValues.*;
 import static helper.methods.StringToEnum.getStrToColor;
 import static helper.struct.Point.subPoint;
 import static helper.struct.Point.multPoint;
@@ -32,6 +34,20 @@ public class CommonMethods{
         }
     }
 
+    public static float getBytesToKilobytes(long numberOfBytes){
+        long kiloBytes = KILO_BYTE.getValue();
+        return (float)numberOfBytes/(float)kiloBytes;
+    }
+
+    public static float getBytesToMegabytes(long numberOfBytes){
+        long megaBytes = MEGA_BYTE.getValue();
+        return (float)numberOfBytes/(float)megaBytes;
+    }
+
+    public static float getBytesToGigabytes(long numberOfBytes){
+        long gigaBytes = GIGA_BYTE.getValue();
+        return (float)numberOfBytes/(float)gigaBytes;
+    }
 
     public static int getMiddlePoint(int a,int b){
         return a + ((b-a)/2);

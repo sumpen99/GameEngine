@@ -364,7 +364,7 @@ public class IOHandler {
             return;
         }
         try{
-            int i = 0,checkSum=0,offset=0,length=0,addedOffset=0,diff = 0;
+            int i = 0,offset=-100,length=0,addedOffset=0,diff = 0;
             byte[] bufferTwenty = new byte[20];
             byte[] bufferSixteen = new byte[16];
             byte[] bufferFour = new byte[4];
@@ -418,6 +418,23 @@ public class IOHandler {
             header.convertToSize(VERSION_VALID_FOR,bufferFour);
             read += reader.read(bufferFour,0,bufferFour.length);
             header.convertToSize(LIBRARY_WRITE_VERSION,bufferFour);
+
+            // READ = 100
+            // https://github.com/FreeMasen/WiredForge.com/tree/c0528ce3506630b6de0c103e7d09fcbf9b4bb348/content/blog
+            byte[] bufferPage = new byte[header.pageSize];
+            BTreePageHeader bTreePage;
+            while(read<header.getTotalFileSize()){
+                read += reader.read(bufferPage,0,bufferPage.length + offset);
+                offset = 0;
+                bTreePage = new BTreePageHeader();
+                bTreePage.readHeaderInfo(bufferPage);
+                if(bTreePage.errorCodes.size() != 0){bTreePage.showUserErrorMessage();}
+                else{bTreePage.printHeaderInfo();}
+                //IOHandler.printString("############# Read  At %d ###########################".formatted(read));
+                break;
+            }
+
+
             /*read += reader.read(bufferTwo,0,bufferTwo.length);
             header.convertToSize(TTFBits.SEARCH_RANGE,bufferTwo);
             read += reader.read(bufferTwo,0,bufferTwo.length);

@@ -28,7 +28,8 @@ public class SqliteFile {
             isIncremental,
             applicationId,
             versionValidFor,
-            libraryWriteVersion;
+            libraryWriteVersion,
+            totalFileSize;
     public int pageSize,userVersion;
     public byte[] magicString;
     public short reservedBytes,fractionMax,fractionMin,fractionLeaf;
@@ -56,12 +57,12 @@ public class SqliteFile {
                 break;
             }
             case FORMAT_VERSION_WRITE:{
-                formatVersionWrite = shortToFormatVersion((short)bytesToInt(buf,0,1,false));
+                formatVersionWrite = intToFormatVersion(bytesToInt(buf,0,1,false));
                 validateFormatVersionWrite();
                 break;
             }
             case FORMAT_VERSION_READ:{
-                formatVersionRead = shortToFormatVersion((short)bytesToInt(buf,0,1,false));
+                formatVersionRead = intToFormatVersion(bytesToInt(buf,0,1,false));
                 validateFormatVersionRead();
                 break;
             }
@@ -87,28 +88,28 @@ public class SqliteFile {
             }
             case CHANGE_COUNTER:{
                 changeCounter = bytesToInt(buf,0,4,false);
-                valideUint32(changeCounter,CHANGE_COUNTER_MISMATH);
+                validateUint32(changeCounter,CHANGE_COUNTER_MISMATH);
                 break;
             }
             case DATABASE_SIZE:{
                 databaseSize = bytesToInt(buf,0,4,false);
-                valideUint32(databaseSize,DATABASE_SIZE_MISMATCH);
+                validateUint32(databaseSize,DATABASE_SIZE_MISMATCH);
                 break;
             }
             case FIRST_FREE_PAGE:{
                 firstFreePage = bytesToInt(buf,0,4,false);
-                valideUint32(firstFreePage,FIRST_FREE_PAGE_MISMATCH);
+                validateUint32(firstFreePage,FIRST_FREE_PAGE_MISMATCH);
                 break;
             }
             case FIRST_FREE_PAGE_LEN:{
                 firstFreePageLen = bytesToInt(buf,0,4,false);
-                valideUint32(firstFreePageLen,FIRST_FREE_PAGE_LENGTH_MISMATCH);
+                validateUint32(firstFreePageLen,FIRST_FREE_PAGE_LENGTH_MISMATCH);
                 validateFreePageInfo();
                 break;
             }
             case SCHEMA_COOKIE:{
                 schemaCookie = bytesToInt(buf,0,4,false);
-                valideUint32(schemaCookie,SCHEMA_COOKIE_MISMATCH);
+                validateUint32(schemaCookie,SCHEMA_COOKIE_MISMATCH);
                 break;
             }
             case SCHEMA_VERSION:{
@@ -118,7 +119,7 @@ public class SqliteFile {
             }
             case CACHE_SIZE:{
                 cacheSize = bytesToInt(buf,0,4,false);
-                valideUint32(cacheSize,CACHE_SIZE_MISMATCH);
+                validateUint32(cacheSize,CACHE_SIZE_MISMATCH);
                 break;
             }
             case VACUUM_SETTING:{
@@ -141,7 +142,7 @@ public class SqliteFile {
             }
             case APPLICATION_ID:{
                 applicationId = bytesToInt(buf,0,4,false);
-                valideUint32(applicationId,APPLICATION_ID_MISMATCH);
+                validateUint32(applicationId,APPLICATION_ID_MISMATCH);
                 break;
             }
             case RESERVED_ZEROS:{
@@ -151,12 +152,12 @@ public class SqliteFile {
             }
             case VERSION_VALID_FOR:{
                 versionValidFor = bytesToInt(buf,0,4,false);
-                valideUint32(versionValidFor,VERSION_VALID_FOR_MISMATCH);
+                validateUint32(versionValidFor,VERSION_VALID_FOR_MISMATCH);
                 break;
             }
             case LIBRARY_WRITE_VERSION:{
                 libraryWriteVersion = bytesToInt(buf,0,4,false);
-                valideUint32(libraryWriteVersion,LIBRARY_WRITE_VERSION_MISMATCH);
+                validateUint32(libraryWriteVersion,LIBRARY_WRITE_VERSION_MISMATCH);
                 break;
             }
         }
@@ -179,7 +180,7 @@ public class SqliteFile {
         freePage = new FreePageListInfo(firstFreePage,firstFreePageLen);
     }
 
-    void valideUint32(long value,ErrorCodes code){
+    void validateUint32(long value,ErrorCodes code){
         if(!validUint32(value)){errorCodes.add(code);}
     }
 
@@ -214,30 +215,39 @@ public class SqliteFile {
         else if(!intIsPowerOfTwo(pageSize)){errorCodes.add(PAGE_SIZE_NOT_A_POWER_OF_TWO);}
     }
 
-    public void printFileInfo(){
-        IOHandler.printString("Magic String");
-        IOHandler.printCharBufInLine(new String(magicString,StandardCharsets.UTF_8).toCharArray(),true);
-        IOHandler.printString("\nPage Size\n%d".formatted(pageSize));
-        IOHandler.printString("Write Version\n%s".formatted(formatVersionWrite.name()));
-        IOHandler.printString("Read Version\n%s".formatted(formatVersionWrite.name()));
-        IOHandler.printString("Reserved Bytes\n%d".formatted(reservedBytes));
-        IOHandler.printString("Fraction Max\n%d".formatted(fractionMax));
-        IOHandler.printString("Fraction Min\n%d".formatted(fractionMin));
-        IOHandler.printString("Fraction Leaf\n%d".formatted(fractionLeaf));
-        IOHandler.printString("Change Counter\n%d".formatted(changeCounter));
-        IOHandler.printString("Database Size\n%d".formatted(databaseSize));
-        IOHandler.printString("Free Page\n%s".formatted(freePage.toString()));
-        IOHandler.printString("Schema Cookie\n%d".formatted(schemaCookie));
-        IOHandler.printString("Schema Version\n%s".formatted(schemaVersion.name()));
-        IOHandler.printString("Cache Size\n%d".formatted(cacheSize));
-        IOHandler.printString("Textencoding\n%s".formatted(textEncoding.name()));
-        IOHandler.printString("Userversion\n%d".formatted(userVersion));
-        IOHandler.printString("Vacuum settings\n%s (%d) isincremental (%d)".formatted(vacuumSetting.name(),vacuumSettingsRaw,isIncremental));
-        IOHandler.printString("Application ID\n%d".formatted(applicationId));
-        IOHandler.printString("Reserved zeros (20b) is zero\n%b".formatted(reservedZeros));
-        IOHandler.printString("Version valid for (is equal to change counter? %b)\n%d".formatted(versionValidFor == changeCounter,versionValidFor));
-        IOHandler.printString("Library write version\n%d".formatted(libraryWriteVersion));
+    public long getTotalFileSize(){
+        return pageSize*databaseSize;
+    }
 
+    public void printFileInfo(){
+        IOHandler.printString("Magic String equals             -> (83,81,76,105,116,101,32,102,111,114,109,97,116,32,51,0)");
+        //IOHandler.printCharBufInLine(new String(magicString,StandardCharsets.UTF_8).toCharArray(),true);
+        //IOHandler.printString("");
+        IOHandler.printString("Page Size                       -> %d".formatted(pageSize));
+        IOHandler.printString("Write Version                   -> %s".formatted(formatVersionWrite.name()));
+        IOHandler.printString("Read Version                    -> %s".formatted(formatVersionWrite.name()));
+        IOHandler.printString("Reserved Bytes                  -> %d".formatted(reservedBytes));
+        IOHandler.printString("Fraction Max                    -> %d".formatted(fractionMax));
+        IOHandler.printString("Fraction Min                    -> %d".formatted(fractionMin));
+        IOHandler.printString("Fraction Leaf                   -> %d".formatted(fractionLeaf));
+        IOHandler.printString("Change Counter                  -> %d".formatted(changeCounter));
+        IOHandler.printString("Database Size (number of pages) -> %d".formatted(databaseSize));
+        IOHandler.printString("Free Page                       -> %s".formatted(freePage.toString()));
+        IOHandler.printString("Schema Cookie                   -> %d".formatted(schemaCookie));
+        IOHandler.printString("Schema Version                  -> %s".formatted(schemaVersion.name()));
+        IOHandler.printString("Cache Size                      -> %d".formatted(cacheSize));
+        IOHandler.printString("Textencoding                    -> %s".formatted(textEncoding.name()));
+        IOHandler.printString("Userversion                     -> %d".formatted(userVersion));
+        IOHandler.printString("Vacuum settings                 -> %s (%d) isincremental (%d)".formatted(vacuumSetting.name(),vacuumSettingsRaw,isIncremental));
+        IOHandler.printString("Application ID                  -> %d".formatted(applicationId));
+        IOHandler.printString("Reserved zeros (20b) is zero    -> %b".formatted(reservedZeros));
+        IOHandler.printString("Version valid for               -> (versionValidFor == changeCounter)%b %d".formatted(versionValidFor == changeCounter,versionValidFor));
+        IOHandler.printString("Library write version           -> %d".formatted(libraryWriteVersion));
+        IOHandler.printString("Total filesize should be");
+        IOHandler.printString("%d(b)".formatted(getTotalFileSize()));
+        IOHandler.printString("%f(kb)".formatted(getBytesToKilobytes(getTotalFileSize())));
+        IOHandler.printString("%f(mb)".formatted(getBytesToMegabytes(getTotalFileSize())));
+        IOHandler.printString("%f(gb)".formatted(getBytesToGigabytes(getTotalFileSize())));
     }
 
     public void showUserErrorMessage(){

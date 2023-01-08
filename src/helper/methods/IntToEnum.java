@@ -1,6 +1,7 @@
 package helper.methods;
 
 import helper.enums.*;
+import helper.io.IOHandler;
 
 import static helper.methods.CommonMethods.validUint32;
 
@@ -16,7 +17,7 @@ public class IntToEnum {
         return KeyType.KEY_DUMMY;
     }
 
-    public static FormatVersion shortToFormatVersion(short value){
+    public static FormatVersion intToFormatVersion(int value){
         if(value == 1){return FormatVersion.LEGACY;}
         if(value == 2){return FormatVersion.WRITE_AHEAD_LOG;}
         return FormatVersion.UNKNOWN;
@@ -37,6 +38,14 @@ public class IntToEnum {
             else{return VacuumSetting.FULL;}
         }
         return VacuumSetting.UNKNOWN;
+    }
+
+    public static BTreePageType intToBTreePageType(int value){
+        if(value == 2){return BTreePageType.INTERIOR_INDEX;}
+        if(value == 5){return BTreePageType.INTERIOR_TABLE;}
+        if(value == 10){return BTreePageType.LEAF_INDEX;}
+        if(value == 13){return BTreePageType.LEAF_TABLE;}
+        return BTreePageType.UNKNOWN;
     }
 
     public static TextEncoding intToTextEncoding(int value){

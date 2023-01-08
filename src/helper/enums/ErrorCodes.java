@@ -24,7 +24,9 @@ public enum ErrorCodes {
     APPLICATION_ID_MISMATCH("Application ID out of bounds"),
     RESERVED_ZEROS_MISMATCH("Reserved zeros (20b) needs to be zero"),
     VERSION_VALID_FOR_MISMATCH("Version valid for out of bounds"),
-    LIBRARY_WRITE_VERSION_MISMATCH("Library write version for out of bounds");
+    LIBRARY_WRITE_VERSION_MISMATCH("Library write version for out of bounds"),
+    PAGE_TYPE_MISMATCH("Page type can only be -> (2, 5, 10 or 13)"),
+    PAGE_NUMBER_MISMATCH("Page Number can not go outside the range of uint32");
 
     private final String value;
     ErrorCodes(String value){this.value = value;}
