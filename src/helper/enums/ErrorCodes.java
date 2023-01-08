@@ -21,7 +21,10 @@ public enum ErrorCodes {
     CACHE_SIZE_MISMATCH("Cache size out of bounds"),
     VACUUM_SETTINGS_MISMATCH("Vacuum settings most be in range 0 -> 4,294,967,295"),
     TEXT_ENCODING_MISMATCH("Text encoding must be in range of 1-3"),
-    APPLICATION_ID_MISMATCH("Application ID out of bounds");
+    APPLICATION_ID_MISMATCH("Application ID out of bounds"),
+    RESERVED_ZEROS_MISMATCH("Reserved zeros (20b) needs to be zero"),
+    VERSION_VALID_FOR_MISMATCH("Version valid for out of bounds"),
+    LIBRARY_WRITE_VERSION_MISMATCH("Library write version for out of bounds");
 
     private final String value;
     ErrorCodes(String value){this.value = value;}

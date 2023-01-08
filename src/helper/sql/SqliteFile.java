@@ -9,13 +9,26 @@ import java.util.Arrays;
 import static helper.enums.ErrorCodes.*;
 import static helper.methods.CommonMethods.*;
 import static helper.methods.IntToEnum.*;
-
+//https://freemasen.com/blog/sqlite-parser-pt-1/
+//https://freemasen.com/blog/sqlite-parser-pt-2/
+//https://freemasen.com/blog/sqlite-parser-pt-3/
 public class SqliteFile {
     public PassedCheck passedCheck = new PassedCheck();
     public ArrayList<ErrorCodes> errorCodes;
     public String path;
     public FreePageListInfo freePage;
-    public long changeCounter,databaseSize,firstFreePage,firstFreePageLen,schemaCookie,cacheSize,vacuumSettingsRaw,isIncremental,applicationId;
+    public boolean reservedZeros;
+    public long changeCounter,
+            databaseSize,
+            firstFreePage,
+            firstFreePageLen,
+            schemaCookie,
+            cacheSize,
+            vacuumSettingsRaw,
+            isIncremental,
+            applicationId,
+            versionValidFor,
+            libraryWriteVersion;
     public int pageSize,userVersion;
     public byte[] magicString;
     public short reservedBytes,fractionMax,fractionMin,fractionLeaf;
@@ -131,6 +144,21 @@ public class SqliteFile {
                 valideUint32(applicationId,APPLICATION_ID_MISMATCH);
                 break;
             }
+            case RESERVED_ZEROS:{
+                reservedZeros = checkNonZeroValue(buf);
+                validateZeroValue(reservedZeros);
+                break;
+            }
+            case VERSION_VALID_FOR:{
+                versionValidFor = bytesToInt(buf,0,4,false);
+                valideUint32(versionValidFor,VERSION_VALID_FOR_MISMATCH);
+                break;
+            }
+            case LIBRARY_WRITE_VERSION:{
+                libraryWriteVersion = bytesToInt(buf,0,4,false);
+                valideUint32(libraryWriteVersion,LIBRARY_WRITE_VERSION_MISMATCH);
+                break;
+            }
         }
     }
 
@@ -153,6 +181,10 @@ public class SqliteFile {
 
     void valideUint32(long value,ErrorCodes code){
         if(!validUint32(value)){errorCodes.add(code);}
+    }
+
+    void validateZeroValue(boolean value){
+        if(!value){errorCodes.add(RESERVED_ZEROS_MISMATCH);}
     }
 
     void validateFraction(short valueIs,short valueHasToBe,ErrorCodes code){
@@ -202,6 +234,9 @@ public class SqliteFile {
         IOHandler.printString("Userversion\n%d".formatted(userVersion));
         IOHandler.printString("Vacuum settings\n%s (%d) isincremental (%d)".formatted(vacuumSetting.name(),vacuumSettingsRaw,isIncremental));
         IOHandler.printString("Application ID\n%d".formatted(applicationId));
+        IOHandler.printString("Reserved zeros (20b) is zero\n%b".formatted(reservedZeros));
+        IOHandler.printString("Version valid for (is equal to change counter? %b)\n%d".formatted(versionValidFor == changeCounter,versionValidFor));
+        IOHandler.printString("Library write version\n%d".formatted(libraryWriteVersion));
 
     }
 

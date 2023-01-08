@@ -365,6 +365,7 @@ public class IOHandler {
         }
         try{
             int i = 0,checkSum=0,offset=0,length=0,addedOffset=0,diff = 0;
+            byte[] bufferTwenty = new byte[20];
             byte[] bufferSixteen = new byte[16];
             byte[] bufferFour = new byte[4];
             byte[] bufferTwo = new byte[2];
@@ -411,6 +412,12 @@ public class IOHandler {
             header.convertToSize(INCREMENTAL_VACUUM,bufferFour);
             read += reader.read(bufferFour,0,bufferFour.length);
             header.convertToSize(APPLICATION_ID,bufferFour);
+            read += reader.read(bufferTwenty,0,bufferTwenty.length);
+            header.convertToSize(RESERVED_ZEROS,bufferFour);
+            read += reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(VERSION_VALID_FOR,bufferFour);
+            read += reader.read(bufferFour,0,bufferFour.length);
+            header.convertToSize(LIBRARY_WRITE_VERSION,bufferFour);
             /*read += reader.read(bufferTwo,0,bufferTwo.length);
             header.convertToSize(TTFBits.SEARCH_RANGE,bufferTwo);
             read += reader.read(bufferTwo,0,bufferTwo.length);

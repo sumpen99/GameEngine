@@ -2,3 +2,4 @@
 .env
 out
 resources/files/certification
+resources/files/sqlite

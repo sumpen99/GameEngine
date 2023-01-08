@@ -35,3 +35,9 @@ Vacuum settings
 NONE (0) isincremental (0)
 Application ID
 0
+Reserved zeros (20b) is zero
+true
+Version valid for (is equal to change counter? true)
+341069
+Library write version
+3034001

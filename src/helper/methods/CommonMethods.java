@@ -245,6 +245,13 @@ public class CommonMethods{
         return buf[offset] & 255;
     }
 
+    public static boolean checkNonZeroValue(byte[] buf){
+        for(byte b : buf){
+            if(b!=0){return false;}
+        }
+        return true;
+    }
+
     public static boolean validUint32(long value){
         return value >= 0 && value<=4294967295L;
     }

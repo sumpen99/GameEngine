@@ -21,7 +21,10 @@ public enum SqliteBits {
     TEXT_ENCODING(4),
     USER_VERSION(4),
     INCREMENTAL_VACUUM(4),
-    APPLICATION_ID(4);;
+    APPLICATION_ID(4),
+    RESERVED_ZEROS(20),
+    VERSION_VALID_FOR(4),
+    LIBRARY_WRITE_VERSION(4);
     private final int value;
     SqliteBits(int value){this.value = value;}
     public int getValue(){return this.value;}
