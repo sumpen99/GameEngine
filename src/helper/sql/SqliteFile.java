@@ -3,7 +3,6 @@ import helper.enums.*;
 import helper.io.IOHandler;
 import helper.struct.FreePageListInfo;
 import helper.struct.PassedCheck;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import static helper.enums.ErrorCodes.*;
@@ -32,7 +31,6 @@ public class SqliteFile {
             applicationId,
             versionValidFor,
             libraryWriteVersion,
-            totalFileSize,
             userVersion;
     public int pageSize,reservedBytes,fractionMax,fractionMin,fractionLeaf;
     public byte[] magicString;
@@ -91,28 +89,23 @@ public class SqliteFile {
             }
             case CHANGE_COUNTER:{
                 changeCounter = castIntHexToLong(bytesToIntHex(buf,0,4,false));
-                validateUint32(changeCounter,CHANGE_COUNTER_MISMATH);
                 break;
             }
             case DATABASE_SIZE:{
                 databaseSize = castIntHexToLong(bytesToIntHex(buf,0,4,false));
-                validateUint32(databaseSize,DATABASE_SIZE_MISMATCH);
                 break;
             }
             case FIRST_FREE_PAGE:{
                 firstFreePage = castIntHexToLong(bytesToIntHex(buf,0,4,false));
-                validateUint32(firstFreePage,FIRST_FREE_PAGE_MISMATCH);
                 break;
             }
             case FIRST_FREE_PAGE_LEN:{
                 firstFreePageLen = castIntHexToLong(bytesToIntHex(buf,0,4,false));
-                validateUint32(firstFreePageLen,FIRST_FREE_PAGE_LENGTH_MISMATCH);
                 validateFreePageInfo();
                 break;
             }
             case SCHEMA_COOKIE:{
                 schemaCookie = castIntHexToLong(bytesToIntHex(buf,0,4,false));
-                validateUint32(schemaCookie,SCHEMA_COOKIE_MISMATCH);
                 break;
             }
             case SCHEMA_VERSION:{
@@ -122,12 +115,10 @@ public class SqliteFile {
             }
             case CACHE_SIZE:{
                 cacheSize = castIntHexToLong(bytesToIntHex(buf,0,4,false));
-                validateUint32(cacheSize,CACHE_SIZE_MISMATCH);
                 break;
             }
             case VACUUM_SETTING:{
                 vacuumSettingsRaw = castIntHexToLong(bytesToIntHex(buf,0,4,false));
-                validateUint32(vacuumSettingsRaw,VACUUM_SETTINGS_RAW_MISMATCH);
                 break;
             }
             case TEXT_ENCODING:{
@@ -137,18 +128,15 @@ public class SqliteFile {
             }
             case USER_VERSION:{
                 userVersion = castIntHexToLong(bytesToIntHex(buf,0,4,false));
-                validateUint32(userVersion,USER_VERSION_MISMATCH);
                 break;
             }
             case INCREMENTAL_VACUUM:{
                 isIncremental = castIntHexToLong(bytesToIntHex(buf,0,4,false));
-                validateUint32(userVersion,IS_INCREMENTAL_MISMATCH);
                 validVacuumSetting();
                 break;
             }
             case APPLICATION_ID:{
                 applicationId = castIntHexToLong(bytesToIntHex(buf,0,4,false));
-                validateUint32(applicationId,APPLICATION_ID_MISMATCH);
                 break;
             }
             case RESERVED_ZEROS:{
@@ -158,12 +146,10 @@ public class SqliteFile {
             }
             case VERSION_VALID_FOR:{
                 versionValidFor = castIntHexToLong(bytesToIntHex(buf,0,4,false));
-                validateUint32(versionValidFor,VERSION_VALID_FOR_MISMATCH);
                 break;
             }
             case LIBRARY_WRITE_VERSION:{
                 libraryWriteVersion = castIntHexToLong(bytesToIntHex(buf,0,4,false));
-                validateUint32(libraryWriteVersion,LIBRARY_WRITE_VERSION_MISMATCH);
                 break;
             }
         }

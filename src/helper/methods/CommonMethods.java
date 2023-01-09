@@ -288,6 +288,10 @@ public class CommonMethods{
         return true;
     }
 
+    public static boolean validInt32(long value){
+        return (value >= -2147483647 && value <= 2147483647);
+    }
+
     public static boolean validUint32(long value){
         return value >= 0 && value<=4294967295L;
     }

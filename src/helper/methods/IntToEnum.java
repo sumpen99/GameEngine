@@ -33,11 +33,8 @@ public class IntToEnum {
 
     public static VacuumSetting intToVacuumSetting(long rawVacuum,long isIncremental){
         if(rawVacuum==0){return VacuumSetting.NONE;}
-        if(validUint32(rawVacuum) && validUint32(isIncremental)){
-            if(isIncremental > 0){return VacuumSetting.INCREMENTAL;}
-            else{return VacuumSetting.FULL;}
-        }
-        return VacuumSetting.UNKNOWN;
+        if(isIncremental > 0){return VacuumSetting.INCREMENTAL;}
+        else{return VacuumSetting.FULL;}
     }
 
     public static BTreePageType intToBTreePageType(int value){

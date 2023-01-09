@@ -9,6 +9,8 @@ import helper.input.MouseHandler;
 import helper.interfaces.ITTFTableInfo;
 import helper.layout.Layout;
 import helper.list.SMHashMap;
+import helper.sql.BTreePage;
+import helper.sql.SqlPage;
 import helper.sql.SqliteFile;
 import helper.struct.*;
 import helper.widget.Cursor;
@@ -364,7 +366,7 @@ public class IOHandler {
             return;
         }
         try{
-            int i = 0,offset=-100,length=0,addedOffset=0,diff = 0;
+            int i = 0,offset=0,pageCount=0,addedOffset=0,diff = 0;
             byte[] bufferTwenty = new byte[20];
             byte[] bufferSixteen = new byte[16];
             byte[] bufferFour = new byte[4];
@@ -421,26 +423,29 @@ public class IOHandler {
 
             // READ = 100
             // https://github.com/FreeMasen/WiredForge.com/tree/c0528ce3506630b6de0c103e7d09fcbf9b4bb348/content/blog
-            byte[] bufferPage = new byte[header.pageSize];
-            BTreePageHeader bTreePage;
+            int pagesTotal = 0;
+            if(validInt32(header.databaseSize)){pagesTotal = (int)header.databaseSize;}
+
+            //byte[][] pages = new byte[pagesTotal][header.pageSize];
+
+            byte[] pageData = new byte[header.pageSize];
+            SqlPage[] pages = new SqlPage[pagesTotal];
+
+            offset = -read;
             while(read<header.getTotalFileSize()){
-                read += reader.read(bufferPage,0,bufferPage.length + offset);
+                read += reader.read(pageData,0,pageData.length + offset);
                 offset = 0;
-                bTreePage = new BTreePageHeader();
-                bTreePage.readHeaderInfo(bufferPage);
-                if(bTreePage.errorCodes.size() != 0){bTreePage.showUserErrorMessage();}
-                else{bTreePage.printHeaderInfo();}
+                //bTreePage = new BTreePageHeader();
+                //bTreePage.readHeaderInfo(bufferPage);
+                //if(bTreePage.errorCodes.size() != 0){bTreePage.showUserErrorMessage();}
+                //else{bTreePage.printHeaderInfo();}
                 //IOHandler.printString("############# Read  At %d ###########################".formatted(read));
                 break;
             }
-
-
-            /*read += reader.read(bufferTwo,0,bufferTwo.length);
-            header.convertToSize(TTFBits.SEARCH_RANGE,bufferTwo);
-            read += reader.read(bufferTwo,0,bufferTwo.length);
-            header.convertToSize(TTFBits.ENTRY_SELECTOR,bufferTwo);
-            read += reader.read(bufferTwo,0,bufferTwo.length);
-            header.convertToSize(TTFBits.RANGE_SHIFT,bufferTwo);*/
+            pages[0] = new BTreePage();
+            pages[0].readHeaderInfo(pageData);
+            if(pages[0].errorCodes.size() != 0){pages[0].showUserErrorMessage();}
+            else{pages[0].printHeaderInfo();}
         }
         catch(java.io.IOException err){
             IOHandler.logToFile(err.getMessage());
