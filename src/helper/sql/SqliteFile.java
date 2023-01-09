@@ -12,6 +12,9 @@ import static helper.methods.IntToEnum.*;
 //https://freemasen.com/blog/sqlite-parser-pt-1/
 //https://freemasen.com/blog/sqlite-parser-pt-2/
 //https://freemasen.com/blog/sqlite-parser-pt-3/
+//https://github.com/FreeMasen/WiredForge.com/blob/main/content/blog/
+
+//https://www.sqlite.org/fileformat2.html#btree
 public class SqliteFile {
     public PassedCheck passedCheck = new PassedCheck();
     public ArrayList<ErrorCodes> errorCodes;
