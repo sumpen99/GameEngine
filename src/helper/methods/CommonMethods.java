@@ -1,9 +1,7 @@
 package helper.methods;
 import helper.enums.Color;
 import helper.enums.ColorMask;
-import helper.enums.ConstantValues;
 import helper.struct.Point;
-
 import static helper.enums.ConstantValues.*;
 import static helper.methods.StringToEnum.getStrToColor;
 import static helper.struct.Point.subPoint;
@@ -261,6 +259,28 @@ public class CommonMethods{
         return buf[offset] & 255;
     }
 
+    public static String bytesToIntHex(byte[] buf,int offset,int bits,boolean littleEndian){
+        assert bits == 4 || bits == 2 || bits == 1 : "Number Of Bits Not Supported";
+        if(bits == 4){
+            if(littleEndian) return Integer.toHexString((buf[offset]&255)+((buf[offset+1]&255)<<8)+((buf[offset+2]&255)<<16)+((buf[offset+3]&255)<<24));
+            else return Integer.toHexString((buf[offset+3]&255)+((buf[offset+2]&255)<<8)+((buf[offset+1]&255)<<16)+((buf[offset]&255)<<24));
+        }
+        else if(bits == 2){
+            if(littleEndian) return Integer.toHexString((buf[offset]&255)+((buf[offset+1]&255)<<8));
+            else return Integer.toHexString((buf[offset+1]&255)+((buf[offset]&255)<<8));
+
+        }
+        return Integer.toHexString((buf[offset] & 255));
+    }
+
+    public static int castShortHexToInt(String hex){
+        return Integer.parseInt(hex,16);
+    }
+
+    public static Long castIntHexToLong(String hex){
+        return Long.parseLong(hex,16);
+    }
+
     public static boolean checkNonZeroValue(byte[] buf){
         for(byte b : buf){
             if(b!=0){return false;}
@@ -270,6 +290,10 @@ public class CommonMethods{
 
     public static boolean validUint32(long value){
         return value >= 0 && value<=4294967295L;
+    }
+
+    public static boolean validUint16(int value){
+        return value >= 0 && value<=65535;
     }
 
     public static int getUint16(byte[] buf,int offset){

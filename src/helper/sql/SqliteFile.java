@@ -32,10 +32,10 @@ public class SqliteFile {
             applicationId,
             versionValidFor,
             libraryWriteVersion,
-            totalFileSize;
-    public int pageSize,userVersion;
+            totalFileSize,
+            userVersion;
+    public int pageSize,reservedBytes,fractionMax,fractionMin,fractionLeaf;
     public byte[] magicString;
-    public short reservedBytes,fractionMax,fractionMin,fractionLeaf;
     public FormatVersion formatVersionRead;
     public FormatVersion formatVersionWrite;
     public SchemaVersion schemaVersion;
@@ -55,7 +55,7 @@ public class SqliteFile {
                 break;
             }
             case PAGE_SIZE:{
-                pageSize = bytesToInt(buf,0,2,false);
+                pageSize = castShortHexToInt(bytesToIntHex(buf,0,2,false));
                 validatePageSize();
                 break;
             }
@@ -70,48 +70,48 @@ public class SqliteFile {
                 break;
             }
             case RESERVED_BYTES:{
-                reservedBytes = (short)bytesToInt(buf,0,1,false);
+                reservedBytes = bytesToInt(buf,0,1,false);
                 validateReservedBytes();
                 break;
             }
             case FRACTION_MAX:{
-                fractionMax = (short)bytesToInt(buf,0,1,false);
-                validateFraction(fractionMax,(short)64,FRACTION_MAX_MISMATH);
+                fractionMax = bytesToInt(buf,0,1,false);
+                validateFraction(fractionMax,64,FRACTION_MAX_MISMATH);
                 break;
             }
             case FRACTION_MIN:{
-                fractionMin = (short)bytesToInt(buf,0,1,false);
-                validateFraction(fractionMin,(short)32,FRACTION_MIN_MISMATH);
+                fractionMin = bytesToInt(buf,0,1,false);
+                validateFraction(fractionMin,32,FRACTION_MIN_MISMATH);
                 break;
             }
             case FRACTION_LEAF:{
-                fractionLeaf = (short)bytesToInt(buf,0,1,false);
-                validateFraction(fractionLeaf,(short)32,FRACTION_LEAF_MISMATH);
+                fractionLeaf = bytesToInt(buf,0,1,false);
+                validateFraction(fractionLeaf,32,FRACTION_LEAF_MISMATH);
                 break;
             }
             case CHANGE_COUNTER:{
-                changeCounter = bytesToInt(buf,0,4,false);
+                changeCounter = castIntHexToLong(bytesToIntHex(buf,0,4,false));
                 validateUint32(changeCounter,CHANGE_COUNTER_MISMATH);
                 break;
             }
             case DATABASE_SIZE:{
-                databaseSize = bytesToInt(buf,0,4,false);
+                databaseSize = castIntHexToLong(bytesToIntHex(buf,0,4,false));
                 validateUint32(databaseSize,DATABASE_SIZE_MISMATCH);
                 break;
             }
             case FIRST_FREE_PAGE:{
-                firstFreePage = bytesToInt(buf,0,4,false);
+                firstFreePage = castIntHexToLong(bytesToIntHex(buf,0,4,false));
                 validateUint32(firstFreePage,FIRST_FREE_PAGE_MISMATCH);
                 break;
             }
             case FIRST_FREE_PAGE_LEN:{
-                firstFreePageLen = bytesToInt(buf,0,4,false);
+                firstFreePageLen = castIntHexToLong(bytesToIntHex(buf,0,4,false));
                 validateUint32(firstFreePageLen,FIRST_FREE_PAGE_LENGTH_MISMATCH);
                 validateFreePageInfo();
                 break;
             }
             case SCHEMA_COOKIE:{
-                schemaCookie = bytesToInt(buf,0,4,false);
+                schemaCookie = castIntHexToLong(bytesToIntHex(buf,0,4,false));
                 validateUint32(schemaCookie,SCHEMA_COOKIE_MISMATCH);
                 break;
             }
@@ -121,12 +121,13 @@ public class SqliteFile {
                 break;
             }
             case CACHE_SIZE:{
-                cacheSize = bytesToInt(buf,0,4,false);
+                cacheSize = castIntHexToLong(bytesToIntHex(buf,0,4,false));
                 validateUint32(cacheSize,CACHE_SIZE_MISMATCH);
                 break;
             }
             case VACUUM_SETTING:{
-                vacuumSettingsRaw = bytesToInt(buf,0,4,false);
+                vacuumSettingsRaw = castIntHexToLong(bytesToIntHex(buf,0,4,false));
+                validateUint32(vacuumSettingsRaw,VACUUM_SETTINGS_RAW_MISMATCH);
                 break;
             }
             case TEXT_ENCODING:{
@@ -135,16 +136,18 @@ public class SqliteFile {
                 break;
             }
             case USER_VERSION:{
-                userVersion = bytesToInt(buf,0,4,false);
+                userVersion = castIntHexToLong(bytesToIntHex(buf,0,4,false));
+                validateUint32(userVersion,USER_VERSION_MISMATCH);
                 break;
             }
             case INCREMENTAL_VACUUM:{
-                isIncremental = bytesToInt(buf,0,4,false);
+                isIncremental = castIntHexToLong(bytesToIntHex(buf,0,4,false));
+                validateUint32(userVersion,IS_INCREMENTAL_MISMATCH);
                 validVacuumSetting();
                 break;
             }
             case APPLICATION_ID:{
-                applicationId = bytesToInt(buf,0,4,false);
+                applicationId = castIntHexToLong(bytesToIntHex(buf,0,4,false));
                 validateUint32(applicationId,APPLICATION_ID_MISMATCH);
                 break;
             }
@@ -154,12 +157,12 @@ public class SqliteFile {
                 break;
             }
             case VERSION_VALID_FOR:{
-                versionValidFor = bytesToInt(buf,0,4,false);
+                versionValidFor = castIntHexToLong(bytesToIntHex(buf,0,4,false));
                 validateUint32(versionValidFor,VERSION_VALID_FOR_MISMATCH);
                 break;
             }
             case LIBRARY_WRITE_VERSION:{
-                libraryWriteVersion = bytesToInt(buf,0,4,false);
+                libraryWriteVersion = castIntHexToLong(bytesToIntHex(buf,0,4,false));
                 validateUint32(libraryWriteVersion,LIBRARY_WRITE_VERSION_MISMATCH);
                 break;
             }
@@ -191,7 +194,7 @@ public class SqliteFile {
         if(!value){errorCodes.add(RESERVED_ZEROS_MISMATCH);}
     }
 
-    void validateFraction(short valueIs,short valueHasToBe,ErrorCodes code){
+    void validateFraction(int valueIs,int valueHasToBe,ErrorCodes code){
         if(valueIs != valueHasToBe){errorCodes.add(code);}
     }
 
