@@ -14,6 +14,8 @@ import static helper.methods.IntToEnum.*;
 //https://github.com/FreeMasen/WiredForge.com/blob/main/content/blog/
 
 //https://www.sqlite.org/fileformat2.html#btree
+
+//https://github.com/siara-cc/sqlite3_page_explorer/blob/master/index.js
 public class SqliteFile {
     public PassedCheck passedCheck = new PassedCheck();
     public ArrayList<ErrorCodes> errorCodes;

@@ -1,6 +1,8 @@
 package helper.sql;
 import helper.enums.*;
 import helper.io.IOHandler;
+import helper.struct.VarInt;
+
 import static helper.enums.ErrorCodes.*;
 import static helper.enums.SqliteHeaderBits.*;
 import static helper.methods.CommonMethods.*;
@@ -11,6 +13,7 @@ public class BTreePage extends SqlPage{
     public BTreePageType pageType;
     public int startFirstFreeBlock,numberOfCells,startOfCellContentArea,numberOfFragmentedFreeBytes;
     public long pageNumber;
+    public long rightPointer;
     public int cellPointerIndex = 8;
 
     public BTreePage(){
@@ -23,7 +26,8 @@ public class BTreePage extends SqlPage{
         convertToSize(NUMBER_OF_CELLS,pageContent);
         convertToSize(START_OF_CELL_CONTENT_AREA,pageContent);
         convertToSize(NUMBER_OF_FRAGMENTED_FREE_BYTES,pageContent);
-        convertToSize(PAGE_NUMBER,pageContent);
+        convertToSize(RIGHT_POINTER,pageContent);
+        readCellContent(pageContent);
     }
 
     public void convertToSize(SqliteHeaderBits dst,byte[] pageContent){
@@ -50,14 +54,59 @@ public class BTreePage extends SqlPage{
                 numberOfFragmentedFreeBytes = bytesToInt(pageContent,7,1,false);
                 break;
             }
-            case PAGE_NUMBER:{
+            case RIGHT_POINTER:{
                 if(shouldReadPageNumber()){
                     cellPointerIndex = 12;
-                    pageNumber = castIntHexToLong(bytesToIntHex(pageContent,8,4,false));
+                    rightPointer = castIntHexToLong(bytesToIntHex(pageContent,8,4,false));
                 }
                 break;
             }
         }
+    }
+
+    void readCellContent(byte[] pageContent){
+        int cell = 0;
+        long pageNumber = 0;
+        while(cell < numberOfCells){
+            int index = cell*2+cellPointerIndex;
+            int cellPtr = castShortHexToInt(bytesToIntHex(pageContent,index,2,false));
+            if(shouldReadPageNumber()){
+                pageNumber = castIntHexToLong(bytesToIntHex(pageContent,cellPtr,4,false));
+                //IOHandler.printLong(pageNumber);
+                cellPtr+=4;
+            }
+            VarInt vInt = getVarInt(pageContent,cellPtr);
+            IOHandler.printString(vInt.toString());
+            cellPtr+=vInt.p1;
+            cellPtr+=updateCellPtr(pageContent,cellPtr);
+
+            cell++;
+        }
+
+    }
+
+    int updateCellPtr(byte[] pageContent,int cellPtr){
+        switch(pageType){
+            /*case INTERIOR_INDEX:{ //0x02
+                return 0;
+            }
+            case INTERIOR_TABLE:{ // 0x05
+                return 0;
+            }
+            case LEAF_INDEX:{ // 0x0a
+                return 0;
+            }
+            case UNKNOWN:{
+                return 0;
+                break;
+            }
+            */
+            case LEAF_TABLE:{ // 0x0d
+                VarInt vInt = getVarInt(pageContent,cellPtr);
+                return vInt.p1;
+            }
+        }
+        return 0;
     }
 
     boolean shouldReadPageNumber(){
@@ -76,10 +125,10 @@ public class BTreePage extends SqlPage{
     public String toString(){
         return  "PAGE_TYPE -> %s".formatted(pageType.name()) + "\n" +
                 "START_FIRST_FREE_BLOCK -> %d".formatted(startFirstFreeBlock) + "\n" +
-                "NUMBER_OF_CELLS -> %d".formatted(numberOfCells) +
+                "NUMBER_OF_CELLS -> %d".formatted(numberOfCells) + "\n" +
                 "START_OF_CELL_CONTENT_AREA -> %d".formatted(startOfCellContentArea) + "\n" +
                 "NUMBER_OF_FRAGMENTED_FREE_BYTES -> %d".formatted(numberOfFragmentedFreeBytes) + "\n" +
-                "PAGE_NUMBER -> %d".formatted(pageNumber);
+                "RIGHT_POINTER -> %d".formatted(rightPointer);
     }
 
 }

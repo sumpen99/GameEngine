@@ -296,6 +296,23 @@ public class CommonMethods{
         return value >= 0 && value<=4294967295L;
     }
 
+    public static VarInt getVarInt(byte[] buf,int pos){
+        VarInt ret = new VarInt();
+        byte b;
+        while(ret.p1++ < 8) {
+            ret.p0 <<= 7;
+            b = buf[pos];
+            ret.p0 += b & 0x7F;
+            if((b >> 7) == 0)
+                return ret;
+            pos++;
+        }
+        ret.p1++;
+        ret.p0 <<= 8;
+        ret.p0 += buf[pos];
+        return ret;
+    }
+
     public static boolean validUint16(int value){
         return value >= 0 && value<=65535;
     }

@@ -424,9 +424,8 @@ public class IOHandler {
             // READ = 100
             // https://github.com/FreeMasen/WiredForge.com/tree/c0528ce3506630b6de0c103e7d09fcbf9b4bb348/content/blog
             int pagesTotal = 0;
-            if(validInt32(header.databaseSize)){pagesTotal = (int)header.databaseSize;}
-
-            //byte[][] pages = new byte[pagesTotal][header.pageSize];
+            assert(validInt32(header.databaseSize)) : "Ooops";
+            pagesTotal = (int)header.databaseSize;
 
             byte[] pageData = new byte[header.pageSize];
             SqlPage[] pages = new SqlPage[pagesTotal];
