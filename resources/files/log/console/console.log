@@ -1,33 +1,4 @@
 Unable To Remove File .\resources\files\log\gc\gc.log
-0 1
-0 1
-0 1
-0 1
-0 1
-0 1
-0 1
-0 1
-31 1
-0 1
-0 1
-0 1
-26 1
-31 1
-0 1
-0 1
-9 1
-0 1
-0 1
-31 1
-0 1
-0 1
-0 1
-0 1
-23 1
-0 1
-0 1
-0 1
-15 1
 PAGE_TYPE -> INTERIOR_TABLE
 START_FIRST_FREE_BLOCK -> 0
 NUMBER_OF_CELLS -> 29
@@ -55,6 +26,10 @@ Application ID                  -> 0
 Reserved zeros (20b) is zero    -> true
 Version valid for               -> (versionValidFor == changeCounter)true 341069
 Library write version           -> 3034001
+Max Local                       -> 230
+Min Local                       -> 103
+Max Leaf                        -> 989
+Min Leaf                        -> 103
 Total filesize should be
 32526336(b)
 31764,000000(kb)

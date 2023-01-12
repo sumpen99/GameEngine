@@ -64,7 +64,7 @@ public class StartUp {
 
     static void testFunction(){
         SqliteFile sql = new SqliteFile("./resources/files/sqlite/dbtest.sqlite3");
-        IOHandler.parseSqliteFile(sql);
+        sql.parseFile();
         if(!sql.passedCheck.passed || sql.errorCodes.size() != 0){sql.showUserErrorMessage();}
         else{sql.printFileInfo();}
     }

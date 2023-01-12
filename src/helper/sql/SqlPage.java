@@ -8,9 +8,11 @@ import java.util.ArrayList;
 public abstract class SqlPage implements ISqlPage {
     public ArrayList<ErrorCodes> errorCodes;
     public SqlPageType pageType;
+    public SqliteFile root;
 
-    public SqlPage(SqlPageType pageType){
+    public SqlPage(SqliteFile root,SqlPageType pageType){
         this.pageType = pageType;
+        this.root = root;
         errorCodes = new ArrayList<>();
     }
 

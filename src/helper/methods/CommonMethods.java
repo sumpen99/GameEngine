@@ -336,6 +336,28 @@ public class CommonMethods{
         return (float)Math.random()*pow;
     }
 
+
+    public static ColDataHtml formColDataHtml(byte[] buf,int cellPtr,int pageId){
+
+        VarInt hdrInfo = getVarInt(buf,cellPtr);
+        int hdrLen = hdrInfo.p0-hdrInfo.p1;
+        int dataptr = cellPtr+hdrInfo.p0;
+
+        IOHandler.printString("%d %d".formatted(hdrLen,dataptr));
+
+        return null;
+    }
+
+    /**
+     *
+     * String[] arr = { "A", "B", "C", "D", "E", "F", "G", "H" };
+     * int beg = 1, end = 4;
+     * [B, C, D, E]
+     * */
+    public static byte[] getByteSubArray(byte[] array,int startIndex,int numberOfItems){
+        return Arrays.copyOfRange(array,startIndex,startIndex+numberOfItems);
+    }
+
     public static double distanceSquaredKDNod(KDNode n1,KDNode n2){
         return latLonToMeter(n1.lat,n1.lon,n2.lat,n2.lon);
     }

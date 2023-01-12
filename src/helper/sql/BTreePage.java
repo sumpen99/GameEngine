@@ -1,8 +1,8 @@
 package helper.sql;
 import helper.enums.*;
 import helper.io.IOHandler;
+import helper.struct.ColDataHtml;
 import helper.struct.VarInt;
-
 import static helper.enums.ErrorCodes.*;
 import static helper.enums.SqliteHeaderBits.*;
 import static helper.methods.CommonMethods.*;
@@ -12,12 +12,12 @@ import static helper.methods.IntToEnum.*;
 public class BTreePage extends SqlPage{
     public BTreePageType pageType;
     public int startFirstFreeBlock,numberOfCells,startOfCellContentArea,numberOfFragmentedFreeBytes;
-    public long pageNumber;
     public long rightPointer;
-    public int cellPointerIndex = 8;
+    public int cellPointerIndex = 8,xFactor;
 
-    public BTreePage(){
-        super(SqlPageType.B_TREE_PAGE);
+    public BTreePage(SqliteFile root){
+        super(root,SqlPageType.B_TREE_PAGE);
+
     }
 
     public void readHeaderInfo(byte[] pageContent){
@@ -27,7 +27,7 @@ public class BTreePage extends SqlPage{
         convertToSize(START_OF_CELL_CONTENT_AREA,pageContent);
         convertToSize(NUMBER_OF_FRAGMENTED_FREE_BYTES,pageContent);
         convertToSize(RIGHT_POINTER,pageContent);
-        readCellContent(pageContent);
+        //readCellContent(pageContent);
     }
 
     public void convertToSize(SqliteHeaderBits dst,byte[] pageContent){
@@ -76,9 +76,44 @@ public class BTreePage extends SqlPage{
                 cellPtr+=4;
             }
             VarInt vInt = getVarInt(pageContent,cellPtr);
-            IOHandler.printString(vInt.toString());
             cellPtr+=vInt.p1;
             cellPtr+=updateCellPtr(pageContent,cellPtr);
+
+            if(pageType!=BTreePageType.INTERIOR_TABLE){
+                int P = vInt.p0;
+                int pageNo = 0;
+                byte[] oarr = new byte[0];
+                if(P>xFactor){
+                    int M = root.minMaxLeafLocal.minLeaf;
+                    int ovflwMaxPageBytes = (root.minMaxLeafLocal.usableSize- 4);
+                    int K = M + (P - M) % ovflwMaxPageBytes;
+                    int surplus = P - (K > xFactor ? M : K);
+                    int dataEnd = cellPtr + P - surplus;
+                    pageNo = bytesToInt(pageContent,dataEnd,4,false);
+                    oarr = new byte[P];
+                    for(int k = cellPtr;k<dataEnd;k++){
+                        oarr[k-cellPtr] = pageContent[k];
+                    }
+
+                    int oPageNo = pageNo;
+                    while(surplus>0){
+                        int toRead = (Math.min(surplus, ovflwMaxPageBytes)) + 4;
+                        byte[] obuf = root.getPage(0,oPageNo,toRead);
+                        if(obuf != null){
+                            IOHandler.printInt(obuf.length);
+                            toRead -= 4;
+                            for(var k = 0; k < toRead; k++){ oarr[k + dataEnd - cellPtr] = obuf[k + 4];}
+                            oPageNo = bytesToInt(obuf,0,4,false);
+                            if(oPageNo == 0){break;}
+                            dataEnd += toRead;
+                        }
+                        surplus -= ovflwMaxPageBytes;
+                    }
+                }
+                //ColDataHtml hdrDtl = formColDataHtml((P>xFactor?oarr:pageContent),)
+            }
+
+
 
             cell++;
         }
@@ -95,17 +130,14 @@ public class BTreePage extends SqlPage{
             }
             case LEAF_INDEX:{ // 0x0a
                 return 0;
-            }
-            case UNKNOWN:{
-                return 0;
-                break;
-            }
-            */
+            }*/
             case LEAF_TABLE:{ // 0x0d
+                xFactor = root.minMaxLeafLocal.maxLeaf;
                 VarInt vInt = getVarInt(pageContent,cellPtr);
                 return vInt.p1;
             }
         }
+        xFactor = root.minMaxLeafLocal.maxLocal;
         return 0;
     }
 
