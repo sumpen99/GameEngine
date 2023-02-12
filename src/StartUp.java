@@ -11,11 +11,8 @@ import helper.text.TextWriter;
 import helper.tree.BinarySearchTree;
 import helper.tree.KDTree;
 import helper.tree.RedBlackTree;
-import program.ColorPicker;
-import program.QuadTreeBalls;
-import program.RecordSound;
+import program.*;
 import helper.io.IOHandler;
-import program.SpellMe;
 
 import java.util.ArrayList;
 
@@ -49,11 +46,12 @@ public class StartUp {
         //InterpolationSearch.testAlgorithm();
         //program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs
         //program = new QuadTreeBalls(800,500); // ./resources/files/gui/quadtree.fs
+        program = new ImageSampling(800,500); // ./resources/files/gui/imagesampling.fs
 
 
-        testFunction();
+        //testFunction();
 
-        program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
+        //program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
         if(program.setUpProgram()){
             program.runEngineLoop();
         }
@@ -63,6 +61,8 @@ public class StartUp {
     }
 
     static void testFunction(){
+        IOHandler.printLongBits(0x00007ff631bfa11cL);
+        IOHandler.printLongBits(0x00007ff631bfa11dL);
         SqliteFile sql = new SqliteFile("./resources/files/sqlite/dbtest.sqlite3");
         sql.parseFile();
         if(!sql.passedCheck.passed || sql.errorCodes.size() != 0){sql.showUserErrorMessage();}

@@ -79,6 +79,7 @@ public abstract class Widget implements IWidget{
             clearWidgetBits();
         }
     }
+
     public boolean onFrameUpdate(int x,int y){return false;}
     public boolean onMouseLeftDown(int x,int y){return false;}
     public boolean onMouseLeftMove(int x,int y){return false;}

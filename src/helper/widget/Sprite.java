@@ -3,11 +3,14 @@ import helper.canvas.CanvasHandler;
 import helper.drawobjects.DrawObject;
 import helper.enums.Callback;
 import helper.enums.WidgetType;
+import helper.input.MouseHandler;
 import helper.io.IOHandler;
 import helper.struct.ImageInfo;
 import helper.struct.Matrix;
 import helper.struct.Matrix3X3;
 import helper.struct.Vec2d;
+
+import static helper.enums.WidgetState.SM_TOUCH_PROCESSED;
 
 public abstract class Sprite extends Widget{
     float ftheta,fscale_x,fscale_y,fthetaval;
@@ -23,11 +26,17 @@ public abstract class Sprite extends Widget{
             assert frameBuffer != null : "Error Reading Image On Path %s".formatted(pathToImg);
             setScale(true);
             setRotationValue(0.01f);
-            setScaleValue(((float)getSize().x/(float)imgInfo.width),((float)getSize().y/(float)imgInfo.height));
+            //setScaleValue(((float)getSize().x/(float)imgInfo.width),((float)getSize().y/(float)imgInfo.height));
+            setScaleValue(1.0f,1.0f);
+            setVecMove();
         }
     }
 
     protected void printImageInfo(){IOHandler.printImageInfo(imgInfo);}
+    protected void setVecMove(){
+        startPos = new Vec2d();
+        mPos = new Vec2d();
+    }
     protected void setScaleValue(float x,float y){
         fscale_x = x;
         fscale_y = y;
@@ -93,7 +102,7 @@ public abstract class Sprite extends Widget{
             if (index >= 0 && (index + imgInfo.chanels) < imgInfo.size){
                 return bytesToInt(index);
             }
-        }
+       }
         return color;
     }
 
@@ -114,6 +123,7 @@ public abstract class Sprite extends Widget{
     @Override
     public boolean onMouseScrollUp(int x,int y){
         if(insideWidget(x,y)){
+            //MouseHandler.worldToScreen((float)this.wObj.getPos().x,(float)this.wObj.getPos().y,this.wObj.getSize());
             fscale_x+=.005f;
             fscale_y+=.005f;
         }
@@ -123,8 +133,43 @@ public abstract class Sprite extends Widget{
     @Override
     public boolean onMouseScrollDown(int x,int y){
         if(insideWidget(x,y)){
+            //MouseHandler.worldToScreen((float)this.wObj.getPos().x,(float)this.wObj.getPos().y,this.wObj.getSize());
             fscale_x-=.005f;
             fscale_y-=.005f;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onMouseLeftDown(int x,int y){
+        if(insideWidget(x,y)){
+            setWidgetBit(SM_TOUCH_PROCESSED.getValue());
+            startPos.x = x;
+            startPos.y = y;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onMouseReleaseTouch(int x,int y){
+        if(getWidgetBitSet(SM_TOUCH_PROCESSED.getIndex())){
+            clearWidgetBits();
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onMouseLeftMove(int x,int y){
+        if(getWidgetBitSet(SM_TOUCH_PROCESSED.getIndex())){
+            mPos.x = x-startPos.x;
+            mPos.y = y-startPos.y;
+            this.wObj.rePosition(mPos);
+            //reposition(mPos);
+            startPos.x = x;
+            startPos.y = y;
+            return true;
         }
         return false;
     }

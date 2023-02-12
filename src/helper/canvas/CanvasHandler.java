@@ -1,4 +1,9 @@
 package helper.canvas;
+import helper.io.IOHandler;
+import helper.struct.Pixel;
+import helper.struct.PixelF;
+import helper.struct.Vec2d;
+
 import java.awt.image.BufferedImage;
 import java.awt.color.ColorSpace;
 import java.awt.Transparency;
@@ -64,6 +69,19 @@ public class CanvasHandler{
                 self.frameBuffer[i + 1] = (byte) (color >> 8);
                 self.frameBuffer[i + 2] = (byte) (color >> 16);
                 self.frameBuffer[i + 3] = (byte) (color >> 24);
+            }
+        }
+    }
+
+    public static void setPixel(Vec2d pixel, Pixel pixelF){
+        if(self.inBounds(pixel.y,pixel.x)) {
+            int i = self.getIndex(pixel.x,pixel.y);
+            if (i != -1){
+                if((pixelF.alpha & 255) == 0)return;
+                self.frameBuffer[i] = pixelF.alpha;
+                self.frameBuffer[i + 1] = pixelF.blue;
+                self.frameBuffer[i + 2] = pixelF.green;
+                self.frameBuffer[i + 3] = pixelF.red;
             }
         }
     }

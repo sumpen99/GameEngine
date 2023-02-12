@@ -54,6 +54,8 @@ public class MoveableButton extends FlatButton{
             mPos.x = x-startPos.x;
             mPos.y = y-startPos.y;
             GameEngine.setNewWindowPos(mPos.x,mPos.y);
+            startPos.x = x;
+            startPos.y = y;
             return true;
         }
         return false;

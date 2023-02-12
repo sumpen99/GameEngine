@@ -18,6 +18,8 @@ public class MouseHandler extends MouseAdapter implements MouseWheelListener{
     private final int RELEASE_RATIO = 50;
     private float fOffsetX,fOffsetY,fScaleX,fScaleY,fStartPanX,fStartPanY;
     public Vec2d pos;
+    public FVec2d beforeZoom;
+    public FVec2d afterZoom;
 
     public MouseHandler(){
         assert !MouseHandler.isSet :"MouseHandler is already set!";
@@ -35,6 +37,9 @@ public class MouseHandler extends MouseAdapter implements MouseWheelListener{
             self.pos = new Vec2d(0,0);
             self.fScaleX = 1.0f;
             self.fScaleY = 1.0f;
+            self.beforeZoom = new FVec2d();
+            self.afterZoom = new FVec2d();
+
         }
     }
 
@@ -112,6 +117,21 @@ public class MouseHandler extends MouseAdapter implements MouseWheelListener{
         fStartPanY = pos.y;
     }
 
+    public static void setScaleFactor(float x,float y){
+        self.fScaleX = x;
+        self.fScaleY = y;
+    }
+
+    public static void setScaleFactor(FVec2d scale){
+        self.fScaleX = scale.x;
+        self.fScaleY = scale.y;
+    }
+
+    public static void setOffsetPoint(float x,float y){
+        self.fOffsetX = x;
+        self.fOffsetY = y;
+    }
+
     public static void screenerInsideWorld(float x,float y,FVec2d screen){
         screen.x = (x / self.fScaleX) + self.fOffsetX;
         screen.y = (y / self.fScaleY) + self.fOffsetY;
@@ -127,19 +147,22 @@ public class MouseHandler extends MouseAdapter implements MouseWheelListener{
         world.y = (screenY / self.fScaleY) + self.fOffsetY;
     }
 
+    public static FVec2d screenToWorld(Vec2d vPixel){
+        return new FVec2d(((float)vPixel.x / self.fScaleX) + self.fOffsetX,((float)vPixel.y / self.fScaleY) + self.fOffsetY);
+    }
+
     public static void detectPan(){
         if(self.getMouseBitSet(SM_MOUSE_LEFT_DOWN.getIndex())){
             float f_mouse_x = (float)self.pos.x;
             float f_mouse_y = (float)self.pos.y;
-            self.fOffsetX -= (f_mouse_x - self.fStartPanX) / self.fScaleX;
-            self.fOffsetY -= (f_mouse_y - self.fStartPanY) / self.fScaleY;
-
+            updateOffsetPosition(-((f_mouse_x - self.fStartPanX) / self.fScaleX),-((f_mouse_y - self.fStartPanY) / self.fScaleY));
             self.fStartPanX = f_mouse_x;
             self.fStartPanY = f_mouse_y;
         }
     }
 
     public static void detectZoom(){
+        screenToWorld(self.pos.x,self.pos.y, self.beforeZoom);
         if(self.getMouseBitSet(SM_MOUSE_SCROLL_UP.getIndex())){
             self.fScaleX *= 1.01f;
             self.fScaleY *= 1.01f;
@@ -148,6 +171,13 @@ public class MouseHandler extends MouseAdapter implements MouseWheelListener{
             self.fScaleX *= 0.99f;
             self.fScaleY *= 0.99f;
         }
+        screenToWorld((float)self.pos.x,(float)self.pos.y,self.afterZoom);
+        updateOffsetPosition((self.beforeZoom.x - self.afterZoom.x),(self.beforeZoom.y - self.afterZoom.y));
+   }
+
+    public static void updateOffsetPosition(float fOffsetX,float fOffsetY){
+        self.fOffsetX += fOffsetX;
+        self.fOffsetY += fOffsetY;
     }
 
     public static MouseHandler getSelf(){return self;}

@@ -220,6 +220,12 @@ public class IOHandler {
         printString("%d".formatted(i));
     }
 
+    public static void printIntF(int... ints){
+        for(int i = 0;i<ints.length;i++){
+            System.out.printf("%d",ints[i]);
+        }
+    }
+
     public static void printIntToHex(int value){
         printString("Hex Value of %d 0x%08X".formatted(value,value));
     }
@@ -1018,6 +1024,15 @@ public class IOHandler {
     public static void printIntBits(int value){
         for(int i = 31;i>=0;i--){
             int set = (value & (1 << i)) != 0 ? 1 : 0;
+            System.out.print(set);
+            System.out.print(" ");
+        }
+        System.out.println("");
+    }
+
+    public static void printLongBits(long value){
+        for(int i = 63;i>=0;i--){
+            int set = (value & (1L << i)) != 0 ? 1 : 0;
             System.out.print(set);
             System.out.print(" ");
         }
