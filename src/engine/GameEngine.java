@@ -270,7 +270,6 @@ public abstract class GameEngine extends JFrame implements IGameEngine{
         while(!GameEngine.quitProgram){
             frameStart = System.currentTimeMillis();
             checkPollEvent();
-            onUserUpdate((float)deltaTime/1000.0f);
             if(!GameEngine.getRenderStatus()){
                 GameEngine.setRenderStatus(true);
                 drawToBuffer();
@@ -292,6 +291,7 @@ public abstract class GameEngine extends JFrame implements IGameEngine{
                     IOHandler.logToFile(e.getMessage());
                 }
             }
+            onUserUpdate((float)deltaTime/1000.0f);
         }
     }
 

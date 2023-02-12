@@ -21,9 +21,12 @@ public class FVec2d {
         return new FVec2d(fv1.x * fv2.x,fv1.y * fv2.y);
     }
 
-    public void floor(){
-        this.x = (int)this.x;
-        this.y = (int)this.y;
+    public static FVec2d sub(FVec2d fv1,FVec2d fv2){
+        return new FVec2d(fv1.x - fv2.x,fv1.y - fv2.y);
+    }
+
+    public FVec2d floor(){
+        return new FVec2d((int)this.x,(int)this.y);
     }
 
 }

@@ -44,14 +44,12 @@ public class ImageSampling extends GameEngine {
     @Override
     public void onUserUpdate(float fElapsedTime){
         setBorderType();
-        int index = 0;
         for(vPixel.y = 0;vPixel.y<screenHeight;vPixel.y++){
             for(vPixel.x = 0;vPixel.x < screenWidth;vPixel.x++){
                 vWorldSample = MouseHandler.screenToWorld(vPixel);
-                pixelF = new Pixel(vWorldSample.x,vWorldSample.y,0.0f,1.0f);
-                //pixelF = tex.sample(vWorldSample,POINT,border);
+                //pixelF = new Pixel(vWorldSample.x,vWorldSample.y,0.0f,1.0f);
+                pixelF = tex.sample(vWorldSample,POINT,border);
                 CanvasHandler.setPixel(vPixel,pixelF);
-                index++;
             }
         }
     }

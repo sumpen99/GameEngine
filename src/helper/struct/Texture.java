@@ -47,7 +47,17 @@ public class Texture {
         switch(sample){
             case POINT:{
                 out = getPixel(new Vec2d(vDenorm),border);
+                break;
             }
+            case BILINEAR:{
+                FVec2d vCell = vDenorm.floor();
+                FVec2d vOffset = FVec2d.sub(vDenorm,vCell);
+                break;
+            }
+            case BICUBIC:{
+                break;
+            }
+
         }
         return out;
     }
