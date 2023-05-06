@@ -22,6 +22,13 @@ public class Pixel {
         this.alpha = (byte)(alpha * 255.0f);
     }
 
+    public Pixel(int red,int green,int blue,int alpha){
+        this.red = (byte)(red);
+        this.green = (byte)(green);
+        this.blue = (byte)(blue);
+        this.alpha = (byte)(alpha);
+    }
+
     public Pixel(byte red,byte green,byte blue,byte alpha){
         this.red = red;
         this.green = green;
@@ -43,6 +50,20 @@ public class Pixel {
         byte green = (byte)(clr >> 16);
         byte red = (byte)(clr >> 24);
         return alpha == this.alpha && blue == this.blue && green == this.green && red == this.red;
+    }
+
+    public static Pixel mult(Pixel px,float value){
+        float fr = Math.min(255.0f,Math.max(0.0f,((float)px.red)*value));
+        float fg = Math.min(255.0f,Math.max(0.0f,((float)px.green)*value));
+        float fb = Math.min(255.0f,Math.max(0.0f,((float)px.blue)*value));
+        return new Pixel((byte)fr,(byte)fg,(byte)fb,px.alpha);
+    }
+
+    public static Pixel add(Pixel a,Pixel b){
+        int nr = Math.min(255,Math.max(0,(int)(a.red) + (int)b.red));
+        int ng = Math.min(255,Math.max(0,(int)(a.green) + (int)b.green));
+        int nb = Math.min(255,Math.max(0,(int)(a.blue) + (int)b.blue));
+        return new Pixel(nr,ng,nb,a.alpha);
     }
 
     @Override

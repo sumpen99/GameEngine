@@ -9,6 +9,7 @@ import helper.input.MouseHandler;
 import helper.interfaces.ITTFTableInfo;
 import helper.layout.Layout;
 import helper.list.SMHashMap;
+import helper.sort.QuickSort;
 import helper.sql.BTreePage;
 import helper.sql.SqlPage;
 import helper.sql.SqliteFile;
@@ -43,6 +44,8 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class IOHandler {
 
@@ -271,6 +274,71 @@ public class IOHandler {
 
     }
 
+    public static boolean readFromTextFile(String path){
+        BufferedReader reader;
+        FileInputStream fRead;
+        //int[] indexes = new int[40];
+        try{
+            fRead = new FileInputStream(path);
+            reader = new BufferedReader(new InputStreamReader(fRead));
+        }
+        catch(java.io.FileNotFoundException err){
+            GameEngine.funcToCheck.message = err.getMessage();
+            return false;
+        }
+        int countRows = 0,cnt = 0;
+        String line;
+        String[] data;
+        try{
+            while(reader.readLine() != null){countRows++;}
+            fRead.getChannel().position(0);
+            reader = new BufferedReader(new InputStreamReader(fRead));
+            data = new String[countRows];
+            while(((line = reader.readLine()) != null) && (cnt < countRows)){
+                line = line.trim();
+                if(line.length() > 0){
+                    data[cnt++] = line;
+                }
+            }
+            reader.close();
+        }
+        catch(java.io.IOException err){
+            GameEngine.funcToCheck.message = err.getMessage();
+            return false;
+        }
+
+        QuickSort.sortStringArray(data,0,data.length-1);
+
+
+        cnt = 0;
+        String lineOut = "";
+        while(cnt<countRows){
+            String l = data[cnt];
+            if(l.length() > 13){
+                lineOut+=l + "\n";
+            }
+            cnt++;
+        }
+
+        writeToTextFile(lineOut);
+
+        return true;
+    }
+
+    public static void writeToTextFile(String msg){
+        PrintWriter writer;
+        try{
+            writer = new PrintWriter(new BufferedWriter(new FileWriter("./resources/files/words/wordsExpert.txt", true)));
+            writer.println(msg);
+            writer.close();
+
+        }
+        catch(IOException err){
+            GameEngine.funcToCheck.message = err.getMessage();
+            GameEngine.funcToCheck.passed = false;
+        }
+    }
+
     public static void logToFile(String msg){
         PrintWriter writer;
         String out = "%s -> %s".formatted(SMDateTime.getDateTime(),msg);
@@ -330,6 +398,7 @@ public class IOHandler {
     public static boolean readFromWordList(String path,AutoWords autoWords){
         BufferedReader reader;
         FileInputStream fRead;
+        //int[] indexes = new int[40];
         try{
             fRead = new FileInputStream(path);
             reader = new BufferedReader(new InputStreamReader(fRead));
@@ -347,7 +416,10 @@ public class IOHandler {
             autoWords.initWordsList();
             while(((line = reader.readLine()) != null) && (cnt < autoWords.count)){
                 line = line.trim();
-                if(line.length() > 0){autoWords.words[cnt++] = line;}
+                if(line.length() > 0){
+                    autoWords.words[cnt++] = line;
+                    //indexes[line.length()]++;
+                }
             }
             reader.close();
         }
@@ -355,6 +427,8 @@ public class IOHandler {
             GameEngine.funcToCheck.message = err.getMessage();
             return false;
         }
+
+        //IOHandler.printIntArray(indexes);
         return true;
     }
 

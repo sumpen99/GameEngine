@@ -22,4 +22,16 @@ public class Vec2d{
         return new Vec2d(x,y);
     }
 
+    public static Vec2d add(FVec2d fv1,FVec2d fv2){
+        return new Vec2d(fv1.x+ fv2.x,fv1.y+ fv2.y);
+    }
+
+    public static Vec2d mult(FVec2d fv1,FVec2d fv2){
+        return new Vec2d(fv1.x * fv2.x,fv1.y * fv2.y);
+    }
+
+    public static Vec2d sub(FVec2d fv1,FVec2d fv2){
+        return new Vec2d(fv1.x - fv2.x,fv1.y - fv2.y);
+    }
+
 }

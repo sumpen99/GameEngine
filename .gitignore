@@ -3,3 +3,7 @@
 out
 resources/files/certification
 resources/files/sqlite
+src/helper/enums/QrErrorCorrectionLevel.java
+src/helper/enums/QrPenalty.java
+src/helper/enums/QrVersion.java
+src/helper/qr

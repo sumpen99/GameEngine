@@ -50,8 +50,17 @@ public class Texture {
                 break;
             }
             case BILINEAR:{
-                FVec2d vCell = vDenorm.floor();
-                FVec2d vOffset = FVec2d.sub(vDenorm,vCell);
+                FVec2d vCell = FVec2d.sub(vDenorm,new FVec2d(0.5f,0.5f)).floor();
+                FVec2d vOffset = FVec2d.sub(FVec2d.sub(vDenorm,vCell),new FVec2d(0.5f,0.5f));
+                Pixel pixTL = getPixel(Vec2d.add(vCell,new FVec2d(0,0)),border);
+                Pixel pixTR = getPixel(Vec2d.add(vCell,new FVec2d(1,0)),border);
+                Pixel pixBL = getPixel(Vec2d.add(vCell,new FVec2d(0,1)),border);
+                Pixel pixBR = getPixel(Vec2d.add(vCell,new FVec2d(1,1)),border);
+
+                Pixel pixTX = Pixel.add(Pixel.mult(pixTR, vOffset.x),Pixel.mult(pixTL,(1.0f- vOffset.x)));
+                Pixel pixBX = Pixel.add(Pixel.mult(pixBR, vOffset.x),Pixel.mult(pixBL,(1.0f- vOffset.x)));
+
+                out = Pixel.add(Pixel.mult(pixBX, vOffset.y),Pixel.mult(pixTX,(1.0f- vOffset.y)));
                 break;
             }
             case BICUBIC:{

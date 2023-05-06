@@ -190,6 +190,12 @@ public class CommonMethods{
         arr[i2] = temp;
     }
 
+    public static void swapStringArrayObject(String[] arr,int i1,int i2){
+        String temp = arr[i1];
+        arr[i1] = arr[i2];
+        arr[i2] = temp;
+    }
+
     public static void swapIntOneLiner(int[] arr,int i1,int i2){
         arr[i1]=arr[i1]^arr[i2]^(arr[i2]=arr[i1]);
     }

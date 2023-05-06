@@ -34,6 +34,11 @@ public class QuickSort {
 
     }
 
+    public static void sortStringArray(String[] strList,int low,int high){
+        sortStringList(strList,low,high);
+
+    }
+
     static void sortWordList(AutoWord[] wordList,int low,int high){
         if(low < high){
             int q = partitionWordList(wordList,low,high);
@@ -102,6 +107,14 @@ public class QuickSort {
         }
     }
 
+    static void sortStringList(String[] strList,int low,int high){
+        if(low < high){
+            int q = partitionStringList(strList,low,high);
+            sortStringList(strList,low,q);
+            sortStringList(strList,q+1,high);
+        }
+    }
+
     static int partitionIntList(int[] intList,int low,int high){
         float pivot = intList[low];
         int i = low-1;
@@ -110,6 +123,18 @@ public class QuickSort {
             while(++i < high && intList[i] < pivot);
             while(--j > low && intList[j] > pivot);
             if(i < j){swapIntArrayObject(intList,i,j);}
+            else{return j;}
+        }
+    }
+
+    static int partitionStringList(String[] strList,int low,int high){
+        int pivot = strList[low].length();
+        int i = low-1;
+        int j = high+1;
+        while(true){
+            while(++i < high && strList[i].length() < pivot);
+            while(--j > low && strList[j].length() > pivot);
+            if(i < j){swapStringArrayObject(strList,i,j);}
             else{return j;}
         }
     }

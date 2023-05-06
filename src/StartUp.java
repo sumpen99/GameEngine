@@ -2,6 +2,7 @@ import engine.GameEngine;
 import helper.enums.Color;
 import helper.list.SMHashMap;
 import helper.methods.CommonMethods;
+import helper.qr.QrCodeReader;
 import helper.search.InterpolationSearch;
 import helper.sort.*;
 import helper.sql.SqliteFile;
@@ -46,12 +47,18 @@ public class StartUp {
         //InterpolationSearch.testAlgorithm();
         //program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs
         //program = new QuadTreeBalls(800,500); // ./resources/files/gui/quadtree.fs
+        //int[] arr = new int[]{7,2,1,6,8,5,3,4};
+        //QuickSort.sortIntArray(arr,0,arr.length-1);
         program = new ImageSampling(800,500); // ./resources/files/gui/imagesampling.fs
 
+        //IOHandler.readFromTextFile("./resources/files/words/WordsUSA.txt");
 
         //testFunction();
 
         //program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
+
+        //testSqlFunction();
+        testQrCode();
         if(program.setUpProgram()){
             program.runEngineLoop();
         }
@@ -60,12 +67,17 @@ public class StartUp {
         }
     }
 
-    static void testFunction(){
+    static void testSqlFunction(){
         IOHandler.printLongBits(0x00007ff631bfa11cL);
         IOHandler.printLongBits(0x00007ff631bfa11dL);
         SqliteFile sql = new SqliteFile("./resources/files/sqlite/dbtest.sqlite3");
         sql.parseFile();
         if(!sql.passedCheck.passed || sql.errorCodes.size() != 0){sql.showUserErrorMessage();}
         else{sql.printFileInfo();}
+    }
+
+    static void testQrCode(){
+        QrCodeReader qrReader = new QrCodeReader("123456789");
+        qrReader.printTextToParse();
     }
 }
