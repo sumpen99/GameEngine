@@ -1,5 +1,6 @@
 import engine.GameEngine;
 import helper.enums.Color;
+import helper.enums.QrErrorCorrectionLevel;
 import helper.list.SMHashMap;
 import helper.methods.CommonMethods;
 import helper.qr.QrCodeReader;
@@ -77,7 +78,7 @@ public class StartUp {
     }
 
     static void testQrCode(){
-        QrCodeReader qrReader = new QrCodeReader("123456789");
-        qrReader.printTextToParse();
+        QrCodeReader qrReader = new QrCodeReader("123456789",0, QrErrorCorrectionLevel.LOW,0);
+        qrReader.printResultSoFar();
     }
 }

@@ -1,2 +1,114 @@
 Unable To Remove File .\resources\files\log\gc\gc.log
-123456789
+Passedcheck: true message: null
+CodePoint 1
+UTF32 49 UTF16 1
+Utf8 [ 49 ]
+
+CodePoint 2
+UTF32 50 UTF16 2
+Utf8 [ 50 ]
+
+CodePoint 3
+UTF32 51 UTF16 3
+Utf8 [ 51 ]
+
+CodePoint 4
+UTF32 52 UTF16 4
+Utf8 [ 52 ]
+
+CodePoint 5
+UTF32 53 UTF16 5
+Utf8 [ 53 ]
+
+CodePoint 6
+UTF32 54 UTF16 6
+Utf8 [ 54 ]
+
+CodePoint 7
+UTF32 55 UTF16 7
+Utf8 [ 55 ]
+
+CodePoint 8
+UTF32 56 UTF16 8
+Utf8 [ 56 ]
+
+CodePoint 9
+UTF32 57 UTF16 9
+Utf8 [ 57 ]
+
+CodePoint Ö
+UTF32 0 UTF16 Ö
+Utf8 [ 195 150 ]
+
+CodePoint $
+UTF32 36 UTF16 $
+Utf8 [ 36 ]
+
+CodePoint €
+UTF32 0 UTF16 €
+Utf8 [ 226 130 172 ]
+
+CodePoint {
+UTF32 123 UTF16 {
+Utf8 [ 123 ]
+
+CodePoint $
+UTF32 36 UTF16 $
+Utf8 [ 36 ]
+
+CodePoint €
+UTF32 0 UTF16 €
+Utf8 [ 226 130 172 ]
+
+CodePoint {
+UTF32 123 UTF16 {
+Utf8 [ 123 ]
+
+CodePoint {
+UTF32 123 UTF16 {
+Utf8 [ 123 ]
+
+CodePoint =
+UTF32 61 UTF16 =
+Utf8 [ 61 ]
+
+CodePoint )
+UTF32 41 UTF16 )
+Utf8 [ 41 ]
+
+CodePoint =
+UTF32 61 UTF16 =
+Utf8 [ 61 ]
+
+CodePoint (
+UTF32 40 UTF16 (
+Utf8 [ 40 ]
+
+CodePoint =
+UTF32 61 UTF16 =
+Utf8 [ 61 ]
+
+CodePoint /
+UTF32 47 UTF16 /
+Utf8 [ 47 ]
+
+CodePoint (
+UTF32 40 UTF16 (
+Utf8 [ 40 ]
+
+CodePoint &
+UTF32 38 UTF16 &
+Utf8 [ 38 ]
+
+CodePoint %
+UTF32 37 UTF16 %
+Utf8 [ 37 ]
+
+CodePoint ¤
+UTF32 0 UTF16 ¤
+Utf8 [ 194 164 ]
+
+CodePoint %
+UTF32 37 UTF16 %
+Utf8 [ 37 ]
+

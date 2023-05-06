@@ -178,6 +178,17 @@ public class CommonMethods{
         w2.swapValues(index,edits,word);
     }
 
+    public static void reverseIntArray(int[] arr){
+        int temp;
+        int elements = arr.length;
+        for(int i = 0;i<elements/2;i++){
+            temp = arr[i];
+            int pos = elements-i-1;
+            arr[i] = arr[pos];
+            arr[pos] = temp;
+        }
+    }
+
     public static void swapFloat(float[] arr,int a,int b){
         float temp = arr[a];
         arr[a] = arr[b];

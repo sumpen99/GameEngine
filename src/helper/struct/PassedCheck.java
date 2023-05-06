@@ -1,5 +1,7 @@
 package helper.struct;
 
+import helper.io.IOHandler;
+
 public class PassedCheck {
     public boolean passed;
     public int iNum;
@@ -26,4 +28,8 @@ public class PassedCheck {
     }
 
     public PassedCheck(){}
+
+    public void printResult(){
+        IOHandler.printStringArgs("Passedcheck: %b".formatted(passed)," message: ",message,"\n");
+    }
 }

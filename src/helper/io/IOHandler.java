@@ -81,7 +81,7 @@ public class IOHandler {
 
     public static void printJsonEntrie(Entrie e){
         if(e.eType == EntrieType.ENTRIE_JSON_STRING){
-            System.out.println("%s %s".formatted(e.key,(String)e.value));
+            System.out.printf("%s %s%n", e.key,e.value);
         }
         else if(e.eType == EntrieType.ENTRIE_JSON_LIST){
             JsonList objList = (JsonList)e.value;
@@ -190,6 +190,22 @@ public class IOHandler {
     public static void printString(String arg){
         System.out.println(arg);
     }
+
+    public static void printStringSingleLine(String arg){
+        System.out.print(arg);
+    }
+
+    public static void printStringArgs(String... args){
+        for(String arg :args){
+            System.out.print(arg);
+        }
+    }
+
+    public static void printIntArgs(int... args){
+        for(int arg :args){
+            System.out.printf("%d ", arg);
+        }
+   }
 
     public static void printStringMessage(String arg1,String arg2){
         System.out.println(arg1 + " " + arg2);
