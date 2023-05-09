@@ -1,6 +1,7 @@
 package helper.methods;
 import helper.enums.Color;
 import helper.enums.ColorMask;
+import helper.qr.CodePoint;
 import helper.struct.Point;
 import static helper.enums.ConstantValues.*;
 import static helper.methods.StringToEnum.getStrToColor;
@@ -14,6 +15,9 @@ import helper.struct.*;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static helper.methods.StringToEnum.getIntToColor;
 
@@ -177,6 +181,37 @@ public class CommonMethods{
         w1.swapValues(w2.index,w2.edits,w2.word);
         w2.swapValues(index,edits,word);
     }
+
+    public static String padLeft(int length,String str,char padChar){
+        return String.format("%1$" + length + "s",str).replace(' ',padChar);
+    }
+
+    public static String padRight(int length,String str,char padChar){
+        return String.format("%1$-" + length + "s",str).replace(' ',padChar);
+    }
+
+    public static String mapIntArrayToStringArray(int[] arr,String joinWith){
+        Optional<String> objStr = Arrays.stream(arr).mapToObj(String::valueOf).reduce((a, b) -> a.concat(joinWith).concat(b));
+        return objStr.orElse("");
+    }
+
+    public static String mapIntArrayToStringArrayWithPadAndRadix(int[] arr,String joinWith,char padWith,int padStart,int radix){
+        Optional<String> objStr  = Arrays.stream(arr).mapToObj(a -> {
+            String aa = Integer.toString(a,radix).toUpperCase();
+            return  CommonMethods.padLeft(padStart,aa,padWith);
+        }).map(String::valueOf).reduce((a, b) -> a.concat(joinWith).concat(b));
+
+        return objStr.orElse("");
+
+        /*Optional<String> objStr = Arrays.stream(arr).mapToObj(String::valueOf).reduce((a, b) -> {
+            a = CommonMethods.padLeft(padStart,Integer.toString(Integer.parseInt(a),radix),padWith).toUpperCase();
+            b = CommonMethods.padLeft(padStart,Integer.toString(Integer.parseInt(b),radix),padWith).toUpperCase();
+            return a.concat(joinWith ).concat(b);
+        });
+        return objStr.orElse("");*/
+    }
+
+
 
     public static void reverseIntArray(int[] arr){
         int temp;

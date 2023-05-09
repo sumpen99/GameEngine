@@ -78,7 +78,7 @@ public class StartUp {
     }
 
     static void testQrCode(){
-        QrCodeReader qrReader = new QrCodeReader("123456789",0, QrErrorCorrectionLevel.LOW,0);
+        QrCodeReader qrReader = new QrCodeReader("123_456789",0, QrErrorCorrectionLevel.LOW,0);
         qrReader.printResultSoFar();
     }
 }

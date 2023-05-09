@@ -12,6 +12,10 @@ CodePoint 3
 UTF32 51 UTF16 3
 Utf8 [ 51 ]
 
+CodePoint _
+UTF32 95 UTF16 _
+Utf8 [ 95 ]
+
 CodePoint 4
 UTF32 52 UTF16 4
 Utf8 [ 52 ]
@@ -36,79 +40,12 @@ CodePoint 9
 UTF32 57 UTF16 9
 Utf8 [ 57 ]
 
-CodePoint Ö
-UTF32 0 UTF16 Ö
-Utf8 [ 195 150 ]
+SegmentMode: BYTE
+modeBits: 4 
+numbitsCharCount: 8 16 16 
 
-CodePoint $
-UTF32 36 UTF16 $
-Utf8 [ 36 ]
-
-CodePoint €
-UTF32 0 UTF16 €
-Utf8 [ 226 130 172 ]
-
-CodePoint {
-UTF32 123 UTF16 {
-Utf8 [ 123 ]
-
-CodePoint $
-UTF32 36 UTF16 $
-Utf8 [ 36 ]
-
-CodePoint €
-UTF32 0 UTF16 €
-Utf8 [ 226 130 172 ]
-
-CodePoint {
-UTF32 123 UTF16 {
-Utf8 [ 123 ]
-
-CodePoint {
-UTF32 123 UTF16 {
-Utf8 [ 123 ]
-
-CodePoint =
-UTF32 61 UTF16 =
-Utf8 [ 61 ]
-
-CodePoint )
-UTF32 41 UTF16 )
-Utf8 [ 41 ]
-
-CodePoint =
-UTF32 61 UTF16 =
-Utf8 [ 61 ]
-
-CodePoint (
-UTF32 40 UTF16 (
-Utf8 [ 40 ]
-
-CodePoint =
-UTF32 61 UTF16 =
-Utf8 [ 61 ]
-
-CodePoint /
-UTF32 47 UTF16 /
-Utf8 [ 47 ]
-
-CodePoint (
-UTF32 40 UTF16 (
-Utf8 [ 40 ]
-
-CodePoint &
-UTF32 38 UTF16 &
-Utf8 [ 38 ]
-
-CodePoint %
-UTF32 37 UTF16 %
-Utf8 [ 37 ]
-
-CodePoint ¤
-UTF32 0 UTF16 ¤
-Utf8 [ 194 164 ]
-
-CodePoint %
-UTF32 37 UTF16 %
-Utf8 [ 37 ]
+SegmentMode: BYTE
+numChars: 10 
+numbitsCharCount: 0 0 1 1 0 0 0 1 0 0 1 1 0 0 1 0 0 0 1 1 0 0 1 1 0 1 0 1 1 1 1 1 0 0 1 1 0 1 0 0 0 0 1 1 0 1 0 1 0 0 1 1 0 1 1 0 0 0 1 1 0 1 1 1 
+0 0 1 1 1 0 0 0 0 0 1 1 1 0 0 1 
 

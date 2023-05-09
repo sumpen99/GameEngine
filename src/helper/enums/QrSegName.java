@@ -7,5 +7,6 @@ public enum QrSegName {
     KANJI,
     ECI,
     ALPHANUMERIC_CHARSET,
-    KANJI_BIT_SET
+    KANJI_BIT_SET,
+    UNDEFINED_SEG_NAME
 }

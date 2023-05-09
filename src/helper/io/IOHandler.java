@@ -45,6 +45,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class IOHandler {
@@ -155,6 +156,13 @@ public class IOHandler {
         for(int i = 0;i<arr.length;i++){
             if(i%64 == 0 && i != 0)printString("");
             System.out.print(arr[i] + " ");
+        }
+    }
+
+    public static void printIntListArray(List<Integer> arr){
+        for(int i = 0;i<arr.size();i++){
+            if(i%64 == 0 && i != 0)printString("");
+            System.out.print(arr.get(i) + " ");
         }
     }
 
