@@ -1,24 +1,14 @@
 import engine.GameEngine;
-import helper.enums.Color;
-import helper.enums.QrErrorCorrectionLevel;
-import helper.list.SMHashMap;
-import helper.methods.CommonMethods;
+import helper.qr.QrErrorCorrectionLevel;
 import helper.qr.QrCodeReader;
-import helper.search.InterpolationSearch;
-import helper.sort.*;
+import helper.qr.QrVersion;
 import helper.sql.SqliteFile;
-import helper.struct.*;
-import helper.font.ttf.TTFFile;
-import helper.text.TextWriter;
-import helper.tree.BinarySearchTree;
-import helper.tree.KDTree;
-import helper.tree.RedBlackTree;
 import program.*;
 import helper.io.IOHandler;
 
-import java.util.ArrayList;
-
-import static helper.enums.EntrieType.ENTRIE_JSON_STRING;
+import static helper.qr.QrErrorCorrectionLevel.LOW;
+import static helper.qr.QrVersion.QRVERSION_1;
+import static helper.qr.QrVersion.QRVERSION_40;
 //https://personal.ntu.edu.sg/ehchua/programming/java/javanativeinterface.html
 //http://midi.teragonaudio.com/tech/lowaud.htm
 //https://tchayen.github.io/posts/ttf-file-parsing
@@ -78,7 +68,7 @@ public class StartUp {
     }
 
     static void testQrCode(){
-        QrCodeReader qrReader = new QrCodeReader("123_456789",0, QrErrorCorrectionLevel.LOW,0);
+        QrCodeReader qrReader = new QrCodeReader("123_456njkhjnoihoihoijhjpiju9uj0u+9u9789", QRVERSION_1, LOW,0);
         qrReader.printResultSoFar();
     }
 }

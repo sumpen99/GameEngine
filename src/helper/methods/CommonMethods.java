@@ -14,7 +14,9 @@ import helper.io.IOHandler;
 import helper.struct.*;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -188,6 +190,20 @@ public class CommonMethods{
 
     public static String padRight(int length,String str,char padChar){
         return String.format("%1$-" + length + "s",str).replace(' ',padChar);
+    }
+
+    public static List<Integer> intToBits(int val,int len) {
+        if(len < 0 || len > 31 || val >>> len != 0){
+            return null;
+        }
+        List<Integer> result = new ArrayList<>();
+        for(int i = len - 1; i >= 0; i--){
+            result.add((val >>> i) & 1);
+        }
+        return result;
+    }
+    public static String byteToHex(int val){
+        return padLeft(2,Integer.toString(val,16).toUpperCase(),'0');
     }
 
     public static String mapIntArrayToStringArray(int[] arr,String joinWith){

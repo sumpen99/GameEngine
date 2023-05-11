@@ -28,6 +28,126 @@ CodePoint 6
 UTF32 54 UTF16 6
 Utf8 [ 54 ]
 
+CodePoint n
+UTF32 110 UTF16 n
+Utf8 [ 110 ]
+
+CodePoint j
+UTF32 106 UTF16 j
+Utf8 [ 106 ]
+
+CodePoint k
+UTF32 107 UTF16 k
+Utf8 [ 107 ]
+
+CodePoint h
+UTF32 104 UTF16 h
+Utf8 [ 104 ]
+
+CodePoint j
+UTF32 106 UTF16 j
+Utf8 [ 106 ]
+
+CodePoint n
+UTF32 110 UTF16 n
+Utf8 [ 110 ]
+
+CodePoint o
+UTF32 111 UTF16 o
+Utf8 [ 111 ]
+
+CodePoint i
+UTF32 105 UTF16 i
+Utf8 [ 105 ]
+
+CodePoint h
+UTF32 104 UTF16 h
+Utf8 [ 104 ]
+
+CodePoint o
+UTF32 111 UTF16 o
+Utf8 [ 111 ]
+
+CodePoint i
+UTF32 105 UTF16 i
+Utf8 [ 105 ]
+
+CodePoint h
+UTF32 104 UTF16 h
+Utf8 [ 104 ]
+
+CodePoint o
+UTF32 111 UTF16 o
+Utf8 [ 111 ]
+
+CodePoint i
+UTF32 105 UTF16 i
+Utf8 [ 105 ]
+
+CodePoint j
+UTF32 106 UTF16 j
+Utf8 [ 106 ]
+
+CodePoint h
+UTF32 104 UTF16 h
+Utf8 [ 104 ]
+
+CodePoint j
+UTF32 106 UTF16 j
+Utf8 [ 106 ]
+
+CodePoint p
+UTF32 112 UTF16 p
+Utf8 [ 112 ]
+
+CodePoint i
+UTF32 105 UTF16 i
+Utf8 [ 105 ]
+
+CodePoint j
+UTF32 106 UTF16 j
+Utf8 [ 106 ]
+
+CodePoint u
+UTF32 117 UTF16 u
+Utf8 [ 117 ]
+
+CodePoint 9
+UTF32 57 UTF16 9
+Utf8 [ 57 ]
+
+CodePoint u
+UTF32 117 UTF16 u
+Utf8 [ 117 ]
+
+CodePoint j
+UTF32 106 UTF16 j
+Utf8 [ 106 ]
+
+CodePoint 0
+UTF32 48 UTF16 0
+Utf8 [ 48 ]
+
+CodePoint u
+UTF32 117 UTF16 u
+Utf8 [ 117 ]
+
+CodePoint +
+UTF32 43 UTF16 +
+Utf8 [ 43 ]
+
+CodePoint 9
+UTF32 57 UTF16 9
+Utf8 [ 57 ]
+
+CodePoint u
+UTF32 117 UTF16 u
+Utf8 [ 117 ]
+
+CodePoint 9
+UTF32 57 UTF16 9
+Utf8 [ 57 ]
+
 CodePoint 7
 UTF32 55 UTF16 7
 Utf8 [ 55 ]
@@ -42,10 +162,458 @@ Utf8 [ 57 ]
 
 SegmentMode: BYTE
 modeBits: 4 
-numbitsCharCount: 8 16 16 
+numbitsCharCount: Int Array length: 3
+8
+16
+16
 
-SegmentMode: BYTE
-numChars: 10 
-numbitsCharCount: 0 0 1 1 0 0 0 1 0 0 1 1 0 0 1 0 0 0 1 1 0 0 1 1 0 1 0 1 1 1 1 1 0 0 1 1 0 1 0 0 0 0 1 1 0 1 0 1 0 0 1 1 0 1 1 0 0 0 1 1 0 1 1 1 
-0 0 1 1 1 0 0 0 0 0 1 1 1 0 0 1 
 
+SegmentMode: helper.qr.QrSegmentMode@5383967b
+numChars: 40 
+numbitsCharCount: 0 0 1 1 0 0 0 1 0 0 1 1 0 0 1 0 0 0 1 1 0 0 1 1 0 1 0 1 1 1 1 1 0 0 1 1 0 1 0 0 0 0 1 1 0 1 0 1 0 0 1 1 0 1 1 0 0 1 1 0 1 1 1 0 
+0 1 1 0 1 0 1 0 0 1 1 0 1 0 1 1 0 1 1 0 1 0 0 0 0 1 1 0 1 0 1 0 0 1 1 0 1 1 1 0 0 1 1 0 1 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 0 
+0 1 1 0 1 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 0 0 1 1 0 1 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 1 0 0 1 1 0 1 0 0 0 0 1 1 0 1 0 1 0 
+0 1 1 1 0 0 0 0 0 1 1 0 1 0 0 1 0 1 1 0 1 0 1 0 0 1 1 1 0 1 0 1 0 0 1 1 1 0 0 1 0 1 1 1 0 1 0 1 0 1 1 0 1 0 1 0 0 0 1 1 0 0 0 0 
+0 1 1 1 0 1 0 1 0 0 1 0 1 0 1 1 0 0 1 1 1 0 0 1 0 1 1 1 0 1 0 1 0 0 1 1 1 0 0 1 0 0 1 1 0 1 1 1 0 0 1 1 1 0 0 0 0 0 1 1 1 0 0 1 
+
+Version: QRVERSION_3
+CodeWord
+Value: 66
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 0
+CodeWord
+Value: 131
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 1
+CodeWord
+Value: 19
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 2
+CodeWord
+Value: 35
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 3
+CodeWord
+Value: 53
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 4
+CodeWord
+Value: 243
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 5
+CodeWord
+Value: 67
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 6
+CodeWord
+Value: 83
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 7
+CodeWord
+Value: 102
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 8
+CodeWord
+Value: 230
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 9
+CodeWord
+Value: 166
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 10
+CodeWord
+Value: 182
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 11
+CodeWord
+Value: 134
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 12
+CodeWord
+Value: 166
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 13
+CodeWord
+Value: 230
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 14
+CodeWord
+Value: 246
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 15
+CodeWord
+Value: 150
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 16
+CodeWord
+Value: 134
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 17
+CodeWord
+Value: 246
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 18
+CodeWord
+Value: 150
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 19
+CodeWord
+Value: 134
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 20
+CodeWord
+Value: 246
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 21
+CodeWord
+Value: 150
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 22
+CodeWord
+Value: 166
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 23
+CodeWord
+Value: 134
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 24
+CodeWord
+Value: 167
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 25
+CodeWord
+Value: 6
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 26
+CodeWord
+Value: 150
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 27
+CodeWord
+Value: 167
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 28
+CodeWord
+Value: 83
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 29
+CodeWord
+Value: 151
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 30
+CodeWord
+Value: 86
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 31
+CodeWord
+Value: 163
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 32
+CodeWord
+Value: 7
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 33
+CodeWord
+Value: 82
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 34
+CodeWord
+Value: 179
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 35
+CodeWord
+Value: 151
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 36
+CodeWord
+Value: 83
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 37
+CodeWord
+Value: 147
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 38
+CodeWord
+Value: 115
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 39
+CodeWord
+Value: 131
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 40
+CodeWord
+Value: 144
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 41
+CodeWord
+Value: 236
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 42
+CodeWord
+Value: 17
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 43
+CodeWord
+Value: 236
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 44
+CodeWord
+Value: 17
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 45
+CodeWord
+Value: 236
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 46
+CodeWord
+Value: 17
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 47
+CodeWord
+Value: 236
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 48
+CodeWord
+Value: 17
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 49
+CodeWord
+Value: 236
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 50
+CodeWord
+Value: 17
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 51
+CodeWord
+Value: 236
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 52
+CodeWord
+Value: 17
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 53
+CodeWord
+Value: 236
+preInterleaveIndex: -1
+blockIndex: -1
+indexInBlock: -1
+postInterleaveIndex: -1
+DataCodeWord
+preEccIndex: 54
