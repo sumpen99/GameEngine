@@ -12,6 +12,7 @@ import static helper.qr.QrVersion.QRVERSION_40;
 //https://personal.ntu.edu.sg/ehchua/programming/java/javanativeinterface.html
 //http://midi.teragonaudio.com/tech/lowaud.htm
 //https://tchayen.github.io/posts/ttf-file-parsing
+//https://www.nayuki.io/res/creating-a-qr-code-step-by-step/creating-qr-code-steps.js
 
 
 public class StartUp {

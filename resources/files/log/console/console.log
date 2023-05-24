@@ -1,4 +1,6 @@
 Unable To Remove File .\resources\files\log\gc\gc.log
+1
+1
 Passedcheck: true message: null
 CodePoint 1
 UTF32 49 UTF16 1
@@ -168,7 +170,7 @@ numbitsCharCount: Int Array length: 3
 16
 
 
-SegmentMode: helper.qr.QrSegmentMode@5383967b
+SegmentMode: helper.qr.QrSegmentMode@3b0143d3
 numChars: 40 
 numbitsCharCount: 0 0 1 1 0 0 0 1 0 0 1 1 0 0 1 0 0 0 1 1 0 0 1 1 0 1 0 1 1 1 1 1 0 0 1 1 0 1 0 0 0 0 1 1 0 1 0 1 0 0 1 1 0 1 1 0 0 1 1 0 1 1 1 0 
 0 1 1 0 1 0 1 0 0 1 1 0 1 0 1 1 0 1 1 0 1 0 0 0 0 1 1 0 1 0 1 0 0 1 1 0 1 1 1 0 0 1 1 0 1 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 0 
@@ -177,443 +179,975 @@ numbitsCharCount: 0 0 1 1 0 0 0 1 0 0 1 1 0 0 1 0 0 0 1 1 0 0 1 1 0 1 0 1 1 1 1 
 0 1 1 1 0 1 0 1 0 0 1 0 1 0 1 1 0 0 1 1 1 0 0 1 0 1 1 1 0 1 0 1 0 0 1 1 1 0 0 1 0 0 1 1 0 1 1 1 0 0 1 1 1 0 0 0 0 0 1 1 1 0 0 1 
 
 Version: QRVERSION_3
+DataCodeWords
 CodeWord
 Value: 66
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 0
+blockIndex: 0
+indexInBlock: 0
+postInterleaveIndex: 0
 DataCodeWord
 preEccIndex: 0
 CodeWord
 Value: 131
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 1
+blockIndex: 0
+indexInBlock: 1
+postInterleaveIndex: 1
 DataCodeWord
 preEccIndex: 1
 CodeWord
 Value: 19
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 2
+blockIndex: 0
+indexInBlock: 2
+postInterleaveIndex: 2
 DataCodeWord
 preEccIndex: 2
 CodeWord
 Value: 35
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 3
+blockIndex: 0
+indexInBlock: 3
+postInterleaveIndex: 3
 DataCodeWord
 preEccIndex: 3
 CodeWord
 Value: 53
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 4
+blockIndex: 0
+indexInBlock: 4
+postInterleaveIndex: 4
 DataCodeWord
 preEccIndex: 4
 CodeWord
 Value: 243
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 5
+blockIndex: 0
+indexInBlock: 5
+postInterleaveIndex: 5
 DataCodeWord
 preEccIndex: 5
 CodeWord
 Value: 67
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 6
+blockIndex: 0
+indexInBlock: 6
+postInterleaveIndex: 6
 DataCodeWord
 preEccIndex: 6
 CodeWord
 Value: 83
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 7
+blockIndex: 0
+indexInBlock: 7
+postInterleaveIndex: 7
 DataCodeWord
 preEccIndex: 7
 CodeWord
 Value: 102
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 8
+blockIndex: 0
+indexInBlock: 8
+postInterleaveIndex: 8
 DataCodeWord
 preEccIndex: 8
 CodeWord
 Value: 230
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 9
+blockIndex: 0
+indexInBlock: 9
+postInterleaveIndex: 9
 DataCodeWord
 preEccIndex: 9
 CodeWord
 Value: 166
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 10
+blockIndex: 0
+indexInBlock: 10
+postInterleaveIndex: 10
 DataCodeWord
 preEccIndex: 10
 CodeWord
 Value: 182
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 11
+blockIndex: 0
+indexInBlock: 11
+postInterleaveIndex: 11
 DataCodeWord
 preEccIndex: 11
 CodeWord
 Value: 134
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 12
+blockIndex: 0
+indexInBlock: 12
+postInterleaveIndex: 12
 DataCodeWord
 preEccIndex: 12
 CodeWord
 Value: 166
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 13
+blockIndex: 0
+indexInBlock: 13
+postInterleaveIndex: 13
 DataCodeWord
 preEccIndex: 13
 CodeWord
 Value: 230
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 14
+blockIndex: 0
+indexInBlock: 14
+postInterleaveIndex: 14
 DataCodeWord
 preEccIndex: 14
 CodeWord
 Value: 246
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 15
+blockIndex: 0
+indexInBlock: 15
+postInterleaveIndex: 15
 DataCodeWord
 preEccIndex: 15
 CodeWord
 Value: 150
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 16
+blockIndex: 0
+indexInBlock: 16
+postInterleaveIndex: 16
 DataCodeWord
 preEccIndex: 16
 CodeWord
 Value: 134
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 17
+blockIndex: 0
+indexInBlock: 17
+postInterleaveIndex: 17
 DataCodeWord
 preEccIndex: 17
 CodeWord
 Value: 246
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 18
+blockIndex: 0
+indexInBlock: 18
+postInterleaveIndex: 18
 DataCodeWord
 preEccIndex: 18
 CodeWord
 Value: 150
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 19
+blockIndex: 0
+indexInBlock: 19
+postInterleaveIndex: 19
 DataCodeWord
 preEccIndex: 19
 CodeWord
 Value: 134
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 20
+blockIndex: 0
+indexInBlock: 20
+postInterleaveIndex: 20
 DataCodeWord
 preEccIndex: 20
 CodeWord
 Value: 246
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 21
+blockIndex: 0
+indexInBlock: 21
+postInterleaveIndex: 21
 DataCodeWord
 preEccIndex: 21
 CodeWord
 Value: 150
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 22
+blockIndex: 0
+indexInBlock: 22
+postInterleaveIndex: 22
 DataCodeWord
 preEccIndex: 22
 CodeWord
 Value: 166
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 23
+blockIndex: 0
+indexInBlock: 23
+postInterleaveIndex: 23
 DataCodeWord
 preEccIndex: 23
 CodeWord
 Value: 134
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 24
+blockIndex: 0
+indexInBlock: 24
+postInterleaveIndex: 24
 DataCodeWord
 preEccIndex: 24
 CodeWord
 Value: 167
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 25
+blockIndex: 0
+indexInBlock: 25
+postInterleaveIndex: 25
 DataCodeWord
 preEccIndex: 25
 CodeWord
 Value: 6
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 26
+blockIndex: 0
+indexInBlock: 26
+postInterleaveIndex: 26
 DataCodeWord
 preEccIndex: 26
 CodeWord
 Value: 150
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 27
+blockIndex: 0
+indexInBlock: 27
+postInterleaveIndex: 27
 DataCodeWord
 preEccIndex: 27
 CodeWord
 Value: 167
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 28
+blockIndex: 0
+indexInBlock: 28
+postInterleaveIndex: 28
 DataCodeWord
 preEccIndex: 28
 CodeWord
 Value: 83
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 29
+blockIndex: 0
+indexInBlock: 29
+postInterleaveIndex: 29
 DataCodeWord
 preEccIndex: 29
 CodeWord
 Value: 151
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 30
+blockIndex: 0
+indexInBlock: 30
+postInterleaveIndex: 30
 DataCodeWord
 preEccIndex: 30
 CodeWord
 Value: 86
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 31
+blockIndex: 0
+indexInBlock: 31
+postInterleaveIndex: 31
 DataCodeWord
 preEccIndex: 31
 CodeWord
 Value: 163
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 32
+blockIndex: 0
+indexInBlock: 32
+postInterleaveIndex: 32
 DataCodeWord
 preEccIndex: 32
 CodeWord
 Value: 7
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 33
+blockIndex: 0
+indexInBlock: 33
+postInterleaveIndex: 33
 DataCodeWord
 preEccIndex: 33
 CodeWord
 Value: 82
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 34
+blockIndex: 0
+indexInBlock: 34
+postInterleaveIndex: 34
 DataCodeWord
 preEccIndex: 34
 CodeWord
 Value: 179
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 35
+blockIndex: 0
+indexInBlock: 35
+postInterleaveIndex: 35
 DataCodeWord
 preEccIndex: 35
 CodeWord
 Value: 151
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 36
+blockIndex: 0
+indexInBlock: 36
+postInterleaveIndex: 36
 DataCodeWord
 preEccIndex: 36
 CodeWord
 Value: 83
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 37
+blockIndex: 0
+indexInBlock: 37
+postInterleaveIndex: 37
 DataCodeWord
 preEccIndex: 37
 CodeWord
 Value: 147
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 38
+blockIndex: 0
+indexInBlock: 38
+postInterleaveIndex: 38
 DataCodeWord
 preEccIndex: 38
 CodeWord
 Value: 115
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 39
+blockIndex: 0
+indexInBlock: 39
+postInterleaveIndex: 39
 DataCodeWord
 preEccIndex: 39
 CodeWord
 Value: 131
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 40
+blockIndex: 0
+indexInBlock: 40
+postInterleaveIndex: 40
 DataCodeWord
 preEccIndex: 40
 CodeWord
 Value: 144
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 41
+blockIndex: 0
+indexInBlock: 41
+postInterleaveIndex: 41
 DataCodeWord
 preEccIndex: 41
 CodeWord
 Value: 236
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 42
+blockIndex: 0
+indexInBlock: 42
+postInterleaveIndex: 42
 DataCodeWord
 preEccIndex: 42
 CodeWord
 Value: 17
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 43
+blockIndex: 0
+indexInBlock: 43
+postInterleaveIndex: 43
 DataCodeWord
 preEccIndex: 43
 CodeWord
 Value: 236
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 44
+blockIndex: 0
+indexInBlock: 44
+postInterleaveIndex: 44
 DataCodeWord
 preEccIndex: 44
 CodeWord
 Value: 17
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 45
+blockIndex: 0
+indexInBlock: 45
+postInterleaveIndex: 45
 DataCodeWord
 preEccIndex: 45
 CodeWord
 Value: 236
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 46
+blockIndex: 0
+indexInBlock: 46
+postInterleaveIndex: 46
 DataCodeWord
 preEccIndex: 46
 CodeWord
 Value: 17
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 47
+blockIndex: 0
+indexInBlock: 47
+postInterleaveIndex: 47
 DataCodeWord
 preEccIndex: 47
 CodeWord
 Value: 236
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 48
+blockIndex: 0
+indexInBlock: 48
+postInterleaveIndex: 48
 DataCodeWord
 preEccIndex: 48
 CodeWord
 Value: 17
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 49
+blockIndex: 0
+indexInBlock: 49
+postInterleaveIndex: 49
 DataCodeWord
 preEccIndex: 49
 CodeWord
 Value: 236
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 50
+blockIndex: 0
+indexInBlock: 50
+postInterleaveIndex: 50
 DataCodeWord
 preEccIndex: 50
 CodeWord
 Value: 17
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 51
+blockIndex: 0
+indexInBlock: 51
+postInterleaveIndex: 51
 DataCodeWord
 preEccIndex: 51
 CodeWord
 Value: 236
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 52
+blockIndex: 0
+indexInBlock: 52
+postInterleaveIndex: 52
 DataCodeWord
 preEccIndex: 52
 CodeWord
 Value: 17
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 53
+blockIndex: 0
+indexInBlock: 53
+postInterleaveIndex: 53
 DataCodeWord
 preEccIndex: 53
 CodeWord
 Value: 236
-preInterleaveIndex: -1
-blockIndex: -1
-indexInBlock: -1
-postInterleaveIndex: -1
+preInterleaveIndex: 54
+blockIndex: 0
+indexInBlock: 54
+postInterleaveIndex: 54
 DataCodeWord
 preEccIndex: 54
+All CodeWords
+CodeWord
+Value: 66
+preInterleaveIndex: 0
+blockIndex: 0
+indexInBlock: 0
+postInterleaveIndex: 0
+DataCodeWord
+preEccIndex: 0
+CodeWord
+Value: 131
+preInterleaveIndex: 1
+blockIndex: 0
+indexInBlock: 1
+postInterleaveIndex: 1
+DataCodeWord
+preEccIndex: 1
+CodeWord
+Value: 19
+preInterleaveIndex: 2
+blockIndex: 0
+indexInBlock: 2
+postInterleaveIndex: 2
+DataCodeWord
+preEccIndex: 2
+CodeWord
+Value: 35
+preInterleaveIndex: 3
+blockIndex: 0
+indexInBlock: 3
+postInterleaveIndex: 3
+DataCodeWord
+preEccIndex: 3
+CodeWord
+Value: 53
+preInterleaveIndex: 4
+blockIndex: 0
+indexInBlock: 4
+postInterleaveIndex: 4
+DataCodeWord
+preEccIndex: 4
+CodeWord
+Value: 243
+preInterleaveIndex: 5
+blockIndex: 0
+indexInBlock: 5
+postInterleaveIndex: 5
+DataCodeWord
+preEccIndex: 5
+CodeWord
+Value: 67
+preInterleaveIndex: 6
+blockIndex: 0
+indexInBlock: 6
+postInterleaveIndex: 6
+DataCodeWord
+preEccIndex: 6
+CodeWord
+Value: 83
+preInterleaveIndex: 7
+blockIndex: 0
+indexInBlock: 7
+postInterleaveIndex: 7
+DataCodeWord
+preEccIndex: 7
+CodeWord
+Value: 102
+preInterleaveIndex: 8
+blockIndex: 0
+indexInBlock: 8
+postInterleaveIndex: 8
+DataCodeWord
+preEccIndex: 8
+CodeWord
+Value: 230
+preInterleaveIndex: 9
+blockIndex: 0
+indexInBlock: 9
+postInterleaveIndex: 9
+DataCodeWord
+preEccIndex: 9
+CodeWord
+Value: 166
+preInterleaveIndex: 10
+blockIndex: 0
+indexInBlock: 10
+postInterleaveIndex: 10
+DataCodeWord
+preEccIndex: 10
+CodeWord
+Value: 182
+preInterleaveIndex: 11
+blockIndex: 0
+indexInBlock: 11
+postInterleaveIndex: 11
+DataCodeWord
+preEccIndex: 11
+CodeWord
+Value: 134
+preInterleaveIndex: 12
+blockIndex: 0
+indexInBlock: 12
+postInterleaveIndex: 12
+DataCodeWord
+preEccIndex: 12
+CodeWord
+Value: 166
+preInterleaveIndex: 13
+blockIndex: 0
+indexInBlock: 13
+postInterleaveIndex: 13
+DataCodeWord
+preEccIndex: 13
+CodeWord
+Value: 230
+preInterleaveIndex: 14
+blockIndex: 0
+indexInBlock: 14
+postInterleaveIndex: 14
+DataCodeWord
+preEccIndex: 14
+CodeWord
+Value: 246
+preInterleaveIndex: 15
+blockIndex: 0
+indexInBlock: 15
+postInterleaveIndex: 15
+DataCodeWord
+preEccIndex: 15
+CodeWord
+Value: 150
+preInterleaveIndex: 16
+blockIndex: 0
+indexInBlock: 16
+postInterleaveIndex: 16
+DataCodeWord
+preEccIndex: 16
+CodeWord
+Value: 134
+preInterleaveIndex: 17
+blockIndex: 0
+indexInBlock: 17
+postInterleaveIndex: 17
+DataCodeWord
+preEccIndex: 17
+CodeWord
+Value: 246
+preInterleaveIndex: 18
+blockIndex: 0
+indexInBlock: 18
+postInterleaveIndex: 18
+DataCodeWord
+preEccIndex: 18
+CodeWord
+Value: 150
+preInterleaveIndex: 19
+blockIndex: 0
+indexInBlock: 19
+postInterleaveIndex: 19
+DataCodeWord
+preEccIndex: 19
+CodeWord
+Value: 134
+preInterleaveIndex: 20
+blockIndex: 0
+indexInBlock: 20
+postInterleaveIndex: 20
+DataCodeWord
+preEccIndex: 20
+CodeWord
+Value: 246
+preInterleaveIndex: 21
+blockIndex: 0
+indexInBlock: 21
+postInterleaveIndex: 21
+DataCodeWord
+preEccIndex: 21
+CodeWord
+Value: 150
+preInterleaveIndex: 22
+blockIndex: 0
+indexInBlock: 22
+postInterleaveIndex: 22
+DataCodeWord
+preEccIndex: 22
+CodeWord
+Value: 166
+preInterleaveIndex: 23
+blockIndex: 0
+indexInBlock: 23
+postInterleaveIndex: 23
+DataCodeWord
+preEccIndex: 23
+CodeWord
+Value: 134
+preInterleaveIndex: 24
+blockIndex: 0
+indexInBlock: 24
+postInterleaveIndex: 24
+DataCodeWord
+preEccIndex: 24
+CodeWord
+Value: 167
+preInterleaveIndex: 25
+blockIndex: 0
+indexInBlock: 25
+postInterleaveIndex: 25
+DataCodeWord
+preEccIndex: 25
+CodeWord
+Value: 6
+preInterleaveIndex: 26
+blockIndex: 0
+indexInBlock: 26
+postInterleaveIndex: 26
+DataCodeWord
+preEccIndex: 26
+CodeWord
+Value: 150
+preInterleaveIndex: 27
+blockIndex: 0
+indexInBlock: 27
+postInterleaveIndex: 27
+DataCodeWord
+preEccIndex: 27
+CodeWord
+Value: 167
+preInterleaveIndex: 28
+blockIndex: 0
+indexInBlock: 28
+postInterleaveIndex: 28
+DataCodeWord
+preEccIndex: 28
+CodeWord
+Value: 83
+preInterleaveIndex: 29
+blockIndex: 0
+indexInBlock: 29
+postInterleaveIndex: 29
+DataCodeWord
+preEccIndex: 29
+CodeWord
+Value: 151
+preInterleaveIndex: 30
+blockIndex: 0
+indexInBlock: 30
+postInterleaveIndex: 30
+DataCodeWord
+preEccIndex: 30
+CodeWord
+Value: 86
+preInterleaveIndex: 31
+blockIndex: 0
+indexInBlock: 31
+postInterleaveIndex: 31
+DataCodeWord
+preEccIndex: 31
+CodeWord
+Value: 163
+preInterleaveIndex: 32
+blockIndex: 0
+indexInBlock: 32
+postInterleaveIndex: 32
+DataCodeWord
+preEccIndex: 32
+CodeWord
+Value: 7
+preInterleaveIndex: 33
+blockIndex: 0
+indexInBlock: 33
+postInterleaveIndex: 33
+DataCodeWord
+preEccIndex: 33
+CodeWord
+Value: 82
+preInterleaveIndex: 34
+blockIndex: 0
+indexInBlock: 34
+postInterleaveIndex: 34
+DataCodeWord
+preEccIndex: 34
+CodeWord
+Value: 179
+preInterleaveIndex: 35
+blockIndex: 0
+indexInBlock: 35
+postInterleaveIndex: 35
+DataCodeWord
+preEccIndex: 35
+CodeWord
+Value: 151
+preInterleaveIndex: 36
+blockIndex: 0
+indexInBlock: 36
+postInterleaveIndex: 36
+DataCodeWord
+preEccIndex: 36
+CodeWord
+Value: 83
+preInterleaveIndex: 37
+blockIndex: 0
+indexInBlock: 37
+postInterleaveIndex: 37
+DataCodeWord
+preEccIndex: 37
+CodeWord
+Value: 147
+preInterleaveIndex: 38
+blockIndex: 0
+indexInBlock: 38
+postInterleaveIndex: 38
+DataCodeWord
+preEccIndex: 38
+CodeWord
+Value: 115
+preInterleaveIndex: 39
+blockIndex: 0
+indexInBlock: 39
+postInterleaveIndex: 39
+DataCodeWord
+preEccIndex: 39
+CodeWord
+Value: 131
+preInterleaveIndex: 40
+blockIndex: 0
+indexInBlock: 40
+postInterleaveIndex: 40
+DataCodeWord
+preEccIndex: 40
+CodeWord
+Value: 144
+preInterleaveIndex: 41
+blockIndex: 0
+indexInBlock: 41
+postInterleaveIndex: 41
+DataCodeWord
+preEccIndex: 41
+CodeWord
+Value: 236
+preInterleaveIndex: 42
+blockIndex: 0
+indexInBlock: 42
+postInterleaveIndex: 42
+DataCodeWord
+preEccIndex: 42
+CodeWord
+Value: 17
+preInterleaveIndex: 43
+blockIndex: 0
+indexInBlock: 43
+postInterleaveIndex: 43
+DataCodeWord
+preEccIndex: 43
+CodeWord
+Value: 236
+preInterleaveIndex: 44
+blockIndex: 0
+indexInBlock: 44
+postInterleaveIndex: 44
+DataCodeWord
+preEccIndex: 44
+CodeWord
+Value: 17
+preInterleaveIndex: 45
+blockIndex: 0
+indexInBlock: 45
+postInterleaveIndex: 45
+DataCodeWord
+preEccIndex: 45
+CodeWord
+Value: 236
+preInterleaveIndex: 46
+blockIndex: 0
+indexInBlock: 46
+postInterleaveIndex: 46
+DataCodeWord
+preEccIndex: 46
+CodeWord
+Value: 17
+preInterleaveIndex: 47
+blockIndex: 0
+indexInBlock: 47
+postInterleaveIndex: 47
+DataCodeWord
+preEccIndex: 47
+CodeWord
+Value: 236
+preInterleaveIndex: 48
+blockIndex: 0
+indexInBlock: 48
+postInterleaveIndex: 48
+DataCodeWord
+preEccIndex: 48
+CodeWord
+Value: 17
+preInterleaveIndex: 49
+blockIndex: 0
+indexInBlock: 49
+postInterleaveIndex: 49
+DataCodeWord
+preEccIndex: 49
+CodeWord
+Value: 236
+preInterleaveIndex: 50
+blockIndex: 0
+indexInBlock: 50
+postInterleaveIndex: 50
+DataCodeWord
+preEccIndex: 50
+CodeWord
+Value: 17
+preInterleaveIndex: 51
+blockIndex: 0
+indexInBlock: 51
+postInterleaveIndex: 51
+DataCodeWord
+preEccIndex: 51
+CodeWord
+Value: 236
+preInterleaveIndex: 52
+blockIndex: 0
+indexInBlock: 52
+postInterleaveIndex: 52
+DataCodeWord
+preEccIndex: 52
+CodeWord
+Value: 17
+preInterleaveIndex: 53
+blockIndex: 0
+indexInBlock: 53
+postInterleaveIndex: 53
+DataCodeWord
+preEccIndex: 53
+CodeWord
+Value: 236
+preInterleaveIndex: 54
+blockIndex: 0
+indexInBlock: 54
+postInterleaveIndex: 54
+DataCodeWord
+preEccIndex: 54
+CodeWord
+Value: 77
+preInterleaveIndex: 55
+blockIndex: 0
+indexInBlock: 56
+postInterleaveIndex: 55
+CodeWord
+Value: 0
+preInterleaveIndex: 56
+blockIndex: 0
+indexInBlock: 57
+postInterleaveIndex: 56
+CodeWord
+Value: 0
+preInterleaveIndex: 57
+blockIndex: 0
+indexInBlock: 58
+postInterleaveIndex: 57
+CodeWord
+Value: 0
+preInterleaveIndex: 58
+blockIndex: 0
+indexInBlock: 59
+postInterleaveIndex: 58
+CodeWord
+Value: 0
+preInterleaveIndex: 59
+blockIndex: 0
+indexInBlock: 60
+postInterleaveIndex: 59
+CodeWord
+Value: 0
+preInterleaveIndex: 60
+blockIndex: 0
+indexInBlock: 61
+postInterleaveIndex: 60
+CodeWord
+Value: 0
+preInterleaveIndex: 61
+blockIndex: 0
+indexInBlock: 62
+postInterleaveIndex: 61
+CodeWord
+Value: 0
+preInterleaveIndex: 62
+blockIndex: 0
+indexInBlock: 63
+postInterleaveIndex: 62
+CodeWord
+Value: 0
+preInterleaveIndex: 63
+blockIndex: 0
+indexInBlock: 64
+postInterleaveIndex: 63
+CodeWord
+Value: 0
+preInterleaveIndex: 64
+blockIndex: 0
+indexInBlock: 65
+postInterleaveIndex: 64
+CodeWord
+Value: 0
+preInterleaveIndex: 65
+blockIndex: 0
+indexInBlock: 66
+postInterleaveIndex: 65
+CodeWord
+Value: 0
+preInterleaveIndex: 66
+blockIndex: 0
+indexInBlock: 67
+postInterleaveIndex: 66
+CodeWord
+Value: 0
+preInterleaveIndex: 67
+blockIndex: 0
+indexInBlock: 68
+postInterleaveIndex: 67
+CodeWord
+Value: 0
+preInterleaveIndex: 68
+blockIndex: 0
+indexInBlock: 69
+postInterleaveIndex: 68
+CodeWord
+Value: 0
+preInterleaveIndex: 69
+blockIndex: 0
+indexInBlock: 70
+postInterleaveIndex: 69
