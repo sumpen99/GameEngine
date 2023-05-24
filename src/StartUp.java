@@ -38,16 +38,19 @@ public class StartUp {
         //tree.search(tree.testNode);
         //InterpolationSearch.testAlgorithm();
         //program = new ColorPicker(800,500); // ./resources/files/gui/colorpicker.fs
+
         //program = new QuadTreeBalls(800,500); // ./resources/files/gui/quadtree.fs
+
         //int[] arr = new int[]{7,2,1,6,8,5,3,4};
         //QuickSort.sortIntArray(arr,0,arr.length-1);
-        program = new ImageSampling(800,500); // ./resources/files/gui/imagesampling.fs
+
+        //program = new ImageSampling(800,500); // ./resources/files/gui/imagesampling.fs
 
         //IOHandler.readFromTextFile("./resources/files/words/WordsUSA.txt");
 
         //testFunction();
 
-        //program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
+        program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
 
         //testSqlFunction();
         testQrCode();

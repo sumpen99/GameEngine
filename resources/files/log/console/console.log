@@ -170,7 +170,7 @@ numbitsCharCount: Int Array length: 3
 16
 
 
-SegmentMode: helper.qr.QrSegmentMode@3b0143d3
+SegmentMode: helper.qr.QrSegmentMode@6ddf90b0
 numChars: 40 
 numbitsCharCount: 0 0 1 1 0 0 0 1 0 0 1 1 0 0 1 0 0 0 1 1 0 0 1 1 0 1 0 1 1 1 1 1 0 0 1 1 0 1 0 0 0 0 1 1 0 1 0 1 0 0 1 1 0 1 1 0 0 1 1 0 1 1 1 0 
 0 1 1 0 1 0 1 0 0 1 1 0 1 0 1 1 0 1 1 0 1 0 0 0 0 1 1 0 1 0 1 0 0 1 1 0 1 1 1 0 0 1 1 0 1 1 1 1 0 1 1 0 1 0 0 1 0 1 1 0 1 0 0 0 
