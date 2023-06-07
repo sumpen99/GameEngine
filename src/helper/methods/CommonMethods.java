@@ -1,7 +1,6 @@
 package helper.methods;
 import helper.enums.Color;
 import helper.enums.ColorMask;
-import helper.qr.CodePoint;
 import helper.struct.Point;
 import static helper.enums.ConstantValues.*;
 import static helper.methods.StringToEnum.getStrToColor;
@@ -12,14 +11,12 @@ import static helper.struct.Point.addPointPoint;
 import helper.enums.Token;
 import helper.io.IOHandler;
 import helper.struct.*;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 import static helper.methods.StringToEnum.getIntToColor;
 
@@ -60,6 +57,18 @@ public class CommonMethods{
     public static boolean inRangeOf(int span,int num1,int num2){
         int diff = Math.abs(num2-num1);
         return (0 <= diff) && (diff <= span);
+    }
+
+    public static int reduce(ArrayList<Boolean> column,int n,int defaultValue){
+        if(n <= 0){ return 0;}
+
+        return(reduce(column,n - 1,defaultValue) + defaultValue + (column.get(n-1) ? 1 : 0));
+    }
+
+    public static int reduce(int[] column,int n){
+        if(n <= 0){ return 0;}
+
+        return(reduce(column,n - 1) + (column[n-1]));
     }
 
     public static int[] parsePoints(String values){

@@ -166,6 +166,15 @@ public class IOHandler {
         }
     }
 
+    public static void printArrayListBooleanArrayList(ArrayList<ArrayList<Boolean>> arr){
+        for(ArrayList<Boolean> column : arr){
+            IOHandler.printString("new row");
+            for(Boolean b : column){
+                IOHandler.printBool(b);
+            }
+        }
+    }
+
     public static void printFloatArray(float[] arr){
         for(int i = 0;i<arr.length;i++){
             if(i%64 == 0 && i != 0)printString("");
