@@ -53,7 +53,7 @@ public class StartUp {
         program = new RecordSound(800,500); // ./resources/files/gui/recorder.fs
 
         //testSqlFunction();
-        //testQrCode();
+        testQrCode();
         if(program.setUpProgram()){
             program.runEngineLoop();
         }
