@@ -3,5 +3,4 @@
 out
 resources/files/certification
 resources/files/sqlite
-src/helper/qr/qr.js
-src/helper/qr/
+src/helper/qr
